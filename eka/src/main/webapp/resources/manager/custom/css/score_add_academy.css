@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+table th {
+  background: #f1f1f1;
+}
+table#find th {
+  background: none;
+}
+
+#score_add {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+#score_add tr {
+  border: 1px solid #f1f1f1;
+  line-height: 35px;
+}
+
+#score_add td {
+  border: 1px solid #f1f1f1;
+  padding-left: 5px;
+}
+
+#score_add th {
+  background: #f1f1f1;
+  padding: 0 8px 0 8px;
+}
+
+#score_add input {
+  height: 25px;
+  width: 120px;
+}
+#score_add input.testname {
+  width: 200px;
+}
+
+
+#score_add input.radio {
+  width: 15px;
+  top: -5px;
+  margin: 0 5px 0 5px;
+  vertical-align: middle;
+}
+
+#score_add select {
+  height: 25px;
+}
+
+input.score {
+  width: 60px;
+}
+
+select.lecture {
+  height: 25px;
+  width: 250px;
+}
+
+/* 등록버튼 */
+button.submit1 {
+  width: 60px;
+  height: 30px;
+}
+
+button.submit2 {
+  width: 90px;
+  height: 30px;
+}

@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+#teacher_find {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+#teacher_find tr {
+  border: 1px solid #f1f1f1;
+  line-height: 35px;
+}
+
+#teacher_find td {
+  border: 1px solid #f1f1f1;
+  padding-left: 5px;
+  line-height: auto;
+}
+
+#teacher_find th {
+  /* width: 150px; */
+  background: #f1f1f1;
+  padding-left: 8px;
+}
+
+#teacher_find input {
+  height: 25px;
+  width: 100px;
+}
+
+/* radio,checkbox */
+#teacher_find input.checkbox, #teacher_find input.radio {
+  width: 20px;
+  top: -5px;
+  margin: 0 5px 0 5px;
+  vertical-align: middle;
+}
+
+table th {
+  background: #f1f1f1;
+}
+
+/* 등록버튼 */
+button.submit {
+  width: 50px;
+  height: 35px;
+}
+
+button.submit span {
+  font-size: 16px;
+}

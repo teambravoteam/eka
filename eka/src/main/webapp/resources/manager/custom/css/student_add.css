@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+#student_add, #student_add_parent {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  width: calc(100% - 200px);
+}
+
+#student_add tr, #student_add_parent tr {
+  border: 1px solid #f1f1f1;
+  line-height: 35px;
+}
+
+#student_add td, #student_add_parent td {
+  border: 1px solid #f1f1f1;
+  padding-left: 5px;
+  line-height: auto;
+}
+
+#student_add th, #student_add_parent th {
+  width: 150px;
+  background: #f1f1f1;
+  padding-left: 8px;
+}
+
+#student_add input, #student_add_parent input {
+  height: 25px;
+  width: 120px;
+}
+
+/* radio */
+#student_add input.radio, #student_add_parent input.radio {
+  width: 20px;
+  top: -5px;
+  margin: 0 5px 0 5px;
+  vertical-align: middle;
+}
+
+
+
+#student_add select.phone, #student_add_parent select.phone {
+  height: 25px;
+  width: 60px;
+}
+
+#student_add input.phone, #student_add_parent input.phone {
+  width: 60px;
+}
+
+/* 교과과정 select박스 */
+#student_add select.category {
+  height: 25px;
+  width: 100px;
+}
+
+#student_add input.eka-id {
+  width: 150px;
+}
+
+table th {
+  background: #f1f1f1;
+}
+
+/* 등록버튼 */
+button.submit {
+  width: 100px;
+  height: 35px;
+}
+
+button.submit span {
+  font-size: 16px;
+}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Julietta';
+  src: url('Julietta.svg#Julietta') format('svg'),
+       url('Julietta.ttf') format('truetype'),
+       url('Julietta.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'julietta';
+  src: url('julietta.eot');
+  src: url('julietta.eot?#iefix') format('embedded-opentype'),
+       url('julietta.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

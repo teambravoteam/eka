@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+table th {
+  background: #f1f1f1;
+}
+
+#teacher_add {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+#teacher_add tr {
+  border: 1px solid #f1f1f1;
+  line-height: 35px;
+}
+
+#teacher_add td {
+  border: 1px solid #f1f1f1;
+  padding-left: 5px;
+  line-height: auto;
+}
+
+#teacher_add th {
+  width: 150px;
+  background: #f1f1f1;
+  padding-left: 8px;
+}
+
+#teacher_add input  {
+  height: 25px;
+  width: 120px;
+}
+
+#teacher_add input.long  {
+  height: 50px;
+  width: 300px;
+  margin : 5px 0 5px 0;
+}
+
+#teacher_add input.education  {
+  width: 250px;
+}
+
+#teacher_add input.file {
+  width: 200px;
+  height: 41px;
+}
+
+/* #teacher_add input::file-upload-button {
+  height: 25px !important;
+} */
+
+/* radio */
+#teacher_add input.radio {
+  width: 20px;
+  top: -5px;
+  margin: 0 5px 0 5px;
+  vertical-align: middle;
+}
+
+#teacher_add select.phone {
+  height: 25px;
+  width: 70px;
+}
+
+#teacher_add input.phone {
+  width: 60px;
+}
+
+#teacher_add select {
+  height: 25px;
+  width: 100px;
+}
+
+/* 등록버튼 */
+button.submit {
+  width: 100px;
+  height: 35px;
+}
+
+button.submit span {
+  font-size: 16px;
+}
