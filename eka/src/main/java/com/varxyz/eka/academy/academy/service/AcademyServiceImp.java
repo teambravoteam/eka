@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.repository.AcademyDao;
 
-@Service("academyListService")
-public class AcademyListServiceImp implements AcademyListService {
+@Service("academyService")
+public class AcademyServiceImp implements AcademyService {
 
 	@Autowired
 	private AcademyDao academyDao;
 
-	public AcademyListServiceImp(DataSource dataSource) {
+	public AcademyServiceImp(DataSource dataSource) {
 		academyDao = new AcademyDao(dataSource);
 	}
 

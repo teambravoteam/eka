@@ -1,37 +1,13 @@
 package com.varxyz.eka.consulting.controller;
 
 
-
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-import java.util.List;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.varxyz.eka.academy.academy.domain.Academy;
-import com.varxyz.eka.academy.academy.service.AcademyListServiceImp;
-import com.varxyz.eka.consulting.category.domain.ConsultCategory;
-import com.varxyz.eka.consulting.domain.Consulting;
-import com.varxyz.eka.consulting.service.ConsultingServiceImp;
-
-
-
-@Controller("consultingController")
+//@Controller("consultingController")
 public class ConsultingController {
 
-	@Autowired
-	private ConsultingServiceImp consultingService;		
-	@Autowired
-	private AcademyListServiceImp academyService;
+//	@Autowired
+//	private ConsultingServiceImp consultingService;		
+//	@Autowired
+//	private AcademyListServiceImp academyService;
 
 //	@GetMapping("eka_manager/consulting_edit")
 //	public String ConsultingEdit(Model model) {

@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.varxyz.eka.academy.academy.repository.AcademyRowMapper;
-
 import com.varxyz.eka.academy.academycategory.domain.AgeCategory;
 import com.varxyz.eka.academy.academycategory.domain.MainSubjectCategory;
 import com.varxyz.eka.academy.academycategory.domain.SubjectCategory;
