@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -118,22 +119,23 @@ public class AuthController {
 
 	// 매니저 아이디체크
 	@PostMapping("/eka_main/idtest1") 
-	public String idtest1(EkaUser ekaUser, Model model, HttpServletRequest request) {
+	public String idtest1(AcademyManager academyManager, Model model) {
 
-		if (service.usercheckId(ekaUser.getUserId()) == true) {
+		if (service.managercheckId(academyManager.getUserId()) == true) {
 			model.addAttribute("message_red", "존재하는 아이디입니다");
 			return "eka_main/auth/register_academy";
 		} else {
 			model.addAttribute("message_green", "사용가능한 아이디입니다");
-			model.addAttribute("userId", ekaUser.getUserId());
+			model.addAttribute("userId", academyManager.getUserId());
 			return "eka_main/auth/register_academy";
 		}
 
 	}
 
+	
 	// 유저 아이디체크
 	@PostMapping("/eka_main/idtest2")
-	public String idtest2(EkaUser ekaUser, Model model, HttpServletRequest request) {
+	public String idtest2(EkaUser ekaUser, Model model) {
 
 		if (service.usercheckId(ekaUser.getUserId()) == true) {
 			model.addAttribute("message_red", "존재하는 아이디입니다");
@@ -234,23 +236,24 @@ public class AuthController {
 	}
 
 	@PostMapping("/eka_main/managerlogin") // 매니저 로그인
-	public String managerLogin(Model model, AcademyManager academyManager) {
+	public String managerLogin(Model model, AcademyManager academyManager, HttpSession session) {
 
 		if (service.loginManager(academyManager.getUserId(), academyManager.getUserPw()) != null) {
-
-			model.addAttribute("manager", service.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
+			session.setAttribute("manager", service.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
 			return "eka_main/main";
 		}
 		return "eka_main/login_error";
 	}
 
-	@GetMapping("/eka_main/ekauserlogin")
+	
+	
+	@GetMapping("/eka_main/ekauserlogin") // 유저 로그인
 	public String ekaUserLogin(Model model) {
 		model.addAttribute("ekauser", new EkaUser());
 		return "eka_main/auth/login_student";
 	}
 
-	@PostMapping("/eka_main/ekauserlogin") // eka홈페이지 유저 로그인
+	@PostMapping("/eka_main/ekauserlogin") // 유저 로그인
 	public String ekaUserLogin(Model model, EkaUser ekaUser) {
 
 		if (service.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()) != null) {

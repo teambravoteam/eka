@@ -2,6 +2,7 @@
 -- 학원유저(원장용)
 CREATE TABLE AcademyManager (
 	aid				BIGINT 			PRIMARY KEY AUTO_INCREMENT,
+	academyId		VARCHAR(20),	
 	userId			VARCHAR(20) 	NOT NULL,
 	userPw			VARCHAR(20) 	NOT NULL,
 	name			VARCHAR(20) 	NOT NULL,
@@ -9,6 +10,10 @@ CREATE TABLE AcademyManager (
 	ssn				VARCHAR(14) 	NOT NULL,
 	regDate			TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP
 );
+
+SELECT * FROM AcademyManager;
+SELECT * FROM AcademyManager WHERE userId = "zxc" AND userPw = "zxc";
+INSERT INTO AcademyManager(userId, userPw, name, phone, ssn) VALUES('sdf', 'sdf', '김철수', '010-3333-3333', '2000-22-22');
 
 DROP TABLE AcademyManager;
 
@@ -23,14 +28,14 @@ CREATE TABLE Academy (
 	openingday				DATE			NOT NULL, -- 개업일
 	address					VARCHAR(100)	NOT NULL, -- 주소
 	detailaddress			VARCHAR(100) 	NOT NULL, -- 상세주소
-	lat						VARCHAR(20) 	NOT NULL,
-	lon						VARCHAR(20) 	NOT NULL,
-	personnel				BIGINT			NOT NULL, 
-	field1					VARCHAR(100) 	NOT NULL,
-	field2					VARCHAR(100) 	NOT NULL,
-	field3					VARCHAR(100) 	NOT NULL,
-	field4					VARCHAR(100) 	NOT NULL,
-	priceList				VARCHAR(1000)	NOT NULL,
+	lat						VARCHAR(20) 	NOT NULL, -- 위도
+	lon						VARCHAR(20) 	NOT NULL, -- 경도
+	personnel				BIGINT			NOT NULL, -- 인원
+	field1					VARCHAR(100) 	NOT NULL, -- 필드1
+	field2					VARCHAR(100) 	NOT NULL, -- 필드2
+	field3					VARCHAR(100) 	NOT NULL, -- 필드3
+	field4					VARCHAR(100) 	NOT NULL, -- 필드4
+	priceList				VARCHAR(1000)	NOT NULL, -- 가격표
 	phone					VARCHAR(20),			  -- 전화번호
 	introduction			VARCHAR(300), 			  -- 소개글
 	academyservice			VARCHAR(150), 			  -- 학원제공서비스
@@ -50,13 +55,10 @@ DROP TABLE Academy;
 DROP TABLE payment;
 
 
-INSERT INTO Academy(addressId, academyCategoryId, name,	registrationNum, detailaddress,email, phone, openingday,
-			academyservice, runday, startruntime, endruntime, consultableday, startconsultabletime,
-				endconsultabletime,academyCapacity, introduction)  VALUES(1,1,"코리아id","11-11-11","중앙로3번로","korea@namver.com",
-				"010-1111-1111","2022-08-10","에어컨,침대","월,화","09:00","22:00",
-				"월,화","09:00","18:00",50,"여기좋음 ㄹㅇ");
+INSERT INTO Academy(name, openingday,address,detailaddress,lat,lon,personnel,field1,field2,field3,field4,priceList ) 
+VALUES("박강산","2022-08-21","대구북구","sd","11","12",15,"대분류","중분류","소분류","분류명","국수사과");
 
-				
+		
 SELECT a.aid, a.name, a.registrationNum, d.ageCate, c.mainCate, b.subjectCate, f.county, e.city, a.detailaddress, 
 a.email, a.phone, a.openingday, a.academyservice, a.runday, a.startruntime, a.endruntime, a.consultableday, a.startconsultabletime, 
 a.endconsultabletime,a.academyCapacity, a.introduction 
