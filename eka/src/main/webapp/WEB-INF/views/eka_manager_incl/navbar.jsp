@@ -125,7 +125,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="attendance">
+                <a class="nav-link" href="attendance_page">
                     <i class="fas fa-fw fa-table"></i>
                     <span>출결관리</span>
                 </a>

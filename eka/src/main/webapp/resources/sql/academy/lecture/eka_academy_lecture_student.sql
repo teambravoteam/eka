@@ -8,3 +8,11 @@ CREATE TABLE LectureStudent(
 	CONSTRAINT LectureStudent_lectureId_FK FOREIGN KEY(lectureId) REFERENCES Lecture(lid),
 	CONSTRAINT LectureStudent_studentId_FK FOREIGN KEY(studentId) REFERENCES Student(sid)
 );
+
+SELECT * FROM LectureStudent;
+
+-- test
+SELECT * FROM LectureStudent a JOIN Student b ON a.studentId = b.sid
+WHERE a.lectureId = 1;
+
+DELETE FROM LectureStudent WHERE lectureId = 1 AND studentId =1;

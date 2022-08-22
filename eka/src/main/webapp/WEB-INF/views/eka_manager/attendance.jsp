@@ -59,16 +59,18 @@
             <h1 class="h3 mb-0 text-gray-800 content-title">출석관리</h1>
           </div>
 
-          <!-- 학원 시험 등록 -->
+          <!-- 출석부조회 -->
           <div class="card shadow mb-4">
             <div class="card-body">
-              <form class="" action="index.html" method="post">
-                <table id="student_add">
+              <form class="" action="" method="post">
+                <table id="attendance">
                   <tr>
                     <th>강좌</th>
                     <td>
                       <select class="" name="">
+                      <c:forEach var="lecture" items="${lecture}" varStatus="status">
                         <option value="">강좌리스트</option>
+                      </c:forEach>
                       </select>
                     </td>
                     <th>날짜</th>

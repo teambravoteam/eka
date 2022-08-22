@@ -9,7 +9,7 @@
 CREATE TABLE Attendance (
 	aid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
 	studentId	BIGINT		 	NOT NULL,
-	checking	CHAR(1)			NOT NULL, -- 출석A, 결석B, 조퇴C, 지각D
+	checking	CHAR(5)			NOT NULL, -- 출석A, 결석B, 조퇴C, 지각D
 	lectureId	BIGINT		 	NOT NULL,
 	academyId	BIGINT		 	NOT NULL,
 	regDate		TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.academy.lecture.repository.LectureDao;
-import com.varxyz.eka.academy.teacher.domain.Teacher;
+import com.varxyz.eka.student.domain.Student;
 
 @Service
 public class LectureServiceImpl {
@@ -37,14 +37,52 @@ public class LectureServiceImpl {
 			return false;
 		}
 	}
-
+	// 강좌 삭제
 	public boolean deleteLecture(Lecture lecture) {
 		return false;
 	}
 	
+	
 	// 전체 강좌 조회
 	public List<Lecture> findallAcademyLectures(Academy academy) {
 		return ldao.findAllLecture(academy);
+	}
+	
+	//임시) 학생이름으로 학생 찾기
+	public List<Student> findStudentByName(Academy academy, String name) {
+		return ldao.findStudentByName(academy, name);
+	}
+	
+	// 강의id로 강의정보 찾기
+	public Lecture findLectureBylid(long lid) {
+		return ldao.findLectureBylid(lid);
+	}
+	
+	// 강좌별 수강생 등록
+	public boolean addLectureStudent(long aid, long lid, long sid) {
+		try {
+			ldao.addLectureStudent(aid, lid, sid);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	// 강좌별 수강생 조회
+	public List<Student> findLectureStudentList(long lid) {
+		return ldao.findLectureStudentList(lid);
+	}
+	
+	// 강좌 수강생 삭제
+	public boolean deleteLectureStudent(long lid, long sid) {
+		try {
+			ldao.deleteLectureStudent(lid, sid);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	// 과목으로 검색

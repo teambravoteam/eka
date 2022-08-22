@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class Attendence {
+	private long aid;
 	private Student student;
 	private String checking;
 	private Lecture lecture;

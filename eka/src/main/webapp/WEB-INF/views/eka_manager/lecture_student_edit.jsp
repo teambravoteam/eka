@@ -88,14 +88,14 @@ body {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>현대미술의 이해</td>
-                      <td>미술</td>
-                      <td>짱구</td>
-                      <td>오후 1:00 ~ 오후 2:00</td>
-                      <td>2022/08/12 ~ 2022/09/12</td>
-                      <td>화,목</td>
-                      <td>10</td>
-                      <td>200,000</td>
+                      <td>${lecture.name}</td>
+                      <td>${lecture.subject}</td>
+                      <td>${lecture.teacher}</td>
+                      <td>${lecture.startLectureTime} ~ ${lecture.finishLectureTime}</td>
+                      <td>${lecture.startLectureDate} ~ ${lecture.finishLectureDate}</td>
+                      <td>${lecture.lectureDay}</td>
+                      <td>${lecture.lectureCapacity}</td>
+                      <td>${lecture.price}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -109,15 +109,14 @@ body {
               </div>
               <form action="lecture_student_find" action="index.html" method="post">
                 <table id="lecture_find">
+                <input type="hidden" name="lid" value="${lecture.lid}">
                   <tr>
                     <th>이름</th>
                     <td>
-                     <form action="" method="post"> 
                       <input type="text" name="name">
                       <button class="btn btn-primary btn-sm submit" type="submit" name="button">
                         <span>검색하기</span>
                       </button>
-                     </form>
                     </td>
                   <tr>
                 </table>
@@ -134,14 +133,21 @@ body {
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach var="student" items="${student}" varStatus="status">
+                  <form action="lecture_student_add" method="post">
                     <tr>
-                      <td>1</td>
-                      <td>현대미술의 이해</td>
-                      <td>미술</td>
-                      <td>짱구</td>
+                      <td>${status.index + 1}</td>
+                      <td>${student.name}</td>
+                      <td>${student.ssn}</td>
+                      <td>${student.phone}</td>
                       <td><button type="submit" name="button"
                              class="btn btn-light btn-sm">추가</button></td>
+                      <input type="hidden" name="sid" value="${student.sid}">
+                      <input type="hidden" name="lid" value="${lecture.lid}">
+                      <input type="hidden" name="aid" value="${lecture.academy.aid}">
                     </tr>
+                    </form>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -164,14 +170,20 @@ body {
                     </tr>
                   </thead>
                   <tbody>
+                  <c:forEach var="lectureStudentList" items="${lectureStudentList}" varStatus="status">
+                  <form action="lecture_student_delete" method="post">
                     <tr>
-                      <td>1</td>
-                      <td>현대미술의 이해</td>
-                      <td>미술</td>
-                      <td>짱구</td>
+                      <td>${status.index + 1}</td>
+                      <td>${lectureStudentList.name}</td>
+                      <td>${lectureStudentList.ssn}</td>
+                      <td>${lectureStudentList.phone}</td>
+                      <input type="hidden" name="sid" value="${lectureStudentList.sid}"/>
+                      <input type="hidden" name="lid" value="${lecture.lid}"/>
                       <td><button type="submit" name="button"
                              class="btn btn-light btn-sm">삭제</button></td>
                     </tr>
+                     </form>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>

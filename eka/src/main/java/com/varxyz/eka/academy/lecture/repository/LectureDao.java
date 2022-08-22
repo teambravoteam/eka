@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
-import com.varxyz.eka.academy.teacher.domain.Teacher;
+import com.varxyz.eka.student.domain.Student;
 
 @Repository
 public class LectureDao {
@@ -74,6 +75,41 @@ public class LectureDao {
 				lecture.getPrice(), lecture.getTeacher(), lecture.getLectureCapacity(),
 				lecture.getLid()
 				);
+		
+	}
+	
+	//임시)학생이름으로 학생 찾기
+	public List<Student> findStudentByName(Academy academy, String name) {
+		String sql = "SELECT * FROM Student WHERE academyId=? AND name LIKE ?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class), academy.getAid(), likeName);
+	}
+	
+	// lid로 강의정보 찾기
+	public Lecture findLectureBylid(long lid) {
+		String sql = "SELECT * FROM Lecture WHERE lid=?";
+		return jdbcTemplate.queryForObject(sql, new LectureListRowMapper(), lid);
+	}
+	
+	// 강좌별 수강생 등록
+	public void addLectureStudent(long aid, long lid, long sid) {
+		String sql = "INSERT INTO LectureStudent(academyId, lectureId, studentId)"
+				+ " VALUES(?, ?, ?)";
+		jdbcTemplate.update(sql, aid, lid, sid);
+	}
+	
+	// 강좌별 수강생 조회
+	public List<Student> findLectureStudentList(long lid) {
+		String sql = "SELECT * FROM LectureStudent a JOIN Student b "
+				+ " ON a.studentId = b.sid "
+				+ " WHERE a.lectureId = ?";
+		return jdbcTemplate.query(sql, new LectureStudentRowMapper(), lid);
+	}
+	
+	// 강좌별 수강생 삭제
+	public void deleteLectureStudent(long lid, long sid) {
+		String sql = "DELETE FROM WHERE lectureId=? AND studentId=?";
+		jdbcTemplate.update(sql, lid, sid);
 		
 	}
 	
