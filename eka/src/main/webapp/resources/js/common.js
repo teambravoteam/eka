@@ -67,6 +67,23 @@ function getDate(element) {
   return date;
 }
 
+let openOverlay = function(marker) {
+  var $target = $('.academy-list [data-uaid="' + marker.uaid + '"]').eq(0);
+  var adType = $target.closest("ul").parent().data("color");
+  var html = '<div class="academy-overlay-wrap ' + adType + '">';
+  html += $target.children("a").html();
+  html += '</div>';
+  academyLocation.customOverlay.setContent(html);
+  academyLocation.customOverlay.setPosition(marker.getPosition());
+  var mapDistance = 0.0003 * (academyLocation.map.getLevel() - 1);
+  academyLocation.map.panTo(new kakao.maps.LatLng(marker.getPosition().getLat() + mapDistance, marker.getPosition().getLng()));
+  academyLocation.customOverlay.setMap(academyLocation.map);
+};
+
+let closeOverlay = function() {
+  academyLocation.customOverlay.setMap(null);
+};
+
 $(function() {
   /* GNB SETTING */
   $('.header-menu').on('click', function() {
@@ -200,10 +217,16 @@ $(function() {
         if (result[0].road_address == null) {
           console.log(result[0].address.address_name);
           $(".userAddr").text(result[0].address.address_name);
+          $("#mainAddr").val(result[0].address.address_name);
+          $("#mainLat").val(lat);
+          $("#mainLon").val(lon);
 
         } else {
           console.log(result[0].road_address.address_name);
           $(".userAddr").text(result[0].road_address.address_name);
+          $("#mainAddr").val(result[0].road_address.address_name);
+          $("#mainLat").val(lat);
+          $("#mainLon").val(lon);
         }
       }
     }
@@ -223,10 +246,43 @@ $(function() {
         if (result[0].road_address == null) {
           console.log(result[0].address.address_name);
           $(".input-text.search").val(result[0].address.address_name);
+          $("#mainAddr").val(result[0].address.address_name);
+          $("#mainLat").val(lat);
+          $("#mainLon").val(lon);
 
         } else {
           console.log(result[0].road_address.address_name);
           $(".input-text.search").val(result[0].road_address.address_name);
+          $("#mainAddr").val(result[0].road_address.address_name);
+          $("#mainLat").val(lat);
+          $("#mainLon").val(lon);
+        }
+      }
+    }
+    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+  }
+
+
+  // 학원 리스트 현재 위치 설정
+  function setAddr3(lat, lon) {
+    let geocoder = new kakao.maps.services.Geocoder();
+
+    let coord = new kakao.maps.LatLng(lat, lon);
+    let callback = function(result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        if (result[0].road_address == null) {
+          console.log(result[0].address.address_name);
+          $("#listAddr1").text(result[0].address.address_name);
+          $("#listAddr2").val(result[0].address.address_name);
+          $("#listLat").val(lat);
+          $("#listLon").val(lon);
+
+        } else {
+          console.log(result[0].road_address.address_name);
+          $("#listAddr1").text(result[0].road_address.address_name);
+          $("#listAddr2").val(result[0].road_address.address_name);
+          $("#listLat").val(lat);
+          $("#listLon").val(lon);
         }
       }
     }
@@ -327,6 +383,7 @@ $(function() {
     $(this).closest(".modal-wrap").hide();
     $("#wrap").removeClass("transparent");
     $(".userAddr").text($(".input-text.search").val());
+    $("#mainAddr").val($(".input-text.search").val());
   });
 
   /* toggle Like */
@@ -337,5 +394,14 @@ $(function() {
     var state = $(this).attr("data-like");
     toggleLike(uaid, state);
   });
+
+  //학원 리스트 현재 위치 설정
+  $("#bt-config-loc2").click(function() {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+    setAddr3(lat, lon);
+    var moveLatLon = new kakao.maps.LatLng(lat, lon);
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+  })
 
 });
