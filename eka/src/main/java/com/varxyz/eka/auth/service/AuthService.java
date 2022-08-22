@@ -61,4 +61,16 @@ public class AuthService implements AuthServiceInterface {
 		}
 	}
 
+
+	@Override
+	public boolean updateAcademId(long academyId) { //아카데미 아이디 업데이트
+		try {
+			authDao.updateAcademId(academyId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

@@ -64,6 +64,7 @@ public class AuthDao {
 			String sql = "SELECT * FROM ACADEMYMANAGER WHERE userId = ? AND userPw = ?";
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<AcademyManager>(AcademyManager.class), userId, userPw);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 		
@@ -76,9 +77,15 @@ public class AuthDao {
 			String sql = "SELECT * FROM EKAUSER WHERE userId = ? AND userPw = ?";
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<EkaUser>(EkaUser.class), userId, userPw);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 		
+	}
+	
+	public void updateAcademId(long academyId) { // 아카데미 아이디 업데이트
+		String sql = "INSERT INTO AcademyManager(academyId) VALUES(?)";
+		jdbcTemplate.update(sql, academyId);
 	}
 
 }
