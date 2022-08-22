@@ -38,7 +38,7 @@
                   <label for="userId" class="label-text">아이디</label>
                   <span id="userIdGuide" class="comment"></span>
                   <div class="flex-wrap">
-                    <input type="text" class="input-text" name="userId" id="userId" autocomplete="username" maxlength="20" placeholder="아이디를 입력해주세요" value="${userId}">
+                    <input type="text" class="input-text" name="userId" id="userId"maxlength="20" placeholder="아이디를 입력해주세요" value="${userId}">
                     <input type="submit" id="verifyRequest" class="bt-main white margin" value="중복확인" name="check" formaction="idtest2">
                   </div>
                   <div style="color: red;">
@@ -55,7 +55,7 @@
                   <label for="userPass" class="label-text">비밀번호</label>
                   <span id="userPassGuide" class="comment"></span>
                   <div class="flex-wrap">
-                    <input type="password" name=userPw class="input-text pass" id="userPass" autocomplete="new-password" maxlength="16" placeholder="비밀번호를 입력해주세요">
+                    <input type="password" name=userPw class="input-text pass" id="userPass" maxlength="16" placeholder="비밀번호를 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.userPw}"/>
@@ -65,7 +65,7 @@
                   <label for="userPassConfirm" class="label-text">비밀번호 확인</label>
                   <span id="userPassConfirmGuide" class="comment"></span>
                   <div class="flex-wrap">
-                    <input type="password" name="userPw2" id="userPassConfirm" class="input-text pass" autocomplete="new-password" maxlength="16" placeholder="비밀번호를 한번 더 입력해주세요">
+                    <input type="password" name="userPw2" id="userPassConfirm" class="input-text pass" maxlength="16" placeholder="비밀번호를 한번 더 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.userPw2}"/>
@@ -74,7 +74,7 @@
                 <li>
                   <label for="userName" class="label-text">이름</label>
                   <div class="flex-wrap">
-                    <input type="text" name="name" id="userName" class="input-text" value="" autocomplete="name" placeholder="이름을 입력해주세요">
+                    <input type="text" name="name" id="userName" class="input-text" value="" placeholder="이름을 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.name}"/>
@@ -97,18 +97,20 @@
                   </div>
                 </li>
                	<li>
-                  <label for="userName" class="label-text">주민번호</label>
+                  <label for="userSsn" class="label-text">주민번호</label>
+                  <span id="userSsnGuide" class="comment"></span>
                   <div class="flex-wrap">
-                    <input type="text" name="ssn"  class="input-text" autocomplete="name" placeholder="주민번호를 입력해주세요">
+                    <input type="text" name="ssn" id="userSsn" class="input-text" placeholder="주민번호를 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.ssn}"/>
                   </div>
                 </li>
                 <li>
-                  <label for="userName" class="label-text">폰번호</label>
+                  <label for="userPhone" class="label-text">폰번호</label>
+                  <span id="userPhoneGuide" class="comment"></span>
                   <div class="flex-wrap">
-                    <input type="text" name="phone"  class="input-text" value="" autocomplete="name" placeholder="폰번호를 입력해주세요">
+                    <input type="text" name="phone" id="userPhone" class="input-text" value="" placeholder="폰번호를 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.phone}"/>
@@ -118,7 +120,7 @@
                   <label for="userEmail" class="label-text">이메일</label>
                   <span id="userEmailGuide" class="comment"></span>
                   <div class="flex-wrap">
-                  	<input type="text" name="email" id="userEmail" class="input-text" autocomplete="email" placeholder="이메일을 입력해주세요">
+                  	<input type="text" name="email" id="userEmail" class="input-text" placeholder="이메일을 입력해주세요">
                   </div>
                   <div style="color: red;">
                   	<c:out value="${errorMsgs.email}"/>

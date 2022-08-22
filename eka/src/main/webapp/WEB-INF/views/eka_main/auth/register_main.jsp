@@ -35,12 +35,12 @@
 							<ul class="join-select-wrap">
 								<li class="shadow-wrap">
 									<a href='<c:url value="/eka_main/adduser"/>'>
-										<img src="resource/img/student.png" alt="학생 회원가입"> <span>학생가입</span>
+										<img src="../resources/img/student.png" alt="학생 회원가입"> <span>학생가입</span>
 									</a>
 								</li>
 								<li class="shadow-wrap">
 									<a href='<c:url value="/eka_main/addmanager"/>'>
-										<img src="resource/img/teacher.png" alt="원장 회원가입"> <span>원장가입</span>
+										<img src="../resources/img/teacher.png" alt="원장 회원가입"> <span>원장가입</span>
 									</a>
 								</li>
 							</ul>

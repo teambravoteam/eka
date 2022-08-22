@@ -318,7 +318,7 @@ mark {
 	background-position:16px center;
 	background-size:16px;
 	background-repeat:no-repeat;
-	background-image:url("../image/ic_gps_16px.png")
+	background-image:url("../img/ic_gps_16px.png")
 }
 @media screen and (max-width:768px) {
 	.bt-sub.ic-gps {
@@ -336,7 +336,7 @@ mark {
 	background-position:16px center;
 	background-size:16px;
 	background-repeat:no-repeat;
-	background-image:url("../image/ic_search_16px.png")
+	background-image:url("../img/ic_search_16px.png")
 }
 @media screen and (max-width:768px) {
 	.bt-sub.ic-search {
@@ -386,7 +386,7 @@ mark {
 	font-size:0
 }
 .bt-icon.close {
-	background-image:url("../image/bt_close_24px.png")
+	background-image:url("../img/bt_close_24px.png")
 }
 .bt-like {
 	width:24px;
@@ -395,13 +395,13 @@ mark {
 	background-position:center;
 	background-size:15px;
 	background-repeat:no-repeat;
-	background-image:url("../image/ic_dislike_15px.png");
+	background-image:url("../img/ic_dislike_15px.png");
 	font-size:0;
 	border:1px solid #ECF1F8;
 	border-radius:8px
 }
 .bt-like[data-like="1"] {
-	background-image:url("../image/ic_like_15px.png")
+	background-image:url("../img/ic_like_15px.png")
 }
 .bt-modal-wrap {
 	text-align:right;
@@ -530,10 +530,10 @@ mark {
 	background-color:#ECF1F8
 }
 .bt-extra.navi {
-	background-image:url("../image/ic_navi_28px.png")
+	background-image:url("../img/ic_navi_28px.png")
 }
 .bt-extra.filter {
-	background-image:url("../image/ic_filter_28px.png")
+	background-image:url("../img/ic_filter_28px.png")
 }
 .bt-extra.text {
 	width:auto;
@@ -662,13 +662,13 @@ mark {
 	padding-right:32px
 }
 .input-text.pass.warning {
-	background-image:url("../image/ic_pass_warning.png")
+	background-image:url("../img/ic_pass_warning.png")
 }
 .input-text.pass.safe {
-	background-image:url("../image/ic_pass_safe.png")
+	background-image:url("../img/ic_pass_safe.png")
 }
 .input-text.pass.checked {
-	background-image:url("../image/ic_pass_checked.png")
+	background-image:url("../img/ic_pass_checked.png")
 }
 .input-text.small {
 	width:100%;
@@ -749,7 +749,7 @@ select {
 	transition:all 0.3s;
 	-moz-appearance:none;
 	-webkit-appearance:none;
-	background:#fff url("../image/ic_dropdown_24px.png") no-repeat center right 8px/24px
+	background:#fff url("../img/ic_dropdown_24px.png") no-repeat center right 8px/24px
 }
 @media screen and (max-width:768px) {
 	select {
