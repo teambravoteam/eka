@@ -42,8 +42,6 @@ public class LectureStudentFindController {
 		return "eka_manager/lecture_student";
 	}
 	
-	
-	
 	// 강좌 세부조회
 	
 	

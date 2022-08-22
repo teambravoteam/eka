@@ -100,9 +100,16 @@ public class LectureStudentEditController {
 	public String lectureStudentDelete(
 			@RequestParam long sid, @RequestParam long lid,Model model) {
 		
+//		System.out.println(sid);
+//		System.out.println(lid);
 		// 성공실패 구분
-		lservice.deleteLectureStudent(lid, sid);
-		
+		boolean result = lservice.deleteLectureStudent(lid, sid);
+		System.out.println(result);
+//		if (result == false) {
+//			
+//		} else {
+//			
+//		}
 		// common
 		model.addAttribute("lecture", lservice.findLectureBylid(lid));
 		model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lid));

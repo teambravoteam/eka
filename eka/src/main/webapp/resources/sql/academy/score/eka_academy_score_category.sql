@@ -5,11 +5,13 @@
 -- 1. 강좌테이블 : eka_academy_lecture 
 CREATE TABLE AcademyTestCategory(
 	atcid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
-	lecutrename		VARCHAR(20)		NOT NULL,
+	lecturename		VARCHAR(20)		NOT NULL,
 	testname		VARCHAR(20)		NOT NULL,
 	testdate		DATE			NOT NULL,
 	CONSTRAINT AcademyTest_CategoryacademyId_FK 
-	FOREIGN KEY(lecutrename) REFERENCES Lecture(name)
+	FOREIGN KEY(lecturename) REFERENCES Lecture(name)
 );  
+
+DROP TABLE AcademyTestCategory;
 
 SELECT * FROM AcademyTestCategory;

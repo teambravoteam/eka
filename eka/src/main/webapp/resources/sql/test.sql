@@ -92,6 +92,7 @@ CREATE TABLE Student(
 	CONSTRAINT Student_academyId_FK FOREIGN KEY(academyId) REFERENCES Academy(aid)
 );
 
+SELECT * FROM Student;
 -- 학원 강좌
 CREATE TABLE Lecture(
 	lid					BIGINT 			PRIMARY KEY AUTO_INCREMENT,

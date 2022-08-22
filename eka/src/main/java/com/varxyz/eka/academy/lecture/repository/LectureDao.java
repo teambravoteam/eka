@@ -108,10 +108,21 @@ public class LectureDao {
 	
 	// 강좌별 수강생 삭제
 	public void deleteLectureStudent(long lid, long sid) {
-		String sql = "DELETE FROM WHERE lectureId=? AND studentId=?";
+		String sql = "DELETE FROM LectureStudent WHERE lectureId = ? AND studentId =?";
 		jdbcTemplate.update(sql, lid, sid);
-		
 	}
+	
+	// 강좌id 조회
+	public long findLidByAidAndName(long aid, String name) {
+		String sql = "SELECT lid FROM Lecture WHERE academyId = ? AND name = ?";
+		return jdbcTemplate.queryForObject(sql, Long.class);
+	}
+
+	public Lecture findAcademyLectureByName(Academy academy, String name) {
+		String sql = "SELECT * FROM Lecture WHERE name=?";
+		return jdbcTemplate.queryForObject(sql, new LectureListRowMapper(), name);
+	}
+	
 	
 
 }

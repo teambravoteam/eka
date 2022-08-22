@@ -32,7 +32,7 @@ public class Student {
 	private String parentPhone1; // 010
 	private String parentPhone2; // ****
 	private String parentPhone3; // ****
-	private Time regDate;
+	private Date regDate;
 	
 	private String ekacheck;
 	private String gendercheck;

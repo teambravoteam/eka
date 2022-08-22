@@ -85,6 +85,11 @@ public class LectureServiceImpl {
 		}
 	}
 	
+	// aid, name으로 lid조회
+	public long findLidByAidAndName(long aid, String name) {
+		return ldao.findLidByAidAndName(aid, name);
+	}
+	
 	// 과목으로 검색
 	public List<Lecture> findAcademyLecturesBySubject(Academy academy, String subject) {
 		return ldao.findAcademyLecturesBySubject(academy, subject);
@@ -135,7 +140,7 @@ public class LectureServiceImpl {
 	}
 
 	public Lecture findAcademyLectureByName(Academy academy, String name) {
-		return null;
+		return ldao.findAcademyLectureByName(academy,name);
 	}
 
 }

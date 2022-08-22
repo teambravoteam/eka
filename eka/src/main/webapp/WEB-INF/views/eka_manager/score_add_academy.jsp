@@ -58,10 +58,10 @@ body {
 			<!-- Main Content -->
 			<div id="content">
 
-				<%@ include file="../eka_manager_incl/header.jsp"%>
+			<%@ include file="../eka_manager_incl/header.jsp"%>
 
-				<!-- 컨텐츠 영역 -->
-				<div class="container-fluid">
+			<!-- 컨텐츠 영역 -->
+			<div class="container-fluid">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -77,9 +77,9 @@ body {
                   <tr>
                     <th>강좌</th>
                     <td>
-                      <select class="lecture" name="lecutrename">
+                      <select class="lecture" name="lecturename">
                         <c:forEach var="lecture" items="${lecture}" varStatus="status">
-                    	  <option value="">${lecture.name}</option>
+                    	  <option value="${lecture.name}">${lecture.name}</option>
                      	</c:forEach>
                       </select>
                     </td>
@@ -97,25 +97,23 @@ body {
                   </tr>
                 </table>
               </form>
-
             </div>
           </div>
-
 
           <div class="row">
             <!-- 시험리스트 조회 -->
             <div class="col-xl-6 col-lg-6">
               <div class="card shadow mb-4">
                 <div class="card-body">
-                  <form class="" action="index.html" method="post">
+                  <form class="" action="score_find_academy" method="post">
                     <div class="mb-2">
                       <table id="find">
                         <tr>
                           <th>강의명</th>
                           <td>
-                            <select class="lecture" name="">
+                            <select class="lecture" name="lecturename">
                               <c:forEach var="lecture" items="${lecture}" varStatus="status">
-                    	   		 <option value="">${lecture.name}</option>
+                    	   		 <option value="${lecture.name}">${lecture.name}</option>
                      		  </c:forEach>
                             </select>
                             <button class="btn btn-primary btn-sm submit" type="submit" name="button">
@@ -125,31 +123,35 @@ body {
                         </tr>
                       </table>
                     </div>
+                    <%-- <input type="hidden" name="lid" value="${lecture.lid}"> --%>
                   </form>
                   <table class="table table-bordered result_table">
                     <thead>
                       <tr>
                         <th>No</th>
                         <th>강의명</th>
-                        <th>과목</th>
                         <th>시험명</th>
                         <th>시험일자</th>
                         <th>성적입력</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <form class="" action="add_score_insert" method="post">
+                    <c:forEach var="testList" items="${testList}" varStatus="status">
                       <tr>
-                        <td>1</td>
-                        <td>현대미술의 이해</td>
-                        <td>미술</td>
-                        <td>단어쪽지시험</td>
-                        <td>2022/08/12</td>
+                        <td>${status.index + 1}</td>
+                        <td>${testList.lecturename}</td>
+                        <input type="hidden" name="lecturename" value="${testList.lecturename}">
+                        <td>${testList.testname}</td>
+                        <input type="hidden" name="testname" value="${testList.testname}">
+                        <td>${testList.testdate}</td>
+                        <input type="hidden" name="testdate" value="${testList.testdate}">
                         <td>
                           <button type="submit" name="button" class="btn btn-light btn-sm">입력</button>
                         </td>
-                        <!-- 조회 -> 조회만되게
-                        입력-> 점수부분 input으로 -->
                       </tr>
+                      </c:forEach>
+                     </form>
                     </tbody>
                   </table>
                 </div>
@@ -176,22 +178,24 @@ body {
                       </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="lectureStudentList" items="${lectureStudentList}" varStatus="status">
                       <tr>
-                        <td>1</td>
-                        <td>30</td>
-                        <td>철수</td>
+                        <td>${status.index + 1}</td>
+                        <td>${lectureStudentList.sid}</td>
+                        <input type="hidden" name="sid" value="${lectureStudentList.sid}">
+                        <td>${lectureStudentList.name}</td>
+                        <input type="hidden" name="name" value="${lectureStudentList.name}">
                         <td><input type="number" class="score"></td>
                       </tr>
+                     </c:forEach>
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
 				<!-- 컨텐츠 영역 끝-->
-
 			</div>
 			<!-- End of Main Content -->
 
