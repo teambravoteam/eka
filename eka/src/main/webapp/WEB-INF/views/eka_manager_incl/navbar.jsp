@@ -78,8 +78,7 @@
                 <div id="collapseConsulting" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="consulting_eka">EKA회원상담신청</a>
-                        <a class="collapse-item" href="consulting_unuser">비회원상담신청</a>
+                        <a class="collapse-item" href="consulting">상담신청리스트</a>
                         <a class="collapse-item" href="consulting_edit">상담관리</a>
                     </div>
                 </div>
@@ -102,7 +101,7 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="student_add">학원생 등록</a>
+                        <a class="collapse-item" href="student_add_2">학원생 등록</a>
                         <a class="collapse-item" href="student_edit">학원생 조회 / 수정</a>
                     </div>
                 </div>

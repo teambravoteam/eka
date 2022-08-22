@@ -11,3 +11,5 @@ CREATE TABLE AcademyTestCategory(
 	CONSTRAINT AcademyTest_CategoryacademyId_FK 
 	FOREIGN KEY(lecutrename) REFERENCES Lecture(name)
 );  
+
+SELECT * FROM AcademyTestCategory;

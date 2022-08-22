@@ -1,4 +1,4 @@
-package com.varxyz.eka.score.scorecategory.domain;
+package com.varxyz.eka.score.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,9 +10,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class ScoreCategory {
-	private String areaCategory;
-	private String testTypeCategory;
-	private String subjectCategory;
+	private String lecutrename;
+	private String testname;
+	private String testdate;
 	
 	public ScoreCategory() {
 		

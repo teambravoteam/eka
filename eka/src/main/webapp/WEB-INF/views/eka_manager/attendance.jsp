@@ -69,7 +69,7 @@
                     <td>
                       <select class="" name="">
                       <c:forEach var="lecture" items="${lecture}" varStatus="status">
-                        <option value="">강좌리스트</option>
+                        <option value="">${lecture.name}</option>
                       </c:forEach>
                       </select>
                     </td>

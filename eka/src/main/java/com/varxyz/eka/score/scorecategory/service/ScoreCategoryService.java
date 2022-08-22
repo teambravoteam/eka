@@ -2,7 +2,7 @@ package com.varxyz.eka.score.scorecategory.service;
 
 import java.util.List;
 
-import com.varxyz.eka.score.scorecategory.domain.ScoreCategory;
+import com.varxyz.eka.score.domain.ScoreCategory;
 
 /*
  * EKA 관리자는 점수카테고리를 관리한다

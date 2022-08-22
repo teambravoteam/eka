@@ -1,7 +1,6 @@
 package com.varxyz.eka.score.domain;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
-import com.varxyz.eka.score.scorecategory.domain.ScoreCategory;
 import com.varxyz.eka.student.domain.Student;
 
 import lombok.AllArgsConstructor;

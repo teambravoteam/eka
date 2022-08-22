@@ -94,7 +94,7 @@ body {
 										<select class="" name="subject">
 										<option value="all">--전체--</option>
 										<c:forEach var="subject" items="${subject}" varStatus="status">
-										<option value="${subject.subjectCategory}">${subject.subjectCategory}</option>
+										<option value="${subject.subjectcate}">${subject.subjectcate}</option>
 										</c:forEach>
 										</select>
 									</td>

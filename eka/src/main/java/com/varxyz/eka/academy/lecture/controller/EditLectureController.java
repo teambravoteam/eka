@@ -34,7 +34,7 @@ public class EditLectureController {
 		academy.setAid(1);
 		// common
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("school", scservice.findSchoolCategory());
 		model.addAttribute("grade", scservice.findGradeCategory());
 

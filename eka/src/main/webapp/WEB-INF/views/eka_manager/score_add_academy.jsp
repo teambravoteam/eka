@@ -71,23 +71,25 @@ body {
           <!-- 학원 시험 등록 -->
           <div class="card shadow mb-4">
             <div class="card-body">
-              <form class="" action="index.html" method="post">
+              <form class="" action="score_add_academy" method="post">
                 <h5>시험정보 등록</h5>
                 <table id="score_add">
                   <tr>
                     <th>강좌</th>
                     <td>
-                      <select class="lecture" name="">
-                        <option value="">현재강의중인강좌리스트</option>
+                      <select class="lecture" name="lecutrename">
+                        <c:forEach var="lecture" items="${lecture}" varStatus="status">
+                    	  <option value="">${lecture.name}</option>
+                     	</c:forEach>
                       </select>
                     </td>
                     <th>시행일자</th>
                     <td>
-                      <input type="date" name="" value="">
+                      <input type="date" name="testdate" value="">
                     </td>
                     <th>시험명</th>
                     <td>
-                      <input type="text" class="testname">
+                      <input type="text" name="testname" class="testname">
                       <button class="btn btn-primary btn-sm submit" type="submit" name="button">
                         <span>등록하기</span>
                       </button>
@@ -112,7 +114,9 @@ body {
                           <th>강의명</th>
                           <td>
                             <select class="lecture" name="">
-                              <option value="">강의리스트</option>
+                              <c:forEach var="lecture" items="${lecture}" varStatus="status">
+                    	   		 <option value="">${lecture.name}</option>
+                     		  </c:forEach>
                             </select>
                             <button class="btn btn-primary btn-sm submit" type="submit" name="button">
                               <span>조회</span>

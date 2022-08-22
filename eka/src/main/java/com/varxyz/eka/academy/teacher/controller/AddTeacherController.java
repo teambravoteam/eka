@@ -25,7 +25,7 @@ public class AddTeacherController {
 	
 	@GetMapping("eka_manager/teacher_add")
 	public String TeacherAdd(Model model) {
-		
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/teacher_add";
 	}
 	

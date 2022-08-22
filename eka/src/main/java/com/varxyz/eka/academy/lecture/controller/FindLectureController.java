@@ -30,7 +30,7 @@ public class FindLectureController {
 		Academy academy = new Academy();
 		academy.setAid(1);
 				
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		return "eka_manager/lecture_edit";
 	}
@@ -45,7 +45,7 @@ public class FindLectureController {
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		// common
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		return "eka_manager/lecture_edit";
 	}

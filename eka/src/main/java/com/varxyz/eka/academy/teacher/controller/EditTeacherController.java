@@ -28,7 +28,7 @@ public class EditTeacherController {
 	
 	@GetMapping("eka_manager/teacher_edit")
 	public String teacherFind(Model model) {
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/teacher_edit";
 	}
 	
@@ -43,7 +43,7 @@ public class EditTeacherController {
 		
 //		System.out.println(tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/teacher_edit";
 	}
 	
@@ -149,7 +149,7 @@ public class EditTeacherController {
 			model.addAttribute("teacher_list", teacher_list);
 		}
 		
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/teacher_edit";
 	}
 	

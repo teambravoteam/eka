@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.score.domain.Score;
-import com.varxyz.eka.score.scorecategory.domain.ScoreCategory;
+import com.varxyz.eka.score.domain.ScoreCategory;
 import com.varxyz.eka.student.domain.Student;
 
 /*

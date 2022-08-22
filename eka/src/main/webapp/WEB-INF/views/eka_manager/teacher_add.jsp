@@ -98,10 +98,9 @@ body {
 									<tr>
 										<th>담당과목</th>
 										<td><select class="category" name="subject">
-												<option value="null">--선택--</option>
-												<option value="국어">국어</option>
-												<option value="수학">수학</option>
-												<!-- <option value="">과목리스트</option> -->
+											<c:forEach var="subject" items="${subject}" varStatus="status">
+												<option value="${subject.subjectcate}">${subject.subjectcate}</option>
+											</c:forEach>
 										</select></td>
 										<th>최종학력</th>
 										<td><input type="text" class="education" name="education"></td>

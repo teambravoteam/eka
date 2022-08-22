@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.teacher.command.TeacherListCommand;
+import com.varxyz.eka.academy.teacher.domain.SubjectCategory;
 import com.varxyz.eka.academy.teacher.domain.Teacher;
 import com.varxyz.eka.academy.teacher.repository.TeacherDao;
 
@@ -15,6 +16,12 @@ public class TeacherServiceImpl {
 
 	@Autowired
 	private TeacherDao dao;
+	
+	
+	// 과목 조회
+	public List<SubjectCategory> findSubjectCategory() {
+		return dao.findSubjectCategory();
+	}
 	
 	// 강사등록
 	public boolean addTeacher(Teacher teacher) {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.teacher.command.TeacherListCommand;
+import com.varxyz.eka.academy.teacher.domain.SubjectCategory;
 import com.varxyz.eka.academy.teacher.domain.Teacher;
 
 @Repository
@@ -85,6 +86,13 @@ public class TeacherDao {
 	public List<Teacher> findTeacherByTid(Academy academy, long teacherId) {
 		String sql = "SELECT * FROM Teacher WHERE academyId=? AND teacherId=?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Teacher>(Teacher.class), academy.getAid(),teacherId);
+	}
+	
+	
+	// 과목 조회
+	public List<SubjectCategory> findSubjectCategory() {
+		String sql = "SELECT * FROM SubjectCategory";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<SubjectCategory>(SubjectCategory.class));
 	}
 
 }

@@ -96,7 +96,7 @@ body {
                       <input type="hidden" name="gradecateinput" value="${lecture.gradecate}"/>
                       <select id="subject" name="subject">
                         <c:forEach var="subject" items="${subject}" varStatus="status">
-                        	<option value="${subject.subjectCategory}">${subject.subjectCategory}</option>						
+                        	<option value="${subject.subjectcate}">${subject.subjectcate}</option>						
 						</c:forEach>
                       </select>
                       <input type="hidden" name="subjectcateinput" value="${lecture.subject}"/>

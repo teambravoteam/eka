@@ -91,7 +91,7 @@ body {
                       </select>
                       <select class="" name="subject">
                         <c:forEach var="subject" items="${subject}" varStatus="status">
-                        	<option value="${subject.subjectCategory}">${subject.subjectCategory}</option>						
+                        	<option value="${subject.subjectcate}">${subject.subjectcate}</option>						
 						</c:forEach>
                         <!-- <option value="null">직접입력</option> -->
                         <!-- 직접입력으로 입력하면 카테고리에 추가, input 활성화 -->

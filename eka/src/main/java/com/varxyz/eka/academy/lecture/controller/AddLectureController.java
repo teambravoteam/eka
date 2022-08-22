@@ -37,10 +37,10 @@ public class AddLectureController {
 		academy.setAid(1);
 		
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("school", scservice.findSchoolCategory());
 		model.addAttribute("grade", scservice.findGradeCategory());
-	
+		System.out.println("과목 : " + tservice.findSubjectCategory());
 		return "eka_manager/lecture_add";
 	}	
 	
@@ -67,7 +67,6 @@ public class AddLectureController {
 		System.out.println(lecture.getPrice());
 		System.out.println(lecture.getTeacher());
 		System.out.println(lecture.getLectureCapacity());
-		
 		
 		// true, false확인하기
 //		lservice.addLecture(lecture);

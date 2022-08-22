@@ -22,7 +22,8 @@ public class LectureStudentFindController {
 	private TeacherServiceImpl tservice;
 	
 	@GetMapping("eka_manager/lecture_student")
-	public String lectureStudentMain(Model model) {
+	public String lectureStudentMain(Model model)  {
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/lecture_student";
 	}
 	
@@ -36,7 +37,7 @@ public class LectureStudentFindController {
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		// common
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		return "eka_manager/lecture_student";
 	}
