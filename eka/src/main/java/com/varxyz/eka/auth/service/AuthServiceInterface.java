@@ -1,5 +1,6 @@
 package com.varxyz.eka.auth.service;
 
+import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
 
@@ -11,6 +12,6 @@ public interface AuthServiceInterface {
 	public boolean usercheckId(String userId); // 유저 아이디 중복체크
 	public AcademyManager loginManager(String userId, String userPw); // 원장로그인
 	public EkaUser loginEkaUsers(String userId, String userPw); // 유저로그인
-	public boolean updateAcademId(long academyId); // 아카데미 아이디 업데이트
+	public boolean updateAcademId(long academyId, AcademyManager manager); // 아카데미 아이디 업데이트
 	
 }

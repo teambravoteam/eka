@@ -111,24 +111,27 @@
 						<form action="./select_academies_by_address" class="customer-form" method="POST">
 							<li><input class="label-text ui-button" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 								<div class="flex-wrap">
-									<input type="text" name="adress1" class="input-text" id="sample5_address" placeholder="주소" required>
+									<input type="text" name="address" class="input-text" id="sample5_address" placeholder="주소" required>
 								</div>
-								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div></li>
+								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+								<input class="label-text ui-button" type="submit"  value="학원찾기">
+								</li>
+								
 						</form>
 
-						<form action="./customerResult" class="customer-form" method="POST">
-							<li><label for="inquiryName" class="label-text">학원명</label>
+
+						<form action="./signed_eka_academy" class="customer-form" method="POST">
+							<li><label for="name" class="label-text">학원명</label>
+							<input type = "hidden" name = "address" value="${address}">
 								<div class="flex-wrap">
-									<select class="selbox" name="inquiryName" required>
-										<option value="" disabled selected>학원 선택</option>
-										<c:forEach var="item" items="${academyList}">
-											<option value="${item}" selected>${item}</option>
+									<select class="selbox" name="name" required>										
+										<c:forEach var="academy" items="${academyList}">
+											<option value="${academy.name}" selected>${academy.name}</option>
 										</c:forEach>
 									</select>
+									<input type = "text" class="input-text" name="name">
 								</div></li>
-
-
-							<li><label for="inquiryPhone1" class="label-text">전화번호</label>
+							<li><label for="phone" class="label-text">전화번호</label>
 								<div class="flex-wrap grid">
 									<select class="selbox" name="phone1" required>
 										<option value="" disabled selected>선택</option>
@@ -137,24 +140,15 @@
 										<option value="053">053</option>
 										<option value="direct">직접입력</option>
 									</select>
-									<input type="tel" name="phone2" class="inquiryPhone2 input-text" pattern="\d{3}">
-									<input type="tel" name="phone3" class="inquiryPhone3 input-text" pattern="\d{4}" required>
-									<input type="tel" name="phone4" class="inquiryPhone4 input-text" pattern="\d{4}" required>
+									<input type="tel" name="phone1" class="inquiryPhone2 input-text" pattern="\d{3}">
+									<input type="tel" name="phone2" class="inquiryPhone3 input-text" pattern="\d{4}" required>
+									<input type="tel" name="phone3" class="inquiryPhone4 input-text" pattern="\d{4}" required>
 								</div></li>
 							<li><label for="inquiryEmail" class="label-text">이메일</label>
 								<div class="flex-wrap">
 									<input type="email" name="email" id="inquiryEmail" class="input-text" required="" placeholder="(@)를 포함해서 입력해주세요">
 								</div></li>
-							<div class="flex-wrap grid justify">
-								<li><label for="inquiryDate" class="label-text">개업일</label>
-									<div class="flex-wrap">
-										<input type="date" name="date" id="inquiryName" class="input-text" required="" placeholder="학원의 개업일을 입력해주세요">
-									</div></li>
-								<li><label for="inquiryCount" class="label-text">정원</label>
-									<div class="flex-wrap">
-										<input type="number" name="count" id="inquiryCount" class="input-text" required="" placeholder="학원의 정원을 입력해주세요" max="50000">
-									</div></li>
-							</div>
+						
 
 							<div class="flex-wrap grid justify"></div>
 
@@ -187,13 +181,13 @@
 								<div class="flex-wrap day">
 									<div class="shadow-wrap big-r m1">
 										<ul class="i-category">
-											<li class="border-wrap toggleCheck"><span class="dragBlock">월</span> <input type="checkbox" name="maDay" value="월"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">화</span> <input type="checkbox" name="maDay" value="화"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">수</span> <input type="checkbox" name="maDay" value="수"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">목</span> <input type="checkbox" name="maDay" value="목"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">금</span> <input type="checkbox" name="maDay" value="금"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">토</span> <input type="checkbox" name="maDay" value="토"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">일</span> <input type="checkbox" name="maDay" value="일"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">월</span> <input type="checkbox" name="runday" value="월"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">화</span> <input type="checkbox" name="runday" value="화"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">수</span> <input type="checkbox" name="runday" value="수"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">목</span> <input type="checkbox" name="runday" value="목"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">금</span> <input type="checkbox" name="runday" value="금"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">토</span> <input type="checkbox" name="runday" value="토"></li>
+											<li class="border-wrap toggleCheck"><span class="dragBlock">일</span> <input type="checkbox" name="runday" value="일"></li>
 										</ul>
 									</div>
 								</div></li>
@@ -210,7 +204,7 @@
 								</div>
 
 								<div class="flex-wrap time grid single ma">
-									<select class="selbox" name="maHour1">
+									<select class="selbox" name="startruntime">
 										<option value="0시">0시</option>
 										<option value="1시">1시</option>
 										<option value="2시">2시</option>
@@ -236,7 +230,7 @@
 										<option value="22시">22시</option>
 										<option value="23시">23시</option>
 									</select>
-									<select class="selbox" name="maMinute1">
+									<select class="selbox" name="startruntime">
 										<option value="0분" selected>0분</option>
 										<option value="1분">1분</option>
 										<option value="2분">2분</option>
@@ -299,7 +293,7 @@
 										<option value="59분">59분</option>
 									</select>
 									<span> ~ </span>
-									<select class="selbox" name="maHour2">
+									<select class="selbox" name="endruntime">
 										<option value="0시">0시</option>
 										<option value="1시">1시</option>
 										<option value="2시">2시</option>
@@ -325,7 +319,7 @@
 										<option value="22시">22시</option>
 										<option value="23시">23시</option>
 									</select>
-									<select class="selbox" name="maMinute2">
+									<select class="selbox" name="endruntime">
 										<option value="0분" selected>0분</option>
 										<option value="1분">1분</option>
 										<option value="2분">2분</option>
@@ -3131,7 +3125,7 @@
 
 							<li><label for="inquiryMemo" class="label-text">소개글</label>
 								<div class="flex-wrap">
-									<textarea name="memo" id="inquiryMemo" cols="30" rows="10" class="input-text" required="" placeholder="내용을 입력해주세요"></textarea>
+									<textarea name="introduction" id="inquiryMemo" cols="30" rows="10" class="input-text" required="" placeholder="내용을 입력해주세요"></textarea>
 								</div></li>
 					</ul>
 					<button type="submit" class="bt-sub point">보내기</button>

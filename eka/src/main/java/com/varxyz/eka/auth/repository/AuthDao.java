@@ -83,9 +83,9 @@ public class AuthDao {
 		
 	}
 	
-	public void updateAcademId(long academyId) { // 아카데미 아이디 업데이트
-		String sql = "INSERT INTO AcademyManager(academyId) VALUES(?)";
-		jdbcTemplate.update(sql, academyId);
+	public void updateAcademId(long academyId, AcademyManager manager) { // 아카데미 아이디 업데이트
+		String sql = "UPDATE AcademyManager SET academyId = ? WHERE userId = ? AND userPw = ?";
+		jdbcTemplate.update(sql, academyId, manager.getUserId(), manager.getUserPw());
 	}
 
 }

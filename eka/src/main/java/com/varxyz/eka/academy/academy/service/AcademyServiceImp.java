@@ -30,4 +30,13 @@ public class AcademyServiceImp implements AcademyService {
 		// TODO Auto-generated method stub
 		return academyDao.findAcademiesByAddress(address);
 	}
+
+	public Academy findAcademyByAddressAndName(String address, String name) {
+		// TODO Auto-generated method stub
+		return academyDao.findAcademyByAddressAndName(address,name);
+	}
+
+	public void signEkaAcademy(Academy academy) {				
+		academyDao.signEkaAcademy(academy);		
+	}
 }

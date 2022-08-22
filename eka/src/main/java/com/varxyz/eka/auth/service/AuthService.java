@@ -63,9 +63,9 @@ public class AuthService implements AuthServiceInterface {
 
 
 	@Override
-	public boolean updateAcademId(long academyId) { //아카데미 아이디 업데이트
+	public boolean updateAcademId(long academyId, AcademyManager manager) { //아카데미 아이디 업데이트
 		try {
-			authDao.updateAcademId(academyId);
+			authDao.updateAcademId(academyId,manager);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

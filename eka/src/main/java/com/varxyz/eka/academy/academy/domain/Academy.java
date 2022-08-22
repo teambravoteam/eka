@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 import com.varxyz.eka.academy.academycategory.domain.SubjectCategory;
-import com.varxyz.eka.academy.address.domain.Address;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,16 +29,16 @@ public class Academy {
 	private String field2;
 	private String field3;
 	private String field4;
-	private String[] priceList;
+	private String priceList;
 	private String phone;
 	private String introduction;
-	private String[] academyservice;
-	private String[] runday;
-	private Time startruntime;
-	private Time endruntime;
+	private String academyservice;
+	private String runday;
+	private String startruntime;
+	private String endruntime;
 	private String[] consultableday;
-	private Time startconsultabletime;
-	private Time endconsultabletime;
+	private String startconsultabletime;
+	private String endconsultabletime;
 	private String signedacademy;
 
 	

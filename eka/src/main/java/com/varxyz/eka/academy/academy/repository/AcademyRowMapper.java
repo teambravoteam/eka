@@ -26,26 +26,38 @@ public class AcademyRowMapper implements RowMapper<Academy> {
 		ac.setField3(rs.getString("field3"));
 		ac.setField4(rs.getString("field4"));
 		// 리스트
-		String priceListstr = rs.getString("priceList");
+//		String priceListstr = rs.getString("priceList");		
+//		ac.setPriceList(priceListstr.split("/"));
 		
-		ac.setPriceList(priceListstr.split("/"));
+		ac.setPriceList(rs.getString("priceList"));
 		
 		ac.setPhone(rs.getString("phone"));
 		ac.setIntroduction(rs.getString("introduction"));
-		String academyServiceListstr = rs.getString("academyService");
-		ac.setAcademyservice(academyServiceListstr.split(","));
+		
+//		String academyServiceListstr = rs.getString("academyService");		
+//		if(academyServiceListstr != null) {
+//			ac.setAcademyservice(academyServiceListstr.split(","));	
+//		}
+		ac.setAcademyservice(rs.getString("academyService"));
 		
 		// 리스트
-		String rundayListstr = rs.getString("runday");
-		ac.setRunday(rundayListstr.split(","));
-		ac.setStartruntime(rs.getTime("startruntime"));
-		ac.setEndruntime(rs.getTime("endruntime"));
+//		String rundayListstr = rs.getString("runday");
+//		if(rundayListstr != null) {
+//			ac.setRunday(rundayListstr.split(","));	
+//		}
+		ac.setRunday(rs.getString("runday"));
+		
+		ac.setStartruntime(rs.getString("startruntime"));
+		ac.setEndruntime(rs.getString("endruntime"));
 		
 		//리스트
 		String consultableListstr = rs.getString("consultableday");
-		ac.setConsultableday(consultableListstr.split(","));
-		ac.setStartconsultabletime(rs.getTime("startconsultabletime"));
-		ac.setEndconsultabletime(rs.getTime("endconsultabletime"));
+		if(consultableListstr != null) {
+			ac.setConsultableday(consultableListstr.split(","));	
+		}
+		
+		ac.setStartconsultabletime(rs.getString("startconsultabletime"));
+		ac.setEndconsultabletime(rs.getString("endconsultabletime"));
 		
 		ac.setSignedacademy(rs.getString("signedacademy"));
 		
