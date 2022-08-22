@@ -10,6 +10,7 @@ import lombok.ToString;
 public class AcademyManager {
 	 
 	private long aid;
+	private String academyId;
 	private String userId;
 	private String userPw;
 	private String userPw2;
