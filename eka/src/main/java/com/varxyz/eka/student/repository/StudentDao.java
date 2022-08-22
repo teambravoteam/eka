@@ -2,7 +2,7 @@ package com.varxyz.eka.student.repository;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,16 +19,13 @@ public class StudentDao {
 	}
 	
 	
-	public boolean addStudent(Student student) {
-		try {
-			String sql = "INSERT INTO Student(schoolcate,gradecate,name,"
-					+ "gender,ssn,phone,ekaSignUp,parentName,parentType,parentPhone) VALUES(?,?,?,?,?,?,?,?,?,?)";
-			jdbcTemplate.update(sql, new BeanPropertyRowMapper<Student>(Student.class),student);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-		
+	public void addStudent(Student student) { // 학생추가
+		String sql = "INSERT INTO Student(academyId,schoolcate,gradecate,name,gender,ssn,phone,ekaUserId,parentName,parentType,parentPhone) "
+				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		jdbcTemplate.update(sql, student.getAcademyId() ,student.getSchoolcate(), student.getGradecate(),
+				student.getName(), student.getGender(), student.getSsn(), student.getPhone(),
+				student.getEkaUserId(), student.getParentName(), student.getParentType(),
+				student.getParentPhone());	
 	}
 
 }

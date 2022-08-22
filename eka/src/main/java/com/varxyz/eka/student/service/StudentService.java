@@ -15,7 +15,7 @@ import com.varxyz.eka.student.studentcategory.domain.StudentCategory;
 public interface StudentService {
 	
 	//학원관리자는 학생을 등록 할 수 있어야 한다
-	public String addStudent(Student student);
+	public boolean addStudent(Student student);
 	
 	//학원관리자는 학생정보를 수정 할 수 있어야 한다
 	public boolean updateStudent(Student student);

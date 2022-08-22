@@ -21,12 +21,21 @@ public class Student {
 	private	String name;
 	private String gender;
 	private Date ssn;
-	private String phone;
-	private boolean ekaSignUp;
+	private String phone; // 합친거
+	private String phone1; // 010
+	private String phone2; // ****
+	private String phone3; // ****
+	private String ekaUserId;
 	private String parentName;
 	private String parentType;
-	private String parentPhone;
+	private String parentPhone; // 합친거
+	private String parentPhone1; // 010
+	private String parentPhone2; // ****
+	private String parentPhone3; // ****
 	private Time regDate;
+	
+	private String ekacheck;
+	private String gendercheck;
 	
 	public Student() {
 		

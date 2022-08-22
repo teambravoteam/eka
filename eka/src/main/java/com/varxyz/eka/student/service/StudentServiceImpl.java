@@ -16,13 +16,17 @@ public class StudentServiceImpl implements StudentService{
 	@Autowired
 	private StudentDao dao;
 	
-	@Override
-	public String addStudent(Student student) {
-		if (dao.addStudent(student) == true) {
-			return "등록완료";
-		} else {
-			return "등록실패";
+	@Override //학원관리자는 학생을 등록 할 수 있어야 한다
+	public boolean addStudent(Student student) {
+		try {
+			dao.addStudent(student);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
+		
+		
 	}
 
 	@Override

@@ -71,14 +71,14 @@ body {
 					</div>
 					<div class="card shadow mb-4">
 						<div class="card-body">
-							<form class="" action="index.html" method="post">
+							<form class="" action="student_add" method="post">
 								<h5>학생정보</h5>
 								<table id="student_add">
 									<tr>
 										<th>학생명</th>
 										<td><input type="text" name="name"> 
-										<input type="radio" name="gender" class="radio"><span>남</span>
-										<input type="radio" name="gender" class="radio"><span>여</span></td>
+										<input type="radio" name="gender" value="남" class="radio"><span>남</span>
+										<input type="radio" name="gender" value="여" class="radio"><span>여</span></td>
 										<th>교과과정</th>
 										<td><select class="category" name="schoolcate">
 												<c:forEach var="school" items="${school}">
@@ -92,17 +92,17 @@ body {
 									</tr>
 									<tr>
 										<th>생년월일</th>
-										<td><input type="date" class="eka-id" name=""></td>
+										<td><input type="date" class="eka-id" name="ssn"></td>
 										<th>연락처</th>
-										<td><select class="phone" name="">
-												<option value="">010</option>
-												<option value="">011</option>
-										</select> - <input type="text" class="phone"> - <input
-											type="text" class="phone"></td>
+										<td><select class="phone" name="phone1">
+												<option value="010">010</option>
+												<option value="011">011</option>
+										</select> - <input type="text" class="phone" name="phone2"> - <input
+											type="text" class="phone" name="phone3"></td>
 									</tr>
 									<tr>
 										<th>eka 아이디(선택)</th>
-										<td colspan="3"><input type="text" class="eka-id"></td>
+										<td colspan="3"><input type="text" name="ekaUserId" class="eka-id"></td>
 									</tr>
 								</table>
 
@@ -110,17 +110,18 @@ body {
 								<table id="student_add_parent">
 									<tr>
 										<th>학부모명</th>
-										<td><input type="text"> <input type="radio"
-											class="radio">부 <input type="radio" class="radio">모
+										<td><input type="text" name="parentName"> 
+										<input type="radio" class="radio" name="parentType" value="부">부 
+										<input type="radio" class="radio" name="parentType" value="모">모
 										</td>
 									</tr>
 									<tr>
 										<th>연락처</th>
-										<td><select class="phone" name="">
-												<option value="">010</option>
-												<option value="">011</option>
-										</select> - <input type="text" class="phone"> - <input
-											type="text" class="phone"></td>
+										<td><select class="phone" name="parentPhone1">
+												<option value="010">010</option>
+												<option value="011">011</option>
+										</select> - <input type="text" class="phone" name="parentPhone2"> - <input
+											type="text" class="phone" name="parentPhone3"></td>
 									</tr>
 								</table>
 
