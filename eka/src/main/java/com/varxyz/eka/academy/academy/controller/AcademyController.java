@@ -1,6 +1,5 @@
 package com.varxyz.eka.academy.academy.controller;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,13 +45,30 @@ public class AcademyController {
 		
 		String sLat = request.getParameter("lat");
 		String sLon = request.getParameter("lon");
-		String sAddr = request.getParameter("addr");
-		String categoryNum = request.getParameter("categoryNum");
-
 		double clat = Double.parseDouble(sLat);
 		double clon = Double.parseDouble(sLon);
+		
+		String sAddr = request.getParameter("addr");
+		String categoryNumString = request.getParameter("categoryNum");
+        int categoryNum = Integer.parseInt(categoryNumString);
 
-		List<Academy> allAcademyList = acdemyService.findAllAcademies();
+		List<String> latList = new ArrayList();
+		List<String> lonList = new ArrayList();
+		List<String> nameList = new ArrayList();
+		List<String> addressList = new ArrayList();
+		List<String> detailAddressList = new ArrayList();
+		String[] categoryList = {"전체","간호보조기술","경영·사무관리","국제","기예(중)","기타(중)","독서실","독서실(중)","보통교과","산업기반기술","산업서비스","산업응용기술","예능(중)","외국어","인문사회(중)","일반서비스","진학지도","컴퓨터"};
+	
+		String selectedCategory = categoryList[categoryNum];
+		
+		List<Academy> allAcademyList = null;
+		
+		if (selectedCategory.equals("전체")) {
+			allAcademyList = acdemyService.findAllAcademies();
+		} else {
+			allAcademyList = acdemyService.findAcademiesByCategory(selectedCategory);		
+		}
+		
 		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
 		System.out.println("allNameList 완료");
 		List<String> allAddressList = allAcademyList.stream().map(Academy::getAddress).collect(Collectors.toList());
@@ -63,13 +79,6 @@ public class AcademyController {
 		System.out.println("allLatList 완료");
 		List<String> allLonList = allAcademyList.stream().map(Academy::getLon).collect(Collectors.toList());
 		System.out.println("allLonList 완료");
-		
-		List<String> latList = new ArrayList();
-		List<String> lonList = new ArrayList();
-		List<String> nameList = new ArrayList();
-		List<String> addressList = new ArrayList();
-		List<String> detailAddressList = new ArrayList();
-		String[] categoryList = {"전체","국어","영어","수학","사회","과학","한국사","미술","음악","체육","디자인","일본어","중국어","제2외국어","IT","토익/토플","자격증","재수","종합","기타"};
 
 		for (int i = 0; i < allNameList.size(); i++) { // 괄호 안에 조건 넣어주기
 
@@ -91,9 +100,9 @@ public class AcademyController {
 
 			distance = 2 * radius * Math.asin(squareRoot);
 
-			// 검색기준지점으로부터 하버사인 거리가 0.5km 미만인 클래스만 카카오맵에 출력
+			// 검색기준지점으로부터 하버사인 거리가 1km 미만인 클래스만 카카오맵에 출력
 
-			if (distance < 0.5) {
+			if (distance < 1) {
 				System.out.println(distance);
 				
 				latList.add(allLatList.get(i));
@@ -112,6 +121,7 @@ public class AcademyController {
 		mav.addObject("nameList", nameList);
 		mav.addObject("addressList", addressList);
 		mav.addObject("detailAddressList", detailAddressList);
+		mav.addObject("categoryNum", categoryNum);
 		mav.setViewName("eka_main/list_academy");
 
 		return mav;

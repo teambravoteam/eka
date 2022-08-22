@@ -91,6 +91,7 @@
 							<input type="hidden" id="listAddr2" name="addr" value="${user_address}">
 							<input type="hidden" id="listLat" name="lat" value="${user_lat}">
 							<input type="hidden" id="listLon" name="lon" value="${user_lon}">
+							<input type="hidden" id="listCate" name="categoryNum" value="0">
 							<input type="submit" class="bt-sub green ic-gps mgl-12" value="학원검색">
 						</form>
 					</div>
@@ -103,65 +104,59 @@
 				<div class="hdtb-wrap">
 					<button type="button" class="bt-hdtb prev"></button>
 					<ul class="hdtb">
-						<li class="hdtb-item current"><a href="#" data-cid="0">
-								<span class="dragBlock">전체</span>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="0">
+								<span class="dragBlock current">전체</span>
 							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="1">
-								<span class="dragBlock">국어</span>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="1">
+								<span class="dragBlock">간호보조기술</span>
 							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="2">
-								<span class="dragBlock">영어</span>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="2">
+								<span class="dragBlock">경영·사무관리</span>
 							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="3">
-								<span class="dragBlock">수학</span>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="3">
+								<span class="dragBlock">국제</span>
 							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="4">
-								<span class="dragBlock">사회</span>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="4">
+								<span class="dragBlock">기예</span>
 							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="5">
-								<span class="dragBlock">과학</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="6">
-								<span class="dragBlock">한국사</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="7">
-								<span class="dragBlock">미술</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="8">
-								<span class="dragBlock">음악</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="9">
-								<span class="dragBlock">체육</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="10">
-								<span class="dragBlock">디자인</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="11">
-								<span class="dragBlock">일본어</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="12">
-								<span class="dragBlock">중국어</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="13">
-								<span class="dragBlock">제2외국어</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="14">
-								<span class="dragBlock">IT</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="15">
-								<span class="dragBlock">토익/토플</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="16">
-								<span class="dragBlock">자격증</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="17">
-								<span class="dragBlock">재수</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="18">
-								<span class="dragBlock">종합</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" data-cid="19">
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="5">
 								<span class="dragBlock">기타</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="6">
+								<span class="dragBlock">독서실</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="7">
+								<span class="dragBlock">독서실(일반인)</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="8">
+								<span class="dragBlock">보통교과</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="9">
+								<span class="dragBlock">산업기반기술</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="10">
+								<span class="dragBlock">산업서비스</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="11">
+								<span class="dragBlock">산업응용기술</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="12">
+								<span class="dragBlock">예체능</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="13">
+								<span class="dragBlock">외국어</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="14">
+								<span class="dragBlock">인문사회</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="15">
+								<span class="dragBlock">일반서비스</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="16">
+								<span class="dragBlock">진학지도</span>
+							</a></li>
+						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="17">
+								<span class="dragBlock">컴퓨터</span>
 							</a></li>
 					</ul>
 					<button type="button" class="bt-hdtb next"></button>
@@ -171,6 +166,11 @@
 			<input type="hidden" id="uaLng" value="128.630629788584">
 			<input type="hidden" id="cid" value="1">
 			<script>
+
+			// 카테고리 영역 선택
+			var cateIndex = ${categoryNum};
+			$(".hdtb").children().eq(cateIndex).addClass('current')
+
 				/* init pos */
 				$(".hdtb").scrollLeft(
 						$(".hdtb .current").offset().left
@@ -180,11 +180,11 @@
 					var $target = $(".hdtb");
 					if ($(this).hasClass("prev")) {
 						$target.stop().animate({
-							scrollLeft : $target.scrollLeft() - 500
+							scrollLeft : $target.scrollLeft() - 1060
 						}, 300);
 					} else {
 						$target.stop().animate({
-							scrollLeft : $target.scrollLeft() + 500
+							scrollLeft : $target.scrollLeft() + 1060
 						}, 300);
 					}
 				});
@@ -225,22 +225,6 @@
 			<div id="academy-list" class="academy-list">
 				<div class="list-default">
 					<ul id="list-default">
-						<%-- <c:forEach var="name" items="${nameList}" varStatus="status">
-							<li class="list-item" data-uaid="79839"><a href="./academyDetail?uaid=79839&amp;adType=0">
-									<div class="item-content">
-										<button class="bt-like float-right" data-uaid="79839" data-like="0"></button>
-										<div>
-											<span class="a-title">${name}</span>
-										</div>
-										<div class="show-overlay">
-											<span class="a-addr-default">${address[status.index]}</span>
-										</div>
-										<div class="bt-modal-wrap show-overlay">
-											<button class="bt-label" onclick="location.href='./academyDetail?${name}">학원보기</button>
-										</div>
-									</div>
-								</a></li>
-						</c:forEach> --%>
 					</ul>
 				</div>
 				<div class="list-empty" style="display: none;">
@@ -250,19 +234,9 @@
 		</div>
 
 		<script type="text/javascript" src="../resources/js/common.js"></script>
-
 		<script>
-		// 학원 리스트 함수
 
-		var positions = new Array();
-		<c:forEach var="name" items="${nameList}" varStatus="status">
-				positions.push({
-					content: "<div>${name}</div>",
-					latlng : new kakao.maps.LatLng(${latList[status.index]}, ${lonList[status.index]})
-				});
-		</c:forEach>
-
-		// 마커를 담을 배열입니다
+// 마커를 담을 배열입니다
 var markers = [];
 
 var mapContainer = document.getElementById('academy-map'), // 지도를 표시할 div
@@ -474,6 +448,84 @@ kakao.maps.event.addListener(map, 'center_changed', function() {
 			geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 		}
     map.relayout();
+});
+
+
+// 검색 값이 없을 때 나타낼 지도
+if (nameList?.length == false) {
+	var mapContainer = document.getElementById('academy-map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(${user_lat}, ${user_lon}), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+	// 지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+
+	// 중심 마커가 표시될 위치입니다
+	var markerPosition = new kakao.maps.LatLng(${user_lat}, ${user_lon});
+
+	// 중심 마커를 생성합니다
+	marker = new kakao.maps.Marker({
+		position: markerPosition
+	});
+	marker.setMap(map);
+
+	// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'center_changed', function() {
+
+		// 지도의 중심좌표를 얻어옵니다
+		var latlng = map.getCenter();
+
+		marker.setPosition(latlng);
+	});
+
+	// 지도 드래그 이벤트
+	kakao.maps.event.addListener(map, 'dragend', function() {
+	console.log("지도 이동됨!");
+
+	var latlng = map.getCenter();
+
+	setAddr3(latlng.getLat(), latlng.getLng());
+
+	function setAddr3(lat, lon) {
+		var moveLatLon = new kakao.maps.LatLng(lat, lon);
+		map.setCenter(moveLatLon);
+
+		let geocoder = new kakao.maps.services.Geocoder();
+
+		let coord = new kakao.maps.LatLng(lat, lon);
+		let callback = function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				if (result[0].road_address == null) {
+					$("#listAddr1").text(result[0].address.address_name);
+					$("#listAddr2").val(result[0].address.address_name);
+					$("#listLat").val(lat);
+					$("#listLon").val(lon);
+
+				} else {
+					$("#listAddr1").text(result[0].road_address.address_name);
+					$("#listAddr2").val(result[0].road_address.address_name);
+					$("#listLat").val(lat);
+					$("#listLon").val(lon);
+				}
+			}
+		}
+		geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+	}
+	    map.relayout();
+	});
+
+	alert("해당 위치에 학원이 없습니다.");
+}
+
+$(".hdtb-item a").mouseenter(function() {
+	$("#listCate").val($(this).attr("data-cid"));
+});
+
+$(".hdtb-item a").mouseleave(function() {
+	$("#listCate").val("0");
 });
 
 		</script>

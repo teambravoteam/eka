@@ -26,6 +26,12 @@ public class AcademyServiceImp implements AcademyService {
 	}
 
 	@Override
+	public List<Academy> findAcademiesByCategory(String field2) {
+		// TODO Auto-generated method stub
+		return academyDao.findAcademiesByCategory(field2);
+	}
+
+	@Override
 	public List<Academy> findAcademiesByAddress(String address) {
 		// TODO Auto-generated method stub
 		return academyDao.findAcademiesByAddress(address);
@@ -33,15 +39,15 @@ public class AcademyServiceImp implements AcademyService {
 
 	public Academy findAcademyByAddressAndName(String address, String name) {
 		// TODO Auto-generated method stub
-		return academyDao.findAcademyByAddressAndName(address,name);
+		return academyDao.findAcademyByAddressAndName(address, name);
 	}
 
-	public void signEkaAcademy(Academy academy) {				
-		academyDao.signEkaAcademy(academy);		
+	public void signEkaAcademy(Academy academy) {
+		academyDao.signEkaAcademy(academy);
 	}
 
 	public Academy findAcademyByAid(long aid) {
 		// TODO Auto-generated method stub
-		return academyDao.findAcademyByAid(aid);		
+		return academyDao.findAcademyByAid(aid);
 	}
 }

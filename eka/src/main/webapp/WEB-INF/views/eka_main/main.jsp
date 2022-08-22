@@ -99,135 +99,125 @@
 						<h1 data-aos="fade-right" class="aos-init">eka</h1>
 						<h2 data-aos="fade-right" class="aos-init">모두의 학원</h2>
 					</div>
-					<form action="./list_academy" method="post">
+					<form action="./list_academy" method="post" id="mainSubmit">
 						<div class="shadow-wrap big-r flex-wrap flex-center m1 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
 							<div class="userAddr-wrap flex-glow-1">
 								<span class="guide">현재 검색위치</span> <label for="bt-config-loc" class="userAddr">대구광역시 중구 국채보상로 670</label>
 							</div>
 							<button type="button" id="bt-config-loc" class="bt-sub point ic-gps mgl-12">현재위치 이동</button>
-							<button type="button" id="bt-config-map" class="bt-sub accent ic-gps mgl-12">지도로 재설정</button>
+							<button type="button" id="bt-config-map" class="bt-sub accent ic-gps mgl-12">지도 설정</button>
 							<input type="hidden" id="mainAddr" name="addr" value="대구광역시 중구 국채보상로 670">
 							<input type="hidden" id="mainLat" name="lat" value="35.8582000811537">
 							<input type="hidden" id="mainLon" name="lon" value="128.630629788584">
 							<input type="hidden" id="mainCate" name="categoryNum" value="0">
-							<input type="submit" class="bt-sub green ic-gps mgl-12" value="학원검색">
+							<input type="submit" class="bt-sub green ic-gps mgl-12" value="전체 학원검색">
 						</div>
 						<div class="shadow-wrap big-r m1 aos-init" data-aos="fade-up" data-aos-delay="400">
 							<ul class="i-category">
 								<li class="border-wrap">
-									<a href="./list_academy?category=국어">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="1">
-										<span class="dragBlock">국어</span>
+										<span class="dragBlock">간호보조기술</span>
 									</a>
 								</li>
 								<li class="border-wrap">
-									<a href="./list_academy?category=영어">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="2">
-										<span class="dragBlock">영어</span>
+										<span class="dragBlock">경영·사무관리</span>
 									</a>
 								</li>
 								<li class="border-wrap">
-									<a href="./list_academy?category=수학">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="3">
-										<span class="dragBlock">수학</span>
+										<span class="dragBlock">국제</span>
 									</a>
 								</li>
 								<li class="border-wrap">
-									<a href="./list_academy?category=사회">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="4">
-										<span class="dragBlock">사회</span>
+										<span class="dragBlock">기예</span>
 									</a>
 								</li>
 								<li class="border-wrap">
-									<a href="./list_academy?category=과학">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="5">
-										<span class="dragBlock">과학</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=한국사">
-										<input type="hidden" value="6">
-										<span class="dragBlock">한국사</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=미술">
-										<input type="hidden" value="7">
-										<span class="dragBlock">미술</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=음악">
-										<input type="hidden" value="8">
-										<span class="dragBlock">음악</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=체육">
-										<input type="hidden" value="9">
-										<span class="dragBlock">체육</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=디자인">
-										<input type="hidden" value="10">
-										<span class="dragBlock">디자인</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=일본어">
-										<input type="hidden" value="11">
-										<span class="dragBlock">일본어</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=중국어">
-										<input type="hidden" value="12">
-										<span class="dragBlock">중국어</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=제2외국어">
-										<input type="hidden" value="13">
-										<span class="dragBlock">제2외국어</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=IT">
-										<input type="hidden" value="14">
-										<span class="dragBlock">IT</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=토익/토플">
-										<input type="hidden" value="15">
-										<span class="dragBlock">토익/토플</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=자격증">
-										<input type="hidden" value="16">
-										<span class="dragBlock">자격증</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=재수">
-										<input type="hidden" value="17">
-										<span class="dragBlock">재수</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=종합">
-										<input type="hidden" value="18">
-										<span class="dragBlock">종합</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="./list_academy?category=기타">
-										<input type="hidden" value="19">
 										<span class="dragBlock">기타</span>
 									</a>
 								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="6">
+										<span class="dragBlock">독서실</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="7">
+										<span class="dragBlock">독서실(일반인)</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="8">
+										<span class="dragBlock">보통교과</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="9">
+										<span class="dragBlock">산업기반기술</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="10">
+										<span class="dragBlock">산업서비스</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="11">
+										<span class="dragBlock">산업응용기술</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="12">
+										<span class="dragBlock">예능</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="13">
+										<span class="dragBlock">외국어</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="14">
+										<span class="dragBlock">인문사회</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="15">
+										<span class="dragBlock">일반서비스</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="16">
+										<span class="dragBlock">진학지도</span>
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+										<input type="hidden" value="17">
+										<span class="dragBlock">컴퓨터</span>
+									</a>
+								</li>
+								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
+								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
@@ -396,6 +386,10 @@
 		$(".border-wrap").mouseleave(function() {
 			$("#mainCate").val("0");
 		});
+
+		setTimeout(function(){
+				$('#bt-config-loc').trigger('click');
+		}, 500)
 
 	</script>
 </body>
