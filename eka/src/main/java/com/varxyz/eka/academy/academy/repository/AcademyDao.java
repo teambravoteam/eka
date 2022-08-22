@@ -44,4 +44,9 @@ public class AcademyDao {
 				academy.getRunday(),academy.getStartruntime(),
 				academy.getEndruntime(),academy.getSignedacademy(),academy.getAddress(),academy.getName());
 	}
+
+	public Academy findAcademyByAid(long aid) {
+		String sql = "SELECT * FROM Academy WHERE aid = ?;";
+		return jdbcTemplate.queryForObject(sql, new AcademyRowMapper(), aid);
+	}
 }

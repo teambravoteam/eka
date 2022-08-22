@@ -17,15 +17,15 @@ CREATE TABLE Consulting(
 );
 INSERT Consulting(academyId, name, phone, consultCategory,
 	consultDetail, applyDate,consultType) 
-	VALUES(2,"짱","010-1234-1234","입학","입학관련","2022-08-12","신청");
+	VALUES(1,"짱","010-1234-1234","입학","입학관련","2022-08-12","신청");
 	
 INSERT Consulting(academyId, name, phone, consultCategory,
 	consultDetail, applyDate,consultType) 
-	VALUES(2,"철","010-1235-1235","입학","입학관련","2022-08-13","신청");
+	VALUES(1,"철","010-1235-1235","입학","입학관련","2022-08-13","신청");
 	
 INSERT Consulting(academyId, name, phone, consultCategory,
 	consultDetail, applyDate,consultType) 
-	VALUES(2,"맹","010-1236-1236","입학","입학관련","2022-08-13","신청");
+	VALUES(1,"맹","010-1236-1236","입학","입학관련","2022-08-13","신청");
 
 	
 UPDATE Consulting SET consultContent='누', registDate='2022-08-20', consultType='완료'

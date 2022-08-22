@@ -82,7 +82,7 @@ public class AcademyController {
 		a.setAcademyId(academy.getAid());
 		
 		authService.updateAcademId(a.getAid(), a);
-		
+		session.setAttribute("manager", a);
 		
 		return "eka_main/main";
 	}

@@ -39,4 +39,9 @@ public class AcademyServiceImp implements AcademyService {
 	public void signEkaAcademy(Academy academy) {				
 		academyDao.signEkaAcademy(academy);		
 	}
+
+	public Academy findAcademyByAid(long aid) {
+		// TODO Auto-generated method stub
+		return academyDao.findAcademyByAid(aid);		
+	}
 }
