@@ -24,7 +24,7 @@
       <span>문의</span>
     </a>
     <div id="login-bg" class="type2">
-      <a href="/eka_main/main" class="header-logo">eka</a>
+      <a href="/eka/eka_main/main" class="header-logo">eka</a>
     </div>
     <div id="login-wrap">
       <div class="container small">
