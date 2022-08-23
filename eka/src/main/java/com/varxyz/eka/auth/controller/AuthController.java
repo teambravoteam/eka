@@ -24,11 +24,6 @@ public class AuthController {
 	@Autowired
 	private AuthService service;
 
-	@GetMapping("/eka_main/main") // 확인용 메인페이지
-	public String main(Model model) {
-		model.addAttribute("main", new AcademyManager());
-		return "eka_main/main";
-	}
 
 	@GetMapping("/eka_main/register_main")
 	public String registerMain(Model model) {
