@@ -1,11 +1,14 @@
 package com.varxyz.eka.student.repository;
 
+import java.util.List;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.student.domain.Student;
 
 @Repository
@@ -18,14 +21,25 @@ public class StudentDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	
-	public void addStudent(Student student) { // 학생추가
+	// 학생추가
+	public void addStudent(Student student) { 
 		String sql = "INSERT INTO Student(academyId,schoolcate,gradecate,name,gender,ssn,phone,ekaUserId,parentName,parentType,parentPhone) "
 				+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		jdbcTemplate.update(sql, student.getAcademyId() ,student.getSchoolcate(), student.getGradecate(),
 				student.getName(), student.getGender(), student.getSsn(), student.getPhone(),
 				student.getEkaUserId(), student.getParentName(), student.getParentType(),
 				student.getParentPhone());	
+	}
+	
+	//모든 학원의 학생정보 가져오기
+	public List<Student> findAllAcademyStudent(Student student){
+		String sql = "SELECT * FROM Student";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class));
+	}
+
+	public List<Student> findAllAcademyStudentByAcademy(Academy academy) {
+		String sql = "SELECT * FROM Student WHERE academyId = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class),academy.getAid());
 	}
 
 }

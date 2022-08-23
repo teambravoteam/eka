@@ -25,26 +25,32 @@ public class StudentServiceImpl implements StudentService{
 			e.printStackTrace();
 			return false;
 		}
-		
-		
 	}
 
+	//학원관리자는 학생정보를 수정 할 수 있어야 한다
 	@Override
 	public boolean updateStudent(Student student) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	//학원관리자는 학생정보를 삭제 할 수 있어야 한다
 	@Override
 	public boolean deleteStudent(Student student) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	/// 갓 수현 첨삭중
+	public List<Student> findAllAcademyStudentByAcademy(Academy academy) {
+		return dao.findAllAcademyStudentByAcademy(academy);
+	}
+	
+	
+	//학원 관리자는 모든 학원학생 정보를 가져올 수 있어야 한다.
 	@Override
-	public List<Student> findAllAcademyStudent(Academy academy) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> findAllAcademyStudent(Student Student) {
+		return dao.findAllAcademyStudent(Student);
 	}
 
 	@Override
@@ -70,5 +76,7 @@ public class StudentServiceImpl implements StudentService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
 }
