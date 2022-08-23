@@ -114,23 +114,11 @@
                         	<td>${status.count}</td>
                         	<td>${lectureStudent.name}</td>
                         	<td>
-                        	<form action="">
-                        	 <button class="btn btn-primary btn-sm submit" type="submit" name="button">
-                       			 <span>조회하기</span>
-                      		</button>
-                      		</form>
-                      		<form action="">
-                        	 <button class="btn btn-primary btn-sm submit" type="submit" name="button">
-                       			 <span>조회하기</span>
-                      		</button>
-                      		</form>
-                      		<form action="">
-                        	 <button class="btn btn-primary btn-sm submit" type="submit" name="button">
-                       			 <span>조회하기</span>
-                      		</button>
-                      		</form>             	
-                        	
-                         
+                          	<select class="" name="attendceType">
+                            	<option value="출석">출석</option>
+                            	<option value="결석">결석</option>
+                            	<option value="지각">지각</option>
+                          	</select>
                         	</td>
                        		<td>
                           		<input type="text" name="" value="">
