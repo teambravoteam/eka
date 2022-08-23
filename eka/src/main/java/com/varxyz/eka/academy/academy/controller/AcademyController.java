@@ -26,7 +26,13 @@ public class AcademyController {
 	private AcademyServiceImp acdemyService;
 	@Autowired
 	private AuthService authService;
-	
+
+	@GetMapping("/eka_main/main") // 확인용 메인페이지
+	public String main(Model model) {
+		model.addAttribute("main", new AcademyManager());
+		return "eka_main/main";
+	}
+
 	@GetMapping("eka_main/add_academy")
 	public String addacademy() {
 		return "eka_main/add_academy";

@@ -57,9 +57,6 @@
 					<div class="join-guide">
 						<a href="#">
 							<h4>회원가입</h4>
-							<p>
-								지금 회원가입하면<br> 5,000 포인트 지급!
-							</p>
 						</a>
 					</div>
 					<li><a href="#">로그인</a></li>
@@ -92,7 +89,7 @@
 							<input type="hidden" id="listLat" name="lat" value="${user_lat}">
 							<input type="hidden" id="listLon" name="lon" value="${user_lon}">
 							<input type="hidden" id="listCate" name="categoryNum" value="0">
-							<input type="submit" class="bt-sub green ic-gps mgl-12" value="학원검색">
+							<input type="submit" class="bt-sub green ic-search mgl-12" value="학원검색">
 						</form>
 					</div>
 					<button type="button" id="bt-config-loc2" class="bt-sub point ic-gps mgl-12">현재위치 이동</button>

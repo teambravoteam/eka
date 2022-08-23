@@ -57,9 +57,6 @@
 					<div class="join-guide">
 						<a href="#">
 							<h4>회원가입</h4>
-							<p>
-								지금 회원가입하면<br> 5,000 포인트 지급!
-							</p>
 						</a>
 					</div>
 					<li><a href="#">로그인</a></li>
@@ -105,12 +102,12 @@
 								<span class="guide">현재 검색위치</span> <label for="bt-config-loc" class="userAddr">대구광역시 중구 국채보상로 670</label>
 							</div>
 							<button type="button" id="bt-config-loc" class="bt-sub point ic-gps mgl-12">현재위치 이동</button>
-							<button type="button" id="bt-config-map" class="bt-sub accent ic-gps mgl-12">지도 설정</button>
+							<button type="button" id="bt-config-map" class="bt-sub accent ic-map mgl-12">지도 설정</button>
 							<input type="hidden" id="mainAddr" name="addr" value="대구광역시 중구 국채보상로 670">
 							<input type="hidden" id="mainLat" name="lat" value="35.8582000811537">
 							<input type="hidden" id="mainLon" name="lon" value="128.630629788584">
 							<input type="hidden" id="mainCate" name="categoryNum" value="0">
-							<input type="submit" class="bt-sub green ic-gps mgl-12" value="전체 학원검색">
+							<input type="submit" class="bt-sub green ic-search mgl-12" value="전체 학원검색">
 						</div>
 						<div class="shadow-wrap big-r m1 aos-init" data-aos="fade-up" data-aos-delay="400">
 							<ul class="i-category">
@@ -229,7 +226,7 @@
 					<form action="./academySearch" method="get">
 						<div class="shadow-wrap big-r flex-wrap flex-center m2">
 							<input type="search" class="input-text" name="keyword" placeholder="학원명을 입력주세요." required="">
-							<button type="submit" class="bt-sub accent ic-search mgl-12">검색하기</button>
+							<button type="submit" class="bt-sub green ic-search mgl-12">검색하기</button>
 						</div>
 					</form>
 				</section>
@@ -344,7 +341,7 @@
 				<div class="flex-wrap flex-center">
 					<input hidden="hidden" />
 					<input type="text" id="searchText" class="input-text search" name="searchText" placeholder="주소를 입력해주세요.">
-					<button type="button" id="searchCusAddr" class="bt-sub accent ic-search mgl-8">주소검색</button>
+					<button type="button" id="searchCusAddr" class="bt-sub green ic-search mgl-8">주소검색</button>
 					<button type="button" id="searchCusLoc" class="bt-sub point ic-gps mgl-12">내위치</button>
 				</div>
 			</form>

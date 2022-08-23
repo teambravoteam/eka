@@ -427,6 +427,26 @@ mark {
   }
 }
 
+.bt-sub.ic-map {
+  padding-left: 42px;
+  background-position: 16px center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-image: url("../img/ic_map_16px.png")
+}
+
+@media screen and (max-width: 768px) {
+  .bt-sub.ic-map {
+    line-height: 1;
+    font-size: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    padding: 0;
+    background-position: center
+  }
+}
+
 .bt-sub.ic-search {
   padding-left: 42px;
   background-position: 16px center;
