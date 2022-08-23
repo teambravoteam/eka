@@ -2,9 +2,9 @@
 $('#userId').on('keyup', function() {
   var id = $(this).val();
   if (id.match(/^[a-z0-9_-]{5,20}$/)) {
-    $('#userIdGuide').text('');
+  $('#userIdGuide').text('');
   } else if (!id.match(/^[a-z0-9_-]{5,20}$/)) {
-    $('#userIdGuide').removeClass('safe').addClass('warning').text('5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.');
+  $('#userIdGuide').removeClass('safe').addClass('warning').text('5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.');
   }
 });
 
@@ -56,9 +56,21 @@ $('#userSsn').on('keyup', function() {
 $('#userPhone').on('keyup', function() {
   var phone = $(this).val();
   if (phone.match(/^\d{3}-\d{3,4}-\d{4}$/)) {
-    $('#userPhoneGuide').removeClass('warning').addClass('safe').text('사용가능한 번호입니다.');
+    $('#userPhoneGuide').removeClass('warning').addClass('safe').text('');
   } else if (!phone.match(/^\d{3}-\d{3,4}-\d{4}$/)) {
     $('#userPhoneGuide').removeClass('safe').addClass('warning').text('올바른 휴대폰번호를 입력해주세요. (-)포함');
   }
 });
 
+//공통(공백)
+function noSpaceForm(obj)
+{
+  var str_space = /\s/;
+  if(str_space.exec(obj.value))
+  {
+  	alert("해당 항목에는 공백을 사용할 수 없습니다.");
+  	obj.focus();
+  	obj.value = obj.value.replace(' ','');
+  	return false;
+  }
+}

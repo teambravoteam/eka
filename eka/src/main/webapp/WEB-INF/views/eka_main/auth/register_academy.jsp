@@ -24,7 +24,7 @@
 			<span>문의</span>
 		</a>
 		<div id="login-bg" class="type2">
-			<a href="https://skycatcher.co.kr" class="header-logo">eka</a>
+			<a href="/eka/eka_main/main" class="header-logo">eka</a>
 		</div>
 		<div id="login-wrap">
 			<div class="container small">
@@ -37,7 +37,7 @@
 									<label for="userId" class="label-text">아이디</label>
 									<span id="userIdGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="text" class="input-text" name="userId" id="userId" maxlength="20" placeholder="아이디를 입력해주세요" value="${userId}">
+										<input type="text" class="input-text" name="userId" id="userId" maxlength="20" placeholder="아이디를 입력해주세요" value="${userId}" onkeyup="noSpaceForm(this);">
 										<input type="submit" id="verifyRequest" class="bt-main white margin" value="중복확인" name="check" formaction="idtest1">
 									</div>
 									<div style="color: red;">
@@ -54,7 +54,7 @@
 									<label for="userPass" class="label-text">비밀번호</label>
 									<span id="userPassGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="password" name="userPw" class="input-text pass" id="userPass" maxlength="16" placeholder="비밀번호를 입력해주세요">
+										<input type="password" name="userPw" class="input-text pass" id="userPass" maxlength="16" placeholder="비밀번호를 입력해주세요" onkeyup="noSpaceForm(this);">
 									</div>
 									<div style="color: red;">
 										<c:out value="${errorMsgs.userPw}" />
@@ -64,7 +64,7 @@
 									<label for="userPassConfirm" class="label-text">비밀번호 확인</label>
 									<span id="userPassConfirmGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="password" name="userPw2" id="userPassConfirm" class="input-text pass" maxlength="16" placeholder="비밀번호를 한번 더 입력해주세요">
+										<input type="password" name="userPw2" id="userPassConfirm" class="input-text pass" maxlength="16" placeholder="비밀번호를 한번 더 입력해주세요" onkeyup="noSpaceForm(this);">
 									</div>
 									<div style="color: red;">
 										<c:out value="${errorMsgs.userPw2}" />
@@ -77,7 +77,7 @@
 									<label for="userName" class="label-text">이름</label>
 									<span id="userNameGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="text" name="name" id="userName" class="input-text" value="" placeholder="이름을 입력해주세요">
+										<input type="text" name="name" id="userName" class="input-text" value="" placeholder="이름을 입력해주세요" onkeyup="noSpaceForm(this);">
 									</div>
 									<div style="color: red;">
 										<c:out value="${errorMsgs.name}" />
@@ -87,7 +87,7 @@
 									<label for="userSsn" class="label-text">주민번호</label>
 									<span id="userSsnGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="text" name="ssn" id="userSsn" class="input-text" value="" placeholder="주민번호를 입력해주세요 (-포함)">
+										<input type="text" name="ssn" id="userSsn" class="input-text" value="" placeholder="주민번호를 입력해주세요 (-포함)" onkeyup="noSpaceForm(this);">
 									</div>
 									<div style="color: red;">
 										<c:out value="${errorMsgs.ssn}" />
@@ -97,7 +97,7 @@
 									<label for="userPhone" class="label-text">폰번호</label>
 									<span id="userPhoneGuide" class="comment"></span>
 									<div class="flex-wrap">
-										<input type="text" name="phone" id="userPhone" class="input-text" value="" placeholder="폰번호를 입력해주세요 (-포함)">
+										<input type="text" name="phone" id="userPhone" class="input-text" value="" placeholder="폰번호를 입력해주세요 (-포함)" onkeyup="noSpaceForm(this);">
 									</div>
 									<div style="color: red;">
 										<c:out value="${errorMsgs.phone}" />
@@ -106,8 +106,7 @@
 							</ul>
 						</fieldset>
 						<div class="bt-wrap flex-wrap">
-							<input type="submit" class="bt-main accent flex-glow-1"
-								value="가입하기" name="check" formaction="addmanager">
+							<input type="submit" class="bt-main accent flex-glow-1" value="가입하기" name="check" formaction="addmanager">
 						</div>
 					</form>
 				</section>
@@ -117,4 +116,7 @@
 	<script src='<c:url value="/resources/js/jquery-3.6.0.js"/>'></script>
 	<script src='<c:url value="/resources/js/auth.js"/>'></script>
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
