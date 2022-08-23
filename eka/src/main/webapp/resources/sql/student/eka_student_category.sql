@@ -1,4 +1,4 @@
-  
+--  
 -- 학생 분류 테이블
 CREATE TABLE SchoolCategory(
 	smid			BIGINT 		PRIMARY KEY AUTO_INCREMENT,

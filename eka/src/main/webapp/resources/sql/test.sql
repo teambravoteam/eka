@@ -147,16 +147,3 @@ INSERT INTO Teacher(academyId, name, gender, ssn, phone, subject, education, car
 VALUES(1, '짱구', '남', '2022-11-11', '010-1111-1111', '수학', '코리아It아카데미', '코리아It아카데미강사', 'ㄴㅇㄹ', 1);
 SELECT * FROM Teacher WHERE academyId=1;
 
---과목
-CREATE TABLE SubjectCategory(
-	scid 			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
-	subjectcate		VARCHAR(10) 	NOT NULL
-);
-
-SELECT * FROM SubjectCategory;
-
-INSERT INTO SubjectCategory(subjectcate) VALUES("국어");
-INSERT INTO SubjectCategory(subjectcate) VALUES("수학");
-INSERT INTO SubjectCategory(subjectcate) VALUES("사회");
-INSERT INTO SubjectCategory(subjectcate) VALUES("과학");
-INSERT INTO SubjectCategory(subjectcate) VALUES("영어");
