@@ -242,7 +242,7 @@ var markers = [];
 var mapContainer = document.getElementById('academy-map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(${user_lat}, ${user_lon}), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };
 
 // 지도를 생성합니다
@@ -317,7 +317,7 @@ function displayPlaces() {
     menuEl.scrollTop = 0;
 
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-    map.setBounds(bounds);
+//     map.setBounds(bounds);
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
@@ -456,7 +456,7 @@ if (nameList?.length == false) {
 	var mapContainer = document.getElementById('academy-map'), // 지도를 표시할 div
     mapOption = {
         center: new kakao.maps.LatLng(${user_lat}, ${user_lon}), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };
 
 	// 지도를 생성합니다
