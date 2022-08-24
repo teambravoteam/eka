@@ -1,3 +1,4 @@
+<%@page import="org.apache.taglibs.standard.tag.common.xml.IfTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -34,55 +35,14 @@
 <body>
 	<div id="wrap" role="main">
 		<header id="header" role="navigation">
-			<nav class="header-wrap">
-				<ul>
-					<li><a href="main" class="header-logo">
-							<h1>eka</h1>
-						</a></li>
-					<li class="hide-m"><a href="notice" class="header-nav">공지사항</a></li>
-					<li class="hide-m"><a href="add_academy" class="header-nav">학원신청</a></li>
-				</ul>
-				<ul class="hide-m">
-					<li><a href="#" class="header-nav">로그인</a></li>
-					<li><a href="#" class="bt-sub point">회원가입</a></li>
-				</ul>
-				<ul class="show-m">
-					<li><button class="header-menu" title="메뉴">
-							<span></span>
-						</button></li>
-				</ul>
-			</nav>
-			<nav class="show-m header-side">
-				<ul class="gnb point">
-					<div class="join-guide">
-						<a href="#">
-							<h4>회원가입</h4>
-							<p>
-								지금 회원가입하면<br> 5,000 포인트 지급!
-							</p>
-						</a>
-					</div>
-					<li><a href="#">로그인</a></li>
-					<li><a href="notice">공지사항</a></li>
-					<li><a href="add_academy">학원신청</a></li>
-				</ul>
-			</nav>
-
-			<script>
-				(function() {
-					var nowPage = location.href.split('?')[0];
-					var navTarget = $(".gnb a[href='" + nowPage + "']")
-							.parent().addClass("current");
-					var navParent = navTarget.parent();
-					if (navParent.hasClass("depth2")) {
-						navParent.show().parent().addClass("current");
-					}
-					if (navParent.hasClass("depth3")) {
-						navParent.show().parent().addClass("current").parent()
-								.show().parent().addClass("current");
-					}
-				})();
-			</script>
+			<%@ include file="common/header.jsp"%>
+			
+			<c:if test="${empty manager}">
+				<script>
+						location.href="managerlogin";
+					alert("학원 원장 로그인이 필요합니다.");
+				</script> 
+			</c:if>
 		</header>
 
 		<a href="#wrap" class="bt-top hashLink">
@@ -113,23 +73,20 @@
 								<div class="flex-wrap">
 									<input type="text" name="address" class="input-text" id="sample5_address" placeholder="주소" required>
 								</div>
-								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
-								<input class="label-text ui-button" type="submit"  value="학원찾기">
-								</li>
-								
+								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div> <input class="label-text ui-button" type="submit" value="학원찾기"></li>
+
 						</form>
 
 
 						<form action="./signed_eka_academy" class="customer-form" method="POST">
-							<li><label for="name" class="label-text">학원명</label>
-							<input type = "hidden" name = "address" value="${address}">
+							<li><label for="name" class="label-text">학원명</label> <input type="hidden" name="address" value="${address}">
 								<div class="flex-wrap">
-									<select class="selbox" name="name" required>										
+									<select class="selbox" name="name" required>
 										<c:forEach var="academy" items="${academyList}">
 											<option value="${academy.name}" selected>${academy.name}</option>
 										</c:forEach>
 									</select>
-									<input type = "text" class="input-text" name="name">
+									<input type="text" class="input-text" name="name">
 								</div></li>
 							<li><label for="phone" class="label-text">전화번호</label>
 								<div class="flex-wrap grid">
@@ -148,7 +105,7 @@
 								<div class="flex-wrap">
 									<input type="email" name="email" id="inquiryEmail" class="input-text" required="" placeholder="(@)를 포함해서 입력해주세요">
 								</div></li>
-						
+
 
 							<div class="flex-wrap grid justify"></div>
 

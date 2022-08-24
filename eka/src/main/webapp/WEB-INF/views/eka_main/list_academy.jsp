@@ -34,52 +34,8 @@
 <body>
 	<div id="wrap" role="main">
 		<header id="header" role="navigation">
-			<nav class="header-wrap">
-				<ul>
-					<li><a href="main" class="header-logo">
-							<h1>eka</h1>
-						</a></li>
-					<li class="hide-m"><a href="notice.html" class="header-nav">공지사항</a></li>
-					<li class="hide-m"><a href="add_academy.html" class="header-nav">학원신청</a></li>
-				</ul>
-				<ul class="hide-m">
-					<li><a href="#" class="header-nav">로그인</a></li>
-					<li><a href="#" class="bt-sub point">회원가입</a></li>
-				</ul>
-				<ul class="show-m">
-					<li><button class="header-menu" title="메뉴">
-							<span></span>
-						</button></li>
-				</ul>
-			</nav>
-			<nav class="show-m header-side">
-				<ul class="gnb point">
-					<div class="join-guide">
-						<a href="#">
-							<h4>회원가입</h4>
-						</a>
-					</div>
-					<li><a href="#">로그인</a></li>
-					<li><a href="notice.html">공지사항</a></li>
-					<li><a href="academy.html">학원신청</a></li>
-				</ul>
-			</nav>
+			<%@ include file="common/header.jsp"%>
 
-			<script>
-				(function() {
-					var nowPage = location.href.split('?')[0];
-					var navTarget = $(".gnb a[href='" + nowPage + "']")
-							.parent().addClass("current");
-					var navParent = navTarget.parent();
-					if (navParent.hasClass("depth2")) {
-						navParent.show().parent().addClass("current");
-					}
-					if (navParent.hasClass("depth3")) {
-						navParent.show().parent().addClass("current").parent()
-								.show().parent().addClass("current");
-					}
-				})();
-			</script>
 			<div class="header-loc">
 				<div class="shadow-wrap flex-wrap flex-center flex-glow-1">
 					<div class="userAddr-wrap flex-glow-1">

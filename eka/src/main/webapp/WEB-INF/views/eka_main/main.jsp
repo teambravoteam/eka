@@ -34,54 +34,8 @@
 <body>
 	<div id="wrap" role="main">
 		<header id="header" role="navigation" class="main">
-			<nav class="header-wrap">
-				<ul>
-					<li><a href="main" class="header-logo">
-							<h1>eka</h1>
-						</a></li>
-					<li class="hide-m"><a href="notice" class="header-nav">공지사항</a></li>
-					<li class="hide-m"><a href="add_academy" class="header-nav">학원신청</a></li>
-				</ul>
-				<ul class="hide-m">
-					<a href='<c:url value="/eka_main/managerlogin"/>' class="header-nav">로그인</a>
-					<a href='<c:url value="/eka_main/register_main"/>' class="bt-sub point">회원가입</a>
-				</ul>
-				<ul class="show-m">
-					<li><button class="header-menu" title="메뉴">
-							<span></span>
-						</button></li>
-				</ul>
-			</nav>
-			<nav class="show-m header-side">
-				<ul class="gnb point">
-					<div class="join-guide">
-						<a href="#">
-							<h4>회원가입</h4>
-						</a>
-					</div>
-					<li><a href="#">로그인</a></li>
-					<li><a href="notice">공지사항</a></li>
-					<li><a href="add_academy">학원신청</a></li>
-				</ul>
-			</nav>
-
-			<script>
-				(function() {
-					var nowPage = location.href.split('?')[0];
-					var navTarget = $(".gnb a[href='" + nowPage + "']")
-							.parent().addClass("current");
-					var navParent = navTarget.parent();
-					if (navParent.hasClass("depth2")) {
-						navParent.show().parent().addClass("current");
-					}
-					if (navParent.hasClass("depth3")) {
-						navParent.show().parent().addClass("current").parent()
-								.show().parent().addClass("current");
-					}
-				})();
-			</script>
+			<%@ include file="common/header.jsp" %>
 		</header>
-
 
 		<a href="#wrap" class="bt-top hashLink">
 			<img src="../resources/img/ic_arrow_up_24px.png" alt="맨위로"> <span>맨위로</span>
@@ -111,108 +65,74 @@
 						</div>
 						<div class="shadow-wrap big-r m1 aos-init" data-aos="fade-up" data-aos-delay="400">
 							<ul class="i-category">
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="1">
 										<span class="dragBlock">간호보조기술</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="2">
 										<span class="dragBlock">경영·사무관리</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="3">
 										<span class="dragBlock">국제</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="4">
 										<span class="dragBlock">기예</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="5">
 										<span class="dragBlock">기타</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="6">
 										<span class="dragBlock">독서실</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="7">
 										<span class="dragBlock">독서실(일반인)</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="8">
 										<span class="dragBlock">보통교과</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="9">
 										<span class="dragBlock">산업기반기술</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="10">
 										<span class="dragBlock">산업서비스</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="11">
 										<span class="dragBlock">산업응용기술</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="12">
 										<span class="dragBlock">예능</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="13">
 										<span class="dragBlock">외국어</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="14">
 										<span class="dragBlock">인문사회</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="15">
 										<span class="dragBlock">일반서비스</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="16">
 										<span class="dragBlock">진학지도</span>
-									</a>
-								</li>
-								<li class="border-wrap">
-									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a></li>
+								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="17">
 										<span class="dragBlock">컴퓨터</span>
-									</a>
-								</li>
+									</a></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
 								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
@@ -384,8 +304,8 @@
 			$("#mainCate").val("0");
 		});
 
-		setTimeout(function(){
-				$('#bt-config-loc').trigger('click');
+		setTimeout(function() {
+			$('#bt-config-loc').trigger('click');
 		}, 500)
 
 	</script>

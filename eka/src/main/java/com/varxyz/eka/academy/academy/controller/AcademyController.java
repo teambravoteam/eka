@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +28,37 @@ public class AcademyController {
 	@Autowired
 	private AuthService authService;
 
-	@GetMapping("/eka_main/main") // 확인용 메인페이지
-	public String main(Model model) {
-		model.addAttribute("main", new AcademyManager());
+	@PostMapping("/eka_main/logOut")
+	public String logOut(HttpSession session, HttpServletResponse response) {
+		session.invalidate();
+		
+		response.setHeader("Pragma", "no-cache"); 
+		response.setHeader("Cache-Control", "no-cache"); 
+		response.setHeader("Cache-Control", "no-store"); 
+		response.setDateHeader("Expires", 0L);
+		
 		return "eka_main/main";
+	}
+
+	@GetMapping("/eka_main/main")
+	public String main() {
+		return "eka_main/main";
+	}
+	
+	@PostMapping("/eka_main/main")
+	public String postMain() {
+		return "eka_main/main";
+	}
+	
+	@GetMapping("eka_main/notice")
+	public String notice() {
+		return "eka_main/notice";
 	}
 
 	@GetMapping("eka_main/add_academy")
 	public String addacademy() {
 		return "eka_main/add_academy";
 	}
-	
 
 	@GetMapping("eka_main/list_academy")
 	public String getListAcademy(HttpServletRequest request) {

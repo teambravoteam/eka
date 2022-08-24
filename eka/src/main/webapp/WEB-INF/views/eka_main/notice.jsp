@@ -34,60 +34,14 @@
 <body>
 	<div id="wrap" role="main">
 		<header id="header" role="navigation">
-			<nav class="header-wrap">
-				<ul>
-					<li><a href="main" class="header-logo">
-							<h1>eka</h1>
-					</a></li>
-					<li class="hide-m"><a href="notice" class="header-nav">공지사항</a></li>
-					<li class="hide-m"><a href="add_academy" class="header-nav">학원신청</a></li>
-				</ul>
-				<ul class="hide-m">
-					<li><a href="#" class="header-nav">로그인</a></li>
-					<li><a href="#" class="bt-sub point">회원가입</a></li>
-				</ul>
-				<ul class="show-m">
-					<li><button class="header-menu" title="메뉴">
-							<span></span>
-						</button></li>
-				</ul>
-			</nav>
-			<nav class="show-m header-side">
-				<ul class="gnb point">
-					<div class="join-guide">
-						<a href="#">
-							<h4>회원가입</h4>
-							<p>
-								지금 회원가입하면<br> 5,000 포인트 지급!
-							</p>
-						</a>
-					</div>
-					<li><a href="#">로그인</a></li>
-					<li><a href="notice">공지사항</a></li>
-					<li><a href="add_academy">학원신청</a></li>
-				</ul>
-			</nav>
-
-			<script>
-				(function() {
-					var nowPage = location.href.split('?')[0];
-					var navTarget = $(".gnb a[href='" + nowPage + "']")
-							.parent().addClass("current");
-					var navParent = navTarget.parent();
-					if (navParent.hasClass("depth2")) {
-						navParent.show().parent().addClass("current");
-					}
-					if (navParent.hasClass("depth3")) {
-						navParent.show().parent().addClass("current").parent()
-								.show().parent().addClass("current");
-					}
-				})();
-			</script>
+			<%@ include file="common/header.jsp"%>
 		</header>
 
-
-		<a href="#wrap" class="bt-top hashLink"> <img src="../resources/img/ic_arrow_up_24px.png" alt="맨위로"> <span>맨위로</span>
-		</a> <a href="http://pf.kakao.com/_IxjQZxj/chat" class="bt-kakao" target="_blank"> <img src="../resources/img/ic_kakao_24px.png" alt="카톡상담"> <span>문의</span>
+		<a href="#wrap" class="bt-top hashLink">
+			<img src="../resources/img/ic_arrow_up_24px.png" alt="맨위로"> <span>맨위로</span>
+		</a>
+		<a href="http://pf.kakao.com/_IxjQZxj/chat" class="bt-kakao" target="_blank">
+			<img src="../resources/img/ic_kakao_24px.png" alt="카톡상담"> <span>문의</span>
 		</a>
 		<div id="board-list-wrap" class="container">
 			<!-- 게시물 리스트 상단 시작 -->
@@ -106,7 +60,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -114,7 +68,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -122,7 +76,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -130,7 +84,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -138,7 +92,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -146,7 +100,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -154,7 +108,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -162,7 +116,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -170,7 +124,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
 							<div class="board-title">
 								<span class="circle">공지1</span>
@@ -178,7 +132,7 @@
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-					</a></li>
+						</a></li>
 				</ul>
 			</div>
 			<!-- 게시물 리스트 내용 끝 -->
