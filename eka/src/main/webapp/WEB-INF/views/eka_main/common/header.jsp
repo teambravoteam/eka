@@ -17,6 +17,11 @@
 		<li class="hide-m">
 			<a href="add_academy" class="header-nav">학원신청</a>
 		</li>
+		<c:if test="${! empty manager && empty ekauser}">
+			<li class="hide-m">
+				<a href="../eka_manager/main" class="header-nav">학원관리</a>
+			</li>
+		</c:if>
 	</ul>
 	<ul class="hide-m">
 		<c:if test="${empty manager && empty ekauser}">
@@ -38,7 +43,7 @@
 			</li>
 			<li>
 				<form action="myPage" method="post">
-					<input type="submit" class="bt-sub point" value="마이페이지" />
+					<input type="submit" class="bt-sub accent" value="마이페이지" />
 				</form>
 			</li>
 			<li>

@@ -370,7 +370,8 @@ mark {
   text-align: center;
   display: inline-block;
   -webkit-transition: all 0.3s;
-  transition: all 0.3s
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
 .bt-sub.point {
@@ -400,7 +401,6 @@ mark {
   background-color: #28a745;
   -webkit-box-shadow: 0 1px 8px rgba(40, 167, 69, 0.45);
   box-shadow: 0 1px 8px rgba(40, 167, 69, 0.45);
-  cursor: pointer;
 }
 
 .bt-sub.green:hover {
