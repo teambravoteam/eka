@@ -43,7 +43,9 @@
 			</li>
 			<li>
 				<form action="myPage" method="post">
-					<input type="submit" class="bt-sub accent" value="마이페이지" />
+					<input type="hidden" name="academyId" value="${manager.academyId}" />
+					<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
+					<input type="submit" class="bt-sub coral" value="마이페이지" />
 				</form>
 			</li>
 			<li>

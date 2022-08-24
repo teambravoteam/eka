@@ -20,13 +20,37 @@ import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.service.AuthService;
+import com.varxyz.eka.student.service.StudentServiceImpl;
 
 @Controller
 public class AcademyController {
 	@Autowired
-	private AcademyServiceImp acdemyService;
+	private AcademyServiceImp academyService;
 	@Autowired
 	private AuthService authService;
+	
+	@PostMapping("/eka_main/myPage")
+	public ModelAndView myPage(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();	
+
+		String academyId = request.getParameter("academyId");
+		String ekauserId = request.getParameter("ekauserId");
+		String academyName = null;
+		
+		if (academyId != null || academyId == "") {
+			Long academyIdL = Long.parseLong(academyId);
+			academyName = academyService.findAcademyByAid(academyIdL).getName();	
+		} else if (ekauserId != null || ekauserId == "") {
+			Long academyIdL = academyService.findStudentByEkauserId(ekauserId).getAcademyId();
+			academyName = academyService.findAcademyByAid(academyIdL).getName();
+		}
+	
+		mav.addObject("academyName", academyName);
+		mav.setViewName("eka_main/myPage");
+		
+		return mav;
+	}
 
 	@PostMapping("/eka_main/logOut")
 	public String logOut(HttpSession session, HttpServletResponse response) {
@@ -91,9 +115,9 @@ public class AcademyController {
 		List<Academy> allAcademyList = null;
 		
 		if (selectedCategory.equals("전체")) {
-			allAcademyList = acdemyService.findAllAcademies();
+			allAcademyList = academyService.findAllAcademies();
 		} else {
-			allAcademyList = acdemyService.findAcademiesByCategory(selectedCategory);		
+			allAcademyList = academyService.findAcademiesByCategory(selectedCategory);		
 		}
 		
 		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
@@ -156,7 +180,7 @@ public class AcademyController {
 	
 	@PostMapping("eka_main/select_academies_by_address")
 	public String selectAcademiesByAddress(Model model, @RequestParam String address) { 
-		List<Academy> academyList = acdemyService.findAcademiesByAddress(address);
+		List<Academy> academyList = academyService.findAcademiesByAddress(address);
 
 		model.addAttribute("academyList",academyList);
 		model.addAttribute("address",address);
@@ -189,7 +213,7 @@ public class AcademyController {
 		String emin = ert[1].split("분")[0];		
 		endruntime = ehour + ":" + emin;		
 		
-		Academy academy= acdemyService.findAcademyByAddressAndName(address,name);
+		Academy academy= academyService.findAcademyByAddressAndName(address,name);
 		
 		academy.setPhone(phone);
 		academy.setAcademyservice(service);
@@ -199,7 +223,7 @@ public class AcademyController {
 		academy.setEndruntime(endruntime);
 		academy.setSignedacademy("가입");		
 		
-		acdemyService.signEkaAcademy(academy);
+		academyService.signEkaAcademy(academy);
 		
 		AcademyManager a = (AcademyManager) session.getAttribute("manager");
 		a.setAcademyId(academy.getAid());

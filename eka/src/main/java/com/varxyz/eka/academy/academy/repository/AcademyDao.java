@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.student.domain.Student;
 
 @Repository("academyListDao")
 public class AcademyDao {
@@ -52,5 +53,10 @@ public class AcademyDao {
 	public Academy findAcademyByAid(long aid) {
 		String sql = "SELECT * FROM Academy WHERE aid = ?;";
 		return jdbcTemplate.queryForObject(sql, new AcademyRowMapper(), aid);
+	}
+	
+	public Student findStudentByEkauserId(String ekaUserId) {
+		String sql = "SELECT * FROM Student WHERE ekaUserId = ?;";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Student>(Student.class), ekaUserId);
 	}
 }

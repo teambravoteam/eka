@@ -407,6 +407,17 @@ mark {
   background-color: #1d7d33;
 }
 
+.bt-sub.coral {
+  color: #fff;
+  background-color: #FE7F4F;
+  -webkit-box-shadow: 0 1px 8px rgba(254, 127, 79, 0.45);
+  box-shadow: 0 1px 8px rgba(254, 127, 79, 0.45);
+}
+
+.bt-sub.coral:hover {
+  background-color: #ba5d3a;
+}
+
 .bt-sub.ic-gps {
   padding-left: 42px;
   background-position: 16px center;
@@ -1634,11 +1645,11 @@ select.small {
 }
 
 .chip-label.point {
-  background-color: #4e73df
+  background-color: #4e73df;
 }
 
 .chip-label.accent {
-  background-color: #f80
+  background-color: #f80;
 }
 
 .chip-label.outline {
@@ -5875,7 +5886,7 @@ select.small {
   padding: 97px 42px 42px;
   border-radius: 8px;
   text-align: center;
-  background: url("..img/ic_add_55px.png") no-repeat center 42px/55px
+  background: url("../img/ic_add_55px.png") no-repeat center 42px/55px
 }
 
 .bt-add strong {

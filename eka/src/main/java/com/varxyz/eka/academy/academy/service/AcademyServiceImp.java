@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.repository.AcademyDao;
+import com.varxyz.eka.student.domain.Student;
 
 @Service("academyService")
 public class AcademyServiceImp implements AcademyService {
@@ -38,16 +39,23 @@ public class AcademyServiceImp implements AcademyService {
 		return academyDao.findAcademiesByAddress(address);
 	}
 
+	@Override
 	public Academy findAcademyByAddressAndName(String address, String name) {
 		// TODO Auto-generated method stub
 		return academyDao.findAcademyByAddressAndName(address, name);
 	}
 
-	public void signEkaAcademy(Academy academy) {
-		academyDao.signEkaAcademy(academy);
-	}
-
+	@Override
 	public Academy findAcademyByAid(long aid) {
 		return academyDao.findAcademyByAid(aid);
+	}
+
+	@Override
+	public Student findStudentByEkauserId(String ekaUserId) {
+		return academyDao.findStudentByEkauserId(ekaUserId);
+	}
+
+	public void signEkaAcademy(Academy academy) {
+		academyDao.signEkaAcademy(academy);
 	}
 }
