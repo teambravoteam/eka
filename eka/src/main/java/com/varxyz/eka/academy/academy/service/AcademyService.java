@@ -15,4 +15,6 @@ public interface AcademyService {
 	//주소별로 학원 리스트를 가져올 수 있어야 한다
 	public List<Academy> findAcademiesByAddress(String address);
 	
+	//Aid로 학원 정보를 가져올 수 있어야 한다
+	public Academy findAcademyByAid(long aid);
 }

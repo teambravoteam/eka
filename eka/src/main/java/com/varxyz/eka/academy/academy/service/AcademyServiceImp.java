@@ -1,3 +1,4 @@
+
 package com.varxyz.eka.academy.academy.service;
 
 import java.util.List;
@@ -47,7 +48,6 @@ public class AcademyServiceImp implements AcademyService {
 	}
 
 	public Academy findAcademyByAid(long aid) {
-		// TODO Auto-generated method stub
 		return academyDao.findAcademyByAid(aid);
 	}
 }
