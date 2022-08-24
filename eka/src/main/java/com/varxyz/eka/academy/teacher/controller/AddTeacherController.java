@@ -28,8 +28,12 @@ public class AddTeacherController {
 	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/teacher_add")
-	public String TeacherAdd(Model model) {
+	public String TeacherAdd(Model model, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		model.addAttribute("subject", tservice.findSubjectCategory());
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/teacher_add";
 	}
 	
@@ -46,9 +50,6 @@ public class AddTeacherController {
 		String phone = multi.getParameter("phone1") + "-" 
 				+ multi.getParameter("phone2") + "-" + multi.getParameter("phone3");
 
-//		session.getAttribute("academy");
-//		Academy academy = new Academy(); // academy정보는 session에 저장해서 계속 이용
-//		academy.setAid(1);
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
@@ -70,12 +71,20 @@ public class AddTeacherController {
 		}
 		
 		//insert결과값으로 유효성검증
-		System.out.println(tservice.addTeacher(teacher));
 		
-//		System.out.println(teacher);
+		boolean result = tservice.addTeacher(teacher);
+		if (result == false) {
+			String msg = "강사등록에 실패했습니다.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		} else {
+			String msg = teacher.getName() + "강사가 등록되었습니다.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		}
 		
-		model.addAttribute("name", teacher.getName());
-		return "eka_manager/success/teacher_add_success";
 	}
 	
 

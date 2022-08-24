@@ -42,6 +42,7 @@ public class LectureStudentEditController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		//common
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lecture.getLid()));
 		return "eka_manager/lecture_student_edit";

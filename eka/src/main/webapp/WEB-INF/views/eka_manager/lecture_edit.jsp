@@ -113,28 +113,25 @@ body {
                       <input type="checkbox" class="checkbox" name="lectureDay" value="일">일</input>
                       <input type="checkbox" class="checkbox" name="lectureDay" value="all" checked>전체</input>
                     </td>
-                    <th>정원</th>
+                    <th>강좌명</th>
+                    <td>
+                      <input type="text" class="title" name="name">
+                    </td>
+                    <!-- <th>정원</th>
                     <td>
                       <input type="number" name="lectureCapacity" value="0">
                       <select class="" name="type1">
                         <option value="up">이상</option>
                         <option value="down">이하</option>
                       </select>
-                    </td>
+                    </td> -->
                   </tr>
                   <tr>
-                    <th>강좌료</th>
+                    <!-- <th>강좌료</th>
                     <td>
                       <input type="number" name="price" value="0">
-                      <select class="" name="type2">
-                        <option value="up">이상</option>
-                        <option value="down">이하</option>
-                      </select>
-                    </td>
-                    <th>강좌명</th>
-                    <td>
-                      <input type="text" class="title" name="name">
-                    </td>
+                    </td> -->
+                    
                   </tr>
                 </table>
                 <button class="btn btn-primary btn-sm submit" type="button" name="button"

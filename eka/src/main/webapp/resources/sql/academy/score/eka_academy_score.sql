@@ -19,27 +19,27 @@ DROP TABLE AcademyScore;
 DROP TABLE AcademyTestCategory;
 
 SELECT * FROM AcademyScore;
+SELECT * FROM AcademyTestCategory;
+
+CREATE TABLE AcademyTestCategory(
+	atcid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
+	academyId 		BIGINT  		NOT NULL,
+	lectureName		VARCHAR(20)		NOT NULL,
+	testName		VARCHAR(20)		NOT NULL,
+	testDate		DATE			NOT NULL,
+	CONSTRAINT AcademyTestCategory_academyId_FK FOREIGN KEY(academyId) REFERENCES Academy(aid)
+); 
 
 CREATE TABLE AcademyScore (
 	asid 			BIGINT			PRIMARY KEY AUTO_INCREMENT,
-	academyId 		BIGINT  		NOT NULL,
-	lecturename 	VARCHAR(20)		NOT NULL,
-	testname		VARCHAR(20)		NOT NULL,
-	testdate		DATE			NOT NULL,
+	testCategoryId	BIGINT			NOT NULL,
+	studentName		VARCHAR(20)		NOT NULL,
 	studentId	    BIGINT,
-	testScore       DOUBLE,
-	CONSTRAINT AcademyScore_academyId_FK FOREIGN KEY(academyId) REFERENCES Academy(aid)
+	testScore       DOUBLE
 );
 
 
---CREATE TABLE AcademyTestCategory(
---	atcid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
---	lecturename		VARCHAR(20)		NOT NULL,
---	testname		VARCHAR(20)		NOT NULL,
---	testdate		DATE			NOT NULL,
---	CONSTRAINT AcademyTest_CategoryacademyId_FK 
---	FOREIGN KEY(lecturename) REFERENCES Lecture(name)
---); 
+DROP TABLE AcademyTestCategory;
 
 SELECT * FROM AcademyScore WHERE academyId = 1 AND lecturename="현대미술의 이해2";
 SELECT lid FROM Lecture WHERE academyId = 1 AND name = "현대미술의 이해2";

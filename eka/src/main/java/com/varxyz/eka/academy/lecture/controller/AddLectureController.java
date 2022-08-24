@@ -56,12 +56,20 @@ public class AddLectureController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		lecture.setAcademy(academy);
-		
-		// true, false확인하기
-		System.out.println(lservice.addLecture(lecture));
-		
-		model.addAttribute("name", lecture.getName());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
-		return "eka_manager/success/lecture_add_success";
+		
+		boolean result = lservice.addLecture(lecture);
+		if (result == false) {
+			String msg = "강좌등록에 실패했습니다.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		} else {
+			String msg = lecture.getName() + "강좌가 등록되었습니다.";
+			model.addAttribute("msg", msg);
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		}
+		
 	}
 }

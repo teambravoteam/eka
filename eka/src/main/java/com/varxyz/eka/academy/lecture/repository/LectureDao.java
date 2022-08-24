@@ -58,9 +58,9 @@ public class LectureDao {
 	
 	// 요일로 검색
 	public List<Lecture> findAcademyLecturesByLectureDay(Academy academy, String lectureDay) {
-		String sql = "SELECT * FROM Lecture WHERE academyId=? AND lectureDay LIKE ?";
-		String day = "%"+lectureDay+"%";
-		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), day);
+		String sql = "SELECT * FROM Lecture WHERE academyId=? AND lectureDay = ?";
+//		String day = "%"+lectureDay+"%";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), lectureDay);
 	}
 	
 	// 강좌 수정
@@ -106,6 +106,7 @@ public class LectureDao {
 		return jdbcTemplate.query(sql, new LectureStudentRowMapper(), lid);
 	}
 	
+	
 	// 강좌별 수강생 삭제
 	public void deleteLectureStudent(long lid, long sid) {
 		String sql = "DELETE FROM LectureStudent WHERE lectureId = ? AND studentId =?";
@@ -115,13 +116,34 @@ public class LectureDao {
 	// 강좌id 조회
 	public long findLidByAidAndName(long aid, String name) {
 		String sql = "SELECT lid FROM Lecture WHERE academyId = ? AND name = ?";
-		return jdbcTemplate.queryForObject(sql, Long.class);
+		return jdbcTemplate.queryForObject(sql, Long.class, aid, name);
+	}
+	
+	// 강좌명으로 검색
+	public List<Lecture> findAcademyLectureByName(Academy academy, String name) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND name LIKE ?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), likeName);
+	}
+	
+	// 기간으로 강좌 조회
+	public List<Lecture> findAcademyLecturesByDate(Academy academy, String startLectureDate, String finishLectureDate) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND startLectureDate =? AND finishLectureDate=? ";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), startLectureDate, finishLectureDate);
 	}
 
-	public Lecture findAcademyLectureByName(Academy academy, String name) {
-		String sql = "SELECT * FROM Lecture WHERE name=?";
-		return jdbcTemplate.queryForObject(sql, new LectureListRowMapper(), name);
+	// 시간으로 강좌 조회
+	public List<Lecture> findAcademyLecturesByTime(Academy academy, String startLectureTime, String finishLectureTime) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND startLectureTime =? AND finishLectureTime=? ";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), startLectureTime, finishLectureTime);
 	}
+	// 강좌이름으로 강좌id찾기
+	public Lecture findLectureIdByLectureName(Academy academy, String name) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND name =?";
+		return jdbcTemplate.queryForObject(sql, new LectureListRowMapper(), academy.getAid(), name);
+	}
+	
+	
 	
 	
 

@@ -21,7 +21,19 @@ public class ManagerMainController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		System.out.println("am : " + am);
 		
+		if(am == null) {
+			model.addAttribute("msg", "로그인 후 접근 가능합니다.");
+			model.addAttribute("return_mapping", "../eka_main/main");
+			return "eka_manager/msg_alert";
+		}
+		if (am.getAcademyId() == 0) {
+			model.addAttribute("msg", "등록된 학원이 없습니다.");
+			model.addAttribute("return_mapping", "../eka_main/main");
+			return "eka_manager/msg_alert";
+		}
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/main";
 	}
+	
+
 }

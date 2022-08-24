@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.score.domain.Score;
+import com.varxyz.eka.score.domain.ScoreCategory;
 import com.varxyz.eka.score.repository.ScoreDao;
 import com.varxyz.eka.student.domain.Student;
 
@@ -17,9 +18,9 @@ public class ScoreServiceImpl {
 	private ScoreDao dao;
 	
 	//시험정보 등록
-	public boolean addAcademyScoreCategory(Score score) {
+	public boolean addAcademyScoreCategory(ScoreCategory scoreCategory) {
 		try {
-			dao.addAcademyScoreCategory(score);
+			dao.addAcademyScoreCategory(scoreCategory);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,15 +29,26 @@ public class ScoreServiceImpl {
 	}
 	
 	// 과목명으로 시험정보 리스트 조회
-	public List<Score> findTestName(long aid, String lecturename) {
-		return dao.findTestName(aid, lecturename);
+	public List<ScoreCategory> findTestName(long aid, String lectureName) {
+		return dao.findTestName(aid, lectureName);
 	}
-		 
-	public boolean addScore(Score score) {
-//		 TODO Auto-generated method stub
-		return false;
+	
+	// 점수 등록
+	public boolean addScore(long scid, String name, int sid, double score) {
+		try {
+			dao.addScore(scid, name, sid, score);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-
+	
+	//atcid로 성적테이블에 데이터가 있는지 찾기
+	public List<Score> findListByAtcid(long atcid) {
+		return dao.findListByAtcid(atcid);
+	}
+	
 	public boolean updateScore(Score score) {
 		// TODO Auto-generated method stub
 		return false;
@@ -91,5 +103,8 @@ public class ScoreServiceImpl {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	
 
 }

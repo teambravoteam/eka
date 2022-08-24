@@ -17,9 +17,9 @@ public class LectureCommand {
 	private String startLectureTime;
 	private String finishLectureTime;
 	private String lectureDay;
-	private long lectureCapacity;
+//	private long lectureCapacity;
 //	private String type1;
-	private long price;
+//	private long price;
 //	private String type2;
 	private String name;
 

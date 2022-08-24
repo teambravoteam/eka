@@ -13,12 +13,17 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Score {
 	private long asid;
-	private long academyId;	
-	private String lecturename;
-	private String testname;
-	private Date testdate;
+	private long testCategoryId;
+	private String studentName;
 	private long studentId;
 	private double testScore;
+	
+//	private long academyId;	
+//	private String lecturename;
+//	private String testname;
+//	private Date testdate;
+//	private long studentId;
+//	private double testScore;
 	
 	public Score() 	{
 		

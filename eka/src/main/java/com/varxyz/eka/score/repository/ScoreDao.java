@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.varxyz.eka.score.domain.Score;
+import com.varxyz.eka.score.domain.ScoreCategory;
 
 @Repository
 public class ScoreDao {
@@ -21,16 +22,29 @@ public class ScoreDao {
 	}
 	
 	// 시험정보 등록
-	public void addAcademyScoreCategory(Score score) {
-		String sql = "INSERT INTO AcademyScore(academyId, lecturename, testname, testdate) "
+	public void addAcademyScoreCategory(ScoreCategory scoreCategory) {
+		String sql = "INSERT INTO AcademyTestCategory(academyId, lectureName, testName, testDate) "
 				+ " VALUES(?, ?, ?, ?)";
-		jdbcTemplate.update(sql, score.getAcademyId(), score.getLecturename(),
-				score.getTestname(), score.getTestdate());
+		jdbcTemplate.update(sql, scoreCategory.getAcademyId(), scoreCategory.getLectureName(),
+				scoreCategory.getTestName(), scoreCategory.getTestDate());
 	}
 	
-	public List<Score> findTestName(long aid, String lecturename) {
-		String sql = "SELECT lecturename, testname, testdate  FROM AcademyScore WHERE academyId=? AND lecturename=?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Score>(Score.class) , aid, lecturename);
+	// 시험목록
+	public List<ScoreCategory> findTestName(long aid, String lecturename) {
+		String sql = "SELECT * FROM AcademyTestCategory WHERE academyId=? AND lectureName=?";
+		return jdbcTemplate.query(sql, new TestInfoRowMapper() , aid, lecturename);
+	}
+	
+	// 시험성적 등록
+	public void addScore(long scid, String name, int sid, double score) {
+		String sql = "INSERT INTO AcademyScore(testCategoryId, studentName, studentId, testScore)"
+				+ " VALUES(?, ?, ?, ?)";
+		jdbcTemplate.update(sql, scid, name, sid, score);
+	}
+	
+	public List<Score> findListByAtcid(long atcid) {
+		String sql = "SELECT * FROM AcademyScore WHERE testCategoryId =?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Score>(Score.class),atcid);
 	}
 	
 	

@@ -77,7 +77,7 @@ body {
                   <tr>
                     <th>강좌</th>
                     <td>
-                      <select class="lecture" name="lecturename">
+                      <select class="lecture" name="lectureName">
                         <c:forEach var="lecture" items="${lecture}" varStatus="status">
                     	  <option value="${lecture.name}">${lecture.name}</option>
                      	</c:forEach>
@@ -85,11 +85,11 @@ body {
                     </td>
                     <th>시행일자</th>
                     <td>
-                      <input type="date" name="testdate" value="">
+                      <input type="date" name="testDate" value="">
                     </td>
                     <th>시험명</th>
                     <td>
-                      <input type="text" name="testname" class="testname">
+                      <input type="text" name="testName" class="testname">
                       <button class="btn btn-primary btn-sm submit" type="submit" name="button">
                         <span>등록하기</span>
                       </button>
@@ -111,7 +111,7 @@ body {
                         <tr>
                           <th>강의명</th>
                           <td>
-                            <select class="lecture" name="lecturename">
+                            <select class="lecture" name="lectureName">
                               <c:forEach var="lecture" items="${lecture}" varStatus="status">
                     	   		 <option value="${lecture.name}">${lecture.name}</option>
                      		  </c:forEach>
@@ -140,12 +140,13 @@ body {
                     <c:forEach var="testList" items="${testList}" varStatus="status">
                       <tr>
                         <td>${status.index + 1}</td>
-                        <td>${testList.lecturename}</td>
-                        <input type="hidden" name="lecturename" value="${testList.lecturename}">
-                        <td>${testList.testname}</td>
-                        <input type="hidden" name="testname" value="${testList.testname}">
-                        <td>${testList.testdate}</td>
-                        <input type="hidden" name="testdate" value="${testList.testdate}">
+                        <td>${testList.lectureName}</td>
+                        <input type="hidden" name="lectureName" value="${testList.lectureName}">
+                        <td>${testList.testName}</td>
+                        <input type="hidden" name="testName" value="${testList.testName}">
+                        <td>${testList.testDate}</td>
+                        <input type="hidden" name="testDate" value="${testList.testDate}">
+                        <input type="hidden" name="atcid" value="${testList.atcid}">
                         <td>
                           <button type="submit" name="button" class="btn btn-light btn-sm">입력</button>
                         </td>
@@ -161,11 +162,12 @@ body {
             <div class="col-xl-6 col-lg-6">
               <div class="card shadow mb-4">
                 <div class="card-body">
+                <form class="" action="add_test_score" method="post">
                   <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                      <h5>{lecture}</h5>
+                      <h5>${lectureName}</h5>
+                       <input type="hidden" name="lectureName" value="${lectureName}">
                       <span>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">수정하기</a>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">저장하기</a>
+                      <button type="submit" name="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">저장하기</button>
                       </span>
                   </div>
                   <table class="table table-bordered result_table">
@@ -182,14 +184,19 @@ body {
                       <tr>
                         <td>${status.index + 1}</td>
                         <td>${lectureStudentList.sid}</td>
+                        <%-- <input type="hidden" name="scoreList[${status.index}].sid" value="${lectureStudentList.sid}"> --%>
                         <input type="hidden" name="sid" value="${lectureStudentList.sid}">
                         <td>${lectureStudentList.name}</td>
                         <input type="hidden" name="name" value="${lectureStudentList.name}">
-                        <td><input type="number" class="score"></td>
+                        <td><input type="number" name="testScore" class="score"></td>
                       </tr>
                      </c:forEach>
                     </tbody>
+                       <input type="hidden" name="testName" value="${testinfo.testName}">
+                       <input type="hidden" name="testDate" value="${testinfo.testDate}">
+                       <input type="hidden" name="atcid" value="${testinfo.atcid}">
                   </table>
+                  </form>
                 </div>
               </div>
             </div>

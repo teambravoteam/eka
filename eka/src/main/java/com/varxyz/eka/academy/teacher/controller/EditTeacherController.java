@@ -31,8 +31,12 @@ public class EditTeacherController {
 	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/teacher_edit")
-	public String teacherFind(Model model) {
+	public String teacherFind(Model model, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
 		model.addAttribute("subject", tservice.findSubjectCategory());
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/teacher_edit";
 	}
 	
@@ -48,7 +52,7 @@ public class EditTeacherController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		
-//		System.out.println(tservice.findAllAcademyTeacher(academy));
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		return "eka_manager/teacher_edit";
@@ -79,8 +83,12 @@ public class EditTeacherController {
 	
 	// 강사 삭제하기
 	@GetMapping("eka_manager/teacher_delete")
-	public String teacherDelete(String delete) {
+	public String teacherDelete(String delete, Model model, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
 		System.out.println(delete);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/teacher_edit";
 	}
 	
@@ -90,16 +98,9 @@ public class EditTeacherController {
 			@RequestParam String subject, @RequestParam String gender,
 			@RequestParam String foreigner, @RequestParam String name) {
 		
-//		System.out.println(subject);
-//		System.out.println(gender);
-//		System.out.println(foreigner);
-//		System.out.println("name : " + name);
-//		
-//		session.getAttribute("academy"); 이걸로 service에 넘기기
-//		Academy academy = new Academy();
-//		academy.setAid(1);
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		List<Teacher> teacher_list = new ArrayList<Teacher>();
 		

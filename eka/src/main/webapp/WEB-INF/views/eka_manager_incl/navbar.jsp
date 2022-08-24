@@ -134,7 +134,7 @@ font-weight: normal;
               <div id="collapseScore" class="collapse" aria-labelledby="headingScore" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                       <a class="collapse-item" href="score_add_academy">학원 성적 등록</a>
-                      <a class="collapse-item" href="score_add_school">학교 성적 등록</a>
+                      <!-- <a class="collapse-item" href="score_add_school">학교 성적 등록</a> -->
                       <a class="collapse-item" href="score_edit">성적 조회 / 수정</a>
                   </div>
               </div>

@@ -96,8 +96,8 @@ public class LectureServiceImpl {
 	}
 	
 	// 강사로 검색
-	public List<Lecture> findAcademyLecturesByTeacher(Academy academy, String teacher) {
-		return ldao.findAcademyLecturesByTeacher(academy, teacher);
+	public List<Lecture> findAcademyLecturesByTeacher(Academy academy, String lectureDay) {
+		return ldao.findAcademyLecturesByTeacher(academy, lectureDay);
 	}
 	
 	// 요일로 검색
@@ -105,13 +105,28 @@ public class LectureServiceImpl {
 		return ldao.findAcademyLecturesByLectureDay(academy, lectureDay);
 	}
 	
+	// 강좌명으로 검색 List
+	public List<Lecture> findAcademyLectureByName(Academy academy, String name) {
+		return ldao.findAcademyLectureByName(academy,name);
+	}
+	//강좌명으로 강의찾기
+	public Lecture findLectureIdByLectureName(Academy academy, String name) {
+		return ldao.findLectureIdByLectureName(academy,name);
+	}
+	
+	// 강의 기간으로조회
+	public List<Lecture> findAcademyLecturesByDate(Academy academy, String startLectureDate, String finishLectureDate) {
+		return ldao.findAcademyLecturesByDate(academy, startLectureDate, finishLectureDate);
+	}
+	
+	public List<Lecture> findAcademyLecturesByTime(Academy academy, String startLectureTime, String finishLectureTime) {
+		return ldao.findAcademyLecturesByTime(academy,startLectureTime,finishLectureTime);
+	}
+	
 	public List<Lecture> findAcademyLecturesByStartLectureTime(Academy academy, String time) {
 		return null;
 	}
 
-	public List<Lecture> findAcademyLecturesByFinishLectureTime(Academy academy, String time) {
-		return null;
-	}
 
 	public List<Lecture> findAcademyLecturesByStartLectureDate(Academy academy, String date) {
 		return null;
@@ -139,8 +154,6 @@ public class LectureServiceImpl {
 		return null;
 	}
 
-	public Lecture findAcademyLectureByName(Academy academy, String name) {
-		return ldao.findAcademyLectureByName(academy,name);
-	}
+	
 
 }
