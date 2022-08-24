@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.academycategory.service.AcademyCategoryServiceImp;
 import com.varxyz.eka.academy.lecture.command.LectureCommand;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
+import com.varxyz.eka.auth.domain.AcademyManager;
 
 @Controller
 public class FindLectureController {
@@ -23,15 +25,20 @@ public class FindLectureController {
 	private AcademyCategoryServiceImp acservice;
 	@Autowired
 	private TeacherServiceImpl tservice;
+	@Autowired
+	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/lecture_edit")
-	public String lectureEdit(Model model) {
+	public String lectureEdit(Model model, HttpSession session) {
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 				
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/lecture_edit";
 	}
 	
@@ -40,13 +47,17 @@ public class FindLectureController {
 	public String lectureFindAll(Model model, HttpSession session) {
 		
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		// common
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/lecture_edit";
 	}
 	
@@ -54,11 +65,13 @@ public class FindLectureController {
 	@PostMapping("eka_manager/lecture_find")
 	public String lectureFind(LectureCommand lecture,Model model, HttpSession session) {
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		// common
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 //		List<Lecture> lecture_list = new ArrayList<Lecture>();
 		
@@ -70,9 +83,7 @@ public class FindLectureController {
 		String finishLectureTime = lecture.getFinishLectureTime();
 		String lectureDay = lecture.getLectureDay();
 		long lectureCapacity = lecture.getLectureCapacity();
-//		String type1 = lecture.getType1();
 		long price = lecture.getPrice();
-//		String type2 = lecture.getType2();
 		String name = lecture.getName();
 		
 		// 다 all이면 전체검색

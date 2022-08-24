@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
+import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.score.domain.Score;
 import com.varxyz.eka.score.service.ScoreServiceImpl;
 
@@ -22,13 +24,14 @@ public class AddAcademyScoreController {
 	private LectureServiceImpl lservice;
 	@Autowired
 	private ScoreServiceImpl sservice;
+	@Autowired
+	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/score_add_academy")
 	public String scoreAddAcademyForm(Model model, HttpSession session) {
-		
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		return "eka_manager/score_add_academy";
@@ -36,12 +39,12 @@ public class AddAcademyScoreController {
 	
 	//시험명 등록
 	@PostMapping("eka_manager/score_add_academy")
-	public String scoreAddAcademy(Score score, Model model) {
+	public String scoreAddAcademy(Score score, Model model, HttpSession session) {
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
-
-		score.setAcademyId(1); 
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
+		score.setAcademyId(academy.getAid()); 
 		
 		boolean addResult = sservice.addAcademyScoreCategory(score);
 //		System.out.println(score.getLecturename());
@@ -63,14 +66,16 @@ public class AddAcademyScoreController {
 	
 	// 강좌명으로 시험 조회
 	@PostMapping("eka_manager/score_find_academy")
-	public String scoreFindAcademy(@RequestParam String lecturename, Model model) {
+	public String scoreFindAcademy(@RequestParam String lecturename, Model model, HttpSession session) {
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
-		long aid = academy.getAid();
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+//		long aid = academy.getAid();
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
-		model.addAttribute("testList", sservice.findTestName(aid, lecturename));
+		model.addAttribute("testList", sservice.findTestName(academy.getAid(), lecturename));
 		
 		System.out.println(lservice.findallAcademyLectures(academy));
 //		System.out.println(sservice.findTestName(aid, lecturename));
@@ -82,15 +87,18 @@ public class AddAcademyScoreController {
 	@PostMapping("eka_manager/add_score_insert")
 	public String addScoreInsert(@RequestParam String lecturename, Score score, Model model, HttpSession session) {
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		
+		System.out.println("score : " + score);
 		Lecture lecture = lservice.findAcademyLectureByName(academy, lecturename); 
 		long lid = lecture.getLid();
-		System.out.println(lid + " ?????");
-//		System.out.println("lid : " + lid);
 		// aid, 학원이름으로 lid찾기
 		model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lid));
+		Lecture lecture2 = new Lecture();
+		lecture2 = (Lecture) lservice.findallAcademyLectures(academy);
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		return "eka_manager/score_add_academy";
 	}

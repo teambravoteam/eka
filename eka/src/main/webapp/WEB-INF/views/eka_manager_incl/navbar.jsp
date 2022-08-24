@@ -8,16 +8,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+.eka_logo {
+font-family: 'Julietta';
+text-transform: lowercase;
+font-size: 50px;
+font-weight: normal;
+}
+</style>
+<link href="../resources/css/font.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- 상단 로고 영역 -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+            <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">EKA<sup>manager</sup></div>
+               <div class="sidebar-brand-text mx-3">EKA<sup>manager</sup></div>
+            </a> -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+                <div class="sidebar-brand-icon rotate-n-15">
+                </div>
+                <div class="eka_logo">eka</div>
             </a>
 
             <!-- Divider -->

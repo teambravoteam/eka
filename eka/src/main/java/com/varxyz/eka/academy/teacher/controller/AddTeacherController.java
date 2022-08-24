@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.teacher.domain.Teacher;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
+import com.varxyz.eka.auth.domain.AcademyManager;
 
 @Controller
 public class AddTeacherController {
 	
 	@Autowired
 	private TeacherServiceImpl tservice;
+	@Autowired
+	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/teacher_add")
 	public String TeacherAdd(Model model) {
@@ -43,8 +47,10 @@ public class AddTeacherController {
 				+ multi.getParameter("phone2") + "-" + multi.getParameter("phone3");
 
 //		session.getAttribute("academy");
-		Academy academy = new Academy(); // academy정보는 session에 저장해서 계속 이용
-		academy.setAid(1);
+//		Academy academy = new Academy(); // academy정보는 session에 저장해서 계속 이용
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		teacher.setAcademy(academy);
 		teacher.setName(multi.getParameter("name"));

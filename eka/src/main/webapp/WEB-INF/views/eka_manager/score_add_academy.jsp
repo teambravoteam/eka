@@ -162,7 +162,7 @@ body {
               <div class="card shadow mb-4">
                 <div class="card-body">
                   <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                      <h5>{강의명}{시험명}</h5>
+                      <h5>{lecture}</h5>
                       <span>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">수정하기</a>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">저장하기</a>

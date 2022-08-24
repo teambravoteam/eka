@@ -1,6 +1,7 @@
 
 --학교 시험 분류 테이블
 
+-- 아직 구현 안했으니 테이블 만들지 마삼
 --(ex. 모의고사/기말고사/중간고사)
 CREATE TABLE SchoolTestTypeCategory(
 	sttcid		BIGINT 		PRIMARY KEY AUTO_INCREMENT,

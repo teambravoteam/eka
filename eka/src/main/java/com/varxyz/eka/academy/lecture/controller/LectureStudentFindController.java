@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.academycategory.service.AcademyCategoryServiceImp;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
+import com.varxyz.eka.auth.domain.AcademyManager;
 
 @Controller
 public class LectureStudentFindController {
@@ -20,6 +22,8 @@ public class LectureStudentFindController {
 	private AcademyCategoryServiceImp acservice;
 	@Autowired
 	private TeacherServiceImpl tservice;
+	@Autowired
+	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/lecture_student")
 	public String lectureStudentMain(Model model)  {
@@ -32,8 +36,10 @@ public class LectureStudentFindController {
 	public String lectureFindAll(Model model, HttpSession session) {
 		
 		//session
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		// common

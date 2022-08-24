@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.academycategory.service.AcademyCategoryServiceImp;
 import com.varxyz.eka.academy.teacher.command.TeacherListCommand;
 import com.varxyz.eka.academy.teacher.domain.Teacher;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
+import com.varxyz.eka.auth.domain.AcademyManager;
 
 @Controller
 public class EditTeacherController {
@@ -25,6 +27,8 @@ public class EditTeacherController {
 	private TeacherServiceImpl tservice;
 	@Autowired
 	private AcademyCategoryServiceImp acservice;
+	@Autowired
+	private AcademyServiceImp academyService;
 	
 	@GetMapping("eka_manager/teacher_edit")
 	public String teacherFind(Model model) {
@@ -38,8 +42,11 @@ public class EditTeacherController {
 		//이미지가 없는 강사는 default이미지로 출력하기
 		
 //		session.getAttribute("academy"); 이걸로 service에 넘기기
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		
 //		System.out.println(tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
@@ -50,6 +57,9 @@ public class EditTeacherController {
 	// 강사정보 수정
 	@PostMapping("eka_manager/teacher_edit")
 	public String teacherEdit(TeacherListCommand teacher,Model model, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		System.out.println(teacher);
 		teacher.setAcademyId(1);
 		boolean result = tservice.updateTeacher(teacher);
@@ -76,7 +86,7 @@ public class EditTeacherController {
 	
 	// 강사 검색하기
 	@PostMapping("eka_manager/teacher_find")
-	public String teacherFindForm(Model model, 
+	public String teacherFindForm(Model model, HttpSession session,
 			@RequestParam String subject, @RequestParam String gender,
 			@RequestParam String foreigner, @RequestParam String name) {
 		
@@ -86,8 +96,10 @@ public class EditTeacherController {
 //		System.out.println("name : " + name);
 //		
 //		session.getAttribute("academy"); 이걸로 service에 넘기기
-		Academy academy = new Academy();
-		academy.setAid(1);
+//		Academy academy = new Academy();
+//		academy.setAid(1);
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		List<Teacher> teacher_list = new ArrayList<Teacher>();
 		
