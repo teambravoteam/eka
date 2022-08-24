@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
+import com.varxyz.eka.attendence.domain.AttendanceStudent;
 import com.varxyz.eka.attendence.domain.Attendence;
 import com.varxyz.eka.attendence.repository.AttendanceDao;
 import com.varxyz.eka.student.domain.Student;
@@ -18,9 +19,9 @@ public class AttendanceServiceImp implements AttendenceService {
 	private AttendanceDao attendanceDao;
 	
 	@Override
-	public boolean addAttendece(Attendence attendence) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAttendece(Attendence attendence) {	
+		attendanceDao.addAttendece(attendence);
+		return true;
 	}
 
 	@Override
@@ -49,6 +50,10 @@ public class AttendanceServiceImp implements AttendenceService {
 	
 	public List<Student> findAcademyStudentsByLecture(Lecture lecture){
 		return attendanceDao.findAcademyStudentsByLecture(lecture);
+	}
+	
+	public List<AttendanceStudent> findAcademyStudentByLecture(Lecture lecture){
+		return attendanceDao.findAcademyStudentsByLectures(lecture);
 	}
 
 	@Override

@@ -183,8 +183,9 @@ public class AcademyController {
 		AcademyManager a = (AcademyManager) session.getAttribute("manager");
 		a.setAcademyId(academy.getAid());
 		
-		authService.updateAcademId(a.getAid(), a);
+		authService.updateAcademId(academy.getAid(), a);
 		session.setAttribute("manager", a);
+		System.out.println(a);
 		
 		return "eka_main/main";
 	}
