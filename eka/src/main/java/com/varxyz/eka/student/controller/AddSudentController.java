@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.student.domain.FindStudent;
@@ -42,13 +42,15 @@ public class AddSudentController {
 	
 	//학원관리자는 학생을 등록 할 수 있어야 한다
 	@PostMapping("eka_manager/student_add") 
-	public String StudentAdd(Model model , Student student) {
+	public String StudentAdd(Model model , Student student, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		student.setPhone(student.getPhone1() + "-" + student.getPhone2() + "-" + student.getPhone3());
 		student.setParentPhone(student.getParentPhone1() + "-" + student.getParentPhone2() + "-" + student.getParentPhone3());
 		
 		// 임시로 넣어놓은 아카데미id 나중에 사용할때 삭제나 주석처리바람
-		student.setAcademyId(1);
+		student.setAcademyId(academy.getAid());
 		
 		if (service.addStudent(student) == true) {
 			return "eka_manager/student_add";
