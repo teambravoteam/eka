@@ -32,14 +32,22 @@ public class StudentDao {
 	}
 	
 	//모든 학원의 학생정보 가져오기
-	public List<Student> findAllAcademyStudent(Student student){
+	public List<Student> findAllAcademyStudent(){
 		String sql = "SELECT * FROM Student";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class));
 	}
 
+	// 갓 수현 첨삭중
+	// 하나의 학원에 포함된 학생들의 모든 정보를 불러온다
 	public List<Student> findAllAcademyStudentByAcademy(Academy academy) {
 		String sql = "SELECT * FROM Student WHERE academyId = ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class),academy.getAid());
+	}
+	
+	// 상세정보를 불러온다
+	public Student detailedInformation(String name, String phone) {
+		String sql = "SELECT * FROM Student WHERE name = ? AND phone = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Student>(Student.class),name,phone);
 	}
 
 }

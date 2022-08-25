@@ -28,7 +28,10 @@ public interface StudentService {
 	 * 학원관리자는 다양한 학원정보를 조회 할 수 있어야 한다
 	 * */	
 	//학원 관리자는 모든 학원학생 정보를 가져올 수 있어야 한다.
-	public List<Student> findAllAcademyStudent(Student Student); 
+	public List<Student> findAllAcademyStudent(); 
+	
+	// 각각의 학원에 있는 학생의 정보를 불러온다
+	public List<Student> findAllAcademyStudentByAcademy(Academy academy);
 	
 	//학원 관리자는 학생 카테고리 별 학생 정보들을 가져올 수 있어야한다
 	public List<Student> findAllAcademyStudentParent(Academy academy, StudentCategory studentCategory);
@@ -42,5 +45,6 @@ public interface StudentService {
 	//학원관리자는 특정 학생 한명의 정보를 가져 올 수 있어야 한다
 	public Student findAcademyStudentByNameAndSsn(Academy academy, String name, String ssn);
 	
-
+	// 학생리스트에서 학생의 상세정보를 가져온다
+	public Student detailedInformation(String name, String ssn);
 }

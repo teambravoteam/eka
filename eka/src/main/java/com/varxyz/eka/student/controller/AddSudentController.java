@@ -41,16 +41,18 @@ public class AddSudentController {
 	}
 	
 	//학원관리자는 학생을 등록 할 수 있어야 한다
-	@PostMapping("eka_manager/student_add") 
+	@PostMapping("eka_manager/student_add")
 	public String StudentAdd(Model model , Student student, HttpSession session) {
-		AcademyManager am = (AcademyManager) session.getAttribute("manager");
-		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+//		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+//		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
 		student.setPhone(student.getPhone1() + "-" + student.getPhone2() + "-" + student.getPhone3());
 		student.setParentPhone(student.getParentPhone1() + "-" + student.getParentPhone2() + "-" + student.getParentPhone3());
 		
 		// 임시로 넣어놓은 아카데미id 나중에 사용할때 삭제나 주석처리바람
-		student.setAcademyId(academy.getAid());
+//		student.setAcademyId(academy.getAid());
+		student.setAcademyId(1);
+		
 		
 		if (service.addStudent(student) == true) {
 			return "eka_manager/student_add";
@@ -72,12 +74,23 @@ public class AddSudentController {
 	@PostMapping("eka_manager/student_edit")
 	public String findAllStudent(Model model, Student student, HttpSession session) {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
-//		Academy academy = academyService.findAcademyByAid(am.getAcademyId()); 
-		
-		model.addAttribute("allstudent", service.findAllAcademyStudent(student));
+		session.setAttribute("allstudent", service.findAllAcademyStudent());
 		return "eka_manager/student_edit";
 	}
 	
+	
+	@GetMapping("eka_manager/student_edit2")
+	public String detailedInformation(Model model) {
+		model.addAttribute("student", new Student());
+		return "eka_manager/student_edit";
+	}
+	
+	// 학생들의 상세정보
+	@PostMapping("eka_manager/student_edit2")
+	public String detailedInformation(Model model,Student student) {
+		model.addAttribute("findstudent",service.detailedInformation(student.getName(), student.getPhone()));
+		return "eka_manager/student_edit";
+	}
 	
 	
 	

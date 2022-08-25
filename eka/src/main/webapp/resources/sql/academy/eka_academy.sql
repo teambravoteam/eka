@@ -2,7 +2,7 @@
 -- 학원유저(원장용)
 CREATE TABLE AcademyManager (
 	aid				BIGINT 			PRIMARY KEY AUTO_INCREMENT,
-	academyId		VARCHAR(20),	
+	academyId		BIGINT			NOT	NULL DEFAULT 0,
 	userId			VARCHAR(20) 	NOT NULL,
 	userPw			VARCHAR(20) 	NOT NULL,
 	name			VARCHAR(20) 	NOT NULL,

@@ -18,4 +18,5 @@ public class AcademyManager {
 	private String phone;
 	private String ssn;
 	private String regDate;
+	
 }

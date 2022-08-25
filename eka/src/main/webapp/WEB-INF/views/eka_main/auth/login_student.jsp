@@ -39,7 +39,7 @@
 	                      <input type="text" name="userId" id="userId" class="input-text" placeholder="아이디" autocomplete="off" required="" autofocus="">
 	                  </li>
 	                  <li class="flex-wrap">
-	                      <input type="password" name="userPass" id="userPass" class="input-text" placeholder="비밀번호" autocomplete="off" required="">
+	                      <input type="password" name="userPw" id="userPw" class="input-text" placeholder="비밀번호" autocomplete="off" required="">
 	                  </li>
 	                  <li class="flex-wrap">
 	                      <button type="submit" class="bt-main point flex-glow-1">로그인</button>

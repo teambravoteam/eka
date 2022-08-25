@@ -42,6 +42,7 @@ public class StudentServiceImpl implements StudentService{
 	}
 	
 	/// 갓 수현 첨삭중
+	// 하나의 학원에 포함된 학생들의 모든 정보를 불러온다
 	public List<Student> findAllAcademyStudentByAcademy(Academy academy) {
 		return dao.findAllAcademyStudentByAcademy(academy);
 	}
@@ -49,9 +50,16 @@ public class StudentServiceImpl implements StudentService{
 	
 	//학원 관리자는 모든 학원학생 정보를 가져올 수 있어야 한다.
 	@Override
-	public List<Student> findAllAcademyStudent(Student Student) {
-		return dao.findAllAcademyStudent(Student);
+	public List<Student> findAllAcademyStudent() {
+		return dao.findAllAcademyStudent();
 	}
+	
+	// 학생의 상세정보를 불러온다
+	@Override
+	public Student detailedInformation(String name, String ssn) {
+		return dao.detailedInformation(name,ssn);
+	}
+	
 
 	@Override
 	public List<Student> findAcademyStudentsByGender(Academy academy, String gender) {
@@ -71,11 +79,14 @@ public class StudentServiceImpl implements StudentService{
 		return null;
 	}
 
+	
 	@Override
 	public List<Student> findAllAcademyStudentParent(Academy academy, StudentCategory studentCategory) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 	
 

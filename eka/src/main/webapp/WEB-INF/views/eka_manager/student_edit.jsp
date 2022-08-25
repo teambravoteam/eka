@@ -148,7 +148,7 @@ body {
 															<input type="hidden" name="gender" value="${list.gender}">
 															<td>${list.ekaUserId}</td>
 															<input type="hidden" name="ekaUserId" value="${list.ekaUserId}">
-															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
 														</tr>
 													</form>
 												</c:forEach>
@@ -175,38 +175,35 @@ body {
 									<table>
 										<tr>
 											<th>이름</th>
-											<td>김철수</td>
+											<td>${findstudent.name}</td>
 										</tr>
 										<tr>
 											<th>연락처</th>
-											<td><a href="tel:">010-6333-3333</a></td>
+											<td><a href="tel:">${findstudent.phone}</a></td>
 										</tr>
 										<tr>
 											<th>생년월일</th>
-											<td>000000</td>
+											<td>${findstudent.ssn}</td>
 										</tr>
 										<tr>
 											<th>eka 아이디</th>
-											<td>ekaid</td>
+											<td>${findstudent.ekaUserId}</td>
 										</tr>
-										<tr>
-											<th>eka email</th>
-											<td><a href="email:">ekahunn@email.com</a></td>
-										</tr>
+								
 									</table>
 									<br> 학부모정보
 									<table>
 										<tr>
 											<th>이름</th>
-											<td>철수엄마</td>
+											<td>${findstudent.parentName}</td>
 										</tr>
 										<tr>
 											<th>관계</th>
-											<td>모</td>
+											<td>${findstudent.parentType}</td>
 										</tr>
 										<tr>
 											<th>연락처</th>
-											<td><a href="tel:">010-6333-3333</a></td>
+											<td><a href="tel:">${findstudent.parentPhone}</a></td>
 										</tr>
 									</table>
 								</div>

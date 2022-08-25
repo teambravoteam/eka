@@ -61,7 +61,7 @@ public class AuthDao {
 	public AcademyManager loginManager(String userId, String userPw) { // 원장로그인
 		
 		try {
-			String sql = "SELECT * FROM ACADEMYMANAGER WHERE userId = ? AND userPw = ?";
+			String sql = "SELECT * FROM AcademyManager WHERE userId = ? AND userPw = ?";
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<AcademyManager>(AcademyManager.class), userId, userPw);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,6 +82,7 @@ public class AuthDao {
 		}
 		
 	}
+	
 	
 	public void updateAcademId(long academyId, AcademyManager manager) { // 아카데미 아이디 업데이트
 		String sql = "UPDATE AcademyManager SET academyId = ? WHERE userId = ? AND userPw = ?";

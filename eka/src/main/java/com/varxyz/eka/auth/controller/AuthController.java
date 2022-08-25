@@ -232,7 +232,7 @@ public class AuthController {
 
 	@PostMapping("/eka_main/managerlogin") // 매니저 로그인
 	public String managerLogin(Model model, AcademyManager academyManager, HttpSession session) {
-
+		
 		if (service.loginManager(academyManager.getUserId(), academyManager.getUserPw()) != null) {
 			session.setAttribute("manager", service.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
 			return "eka_main/main";
