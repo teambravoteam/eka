@@ -16,7 +16,6 @@
 <meta name="author" content="">
 
 <title>EKA Manager</title>
-
 <!-- Custom fonts for this template-->
 <link
 	href="../resources/manager/vendor/fontawesome-free/css/all.min.css"

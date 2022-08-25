@@ -12,7 +12,6 @@
 
 <title>login_student</title>
 </head>
-
 <body>
   <div id="wrap" role="main">
     <a href="#wrap" class="bt-top hashLink">
