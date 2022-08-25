@@ -249,9 +249,10 @@ public class AuthController {
 	}
 
 	@PostMapping("/eka_main/ekauserlogin") // 유저 로그인
-	public String ekaUserLogin(Model model, EkaUser ekaUser) {
+	public String ekaUserLogin(Model model, EkaUser ekaUser, HttpSession session) {
 
 		if (service.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()) != null) {
+			session.setAttribute("ekauser", service.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()));
 			model.addAttribute("ekauser", service.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()));
 			return "eka_main/main";
 		}
