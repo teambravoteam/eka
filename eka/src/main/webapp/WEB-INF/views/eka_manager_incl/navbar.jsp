@@ -43,7 +43,7 @@ font-weight: normal;
             <li class="nav-item active">
                 <a class="nav-link" href="main">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>일정관리</span></a>
+                    <span>캘린더</span></a>
             </li>
 
             <!-- Divider -->
@@ -135,7 +135,7 @@ font-weight: normal;
                   <div class="bg-white py-2 collapse-inner rounded">
                       <a class="collapse-item" href="score_add_academy">학원 성적 등록</a>
                       <!-- <a class="collapse-item" href="score_add_school">학교 성적 등록</a> -->
-                      <a class="collapse-item" href="score_edit">성적 조회 / 수정</a>
+                      <!-- <a class="collapse-item" href="score_edit">성적 조회 / 수정</a> -->
                   </div>
               </div>
             </li>
@@ -158,9 +158,9 @@ font-weight: normal;
             </li>            
             
             <li class="nav-item">
-                <a class="nav-link" href="payment">
+                <a class="nav-link" href="student_report">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>수납관리</span>
+                    <span>원생리포트</span>
                 </a>
             </li>
 

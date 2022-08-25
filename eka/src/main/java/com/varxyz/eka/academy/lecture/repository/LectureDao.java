@@ -98,6 +98,14 @@ public class LectureDao {
 		jdbcTemplate.update(sql, aid, lid, sid);
 	}
 	
+	// 강좌별 수강생 있는지 확인
+	public List<Student> checkLectureStudent(long aid, long lid, long sid) {
+		String sql = "SELECT * FROM LectureStudent a JOIN Student b "
+				+ " ON a.studentId = b.sid "
+				+ " WHERE a.lectureId = ? AND b.sid =?";
+		return jdbcTemplate.query(sql, new LectureStudentRowMapper(), lid, sid);
+	}
+		
 	// 강좌별 수강생 조회
 	public List<Student> findLectureStudentList(long lid) {
 		String sql = "SELECT * FROM LectureStudent a JOIN Student b "
@@ -142,6 +150,14 @@ public class LectureDao {
 		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND name =?";
 		return jdbcTemplate.queryForObject(sql, new LectureListRowMapper(), academy.getAid(), name);
 	}
+	
+	//학생이 수강중인 강의찾기
+	public List<Lecture> findLectureBySid(Academy academy, long sid) {
+		String sql = "SELECT * FROM Lecture a JOIN LectureStudent b ON a.lid = b.lectureId"
+				+ " WHERE b.studentId = ?";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), sid);
+	}
+	
 	
 	
 	

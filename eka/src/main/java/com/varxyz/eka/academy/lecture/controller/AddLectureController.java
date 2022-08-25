@@ -1,5 +1,7 @@
 package com.varxyz.eka.academy.lecture.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,7 @@ public class AddLectureController {
 		return "eka_manager/lecture_add";
 	}	
 	
+	
 	// 강좌등록
 	@PostMapping("eka_manager/lecture_add")
 	public String lectureAddForm(Model model, Lecture lecture, HttpSession session) {
@@ -58,18 +61,29 @@ public class AddLectureController {
 		lecture.setAcademy(academy);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
-		boolean result = lservice.addLecture(lecture);
-		if (result == false) {
-			String msg = "강좌등록에 실패했습니다.";
-			model.addAttribute("msg", msg);
-			model.addAttribute("return_mapping", "lecture_add");
-			return "eka_manager/msg_alert";
+		//동일한 강좌명 등록불가능
+		//강좌명으로 강좌 찾기
+		List<Lecture> check = lservice.findAcademyLectureByName(academy, lecture.getName());
+		
+		if (check.isEmpty()) {
+			boolean result = lservice.addLecture(lecture);
+			if (result == false) {
+				String msg = "강좌등록에 실패했습니다.";
+				model.addAttribute("msg", msg);
+				model.addAttribute("return_mapping", "lecture_add");
+				return "eka_manager/msg_alert";
+			} else {
+				String msg = lecture.getName() + "강좌가 등록되었습니다.";
+				model.addAttribute("msg", msg);
+				model.addAttribute("return_mapping", "lecture_add");
+				return "eka_manager/msg_alert";
+			}
 		} else {
-			String msg = lecture.getName() + "강좌가 등록되었습니다.";
-			model.addAttribute("msg", msg);
+			model.addAttribute("msg", "동일한 이름의 강의가 존재합니다.");
 			model.addAttribute("return_mapping", "lecture_add");
 			return "eka_manager/msg_alert";
 		}
+		
 		
 	}
 }

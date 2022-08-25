@@ -37,6 +37,7 @@ public class LectureServiceImpl {
 			return false;
 		}
 	}
+	
 	// 강좌 삭제
 	public boolean deleteLecture(Lecture lecture) {
 		return false;
@@ -48,10 +49,6 @@ public class LectureServiceImpl {
 		return ldao.findAllLecture(academy);
 	}
 	
-	//임시) 학생이름으로 학생 찾기
-	public List<Student> findStudentByName(Academy academy, String name) {
-		return ldao.findStudentByName(academy, name);
-	}
 	
 	// 강의id로 강의정보 찾기
 	public Lecture findLectureBylid(long lid) {
@@ -67,6 +64,11 @@ public class LectureServiceImpl {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	// 강좌별 수강생 있는지 확인
+	public List<Student> checkLectureStudent(long aid, long lid, long sid) {
+		return ldao.checkLectureStudent(aid, lid, sid);
 	}
 	
 	// 강좌별 수강생 조회
@@ -109,6 +111,7 @@ public class LectureServiceImpl {
 	public List<Lecture> findAcademyLectureByName(Academy academy, String name) {
 		return ldao.findAcademyLectureByName(academy,name);
 	}
+	
 	//강좌명으로 강의찾기
 	public Lecture findLectureIdByLectureName(Academy academy, String name) {
 		return ldao.findLectureIdByLectureName(academy,name);
@@ -119,40 +122,27 @@ public class LectureServiceImpl {
 		return ldao.findAcademyLecturesByDate(academy, startLectureDate, finishLectureDate);
 	}
 	
+	// 강의 시간으로 조회
 	public List<Lecture> findAcademyLecturesByTime(Academy academy, String startLectureTime, String finishLectureTime) {
-		return ldao.findAcademyLecturesByTime(academy,startLectureTime,finishLectureTime);
+		return ldao.findAcademyLecturesByTime(academy, startLectureTime, finishLectureTime);
 	}
 	
-	public List<Lecture> findAcademyLecturesByStartLectureTime(Academy academy, String time) {
-		return null;
+	// sid로 학생이 수강중인 강의리스트 찾기
+	public List<Lecture> findLectureBySid(Academy academy, long sid) {
+		return ldao.findLectureBySid(academy, sid);
 	}
 
 
-	public List<Lecture> findAcademyLecturesByStartLectureDate(Academy academy, String date) {
-		return null;
-	}
-
-	public List<Lecture> findAcademyLecturesByFinishLectureDate(Academy academy, String date) {
-		return null;
+	//임시) 학생이름으로 학생 찾기
+	public List<Student> findStudentByName(Academy academy, String name) {
+		return ldao.findStudentByName(academy, name);
 	}
 
 
+	
 
-	public List<Lecture> findAcademyLecturesByUpPrice(Academy academy, double price) {
-		return null;
-	}
 
-	public List<Lecture> findAcademyLecturesByDownPrice(Academy academy, double price) {
-		return null;
-	}
-
-	public List<Lecture> findAcademyLecturesByUpLectureCapacity(Academy academy, long lecturCapacity) {
-		return null;
-	}
-
-	public List<Lecture> findAcademyLecturesByDownLectureCapacity(Academy academy, long lecturCapacity) {
-		return null;
-	}
+	
 
 	
 

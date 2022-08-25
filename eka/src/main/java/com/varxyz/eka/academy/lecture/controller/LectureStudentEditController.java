@@ -1,5 +1,6 @@
 package com.varxyz.eka.academy.lecture.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.academycategory.service.AcademyCategoryServiceImp;
 import com.varxyz.eka.academy.lecture.command.LectureEditCommand;
+import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
@@ -55,16 +57,7 @@ public class LectureStudentEditController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		//lid로 강의정보 찾아서 뿌리기
-		//session
-//		Academy academy = new Academy();
-//		academy.setAid(1);
-		
 		List<Student> studentList = lservice.findStudentByName(academy, name);
-		
-//		if (list.isEmpty()) {
-			// 검색결과없습니다. errorpage
-//		}
 		
 		model.addAttribute("student", studentList);
 		// common
@@ -83,17 +76,20 @@ public class LectureStudentEditController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		//이미등록된 학생 거르는거필요함
 		
-		boolean addResult = lservice.addLectureStudent(aid, lid, sid);
 		
-//		if (addResult == false) {
-//			
-//			return "eka_manager/lecture_student_edit";
-//		} else {
-//			
-//		}
-		System.out.println(addResult);
+		//이미등록된 학생 거르는거
+		List<Student> student = lservice.checkLectureStudent(aid, lid, sid);
+		if (student.isEmpty()) {
+			// 이 sid로 등록된 정보가 없으면 수강생으로 등록
+			boolean addResult = lservice.addLectureStudent(aid, lid, sid);
+			
+		} else {
+			model.addAttribute("msg", "이미 등록된 수강생입니다.");
+			model.addAttribute("return_mapping", "lecture_student");
+			return "eka_manager/msg_alert";
+		}
+		
 		// common
 		model.addAttribute("lecture", lservice.findLectureBylid(lid));
 		model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lid));
@@ -103,10 +99,14 @@ public class LectureStudentEditController {
 	}
 	
 	// 수강생등록 실패 시 
-	@GetMapping("eka_manager/lecture_student_edit")
-	public String lectureStudentAddError(Model model) {
-		return "eka_manager/lecture_student_edit";
-	}
+//	@GetMapping("eka_manager/lecture_student_edit")
+//	public String lectureStudentAddError(Model model, HttpSession session) {
+//		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+//		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+//		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+//		
+//		return "eka_manager/lecture_student_edit";
+//	}
 	
 	// 수강생 삭제
 	@PostMapping("eka_manager/lecture_student_delete")

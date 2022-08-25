@@ -81,8 +81,8 @@ body {
 										</td>
 										<th>외국인여부</th>
 										<td><input type="radio" class="radio" name="foreigner"
-											value="true">외국인 <input type="radio" class="radio"
-											name="foreigner" value="false">내국인</td>
+											value="외국인">외국인 <input type="radio" class="radio"
+											name="foreigner" value="내국인">내국인</td>
 									</tr>
 									<tr>
 										<th>생년월일</th>

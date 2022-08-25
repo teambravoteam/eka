@@ -3,14 +3,14 @@
 -- 학원 시험 분류 테이블 
 -- 참조 테이블
 -- 1. 강좌테이블 : eka_academy_lecture 
--- CREATE TABLE AcademyTestCategory(
---	atcid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
---	lecturename		VARCHAR(20)		NOT NULL,
---	testname		VARCHAR(20)		NOT NULL,
---	testdate		DATE			NOT NULL,
---	CONSTRAINT AcademyTest_CategoryacademyId_FK 
---	FOREIGN KEY(lecturename) REFERENCES Lecture(name)
---);  
+CREATE TABLE AcademyTestCategory(
+	atcid			BIGINT 			PRIMARY KEY AUTO_INCREMENT,
+	academyId 		BIGINT  		NOT NULL,
+	lectureName		VARCHAR(20)		NOT NULL,
+	testName		VARCHAR(20)		NOT NULL,
+	testDate		DATE			NOT NULL,
+	CONSTRAINT AcademyTestCategory_academyId_FK FOREIGN KEY(academyId) REFERENCES Academy(aid)
+);  
 
 DROP TABLE AcademyTestCategory;
 

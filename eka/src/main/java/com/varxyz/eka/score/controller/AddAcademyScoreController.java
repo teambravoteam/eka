@@ -94,6 +94,8 @@ public class AddAcademyScoreController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		
 		Lecture lecture = lservice.findLectureIdByLectureName(academy, lectureName); 
 		long lid = lecture.getLid();
 		

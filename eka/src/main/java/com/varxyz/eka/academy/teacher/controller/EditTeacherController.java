@@ -44,10 +44,6 @@ public class EditTeacherController {
 	@GetMapping("eka_manager/teacher_find_all")
 	public String teacherFindAll(Model model, HttpSession session) {
 		//이미지가 없는 강사는 default이미지로 출력하기
-		
-//		session.getAttribute("academy"); 이걸로 service에 넘기기
-//		Academy academy = new Academy();
-//		academy.setAid(1);
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
@@ -63,6 +59,7 @@ public class EditTeacherController {
 	public String teacherEdit(TeacherListCommand teacher,Model model, HttpSession session) {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
+		
 		
 		System.out.println(teacher);
 		teacher.setAcademyId(1);

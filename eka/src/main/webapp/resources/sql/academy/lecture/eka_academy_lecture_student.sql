@@ -16,3 +16,6 @@ SELECT * FROM LectureStudent a JOIN Student b ON a.studentId = b.sid
 WHERE a.lectureId = 1;
 
 DELETE FROM LectureStudent WHERE lectureId = 1 AND studentId =1;
+
+SELECT * FROM Lecture a JOIN LectureStudent b ON a.lid = b.lectureId
+WHERE b.studentId = 1;

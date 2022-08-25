@@ -35,8 +35,6 @@ public class FindLectureController {
 	@GetMapping("eka_manager/lecture_edit")
 	public String lectureEdit(Model model, HttpSession session) {
 		//session
-//		Academy academy = new Academy();
-//		academy.setAid(1);
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 				
@@ -49,10 +47,7 @@ public class FindLectureController {
 	// 강좌 전체조회 버튼 클릭
 	@GetMapping("eka_manager/lecture_find_all")
 	public String lectureFindAll(Model model, HttpSession session) {
-		
 		//session
-//		Academy academy = new Academy();
-//		academy.setAid(1);
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
