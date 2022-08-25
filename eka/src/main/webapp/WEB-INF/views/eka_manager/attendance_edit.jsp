@@ -146,7 +146,7 @@ body {
 													<button class="btn btn-primary btn-sm submit" type="submit"
 														name="button">
 														<span>결석</span>
-													</button>
+													</button>    
 												</form>
 												<form action="late_check" method="post"
 													style="display: inline-block;">

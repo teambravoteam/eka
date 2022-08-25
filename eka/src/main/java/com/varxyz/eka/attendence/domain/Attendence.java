@@ -1,6 +1,6 @@
 package com.varxyz.eka.attendence.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.lecture.domain.Lecture;

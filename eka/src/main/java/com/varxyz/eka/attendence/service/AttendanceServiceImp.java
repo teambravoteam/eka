@@ -35,7 +35,7 @@ public class AttendanceServiceImp implements AttendenceService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+     
 	@Override
 	public List<Attendence> findAcademyAttendencesByStudentName(Student student) {
 		// TODO Auto-generated method stub

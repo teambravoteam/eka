@@ -16,7 +16,7 @@ public class AttendanceStudentRowMapper implements RowMapper<AttendanceStudent> 
 		AttendanceStudent attendanceStudent = new AttendanceStudent();
 		student.setAcademyId(rs.getLong("academyId"));
 		student.setEkaUserId(rs.getString("ekaUserId"));
-		student.setGender(rs.getString("gender"));
+		student.setGender(rs.getString("gender"));     
 		student.setGradecate(rs.getString("gradecate"));
 		student.setName(rs.getString("name"));
 		student.setParentName(rs.getString("parentName"));

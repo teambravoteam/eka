@@ -62,7 +62,7 @@ public class AttendanceController {
 		//session
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
-		Lecture lc = lservice.findAcademyLectureByName(academy, lectureName);
+		Lecture lc = lservice.findLectureIdByLectureName(academy, lectureName);
 		List<AttendanceStudent> lectureStudentList = attendanceService.findAcademyStudentByLecture(lc);
 		session.setAttribute("slecture", lc);
 

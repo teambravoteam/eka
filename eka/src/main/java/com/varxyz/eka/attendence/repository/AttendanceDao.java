@@ -21,7 +21,7 @@ public class AttendanceDao {
 	
 	public AttendanceDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	}    
 
 	public List<Student> findAcademyStudentsByLecture(Lecture lecture) {
 		String sql = "SELECT * FROM LectureStudent a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? ;";
