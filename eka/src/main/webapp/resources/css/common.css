@@ -542,7 +542,7 @@ mark {
 	font-size: 0;
 	border: 1px solid #ECF1F8;
 	border-radius: 8px;
-	margin-right: 16px; 
+	margin-right: 16px;
 }
 
 .bt-like[data-like="1"] {
@@ -1025,8 +1025,8 @@ select.small {
 #wrap .content {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left)+ 20px);
-	padding-right: calc(env(safe-area-inset-right)+ 20px)
+	padding-left: calc(env(safe-area-inset-left) + 20px);
+	padding-right: calc(env(safe-area-inset-right) + 20px)
 }
 
 #wrap .content strong {
@@ -1037,8 +1037,8 @@ select.small {
 	#wrap .content {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left)+ 12px);
-		padding-right: calc(env(safe-area-inset-right)+ 12px)
+		padding-left: calc(env(safe-area-inset-left) + 12px);
+		padding-right: calc(env(safe-area-inset-right) + 12px)
 	}
 }
 
@@ -1080,8 +1080,8 @@ select.small {
 .header-wrap {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left)+ 20px);
-	padding-right: calc(env(safe-area-inset-right)+ 20px);
+	padding-left: calc(env(safe-area-inset-left) + 20px);
+	padding-right: calc(env(safe-area-inset-right) + 20px);
 	max-width: 1020px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1099,8 +1099,8 @@ select.small {
 	.header-wrap {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left)+ 12px);
-		padding-right: calc(env(safe-area-inset-right)+ 12px);
+		padding-left: calc(env(safe-area-inset-left) + 12px);
+		padding-right: calc(env(safe-area-inset-right) + 12px);
 		height: 60px
 	}
 }
@@ -1145,8 +1145,8 @@ select.small {
 .header-loc {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left)+ 20px);
-	padding-right: calc(env(safe-area-inset-right)+ 20px);
+	padding-left: calc(env(safe-area-inset-left) + 20px);
+	padding-right: calc(env(safe-area-inset-right) + 20px);
 	max-width: 1020px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1168,8 +1168,8 @@ select.small {
 	.header-loc {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left)+ 12px);
-		padding-right: calc(env(safe-area-inset-right)+ 12px);
+		padding-left: calc(env(safe-area-inset-left) + 12px);
+		padding-right: calc(env(safe-area-inset-right) + 12px);
 		margin-top: 0
 	}
 	.header-loc .userAddr-wrap .guide {
@@ -1227,8 +1227,8 @@ select.small {
 .header-category .hdtb-wrap {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left)+ 20px);
-	padding-right: calc(env(safe-area-inset-right)+ 20px);
+	padding-left: calc(env(safe-area-inset-left) + 20px);
+	padding-right: calc(env(safe-area-inset-right) + 20px);
 	max-width: 1020px;
 	margin: 0 auto;
 	display: -webkit-box;
@@ -1486,8 +1486,8 @@ select.small {
 	line-height: 56px;
 	padding-left: 12px;
 	padding-right: 12px;
-	padding-left: calc(env(safe-area-inset-left)+ 12px);
-	padding-right: calc(env(safe-area-inset-right)+ 12px)
+	padding-left: calc(env(safe-area-inset-left) + 12px);
+	padding-right: calc(env(safe-area-inset-right) + 12px)
 }
 
 .header-side .gnb .depth2 {
@@ -1506,8 +1506,8 @@ select.small {
 		24px/24px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left)+ 24px);
-	padding-right: calc(env(safe-area-inset-right)+ 24px)
+	padding-left: calc(env(safe-area-inset-left) + 24px);
+	padding-right: calc(env(safe-area-inset-right) + 24px)
 }
 
 .header-side .gnb .depth3 {
@@ -1521,8 +1521,8 @@ select.small {
 	line-height: 42px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left)+ 24px);
-	padding-right: calc(env(safe-area-inset-right)+ 24px)
+	padding-left: calc(env(safe-area-inset-left) + 24px);
+	padding-right: calc(env(safe-area-inset-right) + 24px)
 }
 
 .footer-wrap {
@@ -4584,37 +4584,37 @@ select.small {
 	}
 }
 
-#customer-wrap .customer-content .customer-form {
+#customer-wrap .customer-content {
 	text-align: center
 }
 
-#customer-wrap .customer-content .customer-form h3 {
+#customer-wrap .customer-content h3 {
 	font-size: 1.2em;
 	margin-bottom: 8px;
 	text-align: left
 }
 
-#customer-wrap .customer-content .customer-form p {
+#customer-wrap .customer-content p {
 	font-size: 0.94em;
 	color: #B1B9CB;
 	text-align: left
 }
 
-#customer-wrap .customer-content .customer-form .input-wrap {
+#customer-wrap .customer-content .input-wrap {
 	margin-top: 24px;
 	margin-bottom: 32px;
 	text-align: left
 }
 
-#customer-wrap .customer-content .customer-form .input-wrap li {
+#customer-wrap .customer-content .input-wrap li {
 	margin-bottom: 16px
 }
 
-#customer-wrap .customer-content .customer-form .input-wrap li #map {
+#customer-wrap .customer-content .input-wrap li #map {
 	margin: 0 auto;
 }
 
-#customer-wrap .customer-content .customer-form .input-wrap label {
+#customer-wrap .customer-content .input-wrap label {
 	display: block;
 	margin-bottom: 8px
 }
@@ -4807,7 +4807,12 @@ select.small {
 	}
 }
 
-#customer-wrap .customer-content .customer-form .bt-sub {
+#customer-wrap .customer-content .input-wrap .bt-sub {
+	width: auto;
+	margin-bottom: 8px;
+}
+
+#customer-wrap .customer-content .bt-sub {
 	width: 33%
 }
 
@@ -4975,13 +4980,16 @@ select.small {
 	background-color: #ECF1F8
 }
 
-.mypage-wrap .snb>li>a {
+.mypage-wrap .snb>li>a, .mypage-wrap .snb>li>form input {
 	display: block;
+	width: 100%;
 	line-height: 56px;
+	text-align: left;
 	padding-left: 12px;
 	padding-right: 12px;
-	padding-left: calc(env(safe-area-inset-left)+ 12px);
-	padding-right: calc(env(safe-area-inset-right)+ 12px)
+	padding-left: calc(env(safe-area-inset-left) + 12px);
+	padding-right: calc(env(safe-area-inset-right) + 12px);
+	cursor: pointer;
 }
 
 .mypage-wrap .snb .depth2 {
@@ -5001,8 +5009,8 @@ select.small {
 		24px/24px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left)+ 24px);
-	padding-right: calc(env(safe-area-inset-right)+ 24px)
+	padding-left: calc(env(safe-area-inset-left) + 24px);
+	padding-right: calc(env(safe-area-inset-right) + 24px)
 }
 
 .mypage-wrap .m-info {

@@ -32,8 +32,8 @@ public class AcademyDao {
 	}
 
 	public List<Academy> findAcademiesByAddress(String address) {
-		String sql = "SELECT * FROM Academy WHERE address LIKE ?;";
-		return jdbcTemplate.query(sql, new AcademyRowMapper(), "%" + address + "%");
+		String sql = "SELECT * FROM Academy WHERE address LIKE ? OR address = ?;";
+		return jdbcTemplate.query(sql, new AcademyRowMapper(), "%" + address + "%", address);
 	}
 
 	public Academy findAcademyByAddressAndName(String address, String name) {

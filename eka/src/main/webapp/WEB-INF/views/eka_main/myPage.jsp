@@ -48,10 +48,13 @@
 			<nav class="flex-shrink-0 flex-glow-0">
 				<ul class="snb point">
 					<li class="current">
-						<a href="https://skycatcher.co.kr/mypage/userInfo">내정보</a>
+						<a href="myPage">내 정보</a>
 					</li>
 					<li>
-						<a href="https://skycatcher.co.kr/mypage/userAcademy">학원</a>
+						<form action="detail_page" method="get">
+							<input type="hidden" name="academyAid" value="${manager.academyId}" />
+							<input type="submit" class="a-title" value="내 학원정보" />
+						</form>
 					</li>
 				</ul>
 			</nav>
@@ -86,6 +89,10 @@
 										<td>${manager.userId}</td>
 									</tr>
 									<tr>
+										<th scope="row">비밀번호</th>
+										<td>${manager.userPw}</td>
+									</tr>
+									<tr>
 										<th scope="row">이름</th>
 										<td>${manager.name}</td>
 									</tr>
@@ -117,37 +124,19 @@
 
 					<script>
 						$("#bt-modify-user").on("click", function() {
-						    $("#modal-wrap").css('display', 'block');
-						    $("#wrap").addClass('transparent');
+							$("#modal-wrap").css('display', 'block');
+							$("#wrap").addClass('transparent');
 						});
 					</script>
 
 					<div class="bt-main-wrap">
 						<button type="button" class="bt-label bt-withdraw">회원탈퇴</button>
 					</div>
-					<script>
-// 						$('.bt-add').on("click", function() {
-// 							openModal("regParent", "check", function() {
-// 								$("#modal-wrap").addClass("width-s");
-// 							});
-
-// 						});
-
-// 						$('.bt-withdraw').on('click', function() {
-// 							openModal("userWidthdraw", null, function() {
-// 								$("#modal-wrap").addClass("width-s");
-// 							});
-// 						});
-
-// 						$('.bt-modify-relation').on('click', function() {
-// 							openModal("regParent", $(this).val(), function() {
-// 								$("#modal-wrap").addClass("width-s");
-// 							});
-// 						});
-					</script>
 				</div>
 			</div>
 		</div>
+
+		<%@ include file="common/footer.jsp"%>
 	</div>
 
 	<div id="modal-wrap" class="modal-wrap width-s" style="display: none;">
@@ -157,195 +146,44 @@
 			<span class="modal-guide" style="display: none;"></span>
 		</div>
 		<div class="modal-body">
-			<form action="./configUser" method="post" onsubmit="return chkModalSubmit(this)">
-				<ul class="input-wrap">	
+			<form action="myPage_update" method="post">
+				<ul class="input-wrap">
 					<li>
-						<label for="userPw" class="label-text">비밀번호</label>
-						<span id="userPwGuide" class="comment"></span>
+						<label for="userPw" class="label-text">변경할 비밀번호</label>
 						<div class="flex-wrap">
-							<input type="password" name="password" id="userPw" class="input-text" value="" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
+							<input type="password" name="password" id="userPw" class="input-text" value="${manager.userPw}" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
 						</div>
 					</li>
 					<li>
-						<label for="userPhone" class="label-text">휴대폰번호</label>
-						<span id="userPhoneGuide" class="comment"></span>
+						<label for="userName" class="label-text">변경할 이름</label>
+						<div class="flex-wrap">
+							<input type="text" name="name" id="userName" class="input-text" value="${manager.name}" required="" autocomplete="new-password" placeholder="변경할 이름을 입력해주세요">
+						</div>
+					</li>
+					<li>
+						<label for="userSsn" class="label-text">변경할 생년월일</label>
+						<div class="flex-wrap">
+							<input type="text" name="ssn" id="userSsn" class="input-text" value="${manager.ssn}" required="" autocomplete="new-password" placeholder="주민번호 앞 6자리를 입력해주세요">
+						</div>
+					</li>
+					<li>
+						<label for="userPhone" class="label-text">변경할 휴대폰번호</label>
 						<div class="input-phone-wrap flex-wrap">
-							<input type="tel" name="phone" id="userPhone" class="input-text" value="" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
-						</div>
-					</li>
-					<li>
-						<label for="userImageUploader" class="label-text">프로필이미지</label>
-						<div class="input-file-wrap flex-wrap">
-							<input type="text" id="userImageLabel" class="input-text" placeholder="jpg, png, gif만 업로드가능" readonly="">
-							<input type="hidden" name="userImage" id="userImage" value="https://phinf.pstatic.net/contact/20180407_57/1523093071038buYU2_PNG/avatar_profile.png">
-							<label for="userImageUploader" class="bt-main point">파일선택</label>
-							<input type="file" id="userImageUploader" accept=".jpg,.jpeg,.png,.gif" data-target="userImage">
-						</div>
-						<input type="hidden" name="tokenId" id="tokenId">
-					</li>
-					
-					<li>
-						<label for="userEmail" class="label-text">이메일</label>
-						<span id="userEmailGuide" class="comment"></span>
-						<div class="flex-wrap">
-							<input type="email" name="email" id="userEmail" class="input-text" value="" required="" autocomplete="email" placeholder="이메일을 입력해주세요">
+							<input type="tel" name="phone" id="userPhone" class="input-text" value="${manager.phone}" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
 						</div>
 					</li>
 
 				</ul>
 				<input type="hidden" name="configType" value="user">
 				<div class="bt-modal-wrap">
+					<input type="hidden" name="aid" value="${manager.aid}">
+					<input type="hidden" name="userId" value="${manager.userId}">
+					<input type="hidden" name="userPw" value="${manager.userPw}">
+					<input type="hidden" name="academyName" value="${academyName}">
 					<button type="submit" class="bt-label color-point">저장</button>
 				</div>
 			</form>
-			<script>
-				$('#userPass')
-						.on(
-								'keyup',
-								function() {
-									var strength = checkStrength($(this).val());
-									$('#userPassConfirm').trigger("keyup");
-									if (strength == -1) {
-										$(this).removeClass('warning safe');
-										$('#userPassGuide').text('');
-									} else if (strength < 2) {
-										$(this).removeClass('safe').addClass(
-												'warning');
-										$('#userPassGuide')
-												.removeClass('safe')
-												.addClass('warning')
-												.text(
-														'8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.');
-									} else if (strength == 2) {
-										$(this).removeClass('warning')
-												.addClass('safe');
-										$('#userPassGuide').removeClass(
-												'warning').addClass('safe')
-												.text('사용가능한 비밀번호입니다.');
-									} else {
-										$(this).removeClass('warning')
-												.addClass('safe');
-										$('#userPassGuide').removeClass(
-												'warning').addClass('safe')
-												.text('안전한 비밀번호입니다.');
-									}
-								});
-				
-				$('#userPassConfirm').on(
-						'keyup',
-						function() {
-							if ($(this).val().length == 0) {
-								$(this).removeClass('warning checked');
-								$('#userPassConfirmGuide').text('');
-							} else if ($(this).val() != $('#userPass').val()) {
-								$(this).removeClass('checked').addClass(
-										'warning');
-								$('#userPassConfirmGuide').addClass('warning')
-										.text('일치하지 않습니다.');
-							} else {
-								$(this).removeClass('warning').addClass(
-										'checked');
-								$('#userPassConfirmGuide').text('');
-							}
-						});
-				
-				$('#userEmail')
-						.on(
-								'keyup',
-								function() {
-									var email = $(this).val();
-									if (email.length == 0) {
-										$('#userEmailGuide').text('');
-									} else if (email
-											.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-										$('#userEmailGuide').removeClass(
-												'warning').addClass('safe')
-												.text('사용가능한 이메일입니다.');
-									} else {
-										$('#userEmailGuide')
-												.removeClass('safe').addClass(
-														'warning').text(
-														'올바른 이메일 형식을 입력해주세요.');
-									}
-								});
-				
-				$("#userImageUploader").on("change", function() {
-					var $this = $(this);
-					uploader(this.files, {
-						token : $("#tokenId").val(),
-						mode : "thumb",
-						width : 236,
-						height : 236
-					}, function(file) {
-						$this.val("");
-						$("#tokenId").val(file.token);
-						$("#userImageLabel").val(file.alias);
-						$("#userImage").val(file.url);
-					}, function(msg) {
-						$this.val("");
-						alert(msg);
-					});
-				});
-				function chkModalSubmit(form) {
-					var userId = $('#userId');
-					var userPass = $('#userPass');
-					var userPassConfirm = $('#userPassConfirm');
-					var userPhone = $('#userPhone');
-					var userPhoneOrigin = $('#userPhoneOrigin');
-
-					if (userPass && userPass.val()) {
-						if (checkStrength(userPass.val()) < 2) {
-							alert('사용할 수 없는 암호입니다.');
-							userPass.focus();
-							return false;
-						}
-						if (userPass.val() != userPassConfirm.val()) {
-							alert('암호가 일치하지 않습니다.');
-							userPassConfirm.focus();
-							return false;
-						}
-					}
-					if (userPhone.val() != userPhoneOrigin.val()) {
-						if (!userPhone.val().match(
-								/^(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/)
-								|| !$('#userPhoneVerify').val()
-								|| !$('#userPhoneGuide').hasClass('safe')) {
-							alert('휴대폰번호가 확인되지 않았습니다.');
-							userPhone.focus();
-							return false;
-						}
-					}
-				}
-			</script>
 		</div>
-	</div>
-
-	<footer id="footer">
-		<ul class="footer-wrap">
-			<li>
-				<a href="#" class="footer-nav">이용약관</a>
-			</li>
-			<li>
-				<a href="#" class="footer-nav color-point">개인정보처리방침</a>
-			</li>
-		</ul>
-		<div class="container">
-			<section class="content">
-				<h1 class="skip">사이트 이용정보</h1>
-				<ul class="footer-company">
-					<li>EKA</li>
-					<li>팀 브라보</li>
-					<li>
-						<a href="tel:053-1234-1234">고객센터 053-1234-1234</a>
-					</li>
-					<li>
-						<a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a>
-					</li>
-					<li>대구광역시 중구 반월당</li>
-				</ul>
-			</section>
-		</div>
-	</footer>
 	</div>
 </body>
 

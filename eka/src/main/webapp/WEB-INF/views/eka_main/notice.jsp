@@ -127,7 +127,7 @@
 					<li>
 						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">학원 관리 페이지를 통해 학원의 과목/강사/점수/출석/상담/리뷰/학생 관리 등을 관리할 수 있습니다.</span>
+								<span class="circle">학원 관리 페이지를 통해 학원의 과목/강사/점수/출석/상담/리뷰/학생 등을 관리할 수 있습니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>

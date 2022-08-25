@@ -34,19 +34,30 @@
 		</c:if>
 		<c:if test="${! empty manager || ! empty ekauser}">
 			<li>
-				<span class="header-nav"> <c:if test="${! empty manager && empty ekauser}">
+				<span class="header-nav">
+					<c:if test="${! empty manager && empty ekauser}">
 						<p>${manager.name}님</p>
-					</c:if> <c:if test="${! empty ekauser && empty manager}">
+					</c:if>
+					
+					<c:if test="${! empty ekauser && empty manager}">
 						<p>${ekauser.name}님</p>
 					</c:if>
 				</span>
 			</li>
 			<li>
-				<form action="myPage" method="post">
-					<input type="hidden" name="academyId" value="${manager.academyId}" />
-					<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
-					<input type="submit" class="bt-sub coral" value="마이페이지" />
-				</form>
+				<c:if test="${! empty manager && empty ekauser}">
+					<form action="myPage" method="post">
+						<input type="hidden" name="academyId" value="${manager.academyId}" />
+						<input type="submit" class="bt-sub coral" value="마이페이지" />
+					</form>
+				</c:if>
+
+				<c:if test="${! empty ekauser && empty manager}">
+					<form action="myPage_ekaUser" method="post">
+						<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
+						<input type="submit" class="bt-sub coral" value="마이페이지" />
+					</form>
+				</c:if>
 			</li>
 			<li>
 				<form action="logOut" method="post">
@@ -102,7 +113,7 @@
 <c:if test="${! empty manager && ! empty ekauser}">
 	<script>
 		location.href = "main";
-		document.getElementById('logOutBtn').click();
 		alert("세션 중복 발생, 로그아웃을 진행합니다.");
+		document.getElementById('logOutBtn').click();
 	</script>
 </c:if>

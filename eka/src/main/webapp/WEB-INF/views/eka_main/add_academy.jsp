@@ -37,17 +37,17 @@
 		<header id="header" role="navigation">
 			<%@ include file="common/header.jsp"%>
 
-			<c:if test="${empty manager && empty ekauser}">
-				<script>
-					location.href = "managerlogin";
-					alert("학원 원장 로그인이 필요합니다.");
-				</script>
-			</c:if>
-
 			<c:if test="${empty manager && ! empty ekauser}">
 				<script>
 					location.href = "main";
 					alert("학원 원장이 아닙니다.");
+				</script>
+			</c:if>
+			
+			<c:if test="${empty manager && empty ekauser}">
+				<script>
+					location.href = "managerlogin";
+					alert("학원 원장 로그인이 필요합니다.");
 				</script>
 			</c:if>
 		</header>
@@ -77,13 +77,13 @@
 					<ul class="input-wrap">
 						<form action="./select_academies_by_address" class="customer-form" method="POST">
 							<li>
-								<input class="label-text ui-button" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
+								<input class="bt-sub accent" type="button" onclick="sample5_execDaumPostcode()" value="주소 찾기">
+								<input class="bt-sub green" type="submit" value="주소로 학원찾기">
 								<br>
 								<div class="flex-wrap">
-									<input type="text" name="address" class="input-text" id="sample5_address" placeholder="주소" required>
+									<input type="text" name="address" class="input-text" id="sample5_address" placeholder="주소"  required>
 								</div>
 								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
-								<input class="label-text ui-button" type="submit" value="학원찾기">
 							</li>
 
 						</form>
@@ -93,13 +93,12 @@
 							<li>
 								<label for="name" class="label-text">학원명</label>
 								<input type="hidden" name="address" value="${address}">
-								<div class="flex-wrap">
+								<div class="flex-wrap grid">
 									<select class="selbox" name="name" required>
 										<c:forEach var="academy" items="${academyList}">
 											<option value="${academy.name}" selected>${academy.name}</option>
 										</c:forEach>
 									</select>
-									<input type="text" class="input-text" name="name">
 								</div>
 							</li>
 							<li>
