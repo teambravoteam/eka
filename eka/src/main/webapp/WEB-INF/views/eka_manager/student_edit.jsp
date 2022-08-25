@@ -109,7 +109,7 @@ body {
 												<th>이름</th>
 												<td colspan="3"><input type="text" name="name">
 													<button class="btn btn-primary btn-sm submit1"
-														type="submit" name="button">검색</button>
+														type="submit" name="button" formaction="detailedSearch">검색</button>
 														
 													<button class="btn btn-primary btn-sm submit2"
 														type="submit" name="button" formaction="student_edit">
@@ -121,6 +121,7 @@ body {
 								<div class="card-body">
 									<!-- 검색결과 테이블 -->
 									<p>검색결과</p>
+									
 									<div class="table-responsive">
 										<table class="table table-bordered" id="dataTable"
 											width="100%" cellspacing="0">
@@ -134,6 +135,26 @@ body {
 													<th>상세정보</th>
 												</tr>
 											</thead>
+											<!-- eka유저 나오는 테이블 -->
+											<tbody>
+												<c:forEach var="ekaUserStudent" items="${ekaUserStudent}" varStatus="status">
+													<form method="post">
+														<tr>
+															<td>${status.count}</td>
+															<td>${list.name}</td>
+															<input type="hidden" name="name" value="${ekaUserStudent.name}">
+															<td><a href="tel:">${list.phone}</a></td>
+															<input type="hidden" name="phone" value="${ekaUserStudent.phone}">
+															<td>${list.gender}</td>
+															<input type="hidden" name="gender" value="${ekaUserStudent.gender}">
+															<td>${list.ekaUserId}</td>
+															<input type="hidden" name="ekaUserId" value="${ekaUserStudent.ekaUserId}">
+															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+														</tr>
+													</form>
+												</c:forEach>
+											</tbody>
+											<!-- 모든유저가 나오는 테이블 -->
 											<tbody>
 												<c:forEach var="list" items="${allstudent}" varStatus="status">
 													<form method="post">
