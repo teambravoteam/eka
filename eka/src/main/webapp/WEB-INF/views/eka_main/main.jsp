@@ -34,7 +34,8 @@
 <body>
 	<div id="wrap" role="main">
 		<header id="header" role="navigation" class="main">
-			<%@ include file="common/header.jsp" %>
+			<%@ include file="common/header.jsp"%>
+			
 		</header>
 
 		<a href="#wrap" class="bt-top hashLink">
@@ -53,7 +54,8 @@
 					<form action="./list_academy" method="post" id="mainSubmit">
 						<div class="shadow-wrap big-r flex-wrap flex-center m1 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
 							<div class="userAddr-wrap flex-glow-1">
-								<span class="guide">현재 검색위치</span> <label for="bt-config-loc" class="userAddr">대구광역시 중구 국채보상로 670</label>
+								<span class="guide">현재 검색위치</span>
+								<label for="bt-config-loc" class="userAddr">대구광역시 중구 국채보상로 670</label>
 							</div>
 							<button type="button" id="bt-config-loc" class="bt-sub point ic-gps mgl-12">현재위치 이동</button>
 							<button type="button" id="bt-config-map" class="bt-sub accent ic-map mgl-12">지도 설정</button>
@@ -65,81 +67,129 @@
 						</div>
 						<div class="shadow-wrap big-r m1 aos-init" data-aos="fade-up" data-aos-delay="400">
 							<ul class="i-category">
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="1">
 										<span class="dragBlock">간호보조기술</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="2">
 										<span class="dragBlock">경영·사무관리</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="3">
 										<span class="dragBlock">국제</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="4">
 										<span class="dragBlock">기예</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="5">
 										<span class="dragBlock">기타</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="6">
 										<span class="dragBlock">독서실</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="7">
 										<span class="dragBlock">독서실(일반인)</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="8">
 										<span class="dragBlock">보통교과</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="9">
 										<span class="dragBlock">산업기반기술</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="10">
 										<span class="dragBlock">산업서비스</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="11">
 										<span class="dragBlock">산업응용기술</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="12">
 										<span class="dragBlock">예능</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="13">
 										<span class="dragBlock">외국어</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="14">
 										<span class="dragBlock">인문사회</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="15">
 										<span class="dragBlock">일반서비스</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="16">
 										<span class="dragBlock">진학지도</span>
-									</a></li>
-								<li class="border-wrap"><a href="#" onclick="document.getElementById('mainSubmit').submit();">
+									</a>
+								</li>
+								<li class="border-wrap">
+									<a href="#" onclick="document.getElementById('mainSubmit').submit();">
 										<input type="hidden" value="17">
 										<span class="dragBlock">컴퓨터</span>
-									</a></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
-								<li class="border-wrap ready"><span class="ready dragBlock">준비중</span></li>
+									</a>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
+								<li class="border-wrap ready">
+									<span class="ready dragBlock">준비중</span>
+								</li>
 							</ul>
 						</div>
 					</form>
@@ -200,30 +250,36 @@
 					</div>
 					<div id="notice-container">
 						<ul class="notice-list">
-							<li><a href="#" class="content">
+							<li>
+								<a href="#" class="content">
 									<div class="board-title">
 										<span class="circle">공지 1</span>
 									</div>
 									<div class="board-date">
 										<span>2022-08-12</span>
 									</div>
-								</a></li>
-							<li><a href="#" class="content">
+								</a>
+							</li>
+							<li>
+								<a href="#" class="content">
 									<div class="board-title">
 										<span class="circle">공지 2</span>
 									</div>
 									<div class="board-date">
 										<span>2022-08-12</span>
 									</div>
-								</a></li>
-							<li><a href="#" class="content">
+								</a>
+							</li>
+							<li>
+								<a href="#" class="content">
 									<div class="board-title">
 										<span class="circle">공지 3</span>
 									</div>
 									<div class="board-date">
 										<span>2022-08-12</span>
 									</div>
-								</a></li>
+								</a>
+							</li>
 
 						</ul>
 					</div>
@@ -232,8 +288,12 @@
 		</div>
 		<footer id="footer">
 			<ul class="footer-wrap">
-				<li><a href="#" class="footer-nav">이용약관</a></li>
-				<li><a href="#" class="footer-nav color-point">개인정보처리방침</a></li>
+				<li>
+					<a href="#" class="footer-nav">이용약관</a>
+				</li>
+				<li>
+					<a href="#" class="footer-nav color-point">개인정보처리방침</a>
+				</li>
 			</ul>
 			<div class="container">
 				<section class="content">
@@ -241,8 +301,12 @@
 					<ul class="footer-company">
 						<li>EKA</li>
 						<li>팀 브라보</li>
-						<li><a href="tel:053-1234-1234">고객센터 053-1234-1234</a></li>
-						<li><a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a></li>
+						<li>
+							<a href="tel:053-1234-1234">고객센터 053-1234-1234</a>
+						</li>
+						<li>
+							<a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a>
+						</li>
 						<li>대구광역시 중구 반월당</li>
 					</ul>
 				</section>
@@ -307,7 +371,6 @@
 		setTimeout(function() {
 			$('#bt-config-loc').trigger('click');
 		}, 500)
-
 	</script>
 </body>
 

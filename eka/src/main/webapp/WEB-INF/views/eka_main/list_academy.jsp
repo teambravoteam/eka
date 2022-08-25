@@ -40,12 +40,13 @@
 				<div class="shadow-wrap flex-wrap flex-center flex-glow-1">
 					<div class="userAddr-wrap flex-glow-1">
 						<form id="academyListForm" action="./list_academy" method="post">
-							<span class="guide">현재 검색위치</span> <label for="bt-config-loc2" id="listAddr1" class="userAddr">${user_address}</label>
+							<span class="guide">현재 검색위치</span>
+							<label for="bt-config-loc2" id="listAddr1" class="userAddr">${user_address}</label>
 							<input type="hidden" id="listAddr2" name="addr" value="${user_address}">
 							<input type="hidden" id="listLat" name="lat" value="${user_lat}">
 							<input type="hidden" id="listLon" name="lon" value="${user_lon}">
 							<input type="hidden" id="listCate" name="categoryNum" value="0">
-							<input type="submit" class="bt-sub green ic-search mgl-12" value="학원검색">
+							<input type="submit" class="bt-sub green ic-search mgl-12" value="전체 학원검색">
 						</form>
 					</div>
 					<button type="button" id="bt-config-loc2" class="bt-sub point ic-gps mgl-12">현재위치 이동</button>
@@ -57,60 +58,96 @@
 				<div class="hdtb-wrap">
 					<button type="button" class="bt-hdtb prev"></button>
 					<ul class="hdtb">
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="0">
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="0">
 								<span class="dragBlock current">전체</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="1">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="1">
 								<span class="dragBlock">간호보조기술</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="2">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="2">
 								<span class="dragBlock">경영·사무관리</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="3">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="3">
 								<span class="dragBlock">국제</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="4">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="4">
 								<span class="dragBlock">기예</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="5">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="5">
 								<span class="dragBlock">기타</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="6">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="6">
 								<span class="dragBlock">독서실</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="7">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="7">
 								<span class="dragBlock">독서실(일반인)</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="8">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="8">
 								<span class="dragBlock">보통교과</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="9">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="9">
 								<span class="dragBlock">산업기반기술</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="10">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="10">
 								<span class="dragBlock">산업서비스</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="11">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="11">
 								<span class="dragBlock">산업응용기술</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="12">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="12">
 								<span class="dragBlock">예체능</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="13">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="13">
 								<span class="dragBlock">외국어</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="14">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="14">
 								<span class="dragBlock">인문사회</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="15">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="15">
 								<span class="dragBlock">일반서비스</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="16">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="16">
 								<span class="dragBlock">진학지도</span>
-							</a></li>
-						<li class="hdtb-item"><a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="17">
+							</a>
+						</li>
+						<li class="hdtb-item">
+							<a href="#" onclick="document.getElementById('academyListForm').submit();" data-cid="17">
 								<span class="dragBlock">컴퓨터</span>
-							</a></li>
+							</a>
+						</li>
 					</ul>
 					<button type="button" class="bt-hdtb next"></button>
 				</div>
@@ -222,12 +259,14 @@ function displayPlaces() {
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
 
+    	aidList = [];
 		nameList = [];
 		addrList = [];
 		detailAddrList = [];
 
 		<c:forEach var="name" items="${nameList}" varStatus="status">
 				nameList.push("${name}");
+				aidList.push("${aidList[status.index]}");
 				addrList.push("${addressList[status.index]}");
 				detailAddrList.push("${detailAddressList[status.index]}");
 
@@ -277,13 +316,15 @@ function displayPlaces() {
 function getListItem(index) {
     var el = document.createElement('li'),
     itemStr =		'<span class="markerbg marker_' + (index+1) + '"></span>' +
-		 						'<a href="./academyDetail?'+nameList[index]+'">' +
+ 							    '<form action="detail_page" method="get">' + 
 								'<div class="item-content">' +
 								'<button class="bt-like float-right"></button>' +
 								'<div>' +
-								'<span class="a-title">'+nameList[index]+'</span>' +
+								'<input type="hidden" name="academyAid" value="' +aidList[index] + '"/>' +
+		 						'<input type="submit" class="a-title" value='+nameList[index]+'>' +
 								'</div>' +
 								'</div>' +
+ 							    '</form>' + 
 								'</a>';
 
     el.innerHTML = itemStr;

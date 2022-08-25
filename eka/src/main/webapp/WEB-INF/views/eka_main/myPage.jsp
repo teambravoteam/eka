@@ -117,9 +117,8 @@
 
 					<script>
 						$("#bt-modify-user").on("click", function() {
-							openModal("userInfo", null, function() {
-								$("#modal-wrap").addClass("width-s");
-							});
+						    $("#modal-wrap").css('display', 'block');
+						    $("#wrap").addClass('transparent');
 						});
 					</script>
 
@@ -127,31 +126,31 @@
 						<button type="button" class="bt-label bt-withdraw">회원탈퇴</button>
 					</div>
 					<script>
-						$('.bt-add').on("click", function() {
-							openModal("regParent", "check", function() {
-								$("#modal-wrap").addClass("width-s");
-							});
+// 						$('.bt-add').on("click", function() {
+// 							openModal("regParent", "check", function() {
+// 								$("#modal-wrap").addClass("width-s");
+// 							});
 
-						});
+// 						});
 
-						$('.bt-withdraw').on('click', function() {
-							openModal("userWidthdraw", null, function() {
-								$("#modal-wrap").addClass("width-s");
-							});
-						});
+// 						$('.bt-withdraw').on('click', function() {
+// 							openModal("userWidthdraw", null, function() {
+// 								$("#modal-wrap").addClass("width-s");
+// 							});
+// 						});
 
-						$('.bt-modify-relation').on('click', function() {
-							openModal("regParent", $(this).val(), function() {
-								$("#modal-wrap").addClass("width-s");
-							});
-						});
+// 						$('.bt-modify-relation').on('click', function() {
+// 							openModal("regParent", $(this).val(), function() {
+// 								$("#modal-wrap").addClass("width-s");
+// 							});
+// 						});
 					</script>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="modal-wrap" class="modal-wrap width-s" style="display: block;">
+	<div id="modal-wrap" class="modal-wrap width-s" style="display: none;">
 		<div class="modal-head">
 			<button type="button" class="bt-icon close float-right">닫기</button>
 			<h3 class="modal-title">내 정보 변경</h3>

@@ -50,8 +50,9 @@
 			</li>
 			<li>
 				<form action="logOut" method="post">
-					<input type="submit" class="bt-sub point" value="로그아웃" />
+					<input type="submit" id="logOutBtn" class="bt-sub point" value="로그아웃" />
 				</form>
+
 			</li>
 		</c:if>
 	</ul>
@@ -97,3 +98,11 @@
 		}
 	})();
 </script>
+
+<c:if test="${! empty manager && ! empty ekauser}">
+	<script>
+		location.href = "main";
+		document.getElementById('logOutBtn').click();
+		alert("세션 중복 발생, 로그아웃을 진행합니다.");
+	</script>
+</c:if>

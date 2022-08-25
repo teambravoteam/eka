@@ -53,86 +53,107 @@
 			<!-- 게시물 리스트 내용 시작 -->
 			<div class="board-list-content">
 				<ul class="board-list">
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">안녕하세요, 저희는 코리아IT Bravo 팀입니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">저희가 이번에 구현하게 된 프로젝트의 컨셉은</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">언텍트 사회에서의 IT 관리의 필요성과 프로그램이 없는 학원을 대상으로 한 관리 프로그램 제공입니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">주요 기능을 설명하겠습니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">저희만의 학원 데이터베이스를 기반으로 대구 시의 학원을 전부 찾을 수 있고,</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">회원가입을 통해 EKA 유저는 학원을 등록하고, 원장은 학원을 신청할 수 있는 기능이 있습니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">또한, 신청한 정보를 토대로 등록한 학원의 관리를 시작할 수 있으며,</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">학원 관리 페이지를 통해 학원의 과목/강사/점수/출석/상담/리뷰/학생 관리 등을 관리할 수 있습니다.</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">감사합니다 :)</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
-					<li><a href="https://skycatcher.co.kr/notice?mode=view&amp;bid=14" class="content">
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/teambravoteam/eka" class="content">
 							<div class="board-title">
-								<span class="circle">공지1</span>
+								<span class="circle">GitHub : https://github.com/teambravoteam/eka</span>
 							</div>
 							<div class="board-date">
 								<span>2022-08-12</span>
 							</div>
-						</a></li>
+						</a>
+					</li>
 				</ul>
 			</div>
 			<!-- 게시물 리스트 내용 끝 -->
@@ -140,7 +161,9 @@
 			<!-- 게시물 리스트 하단 시작 -->
 			<div class="board-list-bottom content">
 				<ul class="pagination">
-					<li class="page-item"><a href="https://skycatcher.co.kr/notice?mode=list&amp;page=1" class="page-link current">1</a></li>
+					<li class="page-item">
+						<a href="#" class="page-link current">1</a>
+					</li>
 				</ul>
 			</div>
 			<!-- 게시물 리스트 하단 끝 -->
@@ -148,8 +171,12 @@
 
 		<footer id="footer">
 			<ul class="footer-wrap">
-				<li><a href="#" class="footer-nav">이용약관</a></li>
-				<li><a href="#" class="footer-nav color-point">개인정보처리방침</a></li>
+				<li>
+					<a href="#" class="footer-nav">이용약관</a>
+				</li>
+				<li>
+					<a href="#" class="footer-nav color-point">개인정보처리방침</a>
+				</li>
 			</ul>
 			<div class="container">
 				<section class="content">
@@ -157,8 +184,12 @@
 					<ul class="footer-company">
 						<li>EKA</li>
 						<li>팀 브라보</li>
-						<li><a href="tel:053-1234-1234">고객센터 053-1234-1234</a></li>
-						<li><a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a></li>
+						<li>
+							<a href="tel:053-1234-1234">고객센터 053-1234-1234</a>
+						</li>
+						<li>
+							<a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a>
+						</li>
 						<li>대구광역시 중구 반월당</li>
 					</ul>
 				</section>

@@ -36,12 +36,19 @@
 	<div id="wrap" role="main">
 		<header id="header" role="navigation">
 			<%@ include file="common/header.jsp"%>
-			
-			<c:if test="${empty manager}">
+
+			<c:if test="${empty manager && empty ekauser}">
 				<script>
-						location.href="managerlogin";
+					location.href = "managerlogin";
 					alert("학원 원장 로그인이 필요합니다.");
-				</script> 
+				</script>
+			</c:if>
+
+			<c:if test="${empty manager && ! empty ekauser}">
+				<script>
+					location.href = "main";
+					alert("학원 원장이 아닙니다.");
+				</script>
 			</c:if>
 		</header>
 
@@ -69,17 +76,23 @@
 					<p>학원의 정보를 입력해주세요</p>
 					<ul class="input-wrap">
 						<form action="./select_academies_by_address" class="customer-form" method="POST">
-							<li><input class="label-text ui-button" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+							<li>
+								<input class="label-text ui-button" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
+								<br>
 								<div class="flex-wrap">
 									<input type="text" name="address" class="input-text" id="sample5_address" placeholder="주소" required>
 								</div>
-								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div> <input class="label-text ui-button" type="submit" value="학원찾기"></li>
+								<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
+								<input class="label-text ui-button" type="submit" value="학원찾기">
+							</li>
 
 						</form>
 
 
 						<form action="./signed_eka_academy" class="customer-form" method="POST">
-							<li><label for="name" class="label-text">학원명</label> <input type="hidden" name="address" value="${address}">
+							<li>
+								<label for="name" class="label-text">학원명</label>
+								<input type="hidden" name="address" value="${address}">
 								<div class="flex-wrap">
 									<select class="selbox" name="name" required>
 										<c:forEach var="academy" items="${academyList}">
@@ -87,8 +100,10 @@
 										</c:forEach>
 									</select>
 									<input type="text" class="input-text" name="name">
-								</div></li>
-							<li><label for="phone" class="label-text">전화번호</label>
+								</div>
+							</li>
+							<li>
+								<label for="phone" class="label-text">전화번호</label>
 								<div class="flex-wrap grid">
 									<select class="selbox" name="phone1" required>
 										<option value="" disabled selected>선택</option>
@@ -100,63 +115,139 @@
 									<input type="tel" name="phone1" class="inquiryPhone2 input-text" pattern="\d{3}">
 									<input type="tel" name="phone2" class="inquiryPhone3 input-text" pattern="\d{4}" required>
 									<input type="tel" name="phone3" class="inquiryPhone4 input-text" pattern="\d{4}" required>
-								</div></li>
-							<li><label for="inquiryEmail" class="label-text">이메일</label>
+								</div>
+							</li>
+							<li>
+								<label for="inquiryEmail" class="label-text">이메일</label>
 								<div class="flex-wrap">
 									<input type="email" name="email" id="inquiryEmail" class="input-text" required="" placeholder="(@)를 포함해서 입력해주세요">
-								</div></li>
+								</div>
+							</li>
 
 
 							<div class="flex-wrap grid justify"></div>
 
 
 
-							<li><label for="inquirySubject" class="label-text">학원 제공 서비스</label>
+							<li>
+								<label for="inquirySubject" class="label-text">학원 제공 서비스</label>
 								<div class="flex-wrap subject">
 									<div class="shadow-wrap big-r m1">
 										<ul class="i-category">
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-bus-64.png" alt="academyBus"> <span class="dragBlock">학원차량운행</span> <input type="checkbox" class="hidden2" name="service" value="학원차량운행"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-air-conditioner-64.png" alt="academyAir-Con"> <span class="dragBlock">냉난방</span> <input type="checkbox" class="hidden2" name="service" value="냉난방"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-air-purifier-64.png" alt="academyPurifier"> <span class="dragBlock">공기청정기</span> <input type="checkbox" class="hidden2" name="service" value="공기청정기"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-desk-64.png" alt="academyStudyRoom"> <span class="dragBlock">자습실</span> <input type="checkbox" class="hidden2" name="service" value="자습실"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-teacher-64.png" alt="academyPresidentTeach"> <span class="dragBlock">원장직강</span> <input type="checkbox" class="hidden2" name="service" value="원장직강"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-locker-64.png" alt="academyLocker"> <span class="dragBlock">개인사물함</span> <input type="checkbox" class="hidden2" name="service" value="개인사물함"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-snack-64.png" alt="academySnack"> <span class="dragBlock">간식제공</span> <input type="checkbox" class="hidden2" name="service" value="간식제공"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-tutor-64.png" alt="academyTutor"> <span class="dragBlock">과외식</span> <input type="checkbox" class="hidden2" name="service" value="과외식"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-projector-64.png" alt="academyProjector"> <span class="dragBlock">빔프로젝트</span> <input type="checkbox" class="hidden2" name="service" value="빔프로젝트"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-foreigner-64.png" alt="academyForeigner"> <span class="dragBlock">원어민강사</span> <input type="checkbox" class="hidden2" name="service" value="원어민강사"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-desk-64.png" alt="academyDesk"> <span class="dragBlock">독서실책상</span> <input type="checkbox" class="hidden2" name="service" value="독서실책상"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-test-64.png" alt="academyTest"> <span class="dragBlock">자체모의고사</span> <input type="checkbox" class="hidden2" name="service" value="자체모의고사"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-scholarship-64.png" alt="academyScholarship"> <span class="dragBlock">자체장학제도</span> <input type="checkbox" class="hidden2" name="service" value="자체장학제도"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-online-learning-64.png" alt="academyE-Learning"> <span class="dragBlock">인터넷강의</span> <input type="checkbox" class="hidden2" name="service" value="인터넷강의"></li>
-											<li class="border-wrap toggleCheck"><img src="../resources/img/service/icons8-attendance-64.png" alt="academyAttendance"> <span class="dragBlock">출결시스템</span> <input type="checkbox" class="hidden2" name="service" value="출결시스템"></li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-bus-64.png" alt="academyBus"> <span class="dragBlock">학원차량운행</span>
+												<input type="checkbox" class="hidden2" name="service" value="학원차량운행">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-air-conditioner-64.png" alt="academyAir-Con"> <span class="dragBlock">냉난방</span>
+												<input type="checkbox" class="hidden2" name="service" value="냉난방">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-air-purifier-64.png" alt="academyPurifier"> <span class="dragBlock">공기청정기</span>
+												<input type="checkbox" class="hidden2" name="service" value="공기청정기">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-desk-64.png" alt="academyStudyRoom"> <span class="dragBlock">자습실</span>
+												<input type="checkbox" class="hidden2" name="service" value="자습실">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-teacher-64.png" alt="academyPresidentTeach"> <span class="dragBlock">원장직강</span>
+												<input type="checkbox" class="hidden2" name="service" value="원장직강">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-locker-64.png" alt="academyLocker"> <span class="dragBlock">개인사물함</span>
+												<input type="checkbox" class="hidden2" name="service" value="개인사물함">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-snack-64.png" alt="academySnack"> <span class="dragBlock">간식제공</span>
+												<input type="checkbox" class="hidden2" name="service" value="간식제공">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-tutor-64.png" alt="academyTutor"> <span class="dragBlock">과외식</span>
+												<input type="checkbox" class="hidden2" name="service" value="과외식">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-projector-64.png" alt="academyProjector"> <span class="dragBlock">빔프로젝트</span>
+												<input type="checkbox" class="hidden2" name="service" value="빔프로젝트">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-foreigner-64.png" alt="academyForeigner"> <span class="dragBlock">원어민강사</span>
+												<input type="checkbox" class="hidden2" name="service" value="원어민강사">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-desk-64.png" alt="academyDesk"> <span class="dragBlock">독서실책상</span>
+												<input type="checkbox" class="hidden2" name="service" value="독서실책상">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-test-64.png" alt="academyTest"> <span class="dragBlock">자체모의고사</span>
+												<input type="checkbox" class="hidden2" name="service" value="자체모의고사">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-scholarship-64.png" alt="academyScholarship"> <span class="dragBlock">자체장학제도</span>
+												<input type="checkbox" class="hidden2" name="service" value="자체장학제도">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-online-learning-64.png" alt="academyE-Learning"> <span class="dragBlock">인터넷강의</span>
+												<input type="checkbox" class="hidden2" name="service" value="인터넷강의">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<img src="../resources/img/service/icons8-attendance-64.png" alt="academyAttendance"> <span class="dragBlock">출결시스템</span>
+												<input type="checkbox" class="hidden2" name="service" value="출결시스템">
+											</li>
 										</ul>
 									</div>
-								</div></li>
+								</div>
+							</li>
 
-							<li><label for="inquiryMaDay" class="label-text">운영 요일</label>
+							<li>
+								<label for="inquiryMaDay" class="label-text">운영 요일</label>
 								<div class="flex-wrap day">
 									<div class="shadow-wrap big-r m1">
 										<ul class="i-category">
-											<li class="border-wrap toggleCheck"><span class="dragBlock">월</span> <input type="checkbox" name="runday" value="월"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">화</span> <input type="checkbox" name="runday" value="화"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">수</span> <input type="checkbox" name="runday" value="수"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">목</span> <input type="checkbox" name="runday" value="목"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">금</span> <input type="checkbox" name="runday" value="금"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">토</span> <input type="checkbox" name="runday" value="토"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">일</span> <input type="checkbox" name="runday" value="일"></li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">월</span>
+												<input type="checkbox" name="runday" value="월">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">화</span>
+												<input type="checkbox" name="runday" value="화">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">수</span>
+												<input type="checkbox" name="runday" value="수">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">목</span>
+												<input type="checkbox" name="runday" value="목">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">금</span>
+												<input type="checkbox" name="runday" value="금">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">토</span>
+												<input type="checkbox" name="runday" value="토">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">일</span>
+												<input type="checkbox" name="runday" value="일">
+											</li>
 										</ul>
 									</div>
-								</div></li>
+								</div>
+							</li>
 
-							<li><label for="inquiryMaTime" class="label-text">운영 시간</label>
+							<li>
+								<label for="inquiryMaTime" class="label-text">운영 시간</label>
 								<div class="flex-wrap time">
-									<span class="item_inp"> <label class="lab_g"> <span> <input type="radio" class="inp_g" value="single" name="maTimeCheck" checked>
-										</span>모든 요일에 동일한 시간
-									</label>
-									</span> <span class="item_inp"> <label class="lab_g"> <span> <input type="radio" class="inp_g" value="week" name="maTimeCheck">
-										</span>요일별 시간 설정
-									</label>
+									<span class="item_inp"> <label class="lab_g">
+											<span> <input type="radio" class="inp_g" value="single" name="maTimeCheck" checked>
+											</span>모든 요일에 동일한 시간
+										</label>
+									</span> <span class="item_inp"> <label class="lab_g">
+											<span> <input type="radio" class="inp_g" value="week" name="maTimeCheck">
+											</span>요일별 시간 설정
+										</label>
 									</span>
 								</div>
 
@@ -1605,31 +1696,58 @@
 										<option value="58분">58분</option>
 										<option value="59분">59분</option>
 									</select>
-								</div></li>
+								</div>
+							</li>
 
-							<li><label for="inquiryCoDay" class="label-text">상담가능 요일</label>
+							<li>
+								<label for="inquiryCoDay" class="label-text">상담가능 요일</label>
 								<div class="flex-wrap day">
 									<div class="shadow-wrap big-r m1">
 										<ul class="i-category">
-											<li class="border-wrap toggleCheck"><span class="dragBlock">월</span> <input type="checkbox" name="coDay" value="월"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">화</span> <input type="checkbox" name="coDay" value="화"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">수</span> <input type="checkbox" name="coDay" value="수"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">목</span> <input type="checkbox" name="coDay" value="목"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">금</span> <input type="checkbox" name="coDay" value="금"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">토</span> <input type="checkbox" name="coDay" value="토"></li>
-											<li class="border-wrap toggleCheck"><span class="dragBlock">일</span> <input type="checkbox" name="coDay" value="일"></li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">월</span>
+												<input type="checkbox" name="coDay" value="월">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">화</span>
+												<input type="checkbox" name="coDay" value="화">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">수</span>
+												<input type="checkbox" name="coDay" value="수">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">목</span>
+												<input type="checkbox" name="coDay" value="목">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">금</span>
+												<input type="checkbox" name="coDay" value="금">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">토</span>
+												<input type="checkbox" name="coDay" value="토">
+											</li>
+											<li class="border-wrap toggleCheck">
+												<span class="dragBlock">일</span>
+												<input type="checkbox" name="coDay" value="일">
+											</li>
 										</ul>
 									</div>
-								</div></li>
+								</div>
+							</li>
 
-							<li><label for="inquiryCoTime" class="label-text">상담가능 시간</label>
+							<li>
+								<label for="inquiryCoTime" class="label-text">상담가능 시간</label>
 								<div class="flex-wrap time">
-									<span class="item_inp"> <label class="lab_g"> <span> <input type="radio" class="inp_g" value="single" name="coTimeCheck" checked>
-										</span>모든 요일에 동일한 시간
-									</label>
-									</span> <span class="item_inp"> <label class="lab_g"> <span> <input type="radio" class="inp_g" value="week" name="coTimeCheck">
-										</span>요일별 시간 설정
-									</label>
+									<span class="item_inp"> <label class="lab_g">
+											<span> <input type="radio" class="inp_g" value="single" name="coTimeCheck" checked>
+											</span>모든 요일에 동일한 시간
+										</label>
+									</span> <span class="item_inp"> <label class="lab_g">
+											<span> <input type="radio" class="inp_g" value="week" name="coTimeCheck">
+											</span>요일별 시간 설정
+										</label>
 									</span>
 								</div>
 
@@ -3078,12 +3196,15 @@
 										<option value="58분">58분</option>
 										<option value="59분">59분</option>
 									</select>
-								</div></li>
+								</div>
+							</li>
 
-							<li><label for="inquiryMemo" class="label-text">소개글</label>
+							<li>
+								<label for="inquiryMemo" class="label-text">소개글</label>
 								<div class="flex-wrap">
 									<textarea name="introduction" id="inquiryMemo" cols="30" rows="10" class="input-text" required="" placeholder="내용을 입력해주세요"></textarea>
-								</div></li>
+								</div>
+							</li>
 					</ul>
 					<button type="submit" class="bt-sub point">보내기</button>
 					</form>
@@ -3094,8 +3215,12 @@
 
 		<footer id="footer">
 			<ul class="footer-wrap">
-				<li><a href="#" class="footer-nav">이용약관</a></li>
-				<li><a href="#" class="footer-nav color-point">개인정보처리방침</a></li>
+				<li>
+					<a href="#" class="footer-nav">이용약관</a>
+				</li>
+				<li>
+					<a href="#" class="footer-nav color-point">개인정보처리방침</a>
+				</li>
 			</ul>
 			<div class="container">
 				<section class="content">
@@ -3103,8 +3228,12 @@
 					<ul class="footer-company">
 						<li>EKA</li>
 						<li>팀 브라보</li>
-						<li><a href="tel:053-1234-1234">학원신청 053-1234-1234</a></li>
-						<li><a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a></li>
+						<li>
+							<a href="tel:053-1234-1234">학원신청 053-1234-1234</a>
+						</li>
+						<li>
+							<a href="mailto:bravoTeam@bravoTeam.co.kr">이메일 bravoTeam@bravoTeam.co.kr</a>
+						</li>
 						<li>대구광역시 중구 반월당</li>
 					</ul>
 				</section>

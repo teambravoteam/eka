@@ -103,6 +103,7 @@ public class AcademyController {
 		String categoryNumString = request.getParameter("categoryNum");
         int categoryNum = Integer.parseInt(categoryNumString);
 
+        List<Long> aidList = new ArrayList();
 		List<String> latList = new ArrayList();
 		List<String> lonList = new ArrayList();
 		List<String> nameList = new ArrayList();
@@ -120,6 +121,8 @@ public class AcademyController {
 			allAcademyList = academyService.findAcademiesByCategory(selectedCategory);		
 		}
 		
+		List<Long> allAidList = allAcademyList.stream().map(Academy::getAid).collect(Collectors.toList());
+		System.out.println("allAidList 완료");
 		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
 		System.out.println("allNameList 완료");
 		List<String> allAddressList = allAcademyList.stream().map(Academy::getAddress).collect(Collectors.toList());
@@ -154,8 +157,9 @@ public class AcademyController {
 			// 검색기준지점으로부터 하버사인 거리가 1km 미만인 클래스만 카카오맵에 출력
 
 			if (distance < 1) {
-				System.out.println(distance);
+//				System.out.println(distance);
 				
+				aidList.add(allAidList.get(i));
 				latList.add(allLatList.get(i));
 				lonList.add(allLonList.get(i));
 				nameList.add(allNameList.get(i));
@@ -163,10 +167,11 @@ public class AcademyController {
 				detailAddressList.add(allDetailAddressList.get(i));
 			}
 		}
-		
+
 		mav.addObject("user_lat", sLat);
 		mav.addObject("user_lon", sLon);
-		mav.addObject("user_address", sAddr);
+		mav.addObject("user_address", sAddr);		
+		mav.addObject("aidList", aidList);
 		mav.addObject("latList", latList);
 		mav.addObject("lonList", lonList);
 		mav.addObject("nameList", nameList);
