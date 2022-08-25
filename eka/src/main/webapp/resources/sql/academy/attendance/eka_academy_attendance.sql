@@ -12,9 +12,11 @@ CREATE TABLE Attendance (
 	checking	CHAR(5)			NOT NULL, -- 출석A, 결석B, 조퇴C, 지각D
 	lectureId	BIGINT		 	NOT NULL,
 	academyId	BIGINT		 	NOT NULL,
-	regDate		TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+	lectureDate	DATE,
 	CONSTRAINT Attendance_studentId_FK FOREIGN KEY(studentId) REFERENCES Student(sid),
 	CONSTRAINT Attendance_lectureId_FK FOREIGN KEY(lectureId) REFERENCES Lecture(lid),
 	CONSTRAINT Attendance_academyId_FK FOREIGN KEY(academyId) REFERENCES Academy(aid)
 );  
+SELECT * FROM Attendance;
+SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid where lectureId = 4 ;
 DROP TABLE Attendance;
