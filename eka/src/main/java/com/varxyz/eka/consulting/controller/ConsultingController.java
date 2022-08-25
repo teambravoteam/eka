@@ -36,6 +36,7 @@ public class ConsultingController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		List<Consulting> registConsultingList = consultingService.findAllAcademyRegistConsulting(academy);
 		model.addAttribute("registConsultingList",registConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_edit";
 	}
 	
@@ -48,6 +49,7 @@ public class ConsultingController {
 		List<Consulting> applyConsultingList = consultingService.findAllAcademyApplyConsulting(academy);
 		System.out.println(applyConsultingList);
 		model.addAttribute("applyConsultingList",applyConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_unuser";
 	}
 	
@@ -60,6 +62,7 @@ public class ConsultingController {
 		List<Consulting> applyConsultingList = consultingService.findAllAcademyApplyConsulting(academy);
 		System.out.println(applyConsultingList);
 		model.addAttribute("applyConsultingList",applyConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_eka";
 	}
 	
@@ -77,6 +80,7 @@ public class ConsultingController {
 		List<Consulting> applyConsultingList = consultingService.findAllAcademyApplyConsulting(academy);
 		model.addAttribute("applyConsult",applyConsult);
 		model.addAttribute("applyConsultingList",applyConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_eka";		
 	}
 	
@@ -94,6 +98,7 @@ public class ConsultingController {
 		List<Consulting> registConsultingList = consultingService.findAllAcademyRegistConsulting(academy);
 		model.addAttribute("registConsult",registConsult);
 		model.addAttribute("registConsultingList",registConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_edit";		
 	}
 	
@@ -113,6 +118,7 @@ public class ConsultingController {
 		updateConsult.setRegistDate(registDate);
 		updateConsult.setConsultContent(consultContent);
 		updateConsult.setConsultType("완료");		
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		System.out.println(updateConsult);
 		
@@ -151,6 +157,7 @@ public class ConsultingController {
 		List<Consulting> registConsultingList = consultingService.findAllAcademyRegistConsulting(academy);
 		model.addAttribute("registConsult",registConsult);
 		model.addAttribute("registConsultingList",registConsultingList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		
@@ -186,6 +193,7 @@ public class ConsultingController {
 		addConsult.setRegistDate(registDate);
 	
 		consultingService.addRegistConsulting(addConsult);	
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		return "eka_manager/consulting_unuser";		
@@ -259,8 +267,9 @@ public class ConsultingController {
 			registConsultingList = consultingService
 					.findAllAcademyRegistConsultingByConsultCategoryAndApplyDateAndRegistDateAndName(academy,consultCategory,applyDate,registDate,name);
 		}
-		System.out.println(registConsultingList);
-		model.addAttribute("registConsultingList",registConsultingList);		
+		
+		model.addAttribute("registConsultingList",registConsultingList);	
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_edit";		
 	}
 	
