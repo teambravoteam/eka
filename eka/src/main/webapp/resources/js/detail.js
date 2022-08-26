@@ -5,7 +5,9 @@ $(".bt-tab").on("click", function() {
   $this.parent().addClass("current");
   $("#" + $this.data("sec")).show();
 });
-
+$(".bt-sec-header").on("click", function() {
+  $(this).parent().toggleClass("close");
+});
 $(".bt-apply").on("click", function() {
   openModal("apply", $("#uaid").val(), function() {
     $("#modal-wrap").addClass("width-s");
@@ -27,6 +29,13 @@ $(".bt-share").on("click", function() {
     alert("클립보드로 주소가 복사되었습니다");
   }
 });
+
+$('.academy-picture-list li').on('click', function() {
+  openModal('imageView', $(this).data('view'), function() {
+
+  });
+});
+
 $('.bt-more').on('click', function() {
   $target = $(this).parent().prev().find("li");
   if ($(this).hasClass("hide")) {
@@ -42,3 +51,8 @@ $('.bt-more').on('click', function() {
   }
 });
 
+$('.academy-document-list li').on('click', function() {
+  openModal('picture', $(this).find('img').attr('src'), function() {
+
+  });
+});
