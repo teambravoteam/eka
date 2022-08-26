@@ -52,6 +52,14 @@ public class AddAcademyScoreController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
+		//시험명 중복체크
+		List<ScoreCategory> check = sservice.findSameTestName(academy, lectureName, testName);
+		if (!check.isEmpty()) {
+			model.addAttribute("msg", "중복된 시험명이 있습니다.");
+			model.addAttribute("return_mapping", "score_add_academy");
+			return "eka_manager/msg_alert";
+		}
+		
 		ScoreCategory scoreCategory = new ScoreCategory();
 		scoreCategory.setAcademyId(academy.getAid()); 
 		scoreCategory.setLectureName(lectureName);
@@ -83,7 +91,8 @@ public class AddAcademyScoreController {
 		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		model.addAttribute("testList", sservice.findTestName(academy.getAid(), lectureName));
-		
+		List<ScoreCategory> scoreca = sservice.findTestName(academy.getAid(), lectureName);
+		System.out.println(scoreca.get(1).getTestName());
 		return "eka_manager/score_add_academy";
 	}
 	
@@ -95,29 +104,29 @@ public class AddAcademyScoreController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
-		
+		System.out.println("lectureName" + lectureName);
 		Lecture lecture = lservice.findLectureIdByLectureName(academy, lectureName); 
 		long lid = lecture.getLid();
 		
-		// aid, 학원이름으로 lid찾기
-//		model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lid));
-//		model.addAttribute("lecturename", lectureName);
-//		model.addAttribute("testinfo", score);
+//		atcid 로 testCategoryId일치하는거 찾는거
+		//해당시험에 대한 데이터가 비어있는지 확인하기
+		List<Score> check = sservice.findListByAtcid(score.getAtcid());
 		
-		
-		// 해당 시험에대한 데이터가 테이블에 있는 경우 -> 테이블 값 가져오기
-				// 없는 경우 수강생 정보 담아오기
-		//atcid로 성적입력리스트 뒤지기
-		List<Score> score2 = sservice.findListByAtcid(score.getAtcid());
-//		if (score2.isEmpty()) {
-			model.addAttribute("lectureStudentList", lservice.findLectureStudentList(lid));
+		if (check.isEmpty()) {
+			//비어있다면 
+			model.addAttribute("lectureStudentList", lservice.findLectureStudentList2(lid));
 			model.addAttribute("lecturename", lectureName);
 			model.addAttribute("testinfo", score);
-//		} else {
-//			
-//		}
-		System.out.println(score.getAcademyId());
-		return "eka_manager/score_add_academy";
+			return "eka_manager/score_add_academy";
+		} else {
+			//비어있지 않다면 데이터 가져오기
+			model.addAttribute("lectureStudentList", sservice.findStudentScore(score.getAtcid()));
+			model.addAttribute("lecturename", lectureName);
+			model.addAttribute("testinfo", score);
+			return "eka_manager/score_add_academy";
+		}
+		
+		
 	}
 	
 	// 성적입력 저장
@@ -130,7 +139,7 @@ public class AddAcademyScoreController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
-		System.out.println("atcid : " + atcid);
+		
 		// 학생이름
 		String[] nameList = name.split(",");
 		// 학생id
@@ -149,22 +158,44 @@ public class AddAcademyScoreController {
 			testScoreArrayList.add(j);
 		}
 		
+		//저장하기 눌렀을때 겹치는 데이터 있으면 update하기
 		
-		boolean result = false;
-		for (int i=0; i <nameList.length;i++) {
-			result = sservice.addScore(atcid, nameList[i], sidArrayList.get(i), testScoreArrayList.get(i));
-		}
-//		Long.parseLong(atcid)
-		
-		if (result == false) {
-			model.addAttribute("msg", "성적입력에 실패했습니다.");
-			model.addAttribute("return_mapping", "score_add_academy");
-			return "eka_manager/msg_alert";
+		if (sservice.findListByAtcid(atcid).isEmpty()) {
+			
+			boolean result = false;
+			for (int i=0; i <nameList.length;i++) {
+				result = sservice.addScore(atcid, nameList[i], sidArrayList.get(i), testScoreArrayList.get(i));
+			}
+			
+			if (result == false) {
+				model.addAttribute("msg", "성적입력에 실패했습니다.");
+				model.addAttribute("return_mapping", "score_add_academy");
+				return "eka_manager/msg_alert";
+			} else {
+				model.addAttribute("msg", "성적입력을 완료했습니다.");
+				model.addAttribute("return_mapping", "score_add_academy");
+				return "eka_manager/msg_alert";
+			}
+			
 		} else {
-			model.addAttribute("msg", "성적입력을 완료했습니다.");
-			model.addAttribute("return_mapping", "score_add_academy");
-			return "eka_manager/msg_alert";
+			
+			//update하기
+			boolean result = false;
+			for (int i=0; i <nameList.length;i++) {
+				result = sservice.updateScore(atcid, nameList[i], sidArrayList.get(i), testScoreArrayList.get(i));
+			}
+			
+			if (result == false) {
+				model.addAttribute("msg", "성적수정 실패했습니다.");
+				model.addAttribute("return_mapping", "score_add_academy");
+				return "eka_manager/msg_alert";
+			} else {
+				model.addAttribute("msg", "성적수정을 완료했습니다.");
+				model.addAttribute("return_mapping", "score_add_academy");
+				return "eka_manager/msg_alert";
+			}
 		}
+		
 		
 	}
 	

@@ -51,7 +51,6 @@ public class FindLectureController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		// common
 		model.addAttribute("subject", tservice.findSubjectCategory());
@@ -92,6 +91,18 @@ public class FindLectureController {
 			
 			System.out.println("전체검색으로 이동");
 			model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+			return "eka_manager/lecture_edit";
+		}
+		
+		// 전체조건으로 검색
+		if (!subject.equals("all") && !teacher.equals("all") 
+				&& !startLectureDate.equals("") && !finishLectureDate.equals("")
+				&& !startLectureTime.equals("") && !finishLectureTime.equals("")
+				&& !lectureDay.equals("all") && !name.equals("")
+				) {
+			
+			model.addAttribute("lecture", lservice.findAcademyLectureByAll(academy, subject, teacher, 
+					startLectureDate, finishLectureDate, startLectureTime, finishLectureTime, lectureDay, name));
 			return "eka_manager/lecture_edit";
 		}
 		
@@ -138,7 +149,7 @@ public class FindLectureController {
 		}
 		
 		
-		// 요일로 검색 **
+		// 요일로 검색 
 		if (subject.equals("all") && teacher.equals("all") 
 				&& startLectureDate.equals("") && finishLectureDate.equals("")
 				&& startLectureTime.equals("") && finishLectureTime.equals("")

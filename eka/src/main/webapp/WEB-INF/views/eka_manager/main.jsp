@@ -109,56 +109,6 @@
                     /* {
                     title: 'All Day Event',
                     start: '2022-07-01'
-                    },
-                    {
-                    title: 'Long Event',
-                    start: '2022-07-07',
-                    end: '2022-07-10'
-                    },
-                    {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2022-07-09T16:00:00'
-                    },
-                    {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2022-07-16T16:00:00'
-                    },
-                    {
-                    title: 'Conference',
-                    start: '2022-07-11',
-                    end: '2022-07-13'
-                    },
-                    {
-                    title: 'Meeting',
-                    start: '2022-07-12T10:30:00',
-                    end: '2022-07-12T12:30:00'
-                    },
-                    {
-                    title: 'Lunch',
-                    start: '2022-07-12T12:00:00'
-                    },
-                    {
-                    title: 'Meeting',
-                    start: '2022-07-12T14:30:00'
-                    },
-                    {
-                    title: 'Happy Hour',
-                    start: '2022-07-12T17:30:00'
-                    },
-                    {
-                    title: 'Dinner',
-                    start: '2022-07-12T20:00:00'
-                    },
-                    {
-                    title: 'Birthday Party',
-                    start: '2022-07-13T07:00:00'
-                    },
-                    {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2022-07-28'
                     } */
                 ]
             });
@@ -179,7 +129,7 @@
     	
     	#calendar {
     		/* height: 100%; */
-    		height: 700px;
+    		height: 650px;
     		margin: 0 10px 0 10px;
     	}
     
@@ -230,8 +180,12 @@
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                           <i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
+                    <div class="card shadow mb-4">
+                <div class="card-body">
                     <div id="calendar-wrap">
                     	<div id='calendar'></div>
+                    </div>
+                    </div>
                     </div>
 
                 </div>

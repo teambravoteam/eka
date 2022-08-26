@@ -17,6 +17,7 @@ public class TestInfoRowMapper implements RowMapper<ScoreCategory> {
 		test.setAtcid(rs.getLong("atcid"));
 		test.setLectureName(rs.getString("lectureName"));
 		test.setTestDate(rs.getString("testDate"));
+		test.setTestName(rs.getString("testName"));
 		return test;
 	}
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.lecture.command.LectureStudentCommand;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.academy.lecture.repository.LectureDao;
 import com.varxyz.eka.student.domain.Student;
@@ -76,6 +77,10 @@ public class LectureServiceImpl {
 		return ldao.findLectureStudentList(lid);
 	}
 	
+	public List<LectureStudentCommand> findLectureStudentList2(long lid) {
+		return ldao.findLectureStudentList2(lid);
+	}
+	
 	// 강좌 수강생 삭제
 	public boolean deleteLectureStudent(long lid, long sid) {
 		try {
@@ -136,6 +141,14 @@ public class LectureServiceImpl {
 	//임시) 학생이름으로 학생 찾기
 	public List<Student> findStudentByName(Academy academy, String name) {
 		return ldao.findStudentByName(academy, name);
+	}
+	
+	// 전체조건으로 검색
+	public List<Lecture> findAcademyLectureByAll(Academy academy, String subject, String teacher, String startLectureDate,
+			String finishLectureDate, String startLectureTime, String finishLectureTime, String lectureDay,
+			String name) {
+		return ldao.findAcademyLectureByAll(academy, subject, teacher, startLectureDate, finishLectureDate, startLectureTime, finishLectureTime,
+				lectureDay, name);
 	}
 
 

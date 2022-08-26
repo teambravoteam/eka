@@ -76,8 +76,6 @@ public class LectureStudentEditController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		
-		
 		//이미등록된 학생 거르는거
 		List<Student> student = lservice.checkLectureStudent(aid, lid, sid);
 		if (student.isEmpty()) {

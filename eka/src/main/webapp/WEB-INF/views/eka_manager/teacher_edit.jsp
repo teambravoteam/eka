@@ -107,9 +107,9 @@ body {
 								<tr>
 									<th>외국인여부</th>
 									<td>
-									  <input type="checkbox" class="checkbox" name="foreigner" value="true">외국인
-									  <input type="checkbox" class="checkbox" name="foreigner" value="false">내국인
-									  <input type="checkbox" class="checkbox" name="foreigner" value="all" checked>전체
+									  <input type="radio" class="radio" name="foreigner" value="외국인">외국인
+									  <input type="radio" class="radio" name="foreigner" value="내국인">내국인
+									  <input type="radio" class="radio" name="foreigner" value="all" checked>전체
 									  
 									  </td>
 									  <!-- js로 외국인 check하면 내국인 체크 풀리게 -->
@@ -143,6 +143,7 @@ body {
 								<tbody>
 								<c:forEach var="teacher_list" items="${teacher_list}" varStatus="status">
 								<tr>
+								<form action="teacher_delete" method="post">
 									<td>${status.index + 1}</td>
 									<td>${teacher_list.name}</td>
 									<td>${teacher_list.subject}</td>
@@ -155,11 +156,15 @@ body {
 									<td style="display:none">${teacher_list.image}</td>
 									<td style="display:none">${teacher_list.tid}</td>
 									<td style="display:none">${teacher_list.academy.aid}</td>
+									<input type="hidden" name="tid" value="${teacher_list.tid}">
 									<td><button type="button" name="button"
 										class="btn btn-light btn-sm detailBtn">보기</button>
 										<button type="button" name="button"
 										class="btn btn-light btn-sm editBtn">수정</button>
+										<!-- <button type="submit" name="submit"
+										class="btn btn-light btn-sm editBtn">삭제</button> -->
 									</td>
+								</form>
 								</tr>
 								</c:forEach>
 							</tbody>

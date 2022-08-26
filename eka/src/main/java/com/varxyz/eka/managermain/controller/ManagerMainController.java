@@ -34,7 +34,6 @@ public class ManagerMainController {
 	@GetMapping("eka_manager/main")
 	public String managerMain(Model model, HttpSession session) {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
-		System.out.println("am : " + am);
 		
 		if(am == null) {
 			model.addAttribute("msg", "로그인 후 접근 가능합니다.");

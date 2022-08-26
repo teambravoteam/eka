@@ -46,14 +46,15 @@ public class TeacherServiceImpl {
 	}
 	
 	// 강사 삭제하기
-//	public boolean deleteTeacher(Teacher teacher) {
-//		try {
-//			dao.updateTeacher(TeacherListCommand);
-//			return true;
-//		} catch (Exception e) {			
-//			return false;
-//		}
-//	}
+	public boolean deleteTeacher(long tid) {
+		try {
+			dao.deleteTeacher(tid);
+			return true;
+		} catch (Exception e) {	
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	// 강사 전체 조회
 	public List<Teacher> findAllAcademyTeacher(Academy academy) {
@@ -84,5 +85,37 @@ public class TeacherServiceImpl {
 	public List<Teacher> findTeacherByTid(Academy academy, long teacherId) {
 		return dao.findTeacherByTid(academy, teacherId);
 	}
+	
+	// 전체조건
+	public List<Teacher> findTeacherByAll(Academy academy, String subject, String gender, String foreigner,
+			String name) {
+		return dao.findTeacherByAll(academy, subject, gender,foreigner,name );
+	}
+	
+	public List<Teacher> findTeacherBySubjectGender(Academy academy, String subject, String gender) {
+		return dao.findTeacherBySubjectGender(academy, subject, gender);
+	}
+
+	public List<Teacher> findTeacherBySubjectForeign(Academy academy, String subject, String foreigner) {
+		return dao.findTeacherBySubjectForeign(academy, subject, foreigner);
+	}
+
+	public List<Teacher> findTeacherBySubjectName(Academy academy, String subject, String name) {
+		return dao.findTeacherBySubjectName(academy, subject, name);
+	}
+
+	public List<Teacher> findTeacherByGenderForeign(Academy academy, String gender, String foreigner) {
+		return dao.findTeacherByGenderForeign(academy, gender, foreigner);
+	}
+
+	public List<Teacher> findTeacherByGenderName(Academy academy, String gender, String name) {
+		return dao.findTeacherByGenderName(academy, gender, name);
+	}
+
+	public List<Teacher> findTeacherByForeignName(Academy academy, String foreigner, String name) {
+		return dao.findTeacherByForeignName(academy, foreigner, name);
+	}
+
+	
 
 }

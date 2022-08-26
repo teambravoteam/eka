@@ -47,7 +47,6 @@ public class EditTeacherController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
@@ -60,8 +59,6 @@ public class EditTeacherController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		
-		System.out.println(teacher);
 		teacher.setAcademyId(1);
 		boolean result = tservice.updateTeacher(teacher);
 		
@@ -79,14 +76,22 @@ public class EditTeacherController {
 	}
 	
 	// 강사 삭제하기
-	@GetMapping("eka_manager/teacher_delete")
-	public String teacherDelete(String delete, Model model, HttpSession session) {
+	@PostMapping("eka_manager/teacher_delete")
+	public String teacherDelete(String delete, Model model, HttpSession session, @RequestParam long tid) {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
-		
-		System.out.println(delete);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
-		return "eka_manager/teacher_edit";
+		
+		boolean result = tservice.deleteTeacher(tid);
+		if (result == false) {
+			model.addAttribute("msg", "삭제가 실패했습니다.");
+			model.addAttribute("return_mapping", "teacher_edit");
+			return "eka_manager/msg_alert";
+		} else {
+			model.addAttribute("msg", "삭제가 완료되었습니다.");
+			model.addAttribute("return_mapping", "teacher_edit");
+			return "eka_manager/msg_alert";
+		}
 	}
 	
 	// 강사 검색하기
@@ -106,6 +111,10 @@ public class EditTeacherController {
 				&& foreigner.equals("all") && name.equals("")) {
 			model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
 		}
+		if (!subject.equals("all") && !gender.equals("all") && !foreigner.equals("all") && !name.equals("")) {
+			teacher_list = tservice.findTeacherByAll(academy, subject, gender, foreigner, name);
+			model.addAttribute("teacher_list", teacher_list);
+		}
 		
 		// 과목으로만 검색
 		if (!subject.equals("all") && gender.equals("all") 
@@ -120,7 +129,6 @@ public class EditTeacherController {
 			}
 			
 			model.addAttribute("teacher_list", teacher_list);
-			System.out.println(teacher_list);
 		}
 
 		// 성별로 검색
@@ -156,6 +164,37 @@ public class EditTeacherController {
 			if (teacher_list.isEmpty()) {
 				return "eka_manager/error/teacher_add_error";
 			}
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		
+		// 과목, 성별
+		if (!subject.equals("all") && !gender.equals("all") && foreigner.equals("all") && name.equals("")) {
+			teacher_list = tservice.findTeacherBySubjectGender(academy, subject, gender);
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		// 과목, 외국인
+		if (!subject.equals("all") && gender.equals("all") && !foreigner.equals("all") && name.equals("")) {
+			teacher_list = tservice.findTeacherBySubjectForeign(academy, subject,foreigner);
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		// 과목, 이름
+		if (!subject.equals("all") && gender.equals("all") && foreigner.equals("all") && !name.equals("")) {
+			teacher_list = tservice.findTeacherBySubjectName(academy, subject, name);
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		// 성별, 외국인
+		if (subject.equals("all") && !gender.equals("all") && !foreigner.equals("all") && name.equals("")) {
+			teacher_list = tservice.findTeacherByGenderForeign(academy, gender, foreigner);
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		// 성별, 이름
+		if (subject.equals("all") && !gender.equals("all") && foreigner.equals("all") && !name.equals("")) {
+			teacher_list = tservice.findTeacherByGenderName(academy,gender,name);
+			model.addAttribute("teacher_list", teacher_list);
+		}
+		// 외국인, 이름
+		if (subject.equals("all") && gender.equals("all") && !foreigner.equals("all") && !name.equals("")) {
+			teacher_list = tservice.findTeacherByForeignName(academy,foreigner, name);
 			model.addAttribute("teacher_list", teacher_list);
 		}
 		

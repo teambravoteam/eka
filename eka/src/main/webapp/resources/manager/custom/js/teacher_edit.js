@@ -12,20 +12,21 @@ $(function() {
 
 		console.log(tr.text());
 
-		var name = td.eq(1).text();
-		var subject = td.eq(2).text();
-		var gender = td.eq(3).text();
-		var foreigner = td.eq(4).text();
-		var ssn = td.eq(5).text();
-		var phone = td.eq(6).text();
-		var education = td.eq(7).text();
-		var career = td.eq(8).text();
-		var image = td.eq(9).text();
-		var tid = td.eq(10).text();
-		var aid = td.eq(11).text();
+		var name = td.eq(2).text();
+		var subject = td.eq(3).text();
+		var gender = td.eq(4).text();
+		var foreigner = td.eq(5).text();
+		var ssn = td.eq(6).text();
+		var phone = td.eq(7).text();
+		var education = td.eq(8).text();
+		var career = td.eq(9).text();
+		var image = td.eq(10).text();
+		var tid = td.eq(11).text();
+		var aid = td.eq(12).text();
 
 		var imagesrc = "../resources/teacher_img/" + image;
-
+		console.log("img : " + image);
+		
 		str += "<table><tr><td rowspan='9'><img class='resultImg' style='width:100px;height:100px' src='" + imagesrc + "'></td>"
 			+ "<td><tr><th>이름</th>"
 			+ "<td>" + name + "</td></tr>"
@@ -58,20 +59,18 @@ $(function() {
 		var td = tr.children();
 		//console.log(tr.text());
 		
-		var name = td.eq(1).text();
-		var subject = td.eq(2).text();
-		var gender = td.eq(3).text();
-		var foreigner = td.eq(4).text();
-		var ssn = td.eq(5).text();
-		var phone = td.eq(6).text();
-		var education = td.eq(7).text();
-		var career = td.eq(8).text();
-		var image = td.eq(9).text();
-		var tid = td.eq(10).text();
-		var aid = td.eq(11).text();
+		var name = td.eq(2).text();
+		var subject = td.eq(3).text();
+		var gender = td.eq(4).text();
+		var foreigner = td.eq(5).text();
+		var ssn = td.eq(6).text();
+		var phone = td.eq(7).text();
+		var education = td.eq(8).text();
+		var career = td.eq(9).text();
+		var image = td.eq(10).text();
+		var tid = td.eq(11).text();
+		var aid = td.eq(12).text();
 		var imagesrc = "../resources/teacher_img/" + image;
-		
-		var deleteBtn = "'teacher_delete'";
 
 		str += '<form class="" action="teacher_edit" method="post">'
 			+ "<table><tr><td rowspan='9'><img class='resultImg' style='width:100px;height:100px' src='" + imagesrc + "'></td>"
@@ -95,14 +94,7 @@ $(function() {
 			+ "<input type='hidden' name='aid' value='" + aid + "'>"
 			+ "<input type='hidden' name='image' value='" + image + "'>"
 			+ '<button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">저장하기</button>'
-			+ '<button type="button" name="delete" onclick="location.href=' + deleteBtn + '"'
-			+ 'class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"'
-			+ 'value="' + tid +'"'
-			+ '>삭제하기</button>'
 			+ "</form>";
-			+ '<form class="" action="teacher_delete" method="post">'
-			+ "<input type='hidden' name='tid' value='" + tid + "'>"
-			+ "</form>"
 			
 			
 		// button하나 더 만들어서 tid hidden해두고 삭제버튼만들기

@@ -28,7 +28,6 @@ public class TeacherDao {
 		String sql = "INSERT INTO Teacher(academyId, name, gender, ssn, phone, subject, "
 				+ " education, career, image, foreigner)" + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		// mysql false=0, true=1
 		jdbcTemplate.update(sql, teacher.getAcademy().getAid(), teacher.getName(), teacher.getGender(),
 				teacher.getSsn(), teacher.getPhone(), teacher.getSubject(), teacher.getEducation(), teacher.getCareer(),
 				teacher.getImage(), teacher.getForeigner());
@@ -53,8 +52,9 @@ public class TeacherDao {
 	}
 	
 	// 강사 삭제하기
-	public void deleteTeacher(Teacher teacher) {
-		String sql="DELECT FROM WHERE";
+	public void deleteTeacher(long tid) {
+		String sql="DELETE FROM Teacher WHERE tid = ?";
+		jdbcTemplate.update(sql, tid);
 	}
 
 	// 과목으로 강사 조회
@@ -93,6 +93,46 @@ public class TeacherDao {
 	public List<SubjectCategory> findSubjectCategory() {
 		String sql = "SELECT * FROM SubjectCategory";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<SubjectCategory>(SubjectCategory.class));
+	}
+
+	public List<Teacher> findTeacherByAll(Academy academy, String subject, String gender, String foreigner,
+			String name) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND name LIKE ? AND subject =? AND foreigner=?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(), academy.getAid(), likeName, subject, foreigner);
+	}
+
+	public List<Teacher> findTeacherBySubjectGender(Academy academy, String subject, String gender) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND subject =? AND gender=?";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),subject, gender);
+	}
+
+	public List<Teacher> findTeacherBySubjectForeign(Academy academy, String subject, String foreigner) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND subject =? AND foreigner=?";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),subject, foreigner);
+	}
+
+	public List<Teacher> findTeacherBySubjectName(Academy academy, String subject, String name) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND subject =? AND name LIKE ?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),subject, likeName);
+	}
+
+	public List<Teacher> findTeacherByGenderForeign(Academy academy, String gender, String foreigner) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND gender =? AND foreigner=?";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),gender, foreigner);
+	}
+
+	public List<Teacher> findTeacherByGenderName(Academy academy, String gender, String name) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND gender =? AND name LIKE ?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),gender, likeName);
+	}
+
+	public List<Teacher> findTeacherByForeignName(Academy academy, String foreigner, String name) {
+		String sql = "SELECT * FROM Teacher WHERE academyId=? AND foreigner =? AND name LIKE ?";
+		String likeName = "%"+name+"%";
+		return jdbcTemplate.query(sql, new TeacherRowMapper(),academy.getAid(),foreigner, likeName);
 	}
 
 }

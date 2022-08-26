@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
+import com.varxyz.eka.academy.lecture.command.LectureStudentCommand;
 import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.student.domain.Student;
 
@@ -114,6 +115,14 @@ public class LectureDao {
 		return jdbcTemplate.query(sql, new LectureStudentRowMapper(), lid);
 	}
 	
+	//score=0
+	public List<LectureStudentCommand> findLectureStudentList2(long lid) {
+		String sql = "SELECT * FROM LectureStudent a JOIN Student b "
+				+ " ON a.studentId = b.sid "
+				+ " WHERE a.lectureId = ?";
+		return jdbcTemplate.query(sql, new LectureStudentRowMapper2(), lid);
+	}
+	
 	
 	// 강좌별 수강생 삭제
 	public void deleteLectureStudent(long lid, long sid) {
@@ -156,6 +165,15 @@ public class LectureDao {
 		String sql = "SELECT * FROM Lecture a JOIN LectureStudent b ON a.lid = b.lectureId"
 				+ " WHERE b.studentId = ?";
 		return jdbcTemplate.query(sql, new LectureListRowMapper(), sid);
+	}
+
+	public List<Lecture> findAcademyLectureByAll(Academy academy, String subject, String teacher,
+			String startLectureDate, String finishLectureDate, String startLectureTime, String finishLectureTime,
+			String lectureDay, String name) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND subject=? AND teacher =? AND "
+				+ " startLectureTime =? AND finishLectureTime=? AND startLectureTime=? AND finishLectureTime=? "
+				+ " AND lectureDay=? AND name=?";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), startLectureTime, finishLectureTime);
 	}
 	
 	

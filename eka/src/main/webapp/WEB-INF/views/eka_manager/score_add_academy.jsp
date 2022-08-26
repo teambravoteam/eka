@@ -136,8 +136,8 @@ body {
                       </tr>
                     </thead>
                     <tbody>
-                    <form class="" action="add_score_insert" method="post">
                     <c:forEach var="testList" items="${testList}" varStatus="status">
+                    <form class="" action="add_score_insert" method="post">
                       <tr>
                         <td>${status.index + 1}</td>
                         <td>${testList.lectureName}</td>
@@ -151,8 +151,8 @@ body {
                           <button type="submit" name="button" class="btn btn-light btn-sm">입력</button>
                         </td>
                       </tr>
-                      </c:forEach>
                      </form>
+                      </c:forEach>
                     </tbody>
                   </table>
                 </div>
@@ -188,7 +188,7 @@ body {
                         <input type="hidden" name="sid" value="${lectureStudentList.sid}">
                         <td>${lectureStudentList.name}</td>
                         <input type="hidden" name="name" value="${lectureStudentList.name}">
-                        <td><input type="number" name="testScore" class="score"></td>
+                        <td><input type="number" name="testScore" class="score" value="${lectureStudentList.score}"></td>
                       </tr>
                      </c:forEach>
                     </tbody>

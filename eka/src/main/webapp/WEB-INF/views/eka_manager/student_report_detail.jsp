@@ -108,7 +108,7 @@ body {
                       <input type="hidden" name="lid" value=${lecture.lid}>
                       <input type="hidden" name="sid" value=${sid}>
                       <input type="hidden" name="name" value=${name}>
-                      <td><button type="submit" name="button"
+                      <td><button type="submit" name="button" id="chart"
                              class="btn btn-light btn-sm">조회</button></td>
                     </tr>
                     </form>
@@ -174,18 +174,30 @@ body {
                       <th>점수</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="testTable">
                   <c:forEach var="score" items="${score}" varStatus="status">
                     <tr>
                       <td>${status.index +1}</td>
-                      <td>${score.lectureName}</td>
-                      <td>${score.testName}</td>
-                      <td>${score.testDate}</td>
-                      <td>${score.testScore}</td>
+                      <td id="lectureName">${score.lectureName}</td>
+                      <td id="testName">${score.testName}</td>
+                      <td id="testDate">${score.testDate}</td>
+                      <td id="testScore">${score.testScore}</td>
                     </tr>
                     </c:forEach>
                   </tbody>
                 </table>
+                <!-- Bar Chart -->
+                            <%-- <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <!-- <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6> -->
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                    
+                                </div>
+                            </div> --%>
             </div>
             </div>
           </div>
@@ -232,8 +244,7 @@ body {
 	<script src="../resources/manager/vendor/chart.js/Chart.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="../resources/manager/js/demo/chart-area-demo.js"></script>
-	<script src="../resources/manager/js/demo/chart-pie-demo.js"></script>
+	<script src="../resources/manager/js/demo/chart-bar-demo-test.js"></script>
 
 </body>
 
