@@ -8,11 +8,18 @@ $(".bt-tab").on("click", function() {
 $(".bt-sec-header").on("click", function() {
   $(this).parent().toggleClass("close");
 });
-$(".bt-apply").on("click", function() {
-  openModal("apply", $("#uaid").val(), function() {
-    $("#modal-wrap").addClass("width-s");
-  });
+
+$("#onBtn").on("click", function() {
+	$(".modal-back").addClass('on');
+	var con = document.getElementById("modal-wrap");
+	if (con.style.display == "none") {
+	  con.style.display = "block";
+	}
 });
+$(".bt-icon.close").on("click", function() {
+	$(".modal-back").removeClass('on');
+})
+
 $(".bt-share").on("click", function() {
   if (typeof webkit != 'undefined' && typeof webkit.messageHandlers != 'undefined' && typeof webkit.messageHandlers.HybridBridge != 'undefined') {
     webkit.messageHandlers.HybridBridge.postMessage({

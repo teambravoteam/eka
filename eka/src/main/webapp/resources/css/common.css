@@ -1076,6 +1076,30 @@ select.small {
 	background-color: rgba(0, 0, 0, 0.6)
 }
 
+.modal-back {
+	content: "";
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+}
+
+.modal-back.on {
+	content: "";
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: block;
+}
+
 #header {
 	position: -webkit-sticky;
 	position: sticky;
@@ -3211,7 +3235,7 @@ select.small {
 
 #modal-wrap {
 	position: fixed;
-	top: 8vh;
+	top: 150px;
 	left: 20px;
 	right: 20px;
 	max-width: 980px;

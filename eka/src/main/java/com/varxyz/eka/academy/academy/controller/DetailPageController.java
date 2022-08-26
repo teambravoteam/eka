@@ -13,6 +13,7 @@ import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
+import com.varxyz.eka.auth.domain.EkaUser;
 
 @Controller
 public class DetailPageController {
@@ -29,13 +30,23 @@ public class DetailPageController {
 		long aid = Integer.parseInt(academyAid);
 		Academy academy = asservice.findAcademyByAid(aid);
 		long checkManager = 0;
-
+		long checkStudent = 0;
+		
+		// 원장 로그인여부 체크
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		if (am == null) {
 			checkManager = 1;
 		} else {
 			checkManager = 0;
 		}
+		
+		// 학생 로그인여부 체크
+//		EkaUser as = (EkaUser) session.getAttribute("user");
+//		if (as == null) {
+//			checkStudent = 1;
+//		} else {
+//			checkStudent = 0;
+//		}
 
 		System.out.println(asservice.findAcademyByAid(academy.getAid()));
 		System.out.println(tservice.findAllAcademyTeacher(academy));
@@ -45,6 +56,7 @@ public class DetailPageController {
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("checkManager", checkManager);
+//		model.addAttribute("checkStudent", checkStudent);
 		return "eka_main/academy/detail_page";
 	}
 }

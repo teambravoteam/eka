@@ -77,7 +77,7 @@
 								<div class="flex-shrink-0 flex-glow-0 bt-wrap">
 									<input type="hidden" name="academyAid" value="${academy.aid}">
 									<c:if test="${checkManager == 1}">
-										<button type="button" class="bt-main point bt-apply" onclick=>상담신청</button>
+										<button id="onBtn" type="button" class="bt-main point bt-apply">상담신청</button>
 									</c:if>
 									<c:if test="${checkManager == 0}">
 										<button type="button" class="bt-main point bt-apply" onclick="location.href='../eka_main/add_academy'">학원수정</button>
@@ -399,23 +399,110 @@
 
 		<%@ include file="../common/footer.jsp"%>
 	</div>
-	<div id="modal-wrap" class="modal-wrap">
-		<div class="modal-head">
-			<button type="button" class="bt-icon close float-right">닫기</button>
-			<h3 class="modal-title"></h3>
-			<span class="modal-guide"></span>
+	<!-- 로그인 안되어있을때 Modal 시작 -->
+	<%-- <c:if test="${checkManager == 0}"> --%>
+		<div class="modal-back">
+			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
+			    <div class="modal-head">
+			        <button type="button" class="bt-icon close float-right">닫기</button>
+			        <h3 class="modal-title">상담신청</h3>
+			        <span class="modal-guide"></span>
+			    </div>
+			    <div class="modal-body">
+				    <div id="academy-register-wrap">
+					    <form name="???" action="???" method="POST">
+					        <input type="hidden" name="uaid" value="40943">
+					        <input type="hidden" name="parentId" value="">
+					        <!-- 학생정보 시작 -->
+					        <div class="student-wrap">
+					            <h3>학생정보</h3>
+					            <div class="border-wrap info-wrap">
+					                <ul class="input-wrap">
+					                    <li>
+					                        <label for="studentName" class="label-text">이름</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentName" id="studentName" class="input-text" value="" placeholder="이름을 입력해주세요">
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <label for="studentPhone" class="label-text">휴대폰번호</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentName" id="studentName" class="input-text" value="" placeholder="휴대폰번호를 입력해주세요 (-)포함">
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <label for="studentSchool" class="label-text">상담내용</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentSchool" id="studentSchool" class="input-text" value="">
+					                        </div>
+					                    </li>
+					                </ul>
+					            </div>
+					        </div>
+					        <!-- 학생정보 끝 -->
+					        <div class="bt-modal-wrap">
+					            <button type="submit" class="bt-label color-point">등록하기</button>
+					        </div>
+					    </form>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="modal-body"></div>
-	</div>
-	<div id="modal-filter-wrap" class="modal-wrap">
-		<div class="modal-head">
-			<button type="button" class="bt-icon close float-right">닫기</button>
-			<h3 class="modal-title">필터선택</h3>
+	<%-- </c:if> --%>
+	<!-- 로그인 안되어있을때 Modal 끝 -->
+	
+	<!-- 로그인 되어있을때 Modal 시작 -->
+	<%-- <c:if test="${checkManager == 1}">
+		<div class="modal-back">
+			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
+			    <div class="modal-head">
+			        <button type="button" class="bt-icon close float-right">닫기</button>
+			        <h3 class="modal-title">상담신청</h3>
+			        <span class="modal-guide"></span>
+			    </div>
+			    <div class="modal-body">
+				    <div id="academy-register-wrap">
+					    <form name="???" action="???" method="POST">
+					        <input type="hidden" name="uaid" value="40943">
+					        <input type="hidden" name="parentId" value="">
+					        <!-- 학생정보 시작 -->
+					        <div class="student-wrap">
+					            <h3>학생정보</h3>
+					            <div class="border-wrap info-wrap">
+					                <ul class="input-wrap">
+					                    <li>
+					                        <label for="studentName" class="label-text">이름</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${checkStudent.name}" placeholder="이름을 입력해주세요">
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <label for="studentPhone" class="label-text">휴대폰번호</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${checkStudent.phone}" placeholder="휴대폰번호를 입력해주세요 (-)포함">
+					                        </div>
+					                    </li>
+					                    <li>
+					                        <label for="studentSchool" class="label-text">상담내용</label>
+					                        <div class="flex-wrap">
+					                            <input type="text" name="studentSchool" id="studentSchool" class="input-text" value="">
+					                        </div>
+					                    </li>
+					                </ul>
+					            </div>
+					        </div>
+					        <!-- 학생정보 끝 -->
+					        <div class="bt-modal-wrap">
+					            <button type="submit" class="bt-label color-point">등록하기</button>
+					        </div>
+					    </form>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="modal-body"></div>
-	</div>
-	<div id="ajax-loading" style="display: none;"></div>
-
+	</c:if> --%>
+	<!-- 로그인 되어있을때 Modal 끝 -->
+	
 	<script type="text/javascript" src="<c:url value='/resources/js/common.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resources/js/detail.js'/>"></script>
 </body>
