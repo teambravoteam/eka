@@ -220,6 +220,8 @@ $(function() {
           $("#mainAddr").val(result[0].address.address_name);
           $("#mainLat").val(lat);
           $("#mainLon").val(lon);
+          $("#findLat").val(lat);
+          $("#findLon").val(lon);
 
         } else {
           console.log(result[0].road_address.address_name);
@@ -227,6 +229,8 @@ $(function() {
           $("#mainAddr").val(result[0].road_address.address_name);
           $("#mainLat").val(lat);
           $("#mainLon").val(lon);
+          $("#findLat").val(lat);
+          $("#findLon").val(lon);
         }
       }
     }
@@ -249,6 +253,8 @@ $(function() {
           $("#mainAddr").val(result[0].address.address_name);
           $("#mainLat").val(lat);
           $("#mainLon").val(lon);
+          $("#findLat").val(lat);
+          $("#findLon").val(lon);
 
         } else {
           console.log(result[0].road_address.address_name);
@@ -256,6 +262,8 @@ $(function() {
           $("#mainAddr").val(result[0].road_address.address_name);
           $("#mainLat").val(lat);
           $("#mainLon").val(lon);
+          $("#findLat").val(lat);
+          $("#findLon").val(lon);
         }
       }
     }

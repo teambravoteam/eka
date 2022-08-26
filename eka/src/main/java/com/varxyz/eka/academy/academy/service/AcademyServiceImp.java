@@ -65,4 +65,9 @@ public class AcademyServiceImp implements AcademyService {
 		return academyDao.findStudentsByEkaUserId(ekaUserId);
 	}
 
+	@Override
+	public List<Academy> findAcademyByName(String name) {
+		return academyDao.findAcademyByName(name);
+	}
+
 }

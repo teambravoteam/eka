@@ -107,14 +107,14 @@ public class AcademyController {
 
 		return mav;
 	}
-	
+
 	@PostMapping("/eka_main/ekaUser_list")
 	public ModelAndView ekaUser_list(HttpServletResponse response, HttpServletRequest request) {
-		
+
 		String ekauserId = request.getParameter("ekauserId");
 
 		ModelAndView mav = new ModelAndView();
-		
+
 		List<Student> academyList = academyService.findStudentsByEkaUserId(ekauserId);
 		List<Long> academyIdList = academyList.stream().map(Student::getAcademyId).collect(Collectors.toList());
 		List<String> academyNameList = new ArrayList<String>();
@@ -160,6 +160,43 @@ public class AcademyController {
 	@GetMapping("eka_main/add_academy")
 	public String addacademy() {
 		return "eka_main/add_academy";
+	}
+
+	@PostMapping("/eka_main/find_academy")
+	public ModelAndView find_academy(HttpSession session, HttpServletRequest request) {
+		String keyword = request.getParameter("keyword");
+		String sLat = request.getParameter("lat");
+		String sLon = request.getParameter("lon");
+		
+		ModelAndView mav = new ModelAndView();
+
+		List<Academy> allAcademyList = academyService.findAcademyByName(keyword);
+
+		List<Long> allAidList = allAcademyList.stream().map(Academy::getAid).collect(Collectors.toList());
+		System.out.println("allAidList 완료");
+		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
+		System.out.println("allNameList 완료");
+		List<String> allAddressList = allAcademyList.stream().map(Academy::getAddress).collect(Collectors.toList());
+		System.out.println("allAddressList 완료");
+		List<String> allDetailAddressList = allAcademyList.stream().map(Academy::getDetailaddress)
+				.collect(Collectors.toList());
+		List<String> allLatList = allAcademyList.stream().map(Academy::getLat).collect(Collectors.toList());
+		System.out.println("allLatList 완료");
+		List<String> allLonList = allAcademyList.stream().map(Academy::getLon).collect(Collectors.toList());
+		System.out.println("allLonList 완료");
+
+		mav.addObject("user_lat", sLat);
+		mav.addObject("user_lon", sLon);
+		mav.addObject("allAidList", allAidList);
+		mav.addObject("allNameList", allNameList);
+		mav.addObject("allAddressList", allAddressList);
+		mav.addObject("allLatList", allLatList);
+		mav.addObject("allLonList", allLonList);
+		mav.addObject("allDetailAddressList", allDetailAddressList);
+		mav.addObject("keyword", keyword);
+		mav.setViewName("eka_main/find_academy");
+
+		return mav;
 	}
 
 	@GetMapping("eka_main/list_academy")
@@ -295,7 +332,7 @@ public class AcademyController {
 		academy.setAcademyservice(service);
 		academy.setRunday(runDay);
 		academy.setStartruntime(startRunTime);
-		academy.setEndruntime(endRunTime);	
+		academy.setEndruntime(endRunTime);
 		academy.setConsultableday(coDay);
 		academy.setStartconsultabletime(startCoTime);
 		academy.setEndconsultabletime(endCoTime);

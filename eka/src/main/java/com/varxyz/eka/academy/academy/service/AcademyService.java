@@ -29,4 +29,7 @@ public interface AcademyService {
 
 	//ekauserId로 student 정보 여러개를 가져올 수 있어야 한다
 	public List<Student> findStudentsByEkaUserId(String ekaUserId);
+	
+	//이름 키워드로 여러 학원 리스트를 가져올 수 있어야 한다.
+	public List<Academy> findAcademyByName(String name);
 }

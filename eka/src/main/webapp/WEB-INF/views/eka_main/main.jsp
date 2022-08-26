@@ -35,7 +35,7 @@
 	<div id="wrap" role="main">
 		<header id="header" role="navigation" class="main">
 			<%@ include file="common/header.jsp"%>
-			
+
 		</header>
 
 		<a href="#wrap" class="bt-top hashLink">
@@ -193,8 +193,10 @@
 							</ul>
 						</div>
 					</form>
-					<form action="./academySearch" method="get">
+					<form action="find_academy" method="post">
 						<div class="shadow-wrap big-r flex-wrap flex-center m2">
+							<input type="hidden" id="findLat" name="lat" value="">
+							<input type="hidden" id="findLon" name="lon" value="">
 							<input type="search" class="input-text" name="keyword" placeholder="학원명을 입력주세요." required="">
 							<button type="submit" class="bt-sub green ic-search mgl-12">검색하기</button>
 						</div>
@@ -286,7 +288,7 @@
 				</section>
 			</div>
 		</div>
-		
+
 		<%@ include file="common/footer.jsp"%>
 	</div>
 
@@ -299,7 +301,6 @@
 		<div class="modal-body">
 			<form action="" method="post">
 				<div class="flex-wrap flex-center">
-					<input hidden="hidden" />
 					<input type="text" id="searchText" class="input-text search" name="searchText" placeholder="주소를 입력해주세요.">
 					<button type="button" id="searchCusAddr" class="bt-sub green ic-search mgl-8">주소검색</button>
 					<button type="button" id="searchCusLoc" class="bt-sub point ic-gps mgl-12">내위치</button>

@@ -65,4 +65,9 @@ public class AcademyDao {
 		String sql = "SELECT * FROM Student WHERE ekaUserId = ?;";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class), ekaUserId);
 	}
+	
+	public List<Academy> findAcademyByName(String name) {
+		String sql = "SELECT * FROM Academy WHERE name LIKE ?;";
+		return jdbcTemplate.query(sql, new AcademyRowMapper(), "%" + name + "%");
+	}
 }
