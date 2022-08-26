@@ -1,5 +1,6 @@
 package com.varxyz.eka.attendence.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -21,7 +22,7 @@ public class AttendanceDao {
 	
 	public AttendanceDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-	}    
+	}
 
 	public List<Student> findAcademyStudentsByLecture(Lecture lecture) {
 		String sql = "SELECT * FROM LectureStudent a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? ;";
@@ -39,5 +40,55 @@ public class AttendanceDao {
 				attendence.getChecking(),attendence.getLecture().getLid(),
 				attendence.getAcademy().getAid(),attendence.getRegDate());
 	}
+	
+	public void updateAttendece(Attendence atttendence) {
+		String sql = "UPDATE Attendance SET checking = ?  WHERE aid = ? ;";
+		jdbcTemplate.update(sql,atttendence.getChecking(),atttendence.getAid());
+	}
+
+	public List<Attendence> findAcademyAttendanceByLecture(Lecture lc) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? ;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getLid());
+	}
+
+	// dada
+	public List<Attendence> findAllAcademyStudent(Lecture lc) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE b.academyId = ? ;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getAcademy().getAid());
+	}
+
+	public List<Attendence> findAcademyStudentByStudentName(Lecture lc, String name) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE b.academyId = ? AND b.name = ? ;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getAcademy().getAid(), name);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureDate(Lecture lc, String attendanceDate) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE b.academyId = ? AND a.lectureDate = ?;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getAcademy().getAid(), attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndStudentName(Lecture lc, String studentName) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? AND b.name ;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getLid(),studentName);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndLectureDate(Lecture lc, String attendanceDate) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? AND lectureDate = ? ;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getLid(),attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByStudentNameAndLectureDate(Lecture lc, String studentName,
+			String attendanceDate) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE b.academyId = ? AND b.name = ? AND lectureDate = ?;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getAcademy().getAid(),studentName,attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndStudentNameAndLectureDate(Lecture lc, String studentName,
+			String attendanceDate) {
+		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? AND b.name = ? AND lectureDate = ?;";
+		return jdbcTemplate.query(sql, new AttendanceRowMapper(), lc.getLid(),studentName,attendanceDate);
+	}
+
+	
 
 }

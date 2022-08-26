@@ -42,8 +42,7 @@ public class AttendanceController {
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());		
 		
-		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));		
 		return "eka_manager/attendance";
 	}
 	
@@ -54,8 +53,7 @@ public class AttendanceController {
 
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));	
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));		
 		return "eka_manager/attendance_edit";
 	}
 	
@@ -66,13 +64,47 @@ public class AttendanceController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		Lecture lc = lservice.findLectureIdByLectureName(academy, lectureName);
 		List<AttendanceStudent> lectureStudentList = attendanceService.findAcademyStudentByLecture(lc);
+			
+		
 		session.setAttribute("slecture", lc);
-
 		session.setAttribute("lectureStudentList", lectureStudentList);
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		return "eka_manager/attendance";
+	}
+	
+	@PostMapping("eka_manager/find_lecture_attendance")
+	public String findAttendanceStudent(Model model, HttpSession session, @RequestParam String lectureName,
+			@RequestParam String studentName, @RequestParam String attendanceDate) {
+		//session
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		Lecture lc = lservice.findLectureIdByLectureName(academy, lectureName);
+		
+		List<Attendence> attendanceList = attendanceService.findAcademyAttendanceByLecture(lc);
+		
+
+		if(lectureName == "" && studentName == "" && attendanceDate == "") {
+			attendanceList = attendanceService.findAllAcademyStudent(lc);
+		}else if(lectureName != "" && studentName == "" && attendanceDate ==  "" ) {
+			attendanceList = attendanceService.findAcademyAttendanceByLecture(lc);
+		}else if(lectureName == "" && studentName != "" && attendanceDate ==  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByStudentName(lc, studentName);
+		}else if(lectureName == "" && studentName == "" && attendanceDate !=  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByLectureDate(lc,attendanceDate);
+		}else if(lectureName != "" && studentName != "" && attendanceDate ==  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByLectureAndStudentName(lc,studentName);
+		}else if(lectureName != "" && studentName == "" && attendanceDate !=  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByLectureAndLectureDate(lc,attendanceDate);
+		}else if(lectureName == "" && studentName != "" && attendanceDate !=  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByStudentNameAndLectureDate(lc,studentName,attendanceDate);
+		}else if(lectureName != "" && studentName != "" && attendanceDate !=  "" ) {
+			attendanceList = attendanceService.findAcademyStudentByLectureAndStudentNameAndLectureDate(lc,studentName,attendanceDate);
+		}		
+		
+		session.setAttribute("slecture", lc);		
+		session.setAttribute("attendanceList", attendanceList);				
+		return "eka_manager/attendance_edit";
 	}
 	
 	@PostMapping("eka_manager/attendance_finish")
@@ -100,7 +132,6 @@ public class AttendanceController {
 			attendanceService.addAttendece(att);
 		}
 		session.setAttribute("lectureStudentList", null);
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		return "eka_manager/attendance";
 	}
@@ -120,7 +151,6 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance";
@@ -142,7 +172,6 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance";
@@ -163,9 +192,73 @@ public class AttendanceController {
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
 //		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
-		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		return "eka_manager/attendance";
+	}
+	
+	
+	
+	
+	//// dadwd
+	
+	@PostMapping("eka_manager/attendance_update")
+	public String attendanceUpdate(Model model, HttpSession session, @RequestParam long studentId) {
+		//session
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		List<Attendence> attendanceList = (List<Attendence>) session.getAttribute("attendanceList");
+		for(Attendence a : attendanceList) {
+			if(a.getStudent().getSid() == studentId) {
+				a.setChecking("출석");
+				attendanceService.updateAttendence(a);
+			}
+		}
+		session.setAttribute("attendanceList", attendanceList);
+
+		
+		return "eka_manager/attendance_edit";
+	}
+	
+	@PostMapping("eka_manager/absence_update")
+	public String absenceUpdate(Model model, HttpSession session, @RequestParam long studentId) {
+		//session
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		List<Attendence> attendanceList = (List<Attendence>) session.getAttribute("attendanceList");
+		for(Attendence a : attendanceList) {
+			if(a.getStudent().getSid() == studentId) {
+				a.setChecking("결석");
+				attendanceService.updateAttendence(a);
+			}
+		}
+		session.setAttribute("attendanceList", attendanceList);
+
+		
+		return "eka_manager/attendance_edit";
+	}
+	
+	@PostMapping("eka_manager/late_update")
+	public String lateUpdate(Model model, HttpSession session, @RequestParam long studentId) {
+		//session
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		List<Attendence> attendanceList = (List<Attendence>) session.getAttribute("attendanceList");
+		for(Attendence a : attendanceList) {
+			if(a.getStudent().getSid() == studentId) {
+				a.setChecking("지각");
+				attendanceService.updateAttendence(a);
+			}
+		}
+		session.setAttribute("attendanceList", attendanceList);
+
+		
+		return "eka_manager/attendance_edit";
 	}
 	
 	

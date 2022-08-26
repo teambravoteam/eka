@@ -1,6 +1,6 @@
 package com.varxyz.eka.attendence.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +26,8 @@ public class AttendanceServiceImp implements AttendenceService {
 
 	@Override
 	public boolean updateAttendence(Attendence atttendence) {
-		// TODO Auto-generated method stub
-		return false;
+		attendanceDao.updateAttendece(atttendence);
+		return true;
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class AttendanceServiceImp implements AttendenceService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-     
+
 	@Override
 	public List<Attendence> findAcademyAttendencesByStudentName(Student student) {
 		// TODO Auto-generated method stub
@@ -46,6 +46,11 @@ public class AttendanceServiceImp implements AttendenceService {
 	public List<Attendence> findAcademyAttendencesByLecture(Lecture lecture) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<Attendence> findAcademyAttendanceByLecture(Lecture lc) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyAttendanceByLecture(lc);
 	}
 	
 	public List<Student> findAcademyStudentsByLecture(Lecture lecture){
@@ -68,5 +73,44 @@ public class AttendanceServiceImp implements AttendenceService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	// dad
+
+	public List<Attendence> findAllAcademyStudent(Lecture lc) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAllAcademyStudent(lc);
+	}
+
+	public List<Attendence> findAcademyStudentByStudentName(Lecture lc, String name) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByStudentName(lc,name);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureDate(Lecture lc, String attendanceDate) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByLectureDate(lc,attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndStudentName(Lecture lc, String studentName) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByLectureAndStudentName(lc,studentName);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndLectureDate(Lecture lc, String attendanceDate) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByLectureAndLectureDate(lc,attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByStudentNameAndLectureDate(Lecture lc, String studentName, String attendanceDate) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByStudentNameAndLectureDate(lc,studentName,attendanceDate);
+	}
+
+	public List<Attendence> findAcademyStudentByLectureAndStudentNameAndLectureDate(Lecture lc, String studentName, String attendanceDate) {
+		// TODO Auto-generated method stub
+		return attendanceDao.findAcademyStudentByLectureAndStudentNameAndLectureDate(lc,studentName,attendanceDate);
+	}
+
+	
 
 }

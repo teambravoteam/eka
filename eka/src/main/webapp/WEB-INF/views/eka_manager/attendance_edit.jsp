@@ -73,7 +73,7 @@ body {
 					<!-- 출석부조회 -->
 					<div class="card shadow mb-4">
 						<div class="card-body">
-							<form class="" action="find_lecture_student" method="post">
+							<form class="" action="find_lecture_attendance" method="post">
 								<table id="attendance">
 									<tr>
 										<th>강좌</th>
@@ -84,7 +84,9 @@ body {
 												</c:forEach>
 										</select></td>
 										<th>날짜</th>
-										<td><input type="date" name="" value=""> <!-- js로 오늘 날짜 기본값으로 설정 -->
+										<td><input type="date" name="attendanceDate" value=""></td> <!-- js로 오늘 날짜 기본값으로 설정 -->
+										<th>학생이름</th>
+										<td><input type="text" name="studentName">
 											<button class="btn btn-primary btn-sm submit" type="submit"
 												name="button">
 												<span>조회하기</span>
@@ -124,34 +126,34 @@ body {
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="lectureStudent" items="${lectureStudentList}"
+									<c:forEach var="attendance" items="${attendanceList}"
 										varStatus="status">
 										<tr>
 											<td>${status.count}</td>
-											<td>${lectureStudent.student.name}</td>
+											<td>${attendance.student.name}</td>
 											<td>
-												<form action="attendance_check" method="post"
+												<form action="attendance_update" method="post"
 													style="display: inline-block;">
 													<input type="hidden" name="studentId"
-														value="${lectureStudent.student.sid}">
+														value="${attendance.student.sid}">
 													<button class="btn btn-primary btn-sm submit" type="submit"
 														name="button">
 														<span>출석</span>
 													</button>
 												</form>
-												<form action="absence_check" method="post"
+												<form action="absence_update" method="post"
 													style="display: inline-block;">
 													<input type="hidden" name="studentId"
-														value="${lectureStudent.student.sid}">
+														value="${attendance.student.sid}">
 													<button class="btn btn-primary btn-sm submit" type="submit"
 														name="button">
 														<span>결석</span>
-													</button>    
+													</button>
 												</form>
-												<form action="late_check" method="post"
+												<form action="late_update" method="post"
 													style="display: inline-block;">
 													<input type="hidden" name="studentId"
-														value="${lectureStudent.student.sid}">
+														value="${attendance.student.sid}">
 													<button class="btn btn-primary btn-sm submit" type="submit"
 														name="button">
 														<span>지각</span>
@@ -159,7 +161,7 @@ body {
 												</form>
 
 											</td>
-											<td>${lectureStudent.attendanceType }</td>
+											<td>${attendance.checking }</td>
 											<td><input type="text" name="" value=""></td>
 										</tr>
 									</c:forEach>
