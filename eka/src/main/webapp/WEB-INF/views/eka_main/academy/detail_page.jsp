@@ -131,13 +131,43 @@
 							<div class="academy-class-wrap">
 								<ul class="academy-class-list">
 									<li class="content">
-										<c:forEach var="priceList"
-											items="${academy.priceList.split('/')}">
+										<%-- <c:forEach var="priceList" items="${academy.priceList.split('/')}">
 											<div>
 												<div class="class-title">${priceList.split(":")[0]}</div>
-												<div class="class-time">총 교습시간 : 몰?루</div>
 												<p class="class-summary">수업 정원 : ${academy.personnel}명</p>
 												<div class="class-price">1개월 : ${priceList.split(":")[1]}</div>
+											</div>
+										</c:forEach> --%>
+										<c:forEach var="academylist" items="${lecture}">
+											<div class="content statis-wrap">
+												<table class="statis-table">
+													<tbody>
+														<div class="class-title">강의명	: ${academylist.name}</div>
+														<tr>
+															<td class="td-title">과목</td>
+															<td class="td-content">${academylist.name}</td>
+															<td class="td-title">강사명</td>
+															<td class="td-content">강사명 안나옴 개빡침<%-- ${academylist.teacherNames} --%></td>
+														</tr>
+														<tr>
+															<td class="td-title">강의대상</td>
+															<td class="td-content">${academylist.schoolcate} ${academylist.gradecate}학년</td>
+															<td class="td-title">수업정원</td>
+															<td class="td-content">${academylist.lectureCapacity}명</td>
+														</tr> 
+														<tr>
+															<td class="td-title">강의기간</td>
+															<td class="td-content">${academylist.startLectureDate}~${academylist.finishLectureDate}</td>
+															<td class="td-title">강의시간</td>
+															<td class="td-content">${academylist.startLectureTime.split(":")[0]}:${academylist.startLectureTime.split(":")[1]}
+															~ ${academylist.finishLectureTime.split(":")[0]}:${academylist.finishLectureTime.split(":")[1]}</td>
+														</tr>
+														<tr>
+															<td class="td-title">강의요일</td>
+															<td class="td-content">${academylist.lectureDay}</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</c:forEach>
 									</li>
@@ -195,8 +225,8 @@
 											<td class="td-title">개원일</td>
 											<td class="td-content">${academy.openingday}</td>
 											<td class="td-title">개설과목</td>
-											<td class="td-content">${academy.field1}
-												${academy.field2} ${academy.field3}</td>
+											<td class="td-content">${academy.field1.replace('/','')}
+												${academy.field2.replace('/','')} ${academy.field3.replace('/','')}</td>
 										</tr>
 										<tr>
 											<td class="td-title">학생수</td>
@@ -227,11 +257,11 @@
 										</tr>
 										<tr>
 											<td class="td-content">평일 -
-												${academy.startconsultabletime}<br> 주말 -
-												${academy.endconsultabletime}
+												${academy.startconsultabletime.split(":")[0]}:${academy.startconsultabletime.split(":")[1]}<br>
+												 주말 - ${academy.endconsultabletime.split(":")[0]}:${academy.endconsultabletime.split(":")[1]}
 											</td>
-											<td class="td-content">평일 - ${academy.startruntime}<br>
-												주말 - ${academy.endruntime}
+											<td class="td-content">평일 - ${academy.startruntime.split(":")[0]}:${academy.startruntime.split(":")[1]}<br>
+												주말 - ${academy.endruntime.split(":")[0]}:${academy.endruntime.split(":")[1]}
 											</td>
 										</tr>
 									</tbody>
