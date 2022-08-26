@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -9,33 +8,34 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+<title>EKA! Every K-Academy</title>
 
-<title>Insert title here</title>
+<link rel="shortcut icon" href="../resources/img/logo.jpg" type="image/x-icon">
+<link href="../resources/css/swiper.css" type="text/css" rel="stylesheet">
+<link href="../resources/css/aos.css" rel="stylesheet">
+<link href="../resources/css/common.css" rel="stylesheet">
+<link href="../resources/css/font.css" type="text/css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-<link href="<c:url value='/resources/css/kjwcommon.css'/>" rel="stylesheet">
-<script type="text/javascript"
-	src="<c:url value='/resources/js/jquery-3.6.0.js'/>"></script>
-<script type="text/javascript"
-	src="<c:url value='/resources/js/swiper.min.js'/>"></script>
-<script type="text/javascript"
-	src="<c:url value='/resources/js/aos.js'/>"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/swiper.min.js"></script>
+<script type="text/javascript" src="../resources/js/aos.js"></script>
 </head>
-
 
 <body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
 	<div id="wrap" role="main">
 		<header id="header" role="navigation">
 			<%@ include file="../common/header.jsp"%>
 		</header>
-		<a href="#wrap" class="bt-top hashLink"> <img
-			src="https://skycatcher.co.kr/image/ic_arrow_up_24px.png" alt="맨위로">
-			<span>맨위로</span>
-		</a> <a href="https://pf.kakao.com/_sjxnTxb/chat" class="bt-kakao"
-			target="_blank"> <img
-			src="https://skycatcher.co.kr/image/ic_kakao_24px.png" alt="카톡상담">
-			<span>문의</span>
+		<a href="#wrap" class="bt-top hashLink">
+			<img src="https://skycatcher.co.kr/image/ic_arrow_up_24px.png" alt="맨위로"> <span>맨위로</span>
+		</a>
+		<a href="https://pf.kakao.com/_sjxnTxb/chat" class="bt-kakao" target="_blank">
+			<img src="https://skycatcher.co.kr/image/ic_kakao_24px.png" alt="카톡상담"> <span>문의</span>
 		</a>
 
 		<form method="get" action="academy/update_detail_page">
@@ -51,32 +51,39 @@
 									<img src="../resources/img/academylogo.png" alt="학원로고">
 								</div>
 								<div class="flex-glow-1 summary-wrap">
-									<button class="bt-like float-right" data-uaid="40943"
-										data-like="0"></button>
+									<button class="bt-like float-right" data-uaid="40943" data-like="0"></button>
 									<h1 class="academy-title">${academy.name}</h1>
 									<div class="academy-review">
-										학생 리뷰 <span>몰?루개</span> 학부모 리뷰 <span>몰?루개</span>
+										학생 리뷰 <span>(예정)</span> 학부모 리뷰 <span>(예정)</span>
 									</div>
 									<div class="academy-teacher-review">
-										학원장 댓글 <span>몰?루개</span>
+										학원장 댓글 <span>(예정)</span>
 									</div>
 								</div>
 							</div>
 							<div class="flex-wrap info-wrap">
 								<ul class="flex-shrink-0 flex-glow-1">
-									<li><strong>개원일</strong> <span>${academy.openingday}</span>
+									<li>
+										<strong>개원일</strong> <span>${academy.openingday}</span>
 									</li>
-									<li><strong>개설과목</strong> <span>${academy.field1.replace('/','')}
-											${academy.field2.replace('/','')} ${academy.field3.replace('/','')}</span></li>
-									<li><strong>상담전화</strong> <a href="tel:${academy.phone}">${academy.phone}</a>
+									<li>
+										<strong>개설과목</strong> <span>${academy.field1.replace('/','')} ${academy.field2.replace('/','')} ${academy.field3.replace('/','')}</span>
+									</li>
+									<li>
+										<strong>상담전화</strong>
+										<a href="tel:${academy.phone}">${academy.phone}</a>
 									</li>
 								</ul>
 								<div class="flex-shrink-0 flex-glow-0 bt-wrap">
 									<input type="hidden" name="academyAid" value="${academy.aid}">
-									<button type="button" class="bt-main point bt-apply" onclick="location.href='../eka_main/add_academy'">학원수정</button>
+									<c:if test="${checkManager == 1}">
+										<button type="button" class="bt-main point bt-apply" onclick=>상담신청</button>
+									</c:if>
+									<c:if test="${checkManager == 0}">
+										<button type="button" class="bt-main point bt-apply" onclick="location.href='../eka_main/add_academy'">학원수정</button>
+									</c:if>
 									<button type="button" class="bt-main white bt-share">
-										<img src="https://skycatcher.co.kr/image/ic_share_12px.png"
-											alt="공유">공유
+										<img src="https://skycatcher.co.kr/image/ic_share_12px.png" alt="공유">공유
 									</button>
 								</div>
 							</div>
@@ -101,7 +108,7 @@
 					<section class="sec-tab" id="sec-intro" style="">
 						<div class="academy-content-wrap ">
 							<button type="button" class="bt-sec-header">
-								<h1 class="content">학원소개</h1>
+								<h1 class="content">학원 소개</h1>
 							</button>
 							<div class="content editorView">
 								<p>${academy.introduction}</p>
@@ -142,31 +149,33 @@
 											<div class="content statis-wrap">
 												<table class="statis-table">
 													<tbody>
-														<div class="class-title">강의명	: ${academylist.name}</div>
+														<div class="class-title">강의명 : ${academylist.name}</div>
 														<tr>
 															<td class="td-title">과목</td>
 															<td class="td-content">${academylist.subject}</td>
 															<td class="td-title">강사명</td>
-															<td class="td-content">강사명 안나옴 개빡침<%-- ${academylist.teacherNames} --%></td>
+															<td class="td-content">${academylist.teacher}</td>
 														</tr>
 														<tr>
 															<td class="td-title">강의대상</td>
-															<td class="td-content">${academylist.schoolcate} ${academylist.gradecate}</td>
+															<td class="td-content">${academylist.schoolcate}${academylist.gradecate}</td>
 															<td class="td-title">수업정원</td>
 															<td class="td-content">${academylist.lectureCapacity}명</td>
-														</tr> 
+														</tr>
 														<tr>
 															<td class="td-title">강의기간</td>
 															<td class="td-content">${academylist.startLectureDate}~${academylist.finishLectureDate}</td>
 															<td class="td-title">강의시간</td>
-															<td class="td-content">${academylist.startLectureTime.split(":")[0]}:${academylist.startLectureTime.split(":")[1]}
-															~ ${academylist.finishLectureTime.split(":")[0]}:${academylist.finishLectureTime.split(":")[1]}</td>
+															<td class="td-content">${academylist.startLectureTime.split(":")[0]}:${academylist.startLectureTime.split(":")[1]}~${academylist.finishLectureTime.split(":")[0]}:${academylist.finishLectureTime.split(":")[1]}</td>
 														</tr>
 														<tr>
 															<td class="td-title">강의요일</td>
 															<td class="td-content">${academylist.lectureDay}</td>
 															<td class="td-title">수강료</td>
-															<td class="td-content"><fmt:formatNumber value="${academylist.price}" pattern="#,###"/>원</td>
+															<td class="td-content">
+																<fmt:formatNumber value="${academylist.price}" pattern="#,###" />
+																원
+															</td>
 														</tr>
 													</tbody>
 												</table>
@@ -175,25 +184,27 @@
 									</li>
 								</ul>
 								<script>
-			                        $('.class-info').on('click',function(){
-			                            openModal('picture',$(this).data('image'),function(){
-			                            });
-			                        });
-			                    </script>
+									$('.class-info').on(
+											'click',
+											function() {
+												openModal('picture', $(this)
+														.data('image'),
+														function() {
+														});
+											});
+								</script>
 							</div>
-	 					</div>
+						</div>
 						<div class="academy-content-wrap">
 							<button type="button" class="bt-sec-header">
 								<h1 class="content">대표선생님</h1>
 							</button>
-							<div
-								class="swiper-container teacher-wrap swiper-container-horizontal">
-								<ul class="swiper-wrapper academy-teacher-list"
-									style="transform: translate3d(0px, 0px, 0px);">
+							<div class="swiper-container teacher-wrap swiper-container-horizontal">
+								<ul class="swiper-wrapper academy-teacher-list" style="transform: translate3d(0px, 0px, 0px);">
 									<c:forEach var="teacher" items="${teacher}">
 										<li class="swiper-slide shadow-wrap no-pd swiper-slide-active">
 											<div class="border-wrap teacher-image">
-												<img src="../resources/teacher_img/${teacher.image}">
+												<img src="../resources/img/empty_user.png">
 											</div>
 											<div class="teacher-info">
 												<div class="teacher-name">${teacher.name}선생님</div>
@@ -205,8 +216,7 @@
 										</li>
 									</c:forEach>
 								</ul>
-								<span class="swiper-notification" aria-live="assertive"
-									aria-atomic="true"></span>
+								<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
 							</div>
 							<script>
 								var swiper = new Swiper('.teacher-wrap', {
@@ -227,8 +237,7 @@
 											<td class="td-title">개원일</td>
 											<td class="td-content">${academy.openingday}</td>
 											<td class="td-title">개설과목</td>
-											<td class="td-content">${academy.field1.replace('/','')}
-												${academy.field2.replace('/','')} ${academy.field3.replace('/','')}</td>
+											<td class="td-content">${academy.field1.replace('/','')}${academy.field2.replace('/','')}${academy.field3.replace('/','')}</td>
 										</tr>
 										<tr>
 											<td class="td-title">학생수</td>
@@ -258,11 +267,14 @@
 											<td class="td-title">운영 정보</td>
 										</tr>
 										<tr>
-											<td class="td-content">평일 -
-												${academy.startconsultabletime.split(":")[0]}:${academy.startconsultabletime.split(":")[1]}<br>
-												 주말 - ${academy.endconsultabletime.split(":")[0]}:${academy.endconsultabletime.split(":")[1]}
+											<td class="td-content">
+												평일 - ${academy.startconsultabletime.split(":")[0]}:${academy.startconsultabletime.split(":")[1]}
+												<br>
+												주말 - ${academy.endconsultabletime.split(":")[0]}:${academy.endconsultabletime.split(":")[1]}
 											</td>
-											<td class="td-content">평일 - ${academy.startruntime.split(":")[0]}:${academy.startruntime.split(":")[1]}<br>
+											<td class="td-content">
+												평일 - ${academy.startruntime.split(":")[0]}:${academy.startruntime.split(":")[1]}
+												<br>
 												주말 - ${academy.endruntime.split(":")[0]}:${academy.endruntime.split(":")[1]}
 											</td>
 										</tr>
@@ -279,25 +291,23 @@
 							</div>
 						</div>
 					</section>
-					<!-- <section class="sec-tab" id="sec-notice" style="display: none;">
-	          <div class="academy-content-wrap ">
-	            <button type="button" class="bt-sec-header">
-	              <h1 class="content">공지사항</h1>
-	            </button>
-	            <div class="content editorView">
-	              <p>몰?루</p>
-	            </div>
-	          </div>
-	        </section> -->
+
 					<section class="sec-tab" id="sec-review" style="display: none;">
 						<div class="academy-content-wrap ">
 							<button type="button" class="bt-sec-header">
-								<h1 class="content">리뷰공지</h1>
+								<h1 class="content">리뷰 공지</h1>
 							</button>
 							<div class="content review-notice-wrap">
-								[리뷰이벤트]<br> <br> 리뷰 작성 시, 원하시는 분들께 부족한 과목(택1) 단기 특강을
-								무료로 해드립니다! (*주1회 1시간)<br> <br> 1) 국어 2) 수학 3) 영어<br>
-								<br> * 솔직한 리뷰 작성 부탁드립니다~!! *
+								[리뷰이벤트]
+								<br>
+								<br>
+								리뷰 작성 시, 원하시는 분들께 부족한 과목(택1) 단기 특강을 무료로 해드립니다! (*주1회 1시간)
+								<br>
+								<br>
+								1) 국어 2) 수학 3) 영어
+								<br>
+								<br>
+								* 솔직한 리뷰 작성 부탁드립니다~!! *
 							</div>
 						</div>
 						<div class="academy-content-wrap ">
@@ -308,31 +318,45 @@
 								<div class="shadow-wrap">
 									<div class="flex-wrap">
 										<div class="flex-shrink-0 flex-glow-0 rating-wrap">
-											<span class="rating-score">5.0</span> <span
-												class="rating-star rating-star-5"></span>
+											<span class="rating-score">5.0</span> <span class="rating-star rating-star-5"></span>
 										</div>
 										<div class="flex-shrink-1 flex-glow-1 rating-count-wrap">
 											<ul>
-												<li class="flex-center"><span class="flex-shrink-0">5점</span>
+												<li class="flex-center">
+													<span class="flex-shrink-0">5점</span>
 													<div class="flex-glow-1 rating-bar">
 														<div style="width: 100%"></div>
-													</div> <span class="flex-shrink-0">3</span></li>
-												<li class="flex-center"><span class="flex-shrink-0">4점</span>
+													</div>
+													<span class="flex-shrink-0">3</span>
+												</li>
+												<li class="flex-center">
+													<span class="flex-shrink-0">4점</span>
 													<div class="flex-glow-1 rating-bar">
 														<div style="width:"></div>
-													</div> <span class="flex-shrink-0">0</span></li>
-												<li class="flex-center"><span class="flex-shrink-0">3점</span>
+													</div>
+													<span class="flex-shrink-0">0</span>
+												</li>
+												<li class="flex-center">
+													<span class="flex-shrink-0">3점</span>
 													<div class="flex-glow-1 rating-bar">
 														<div style="width:"></div>
-													</div> <span class="flex-shrink-0">0</span></li>
-												<li class="flex-center"><span class="flex-shrink-0">2점</span>
+													</div>
+													<span class="flex-shrink-0">0</span>
+												</li>
+												<li class="flex-center">
+													<span class="flex-shrink-0">2점</span>
 													<div class="flex-glow-1 rating-bar">
 														<div style="width:"></div>
-													</div> <span class="flex-shrink-0">0</span></li>
-												<li class="flex-center"><span class="flex-shrink-0">1점</span>
+													</div>
+													<span class="flex-shrink-0">0</span>
+												</li>
+												<li class="flex-center">
+													<span class="flex-shrink-0">1점</span>
 													<div class="flex-glow-1 rating-bar">
 														<div style="width:"></div>
-													</div> <span class="flex-shrink-0">0</span></li>
+													</div>
+													<span class="flex-shrink-0">0</span>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -350,17 +374,14 @@
 									<li>
 										<div class="flex">
 											<div class="flex-shrink-0 review-profile">
-												<img
-													src="https://k.kakaocdn.net/dn/Sjdjz/btqF2R93QM9/Vtab4IEVQDXRIA9lXHroFk/img_110x110.jpg"
-													alt="">
+												<img src="https://k.kakaocdn.net/dn/Sjdjz/btqF2R93QM9/Vtab4IEVQDXRIA9lXHroFk/img_110x110.jpg" alt="">
 											</div>
 											<div class="flex-glow-1 review-info">
 												<div class="review-writer">
 													<span class="writer-id">양**</span><span class="writer-type">학생</span>
 												</div>
 												<div class="review-rating">
-													<span class="rating-star rating-star-5"></span><span
-														class="review-date">1970-01-01</span>
+													<span class="rating-star rating-star-5"></span><span class="review-date">1970-01-01</span>
 												</div>
 												<div class="review-content">수학성적이 많이올랐습니다 짱입니다</div>
 												<div class="review-title">고등수학 (심화)</div>
@@ -376,27 +397,7 @@
 		</form>
 		<input type="hidden" id="uaid" value="40943">
 
-		<footer id="footer">
-			<ul class="footer-wrap">
-				<li><a href="https://skycatcher.co.kr/policy"
-					class="footer-nav">이용약관</a></li>
-				<li><a href="https://skycatcher.co.kr/privacy"
-					class="footer-nav color-point">개인정보처리방침</a></li>
-			</ul>
-			<div class="container">
-				<section class="content">
-					<h1 class="skip">사이트 이용정보</h1>
-					<ul class="footer-company">
-						<li>스카이캐처</li>
-						<li>대표 박유건 | 사업자등록번호 239-08-01729 | 통신판매업신고번호 2020-경북경산-0589</li>
-						<li><a href="tel:053-295-9876">고객센터 053-295-9876</a></li>
-						<li><a href="mailto:help@skycatcher.co.kr">이메일
-								help@skycatcher.co.kr</a></li>
-						<li>경산북도 경산시 대학로 280, 영남대학교 생산과학기술연구원, 303</li>
-					</ul>
-				</section>
-			</div>
-		</footer>
+		<%@ include file="../common/footer.jsp"%>
 	</div>
 	<div id="modal-wrap" class="modal-wrap">
 		<div class="modal-head">
@@ -415,9 +416,7 @@
 	</div>
 	<div id="ajax-loading" style="display: none;"></div>
 
-	<script type="text/javascript"
-		src="<c:url value='/resources/js/common.js'/>"></script>
-	<script type="text/javascript"
-		src="<c:url value='/resources/js/detail.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resources/js/common.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resources/js/detail.js'/>"></script>
 </body>
 </html>
