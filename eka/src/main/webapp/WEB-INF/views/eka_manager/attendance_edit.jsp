@@ -121,6 +121,7 @@ body {
 										<th>No</th>
 										<th>이름</th>
 										<th>출결</th>
+										<th>출결날짜</th>
 										<th>출석상황</th>
 										<th>특이사항</th>
 									</tr>
@@ -161,6 +162,7 @@ body {
 												</form>
 
 											</td>
+											<td>${attendance.regDate}</td>
 											<td>${attendance.checking }</td>
 											<td><input type="text" name="" value=""></td>
 										</tr>
