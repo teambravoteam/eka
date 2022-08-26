@@ -134,7 +134,7 @@ public class ConsultingController {
 	@PostMapping("eka_manager/update_regist_consulting")
 	public String updateRegistConsulting(Model model, @RequestParam String name,
 			@RequestParam String applyDate, @RequestParam String registDate,
-			@RequestParam String consultContent, HttpSession session) throws ParseException {
+			@RequestParam String consultDetail,@RequestParam String consultContent, HttpSession session) throws ParseException {
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");		
 		Date to = fm.parse(applyDate);
 		Date now = fm.parse(registDate);		
@@ -143,11 +143,12 @@ public class ConsultingController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		Consulting updateConsult = consultingService.findAcademyRegistConsultingByRegDateAndName(academy, to , name);	
 		
+		updateConsult.setConsultDatail(consultDetail);
 		updateConsult.setRegistDate(registDate);
 		updateConsult.setConsultContent(consultContent);
 		updateConsult.setConsultType("완료");		
 		
-		System.out.println(updateConsult);
+		
 		
 	
 		System.out.println(consultingService.updateRegistConsulting(updateConsult));

@@ -97,12 +97,18 @@ body {
                             </td>                                                  
                           </tr>  
                           <tr>
-                           <th>상담내용</th>
+                           <th>신청내용</th>
+                          <td>                              
+                             <textarea rows="40" cols="3" name="consultDetail" style="width:400px; height:150px;" >
+                             	${registConsult.consultDatail}
+                             </textarea>
+                            </td>
+                              <th>상담내용</th>
                           <td>                              
                              <textarea rows="40" cols="3" name="consultContent" style="width:400px; height:150px;" >
                              	${registConsult.consultContent}
                              </textarea>
-                            </td>                                                  
+                            </td>                                                          
                           </tr>                                                 
                         </table>
                         <button class="btn btn-primary btn-sm submit" type="submit" name="button">
@@ -150,8 +156,8 @@ body {
                       <th>신청자성함</th>
                       <th>연락처</th>
                       <th>상담유형</th>
-                      <th>신청내용</th>                      
-                      <th>신청일자</th>                     
+                      <th>신청일자</th>                      
+                      <th>상담일자</th>                     
                       <th>확인</th>
                     </tr>
                   </thead>
@@ -164,8 +170,8 @@ body {
                       <input type ="hidden" name="name" value="${registConsulting.name}" />
                       <td><a href="tel:">${registConsulting.phone}</a></td>
                       <td>${registConsulting.consultCategory.category }</td>
-                      <td>${registConsulting.consultDatail}</td>                     
-                      <td>${registConsulting.applyDate}</td>
+                      <td>${registConsulting.applyDate}</td>                     
+                      <td>${registConsulting.registDate}</td>
                       <input type ="hidden" name="applyDate" value="${registConsulting.applyDate}" />
                       <input type ="hidden" name="consultType" value="${registConsulting.consultType}" />                      
                       <td>
