@@ -3,6 +3,7 @@ package com.varxyz.eka.academy.academy.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.service.AuthService;
+import com.varxyz.eka.student.domain.Student;
 
 @Controller
 public class AcademyController {
@@ -65,21 +67,26 @@ public class AcademyController {
 			mav.addObject("academyName", academyName);
 			mav.setViewName("eka_main/myPage");
 		} else if (ekauserId != null && ekauserId != "") {
-			Long academyIdL = academyService.findStudentByEkauserId(ekauserId).getAcademyId();
-			academyName = academyService.findAcademyByAid(academyIdL).getName();
+			List<Student> academyList = academyService.findStudentsByEkaUserId(ekauserId);
+			List<Long> academyIdList = academyList.stream().map(Student::getAcademyId).collect(Collectors.toList());
+			List<String> academyNameList = new ArrayList<String>();
 
-			mav.addObject("academyName", academyName);
+			for (int i = 0; i < academyIdList.size(); i++) {
+				academyNameList.add(academyService.findAcademyByAid(academyIdList.get(i)).getName());
+			}
+
+			mav.addObject("academyNameList", academyNameList);
 			mav.setViewName("eka_main/myPage_ekaUser");
 		}
 
 		return mav;
 	}
-	
+
 	@PostMapping("/eka_main/myPage_update")
 	public ModelAndView myPage_update(HttpServletRequest request, HttpSession session, AcademyManager academyManager) {
 
 		ModelAndView mav = new ModelAndView();
-		
+
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String ssn = request.getParameter("ssn");
@@ -88,14 +95,37 @@ public class AcademyController {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		String academyName = request.getParameter("academyName");
-		
+
 		authService.updateAcademyManager(password, name, ssn, phone, aid);
 		academyManager.setUserId(userId);
 		academyManager.setUserPw(userPw);
-		session.setAttribute("manager", authService.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
-		
+		session.setAttribute("manager",
+				authService.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
+
 		mav.addObject("academyName", academyName);
 		mav.setViewName("eka_main/myPage");
+
+		return mav;
+	}
+	
+	@PostMapping("/eka_main/ekaUser_list")
+	public ModelAndView ekaUser_list(HttpServletResponse response, HttpServletRequest request) {
+		
+		String ekauserId = request.getParameter("ekauserId");
+
+		ModelAndView mav = new ModelAndView();
+		
+		List<Student> academyList = academyService.findStudentsByEkaUserId(ekauserId);
+		List<Long> academyIdList = academyList.stream().map(Student::getAcademyId).collect(Collectors.toList());
+		List<String> academyNameList = new ArrayList<String>();
+
+		for (int i = 0; i < academyIdList.size(); i++) {
+			academyNameList.add(academyService.findAcademyByAid(academyIdList.get(i)).getName());
+		}
+
+		mav.addObject("academyNameList", academyNameList);
+		mav.addObject("academyIdList", academyIdList);
+		mav.setViewName("eka_main/myPage_ekaUser_list");
 
 		return mav;
 	}
@@ -245,8 +275,9 @@ public class AcademyController {
 	@PostMapping("eka_main/signed_eka_academy")
 	public String signedEkaAcademy(HttpSession session, Model model, @RequestParam String address,
 			@RequestParam String name, @RequestParam String phone1, @RequestParam String phone2,
-			@RequestParam String phone3, @RequestParam String service, @RequestParam String runday,
-			@RequestParam String startruntime, @RequestParam String endruntime, @RequestParam String introduction) {
+			@RequestParam String phone3, @RequestParam String service, @RequestParam String runDay,
+			@RequestParam String startRunTime, @RequestParam String endRunTime, @RequestParam String coDay,
+			@RequestParam String startCoTime, @RequestParam String endCoTime, @RequestParam String introduction) {
 		String[] namelist = name.split(",");
 		name = namelist[0];
 
@@ -254,25 +285,20 @@ public class AcademyController {
 		phone1 = phone1list[0];
 		String phone = phone1 + "-" + phone2 + "-" + phone3;
 
-		String[] srt = startruntime.split(",");
-		String shour = srt[0].split("시")[0];
-
-		String smin = srt[1].split("분")[0];
-		startruntime = shour + ":" + smin;
-
-		String[] ert = endruntime.split(",");
-		String ehour = ert[0].split("시")[0];
-		String emin = ert[1].split("분")[0];
-		endruntime = ehour + ":" + emin;
+		System.out.println("운영 시간 : " + startRunTime + "/" + endRunTime);
+		System.out.println("상담 시간 : " + startCoTime + "/" + endCoTime);
 
 		Academy academy = academyService.findAcademyByAddressAndName(address, name);
 
 		academy.setPhone(phone);
-		academy.setAcademyservice(service);
-		academy.setRunday(runday);
 		academy.setIntroduction(introduction);
-		academy.setStartruntime(startruntime);
-		academy.setEndruntime(endruntime);
+		academy.setAcademyservice(service);
+		academy.setRunday(runDay);
+		academy.setStartruntime(startRunTime);
+		academy.setEndruntime(endRunTime);	
+		academy.setConsultableday(coDay);
+		academy.setStartconsultabletime(startCoTime);
+		academy.setEndconsultabletime(endCoTime);
 		academy.setSignedacademy("가입");
 
 		academyService.signEkaAcademy(academy);

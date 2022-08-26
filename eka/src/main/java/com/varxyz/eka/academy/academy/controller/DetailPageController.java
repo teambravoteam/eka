@@ -44,7 +44,7 @@ public class DetailPageController {
 		model.addAttribute("academy", asservice.findAcademyByAid(academy.getAid()));
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
-		model.addAttribute("subject", acservice.findAllSubjectCategory());
+		model.addAttribute("subject", tservice.findSubjectCategory());
 
 		return "eka_main/academy/detail_page";
 	}

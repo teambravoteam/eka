@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 
-
 public class AcademyRowMapper implements RowMapper<Academy> {
 
 	@Override
@@ -51,10 +50,11 @@ public class AcademyRowMapper implements RowMapper<Academy> {
 		ac.setEndruntime(rs.getString("endruntime"));
 		
 		//리스트
-		String consultableListstr = rs.getString("consultableday");
-		if(consultableListstr != null) {
-			ac.setConsultableday(consultableListstr.split(","));	
-		}
+//		String consultableListstr = rs.getString("consultableday");
+//		if(consultableListstr != null) {
+//			ac.setConsultableday(consultableListstr.split(","));	
+//		}
+		ac.setConsultableday(rs.getString("consultableday"));	
 		
 		ac.setStartconsultabletime(rs.getString("startconsultabletime"));
 		ac.setEndconsultabletime(rs.getString("endconsultabletime"));

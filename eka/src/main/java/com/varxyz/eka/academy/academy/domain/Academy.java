@@ -36,7 +36,7 @@ public class Academy {
 	private String runday;
 	private String startruntime;
 	private String endruntime;
-	private String[] consultableday;
+	private String consultableday;
 	private String startconsultabletime;
 	private String endconsultabletime;
 	private String signedacademy;

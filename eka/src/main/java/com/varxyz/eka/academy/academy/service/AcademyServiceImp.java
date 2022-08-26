@@ -20,6 +20,11 @@ public class AcademyServiceImp implements AcademyService {
 	public AcademyServiceImp(DataSource dataSource) {
 		academyDao = new AcademyDao(dataSource);
 	}
+	
+	@Override
+	public void signEkaAcademy(Academy academy) {
+		academyDao.signEkaAcademy(academy);
+	}
 
 	@Override
 	public List<Academy> findAllAcademies() {
@@ -51,11 +56,13 @@ public class AcademyServiceImp implements AcademyService {
 	}
 
 	@Override
-	public Student findStudentByEkauserId(String ekaUserId) {
-		return academyDao.findStudentByEkauserId(ekaUserId);
+	public Student findStudentByEkaUserId(String ekaUserId) {
+		return academyDao.findStudentByEkaUserId(ekaUserId);
 	}
 
-	public void signEkaAcademy(Academy academy) {
-		academyDao.signEkaAcademy(academy);
+	@Override
+	public List<Student> findStudentsByEkaUserId(String ekaUserId) {
+		return academyDao.findStudentsByEkaUserId(ekaUserId);
 	}
+
 }

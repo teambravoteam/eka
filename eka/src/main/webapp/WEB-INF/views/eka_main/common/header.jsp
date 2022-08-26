@@ -34,12 +34,9 @@
 		</c:if>
 		<c:if test="${! empty manager || ! empty ekauser}">
 			<li>
-				<span class="header-nav">
-					<c:if test="${! empty manager && empty ekauser}">
+				<span class="header-nav"> <c:if test="${! empty manager && empty ekauser}">
 						<p>${manager.name}님</p>
-					</c:if>
-					
-					<c:if test="${! empty ekauser && empty manager}">
+					</c:if> <c:if test="${! empty ekauser && empty manager}">
 						<p>${ekauser.name}님</p>
 					</c:if>
 				</span>
@@ -53,7 +50,7 @@
 				</c:if>
 
 				<c:if test="${! empty ekauser && empty manager}">
-					<form action="myPage_ekaUser" method="post">
+					<form action="myPage" method="post">
 						<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
 						<input type="submit" class="bt-sub coral" value="마이페이지" />
 					</form>
@@ -76,22 +73,69 @@
 	</ul>
 </nav>
 <nav class="show-m header-side">
-	<ul class="gnb point">
-		<div class="join-guide">
-			<a href="#">
-				<h4>회원가입</h4>
-			</a>
-		</div>
-		<li>
-			<a href="#">로그인</a>
-		</li>
-		<li>
-			<a href="notice">공지사항</a>
-		</li>
-		<li>
-			<a href="add_academy">학원신청</a>
-		</li>
-	</ul>
+	<c:if test="${empty manager && empty ekauser}">
+		<ul class="gnb point">
+			<div class="join-guide">
+				<a href="register_main">
+					<h4>회원가입</h4>
+				</a>
+			</div>
+			<li>
+				<a href="managerlogin">로그인</a>
+			</li>
+			<li>
+				<a href="notice">공지사항</a>
+			</li>
+			<li>
+				<a href="add_academy">학원신청</a>
+			</li>
+		</ul>
+	</c:if>
+
+	<c:if test="${! empty manager || ! empty ekauser}">
+		<ul class="gnb point">
+			<div class="shadow-wrap profile-wrap">
+				<div class="flex-wrap">
+					<div class="border-wrap flex-shrink-0 profile-image">
+						<img src="../resources/img/empty_user.png" alt="${manager.name}">
+					</div>
+					<div class="flex-glow-1 profile-info">
+						<c:if test="${! empty manager && empty ekauser}">
+							<span class="chip-label accent float-right">원장</span>
+							<h4>${manager.name}님</h4>
+						</c:if>
+						<c:if test="${! empty ekauser && empty manager}">
+							<span class="chip-label point float-right">학생</span>
+							<h4>${ekauser.name}님</h4>
+						</c:if>
+					</div>
+				</div>
+			</div>
+			<li class="current">
+				<c:if test="${! empty manager && empty ekauser}">
+					<form action="myPage" method="post">
+						<input type="hidden" name="academyId" value="${manager.academyId}" />
+						<input type="submit" value="마이페이지" />
+					</form>
+				</c:if>
+
+				<c:if test="${! empty ekauser && empty manager}">
+					<form action="myPage" method="post">
+						<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
+						<input type="submit" value="마이페이지" />
+					</form>
+				</c:if>
+			</li>
+			<li>
+				<a href="notice">공지사항</a>
+			</li>
+			<li>
+				<form action="logOut" method="post">
+					<input type="submit" id="logOutBtn" value="로그아웃" />
+				</form>
+			</li>
+		</ul>
+	</c:if>
 </nav>
 
 <script>

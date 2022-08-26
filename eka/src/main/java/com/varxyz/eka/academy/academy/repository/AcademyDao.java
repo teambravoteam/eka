@@ -43,10 +43,11 @@ public class AcademyDao {
 
 	public void signEkaAcademy(Academy academy) {
 		String sql = "UPDATE Academy SET phone = ?, introduction = ?, academyservice = ?, "
-				+ "runday = ?, startruntime = ?, endruntime = ?, signedacademy = ? "
-				+ "WHERE address = ? AND name = ?;";
+				+ "runday = ?, startruntime = ?, endruntime = ?, consultableday = ?, startconsultabletime = ?, endconsultabletime = ?, "
+				+ "signedacademy = ? WHERE address = ? AND name = ?;";
 		jdbcTemplate.update(sql, academy.getPhone(), academy.getIntroduction(), academy.getAcademyservice(),
-				academy.getRunday(), academy.getStartruntime(), academy.getEndruntime(), academy.getSignedacademy(),
+				academy.getRunday(), academy.getStartruntime(), academy.getEndruntime(), academy.getConsultableday(),
+				academy.getStartconsultabletime(), academy.getEndconsultabletime(), academy.getSignedacademy(),
 				academy.getAddress(), academy.getName());
 	}
 
@@ -54,9 +55,14 @@ public class AcademyDao {
 		String sql = "SELECT * FROM Academy WHERE aid = ?;";
 		return jdbcTemplate.queryForObject(sql, new AcademyRowMapper(), aid);
 	}
-	
-	public Student findStudentByEkauserId(String ekaUserId) {
+
+	public Student findStudentByEkaUserId(String ekaUserId) {
 		String sql = "SELECT * FROM Student WHERE ekaUserId = ?;";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Student>(Student.class), ekaUserId);
+	}
+
+	public List<Student> findStudentsByEkaUserId(String ekaUserId) {
+		String sql = "SELECT * FROM Student WHERE ekaUserId = ?;";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Student>(Student.class), ekaUserId);
 	}
 }
