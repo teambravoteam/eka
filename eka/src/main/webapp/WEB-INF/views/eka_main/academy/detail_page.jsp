@@ -145,7 +145,7 @@
 														<div class="class-title">강의명	: ${academylist.name}</div>
 														<tr>
 															<td class="td-title">과목</td>
-															<td class="td-content">${academylist.name}</td>
+															<td class="td-content">${academylist.subject}</td>
 															<td class="td-title">강사명</td>
 															<td class="td-content">강사명 안나옴 개빡침<%-- ${academylist.teacherNames} --%></td>
 														</tr>
