@@ -151,7 +151,7 @@
 														</tr>
 														<tr>
 															<td class="td-title">강의대상</td>
-															<td class="td-content">${academylist.schoolcate} ${academylist.gradecate}학년</td>
+															<td class="td-content">${academylist.schoolcate} ${academylist.gradecate}</td>
 															<td class="td-title">수업정원</td>
 															<td class="td-content">${academylist.lectureCapacity}명</td>
 														</tr> 
@@ -165,6 +165,8 @@
 														<tr>
 															<td class="td-title">강의요일</td>
 															<td class="td-content">${academylist.lectureDay}</td>
+															<td class="td-title">수강료</td>
+															<td class="td-content"><fmt:formatNumber value="${academylist.price}" pattern="#,###"/>원</td>
 														</tr>
 													</tbody>
 												</table>
@@ -232,11 +234,11 @@
 											<td class="td-title">학생수</td>
 											<td class="td-content">${academy.personnel}</td>
 											<td class="td-title">강사수</td>
-											<td class="td-content">몰?루</td>
+											<td class="td-content">강사인원 합쳐서 표현해야함</td>
 										</tr>
 										<tr>
 											<td class="td-title">전체리뷰수</td>
-											<td class="td-content">몰?루</td>
+											<td class="td-content">전체리뷰수 합쳐서 표현해야함</td>
 											<td></td>
 											<td></td>
 										</tr>
