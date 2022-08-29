@@ -60,6 +60,17 @@ public class AddAcademyScoreController {
 			return "eka_manager/msg_alert";
 		}
 		
+		// 유효성 검증
+		if (testDate.equals("")) {
+			model.addAttribute("msg", "시험일자를 입력해주세요.");
+			model.addAttribute("return_mapping", "score_add_academy");
+			return "eka_manager/msg_alert";
+		} else if (testName.equals("")) {
+			model.addAttribute("msg", "시험명을 입력해주세요.");
+			model.addAttribute("return_mapping", "score_add_academy");
+			return "eka_manager/msg_alert";
+		}
+		
 		ScoreCategory scoreCategory = new ScoreCategory();
 		scoreCategory.setAcademyId(academy.getAid()); 
 		scoreCategory.setLectureName(lectureName);
@@ -92,7 +103,6 @@ public class AddAcademyScoreController {
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		model.addAttribute("testList", sservice.findTestName(academy.getAid(), lectureName));
 		List<ScoreCategory> scoreca = sservice.findTestName(academy.getAid(), lectureName);
-		System.out.println(scoreca.get(1).getTestName());
 		return "eka_manager/score_add_academy";
 	}
 	
@@ -104,7 +114,8 @@ public class AddAcademyScoreController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
-		System.out.println("lectureName" + lectureName);
+		model.addAttribute("testList", sservice.findTestName(academy.getAid(), lectureName));
+		
 		Lecture lecture = lservice.findLectureIdByLectureName(academy, lectureName); 
 		long lid = lecture.getLid();
 		

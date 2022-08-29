@@ -71,6 +71,30 @@ public class AddTeacherController {
 		}
 		
 		//insert결과값으로 유효성검증
+		System.out.println(teacher.getPhone());
+		
+		if (teacher.getName().equals("")) {
+			model.addAttribute("msg", "강사명을 입력해주세요.");
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		} else if (teacher.getSsn().equals("")) {
+			model.addAttribute("msg", "생년월일을 입력해주세요.");
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		} else if (teacher.getGender() == null) {
+			model.addAttribute("msg", "성별을 선택해주세요.");
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		} else if (teacher.getForeigner() == null) {
+			model.addAttribute("msg", "원어민 여부를 선택해주세요.");
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		} else if (teacher.getPhone().equals("010--")) {
+			model.addAttribute("msg", "전화번호를 입력해주세요.");
+			model.addAttribute("return_mapping", "teacher_add");
+			return "eka_manager/msg_alert";
+		}
+		
 		
 		boolean result = tservice.addTeacher(teacher);
 		if (result == false) {

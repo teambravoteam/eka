@@ -125,7 +125,7 @@ body {
                     </div>
                     <%-- <input type="hidden" name="lid" value="${lecture.lid}"> --%>
                   </form>
-                  <table class="table table-bordered result_table">
+                  <table class="table table-bordered result_table" style="margin-bottom: 0;">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -170,7 +170,7 @@ body {
                       <button type="submit" name="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">저장하기</button>
                       </span>
                   </div>
-                  <table class="table table-bordered result_table">
+                  <table class="table table-bordered result_table" style="margin-bottom: 0;">
                     <thead>
                       <tr>
                         <th>No</th>

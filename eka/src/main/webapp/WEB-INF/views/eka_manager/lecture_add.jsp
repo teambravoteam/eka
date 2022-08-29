@@ -37,6 +37,30 @@
 	rel="stylesheet">
 <link href="../resources/manager/custom/css/lecture_add.css" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      
+        $('#mainselect').change(function() {
+          var result = $('#mainselect option:selected').val();
+
+          if (result == '초등학교') {
+            $('.초등학교').show();
+            $('.중학교').hide();
+            $('.고등학교').hide();
+          } else if (result=='중학교'){
+            $('.초등학교').hide();
+            $('.중학교').show();
+            $('.고등학교').hide();
+          } else if (result='고등학교') {
+            $('.초등학교').hide();
+            $('.중학교').hide();
+            $('.고등학교').show();
+          }
+        });
+
+    });
+  </script>
 </head>
 <style>
 body {
@@ -79,14 +103,14 @@ body {
                     </td>
                     <th>과목</th>
                     <td>
-                    <select class="" name="schoolcate">
+                    <select id="mainselect" name="schoolcate">
                         <c:forEach var="school" items="${school}" varStatus="status">
                         	<option value="${school.schoolcate}">${school.schoolcate}</option>						
 						</c:forEach>
                       </select>
                       <select class="" name="gradecate">
                         <c:forEach var="grade" items="${grade}" varStatus="status">
-                        	<option value="${grade.gradecate}">${grade.gradecate}</option>						
+                        	<option class="${grade.schoolcate}" value="${grade.gradecate}">${grade.gradecate}</option>						
 						</c:forEach>
                       </select>
                       <select class="" name="subject">
@@ -130,9 +154,9 @@ body {
                   </tr>
                   <tr>
                     <th>정원</th>
-                    <td><input type="number" class="number" name="lectureCapacity">&nbsp명</td>
+                    <td><input type="number" class="number" name="lectureCapacity" value="0">&nbsp명</td>
                     <th>가격</th>
-                    <td><input type="number" class="price" name="price">&nbsp원</td>
+                    <td><input type="number" class="price" name="price" value="0">&nbsp원</td>
                   </tr>
                 </table>
                 <button class="btn btn-primary btn-sm submit" type="submit" name="button">

@@ -1,4 +1,4 @@
-package com.varxyz.eka.repository;
+package com.varxyz.eka.report.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

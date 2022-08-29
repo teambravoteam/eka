@@ -151,6 +151,10 @@ public class LectureServiceImpl {
 				lectureDay, name);
 	}
 
+	public List<Lecture> findAcademyLectureBySubjectTeacher(Academy academy, String subject, String teacher) {
+		return ldao.findAcademyLectureBySubjectTeacher(academy, subject, teacher);
+	}
+
 
 	
 

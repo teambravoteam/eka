@@ -27,7 +27,7 @@ $(function() {
 		var imagesrc = "../resources/teacher_img/" + image;
 		console.log("img : " + image);
 		
-		str += "<table><tr><td rowspan='9'><img class='resultImg' style='width:100px;height:100px' src='" + imagesrc + "'></td>"
+		str += "<table><tr class='firsttr'><td rowspan='9'><img class='resultImg' style='width:150px;height:150px' src='" + imagesrc + "'></td>"
 			+ "<td><tr><th>이름</th>"
 			+ "<td>" + name + "</td></tr>"
 			+ "<tr><th>담당과목</th>"
@@ -73,7 +73,7 @@ $(function() {
 		var imagesrc = "../resources/teacher_img/" + image;
 
 		str += '<form class="" action="teacher_edit" method="post">'
-			+ "<table><tr><td rowspan='9'><img class='resultImg' style='width:100px;height:100px' src='" + imagesrc + "'></td>"
+			+ "<table><tr><td rowspan='9'><img class='resultImg' style='width:150px;height:150px;border-radius: 100%;' src='" + imagesrc + "'></td>"
 			+ "<td><tr><th>이름</th>"
 			+ "<td><input type='text' name='name' value='" + name + "'></td></tr>"
 			+ "<tr><th>담당과목</th>"

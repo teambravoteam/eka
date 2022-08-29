@@ -10,7 +10,7 @@ import com.varxyz.eka.academy.lecture.domain.Lecture;
 import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.report.command.ReportAttendanceCommand;
 import com.varxyz.eka.report.command.ReportScoreCommand;
-import com.varxyz.eka.repository.ReportDao;
+import com.varxyz.eka.report.repository.ReportDao;
 
 @Service
 public class ReportService {

@@ -122,7 +122,7 @@ body {
                 </table>
               </form>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-bottom: 0;">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -159,7 +159,7 @@ body {
                   <span>수강생 목록</span>
               </div>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-bottom: 0;">
                   <thead>
                     <tr>
                       <th>No</th>

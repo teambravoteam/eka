@@ -175,6 +175,12 @@ public class LectureDao {
 				+ " AND lectureDay=? AND name=?";
 		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), startLectureTime, finishLectureTime);
 	}
+
+	public List<Lecture> findAcademyLectureBySubjectTeacher(Academy academy, String subject, String teacher) {
+		String sql = "SELECT * FROM Lecture WHERE academyId = ? AND subject =? AND teacher=? ";
+		return jdbcTemplate.query(sql, new LectureListRowMapper(), academy.getAid(), subject, teacher);
+	
+	}
 	
 	
 	

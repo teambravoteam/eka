@@ -129,7 +129,7 @@ body {
 						<!-- 검색결과 테이블 -->
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable"
-								width="100%" cellspacing="0">
+								width="100%" cellspacing="0" style="margin-bottom: 0; margin-top: 10px;">
 								<thead>
 									<tr>
 										<th>No</th>

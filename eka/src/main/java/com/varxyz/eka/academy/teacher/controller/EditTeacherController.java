@@ -37,6 +37,7 @@ public class EditTeacherController {
 		
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		model.addAttribute("teacher_list", tservice.findAllAcademyTeacher(academy));
 		return "eka_manager/teacher_edit";
 	}
 	

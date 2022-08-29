@@ -49,3 +49,16 @@ button.submit {
 button.submit span {
   font-size: 16px;
 }
+
+#detaul_result .firsttr td {
+	margin-right: 10px;
+}
+
+#detail_result th {
+	width: 85px;
+	height: 30px;
+}
+#detail_result img {
+border-radius: 100%;
+	
+}

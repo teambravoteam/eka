@@ -41,6 +41,8 @@ public class FindLectureController {
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		return "eka_manager/lecture_edit";
 	}
 	
@@ -81,6 +83,26 @@ public class FindLectureController {
 		String finishLectureTime = lecture.getFinishLectureTime();
 		String lectureDay = lecture.getLectureDay();
 		String name = lecture.getName();
+		
+		if (!startLectureDate.equals("") && finishLectureDate.equals("")) {
+			model.addAttribute("msg", "기간을 모두 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_edit");
+			return "eka_manager/msg_alert";
+		} else if (startLectureDate.equals("") && !finishLectureDate.equals("")) {
+			model.addAttribute("msg", "기간을 모두 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_edit");
+			return "eka_manager/msg_alert";
+		}
+		
+		if (!startLectureTime.equals("") && finishLectureTime.equals("")) {
+			model.addAttribute("msg", "시간을 모두 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_edit");
+			return "eka_manager/msg_alert";
+		} else if (startLectureTime.equals("") && !finishLectureTime.equals("")) {
+			model.addAttribute("msg", "시간을 모두 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_edit");
+			return "eka_manager/msg_alert";
+		}
 		
 		// 다 all이면 전체검색
 		if (subject.equals("all") && teacher.equals("all") 
@@ -138,6 +160,7 @@ public class FindLectureController {
 			return "eka_manager/lecture_edit";
 		}
 		
+		
 		// 시간으로 검색
 		if (subject.equals("all") && teacher.equals("all") 
 				&& startLectureDate.equals("") && finishLectureDate.equals("")
@@ -166,10 +189,20 @@ public class FindLectureController {
 				&& lectureDay.equals("all") && !name.equals("")) {
 			System.out.println("강좌명로 검색");
 			lecture_list = lservice.findAcademyLectureByName(academy, name);
-			System.out.println("lecutre리스 : " + lecture_list);
 			model.addAttribute("lecture", lservice.findAcademyLectureByName(academy, name));
 			return "eka_manager/lecture_edit";
 		}
+		
+		//------------------------------------------
+		if (!subject.equals("all") && !teacher.equals("all") 
+				&& startLectureDate.equals("") && startLectureTime.equals("")
+				&& lectureDay.equals("all") && name.equals("")) {
+			lecture_list = lservice.findAcademyLectureBySubjectTeacher(academy, subject, teacher);
+			model.addAttribute("lecture", lservice.findAcademyLectureByName(academy, name));
+			return "eka_manager/lecture_edit";
+		}
+		
+		
 		
 		
 		return "eka_manager/lecture_edit";

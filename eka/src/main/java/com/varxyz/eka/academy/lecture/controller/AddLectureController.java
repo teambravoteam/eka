@@ -61,6 +61,25 @@ public class AddLectureController {
 		lecture.setAcademy(academy);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
+		// 입력값 유효성 검증
+		if (lecture.getName().equals("")) {
+			model.addAttribute("msg", "강좌명을 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		} else if (lecture.getFinishLectureDate().equals("") || lecture.getStartLectureDate().equals("")) {
+			model.addAttribute("msg", "기간을 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		} else if (lecture.getFinishLectureTime().equals("") || lecture.getStartLectureTime().equals("")) {
+			model.addAttribute("msg", "시간을 입력해주세요.");
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		} else if (lecture.getLectureDay().equals("null")) {
+			model.addAttribute("msg", "강의 요일을 선택해주세요.");
+			model.addAttribute("return_mapping", "lecture_add");
+			return "eka_manager/msg_alert";
+		}
+		
 		//동일한 강좌명 등록불가능
 		//강좌명으로 강좌 찾기
 		List<Lecture> check = lservice.findAcademyLectureByName(academy, lecture.getName());

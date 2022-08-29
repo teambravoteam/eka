@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+table {
+	margin-bottom: 0;
+}
 table th {
   background: #f1f1f1;
 }

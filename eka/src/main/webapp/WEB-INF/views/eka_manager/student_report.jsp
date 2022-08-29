@@ -88,7 +88,7 @@ body {
                 </table>
               </form>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" style="margin-bottom: 0; margin-top: 10px;">
                   <thead>
                     <tr>
                       <th>No</th>
