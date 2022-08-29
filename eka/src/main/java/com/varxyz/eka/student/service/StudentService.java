@@ -28,6 +28,7 @@ public interface StudentService {
 	/*
 	 * 학원관리자는 다양한 학원정보를 조회 할 수 있어야 한다
 	 * */	
+	
 	//학원 관리자는 모든 학원학생 정보를 가져올 수 있어야 한다.
 	public List<Student> findAllAcademyStudent(Academy academy); 
 	
@@ -39,16 +40,9 @@ public interface StudentService {
 	 * 카테고리 별로 가져오는 것들
 	 */
 
-	//학원관리자는 EKA회원 인 학생 정보를 가져올 수 있어야 한다
+	//학생의 정보를 카테고리별로 불러온다
 	public List<Student> findAcademyStudentsByEkaSignUp(Academy Academy, FindStudent FindStudent);
 		
-	//학원 관리자는 학생 카테고리 별 학생 정보들을 가져올 수 있어야한다
-	public List<Student> findAllAcademyStudentParent(Student Student, FindStudent FindStudent);
-	
-	//학원 관리자는 남/여 학생 정보를 가져올 수 있어야 한다
-	public List<Student> findAcademyStudentsByGender(Student Student, FindStudent FindStudent);
-	
-
 	
 	
 }

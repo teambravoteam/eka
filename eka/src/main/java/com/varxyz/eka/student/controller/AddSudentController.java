@@ -34,8 +34,10 @@ public class AddSudentController {
 	//학원관리자는 학생을 등록 할 수 있어야 한다
 	@GetMapping("eka_manager/student_add")
 	public String StudentAdd(Model model,HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");	
 		session.setAttribute("school",categoryservice.findSchoolCategory());
 		session.setAttribute("grade",categoryservice.findGradeCategory());
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("student", new Student());
 		return "eka_manager/student_add";
 	}

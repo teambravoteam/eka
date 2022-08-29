@@ -17,6 +17,10 @@
 
 <title>EKA Manager</title>
 
+<!-- jQuery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <!-- Custom fonts for this template-->
 <link
 	href="../resources/manager/vendor/fontawesome-free/css/all.min.css"
@@ -37,7 +41,7 @@
 	rel="stylesheet">
 <link href="../resources/manager/custom/css/student_edit.css"
 	rel="stylesheet">
-
+<script type="text/javascript" src='<c:url value="/resources/manager/custom/js/student_edit.js"/>'></script>
 </head>
 <style>
 body {
@@ -89,17 +93,19 @@ body {
 													name="ekacheck" value="미가입">미가입</td>
 												<th>성별</th>
 												<td><input type="radio" class="radio"
-													name="gendercheck" value="여성">여성 <input
-													type="radio" class="radio" name="gendercheck" value="남성">남성
+													name="gendercheck" value="여">여성 <input
+													type="radio" class="radio" name="gendercheck" value="남">남성
 												</td>
 											</tr>
 											<tr>
 												<th>교과과정</th>
 												<td colspan="3"><select class="" name="school">
+														<option value="선택">선택</option>
 														<c:forEach var="school" items="${school}">
 															<option value="${school.schoolcate}">${school.schoolcate}</option>
 														</c:forEach>
 												</select> <select class="" name="grade">
+														<option value="선택">선택</option>
 														<c:forEach var="grade" items="${grade}">
 															<option value="${grade.gradecate}">${grade.gradecate}</option>
 														</c:forEach>
@@ -135,21 +141,21 @@ body {
 													<th>상세정보</th>
 												</tr>
 											</thead>
-											<!-- eka유저 나오는 테이블 -->
+											<!-- 카테고리별로 나오는 테이블 -->
 											<tbody>
 												<c:forEach var="ekaUserStudent" items="${ekaUserStudent}" varStatus="status">
 													<form method="post">
 														<tr>
 															<td>${status.count}</td>
-															<td>${list.name}</td>
+															<td>${ekaUserStudent.name}</td>
 															<input type="hidden" name="name" value="${ekaUserStudent.name}">
-															<td><a href="tel:">${list.phone}</a></td>
+															<td><a href="tel:">${ekaUserStudent.phone}</a></td>
 															<input type="hidden" name="phone" value="${ekaUserStudent.phone}">
-															<td>${list.gender}</td>
+															<td>${ekaUserStudent.gender}</td>
 															<input type="hidden" name="gender" value="${ekaUserStudent.gender}">
-															<td>${list.ekaUserId}</td>
+															<td>${ekaUserStudent.ekaUserId}</td>
 															<input type="hidden" name="ekaUserId" value="${ekaUserStudent.ekaUserId}">
-															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															<td><button type="submit" name="button" class="btn btn-light btn-sm btn-list" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
 														</tr>
 													</form>
 												</c:forEach>
@@ -163,12 +169,17 @@ body {
 															<td>${list.name}</td>
 															<input type="hidden" name="name" value="${list.name}">
 															<td><a href="tel:">${list.phone}</a></td>
+															<td style="display: none">${list.ssn}</td>
 															<input type="hidden" name="phone" value="${list.phone}">
 															<td>${list.gender}</td>
 															<input type="hidden" name="gender" value="${list.gender}">
 															<td>${list.ekaUserId}</td>
+															<td style="display: none">${list.parentName}</td>
+															<td style="display: none">${list.parentType}</td>
+															<td style="display: none">${list.parentPhone}</td>
 															<input type="hidden" name="ekaUserId" value="${list.ekaUserId}">
-															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															<td><button type="submit" name="보기" class="btn btn-light btn-sm btn-list" formaction="student_edit2">보기    </button><button type="submit" name="수정" class="btn btn-light btn-sm btn-update" formaction="student_edit2">수정</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															
 														</tr>
 													</form>
 												</c:forEach>
@@ -189,44 +200,55 @@ body {
 									<h6 class="m-0 font-weight-bold text-primary">학생정보 상세보기</h6>
 								</div>
 								<!-- Card Body -->
-								<div class="card-body">
+								<div class="card-body detailedlist">
 									<!-- 이름, 성별, 생년월일, 연락처, 학부모정보,
                 eka가입여부에 따라 + 아이디,이메일 -->
-									<table>
-										<tr>
-											<th>이름</th>
-											<td>${findstudent.name}</td>
-										</tr>
-										<tr>
-											<th>연락처</th>
-											<td><a href="tel:">${findstudent.phone}</a></td>
-										</tr>
-										<tr>
-											<th>생년월일</th>
-											<td>${findstudent.ssn}</td>
-										</tr>
-										<tr>
-											<th>eka 아이디</th>
-											<td>${findstudent.ekaUserId}</td>
-										</tr>
-								
-									</table>
-									<br> 학부모정보
-									<table>
-										<tr>
-											<th>이름</th>
-											<td>${findstudent.parentName}</td>
-										</tr>
-										<tr>
-											<th>관계</th>
-											<td>${findstudent.parentType}</td>
-										</tr>
-										<tr>
-											<th>연락처</th>
-											<td><a href="tel:">${findstudent.parentPhone}</a></td>
-										</tr>
-									</table>
+                
+                					<div id="detail_list">
+                					 <!-- 상세페이지 부분 -->
+                					</div>
+                					
+                					 <%-- <form action="">
+	                					<table>
+											<tr>
+												<th>이름</th>
+												<td>${findstudent.name}</td>
+												
+											</tr>
+											<tr>
+												<th>연락처</th>
+												<td><a href="tel:">${findstudent.phone}</a></td>
+											</tr>
+											<tr>
+												<th>생년월일</th>
+												<td>${findstudent.ssn}</td>
+											</tr>
+											<tr>
+												<th>eka 아이디</th>
+												<td>${findstudent.ekaUserId}</td>
+											</tr>
+									
+										</table>
+										<br> 학부모정보
+										<table>
+											<tr>
+												<th>이름</th>
+												<td>${findstudent.parentName}</td>
+											</tr>
+											<tr>
+												<th>관계</th>
+												<td>${findstudent.parentType}</td>
+											</tr>
+											<tr>
+												<th>연락처</th>
+												<td><a href="tel:">${findstudent.parentPhone}</a></td>
+											</tr>	
+										</table>
+										<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">수정</button>
+										<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">삭제</button>
+                					</form>  --%>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -263,13 +285,13 @@ body {
 	<!-- Core plugin JavaScript-->
 	<script
 		src="../resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+	
 	<!-- Custom scripts for all pages-->
 	<script src="../resources/manager/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
 	<script src="../resources/manager/vendor/chart.js/Chart.min.js"></script>
-
+	
 	<!-- Page level custom scripts -->
 	<script src="../resources/manager/js/demo/chart-area-demo.js"></script>
 	<script src="../resources/manager/js/demo/chart-pie-demo.js"></script>

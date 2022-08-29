@@ -4,7 +4,7 @@
 -- 2.학원 테이블 : eka_academy
 CREATE TABLE Student(
 	sid					BIGINT 			PRIMARY KEY AUTO_INCREMENT,
-	academyId			BIGINT			NOT NULL,
+	academyId			BIGINT,			
 	schoolcate			VARCHAR(20)		NOT NULL,
 	gradecate			VARCHAR(20)		NOT NULL,
 	name				VARCHAR(20)		NOT NULL,
@@ -20,5 +20,11 @@ CREATE TABLE Student(
 );
 
 SELECT * FROM Student;
+
+SELECT * FROM Student WHERE academyId = "6943" AND ekaUserId = "";
+SELECT * FROM Student WHERE academyId = "6943" AND gradecate = "1학년" AND schoolcate = "초등학교";
+
+
+
 
 DROP TABLE Student;  
