@@ -155,7 +155,7 @@ body {
 															<input type="hidden" name="gender" value="${ekaUserStudent.gender}">
 															<td>${ekaUserStudent.ekaUserId}</td>
 															<input type="hidden" name="ekaUserId" value="${ekaUserStudent.ekaUserId}">
-															<td><button type="submit" name="button" class="btn btn-light btn-sm btn-list" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															<td><button type="submit" name="button" class="btn btn-light btn-sm" formaction="student_edit2">보기</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
 														</tr>
 													</form>
 												</c:forEach>
@@ -167,18 +167,15 @@ body {
 														<tr>
 															<td>${status.count}</td>
 															<td>${list.name}</td>
-															<input type="hidden" name="name" value="${list.name}">
 															<td><a href="tel:">${list.phone}</a></td>
 															<td style="display: none">${list.ssn}</td>
-															<input type="hidden" name="phone" value="${list.phone}">
 															<td>${list.gender}</td>
-															<input type="hidden" name="gender" value="${list.gender}">
 															<td>${list.ekaUserId}</td>
 															<td style="display: none">${list.parentName}</td>
 															<td style="display: none">${list.parentType}</td>
 															<td style="display: none">${list.parentPhone}</td>
-															<input type="hidden" name="ekaUserId" value="${list.ekaUserId}">
-															<td><button type="submit" name="보기" class="btn btn-light btn-sm btn-list" formaction="student_edit2">보기    </button><button type="submit" name="수정" class="btn btn-light btn-sm btn-update" formaction="student_edit2">수정</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
+															<td><button type="button" class="btn btn-light btn-sm detailBtn">보기</button>
+															<button type="button" class="btn btn-light btn-sm updateBtn">수정</button> <!-- 보기 클릭하면 스크립트로 해당하는 데이터의 상세정보 띄우기 --></td>
 															
 														</tr>
 													</form>
@@ -292,10 +289,8 @@ body {
 	<!-- Page level plugins -->
 	<script src="../resources/manager/vendor/chart.js/Chart.min.js"></script>
 	
-	<!-- Page level custom scripts -->
-	<script src="../resources/manager/js/demo/chart-area-demo.js"></script>
-	<script src="../resources/manager/js/demo/chart-pie-demo.js"></script>
-
+	
+	
 </body>
 
 </html>
