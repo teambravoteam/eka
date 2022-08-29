@@ -2,6 +2,7 @@ package com.varxyz.eka.consulting.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
+import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
+import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.consulting.category.domain.ConsultCategory;
 import com.varxyz.eka.consulting.domain.Consulting;
@@ -29,6 +32,11 @@ public class ConsultingController {
 	private ConsultingServiceImp consultingService;		
 	@Autowired
 	private AcademyServiceImp academyService;
+	@Autowired
+	private LectureServiceImpl lservice;
+	@Autowired
+	private TeacherServiceImpl tservice;
+
 
 	@GetMapping("eka_manager/consulting_edit")
 	public String ConsultingEdit(Model model, HttpSession session) {
@@ -64,6 +72,51 @@ public class ConsultingController {
 		model.addAttribute("applyConsultingList",applyConsultingList);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_eka";
+	}
+	
+	
+	@PostMapping("eka_manager/add_apply_consult")
+	public String addApplyconsulting(Model model,
+			@RequestParam String studentName, @RequestParam String studentPhone,
+			@RequestParam String studentConsult, @RequestParam long academyId ,HttpSession session) throws ParseException {		
+	
+		long checkManager = 0;		
+		// 원장 로그인여부 체크
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		if (am == null) {
+			checkManager = 1;
+		} else {
+			checkManager = 0;
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String strToday = sdf.format(c1.getTime());
+	
+		
+		Academy academy = academyService.findAcademyByAid(academyId);
+		ConsultCategory csc = new ConsultCategory();
+		csc.setCategory("입학");
+		
+		Consulting applyConsult = new Consulting();
+		applyConsult.setAcademy(academy);
+		applyConsult.setApplyDate(strToday);
+		applyConsult.setConsultCategory(csc);
+		applyConsult.setConsultDatail(studentConsult);
+		applyConsult.setConsultType("신청");
+		applyConsult.setName(studentName);
+		applyConsult.setPhone(studentPhone);
+		applyConsult.setRegistDate("");
+		
+		consultingService.addApplyConsulting(applyConsult);
+		
+		model.addAttribute("academy", academyService.findAcademyByAid(academy.getAid()));
+		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
+		model.addAttribute("subject", tservice.findSubjectCategory());
+		model.addAttribute("checkManager", checkManager);
+		
+		return "eka_main/academy/detail_page";		
 	}
 	
 	@PostMapping("eka_manager/applyconsulting_select")

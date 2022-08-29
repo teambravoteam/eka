@@ -29,14 +29,22 @@ public class ConsultingDao {
 	}
 	
 	public void addApplyConsulting(Consulting consulting) {
-		String sql = "INSERT Consulting(academyId, name, phone, consultCategory, "
-				+ "consultDetail, consultContent, applyDate, registDate, consultType)"
-				+ " VALUES (?,?,?,?,?,?,?,?,'신청')";
-		jdbcTemplate.update(sql, consulting.getAcademy().getAid(),consulting.getName(),
-				consulting.getPhone(),consulting.getConsultCategory(),
-				consulting.getConsultDatail(),consulting.getConsultContent()
-				,consulting.getApplyDate(),consulting.getRegistDate());
+		System.out.println(consulting.getAcademy().getAid());
+		System.out.println(consulting.getName());
+		System.out.println(consulting.getPhone());
+		System.out.println(consulting.getConsultCategory().getCategory());
+		System.out.println(consulting.getConsultDatail());
+		System.out.println(consulting.getApplyDate());
 		
+		String sql = "INSERT Consulting(academyId, name, phone,consultCategory,"
+				+ "	consultDetail, applyDate,consultType) "
+				+ "	VALUES(?, ?, ?, ?, ?, ?, '신청' );" ; 		
+//		String sql = "INSERT Consulting(academyId, name, phone, consultCategory, "
+//				+ "consultDetail, consultContent, applyDate , consultType)"
+//				+ " VALUES (?,?,?,?,?,?,?,'신청')";
+		jdbcTemplate.update(sql, consulting.getAcademy().getAid(),consulting.getName(),
+				consulting.getPhone(),consulting.getConsultCategory().getCategory(),
+				consulting.getConsultDatail(),consulting.getApplyDate());		
 	}
 
 	public void addRegistConsulting(Consulting consulting) {
