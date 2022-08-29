@@ -121,6 +121,9 @@ public class AttendanceController {
 		List<AttendanceStudent> lectureStudentList = (List<AttendanceStudent>) session
 				.getAttribute("lectureStudentList");
 		Lecture lecture = (Lecture) session.getAttribute("slecture");
+		
+		List<Attendence> lista = attendanceService.findAcademyAttendanceByLecture(lecture);
+		
 		for (AttendanceStudent a : lectureStudentList) {
 			Attendence att = new Attendence();
 			att.setStudent(a.getStudent());
@@ -128,12 +131,21 @@ public class AttendanceController {
 			att.setAcademy(academy);
 			att.setChecking(a.getAttendanceType());
 			att.setRegDate(now);
-
+			
+			for(Attendence b :lista) {
+				if(b.getStudent().getName().equals(att.getStudent().getName()) 
+						&& b.getRegDate() == att.getRegDate()) {
+					attendanceService.updateAttendence(att);
+				}
+			}
 			attendanceService.addAttendece(att);
 		}
 		session.setAttribute("lectureStudentList", null);
-
+		
+		
 		return "eka_manager/attendance";
+		
+		
 	}
 	
 	

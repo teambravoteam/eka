@@ -148,8 +148,15 @@ public class ConsultingController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		Consulting registConsult = consultingService.findAcademyRegistConsultingByRegDateAndName(academy, to , name);		
 		
+		
+		
 		List<Consulting> registConsultingList = consultingService.findAllAcademyRegistConsulting(academy);
-		model.addAttribute("registConsult",registConsult);
+		
+		
+		System.out.println(registConsultingList.get(0).getConsultContent());
+		System.out.println(registConsultingList.get(0).getConsultDatail());
+		
+		model.addAttribute("registConsult",registConsult);		
 		model.addAttribute("registConsultingList",registConsultingList);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/consulting_edit";		

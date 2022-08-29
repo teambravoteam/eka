@@ -99,15 +99,11 @@ body {
                           <tr>
                            <th>신청내용</th>
                           <td>                              
-                             <textarea rows="40" cols="3" name="consultDetail" style="width:400px; height:150px;" >
-                             	${registConsult.consultDatail}
-                             </textarea>
+                             <textarea rows="40" cols="3" name="consultDetail" style="width:400px; height:150px;" >${registConsult.consultDatail}</textarea>
                             </td>
                               <th>상담내용</th>
                           <td>                              
-                             <textarea rows="40" cols="3" name="consultContent" style="width:400px; height:150px;" >
-                             	${registConsult.consultContent}
-                             </textarea>
+                             <textarea rows="40" cols="3" name="consultContent" style="width:400px; height:150px;" >${registConsult.consultContent}</textarea>
                             </td>                                                          
                           </tr>                                                 
                         </table>
