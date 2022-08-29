@@ -400,7 +400,7 @@
 		<%@ include file="../common/footer.jsp"%>
 	</div>
 	<!-- 로그인 안되어있을때 Modal 시작 -->
-	<%-- <c:if test="${checkManager == 0}"> --%>
+	<c:if test="${checkStudent == 1}">
 		<div class="modal-back">
 			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
 			    <div class="modal-head">
@@ -449,11 +449,11 @@
 				</div>
 			</div>
 		</div>
-	<%-- </c:if> --%>
+	</c:if>
 	<!-- 로그인 안되어있을때 Modal 끝 -->
 	
 	<!-- 로그인 되어있을때 Modal 시작 -->
-	<%-- <c:if test="${checkManager == 1}">
+	<c:if test="${checkStudent == 0}">
 		<div class="modal-back">
 			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
 			    <div class="modal-head">
@@ -463,30 +463,31 @@
 			    </div>
 			    <div class="modal-body">
 				    <div id="academy-register-wrap">
-					    <form name="???" action="???" method="POST">
+					    <form action="/eka/eka_manager/add_apply_consult" method="POST">
 					        <input type="hidden" name="uaid" value="40943">
 					        <input type="hidden" name="parentId" value="">
 					        <!-- 학생정보 시작 -->
 					        <div class="student-wrap">
 					            <h3>학생정보</h3>
 					            <div class="border-wrap info-wrap">
-					                <ul class="input-wrap">
+					            <input type = "hidden" name = "academyId" value="${academy.aid}"/>
+					                <ul class="input-wrap">					                
 					                    <li>
 					                        <label for="studentName" class="label-text">이름</label>
 					                        <div class="flex-wrap">
-					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${checkStudent.name}" placeholder="이름을 입력해주세요">
+					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${ekauser.name}">
 					                        </div>
 					                    </li>
 					                    <li>
 					                        <label for="studentPhone" class="label-text">휴대폰번호</label>
 					                        <div class="flex-wrap">
-					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${checkStudent.phone}" placeholder="휴대폰번호를 입력해주세요 (-)포함">
+					                            <input type="text" name="studentPhone" id="studentName" class="input-text" value="${ekauser.phone}">
 					                        </div>
 					                    </li>
 					                    <li>
-					                        <label for="studentSchool" class="label-text">상담내용</label>
+					                        <label for="studentConsult" class="label-text">상담내용</label>
 					                        <div class="flex-wrap">
-					                            <input type="text" name="studentSchool" id="studentSchool" class="input-text" value="">
+					                            <input type="text" name="studentConsult" id="studentSchool" class="input-text" value="">
 					                        </div>
 					                    </li>
 					                </ul>
@@ -501,7 +502,7 @@
 				</div>
 			</div>
 		</div>
-	</c:if> --%>
+	</c:if>
 	<!-- 로그인 되어있을때 Modal 끝 -->
 	
 	<script type="text/javascript" src="<c:url value='/resources/js/common.js'/>"></script>

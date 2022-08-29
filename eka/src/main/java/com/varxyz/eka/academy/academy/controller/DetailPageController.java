@@ -41,12 +41,12 @@ public class DetailPageController {
 		}
 		
 		// 학생 로그인여부 체크
-//		EkaUser as = (EkaUser) session.getAttribute("user");
-//		if (as == null) {
-//			checkStudent = 1;
-//		} else {
-//			checkStudent = 0;
-//		}
+		EkaUser as = (EkaUser) session.getAttribute("ekauser");
+		if (as == null) {
+			checkStudent = 1;
+		} else {
+			checkStudent = 0;
+		}
 
 		System.out.println(asservice.findAcademyByAid(academy.getAid()));
 		System.out.println(tservice.findAllAcademyTeacher(academy));
@@ -56,7 +56,7 @@ public class DetailPageController {
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("checkManager", checkManager);
-//		model.addAttribute("checkStudent", checkStudent);
+		model.addAttribute("checkStudent", checkStudent);
 		return "eka_main/academy/detail_page";
 	}
 }
