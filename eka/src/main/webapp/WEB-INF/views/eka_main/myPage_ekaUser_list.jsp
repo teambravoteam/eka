@@ -90,10 +90,18 @@
 						<li>
 							<form method="post">
 								<input type="text" name="reviewCotent" value="" />
+								<select name="reviewScore">
+									<option value="5" selected>5점</option>
+									<option value="4">4점</option>
+									<option value="3">3점</option>
+									<option value="2">2점</option>
+									<option value="1">1점</option>
+								</select>
 								<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
+								<input type="hidden" name="ekauserEid" value="${ekauser.eid}" />
 								<input type="hidden" name="academyAid" value="${academyIdList[status.index]}" />
-								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 작성" formaction="add_review"/>
-								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 조회" formaction="find_review"/>
+								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 작성" formaction="add_review" />
+								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 조회" formaction="find_review" />
 							</form>
 						</li>
 					</ul>
@@ -103,17 +111,67 @@
 
 		<%@ include file="common/footer.jsp"%>
 	</div>
+
+	<div id="modal-wrap" class="modal-wrap width-s" style="display: none;">
+		<div class="modal-head">
+			<button type="button" class="bt-icon close float-right">닫기</button>
+			<h3 class="modal-title">내 리뷰</h3>
+			<span class="modal-guide" style="display: none;"></span>
+		</div>
+		<div class="modal-body">
+			<form action="myPage_update" method="post">
+				<ul class="input-wrap">
+					<li>
+						<label for="userPw" class="label-text">변경할 비밀번호</label>
+						<div class="flex-wrap">
+							<input type="password" name="password" id="userPw" class="input-text" value="${manager.userPw}" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
+						</div>
+					</li>
+					<li>
+						<label for="userName" class="label-text">변경할 이름</label>
+						<div class="flex-wrap">
+							<input type="text" name="name" id="userName" class="input-text" value="${manager.name}" required="" autocomplete="new-password" placeholder="변경할 이름을 입력해주세요">
+						</div>
+					</li>
+					<li>
+						<label for="userSsn" class="label-text">변경할 생년월일</label>
+						<div class="flex-wrap">
+							<input type="text" name="ssn" id="userSsn" class="input-text" value="${manager.ssn}" required="" autocomplete="new-password" placeholder="주민번호 앞 6자리를 입력해주세요">
+						</div>
+					</li>
+					<li>
+						<label for="userPhone" class="label-text">변경할 휴대폰번호</label>
+						<div class="input-phone-wrap flex-wrap">
+							<input type="tel" name="phone" id="userPhone" class="input-text" value="${manager.phone}" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
+						</div>
+					</li>
+
+				</ul>
+				<input type="hidden" name="configType" value="user">
+				<div class="bt-modal-wrap">
+					<input type="hidden" name="aid" value="${manager.aid}">
+					<input type="hidden" name="userId" value="${manager.userId}">
+					<input type="hidden" name="userPw" value="${manager.userPw}">
+					<input type="hidden" name="academyName" value="${academyNameList}">
+					<button type="submit" class="bt-label color-point">저장</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 
 <script type="text/javascript" src="../resources/js/common.js"></script>
 <script type="text/javascript">
-$(function(){
-	$(".bt-sub.yellowgreen").click(function() {
-		console.log("버튼 누름!");
-		var index = $(this).attr("data");
-		$(this).parents(".review_div").find(".shadow-wrap.review."+index+"").toggleClass("hidden3");
-	})
-});
+	$(function() {
+		$(".bt-sub.yellowgreen").click(
+				function() {
+					console.log("버튼 누름!");
+					var index = $(this).attr("data");
+					$(this).parents(".review_div").find(
+							".shadow-wrap.review." + index + "").toggleClass(
+							"hidden3");
+				})
+	});
 </script>
 
 </html>

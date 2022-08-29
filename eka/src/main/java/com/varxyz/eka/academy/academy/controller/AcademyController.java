@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.auth.domain.AcademyManager;
+import com.varxyz.eka.auth.domain.EkaUser;
 import com.varxyz.eka.auth.service.AuthService;
 import com.varxyz.eka.student.domain.Student;
 
@@ -62,7 +63,10 @@ public class AcademyController {
 
 		if (academyId != null && academyId != "") {
 			Long academyIdL = Long.parseLong(academyId);
-			academyName = academyService.findAcademyByAid(academyIdL).getName();
+
+			if (!academyId.equals("0")) {
+				academyName = academyService.findAcademyByAid(academyIdL).getName();
+			}
 
 			mav.addObject("academyName", academyName);
 			mav.setViewName("eka_main/myPage");
@@ -83,7 +87,7 @@ public class AcademyController {
 	}
 
 	@PostMapping("/eka_main/myPage_update")
-	public ModelAndView myPage_update(HttpServletRequest request, HttpSession session, AcademyManager academyManager) {
+	public ModelAndView myPage_update(HttpServletRequest request, HttpSession session, AcademyManager academyManager, EkaUser ekaUser) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -91,19 +95,34 @@ public class AcademyController {
 		String name = request.getParameter("name");
 		String ssn = request.getParameter("ssn");
 		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
 		String aid = request.getParameter("aid");
+		String eid = request.getParameter("eid");
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		String academyName = request.getParameter("academyName");
 
-		authService.updateAcademyManager(password, name, ssn, phone, aid);
-		academyManager.setUserId(userId);
-		academyManager.setUserPw(userPw);
-		session.setAttribute("manager",
-				authService.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
+		if (aid != null && eid == null || eid == "") {
+			authService.updateAcademyManager(password, name, ssn, phone, aid);
+			academyManager.setUserId(userId);
+			academyManager.setUserPw(userPw);
+			session.setAttribute("manager",
+					authService.loginManager(academyManager.getUserId(), academyManager.getUserPw()));
 
-		mav.addObject("academyName", academyName);
-		mav.setViewName("eka_main/myPage");
+			mav.addObject("academyName", academyName);
+			mav.setViewName("eka_main/myPage");
+
+		} else {
+			authService.updateEkaUser(password, name, ssn, phone, email, eid);
+			ekaUser.setUserId(userId);
+			ekaUser.setUserPw(userPw);
+			session.setAttribute("ekauser",
+					authService.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()));
+
+			mav.addObject("academyNameList", academyName);
+			mav.setViewName("eka_main/myPage_ekaUser");
+		}
+
 
 		return mav;
 	}
@@ -166,8 +185,10 @@ public class AcademyController {
 	public ModelAndView find_academy(HttpSession session, HttpServletRequest request) {
 		String keyword = request.getParameter("keyword");
 		String sLat = request.getParameter("lat");
+		Double dLat = Double.parseDouble(sLat);
 		String sLon = request.getParameter("lon");
-		
+		Double dLon = Double.parseDouble(sLon);
+
 		ModelAndView mav = new ModelAndView();
 
 		List<Academy> allAcademyList = academyService.findAcademyByName(keyword);
@@ -184,6 +205,15 @@ public class AcademyController {
 		System.out.println("allLatList 완료");
 		List<String> allLonList = allAcademyList.stream().map(Academy::getLon).collect(Collectors.toList());
 		System.out.println("allLonList 완료");
+
+		double distanceKiloMeter;
+
+		// 킬로미터(Kilo Meter) 단위
+		for (int i = 0; i < allLatList.size(); i++) {
+			distanceKiloMeter = academyService.distance(dLat, dLon, 37.501025, 127.037701, "kilometer");
+		}
+
+		System.out.println();
 
 		mav.addObject("user_lat", sLat);
 		mav.addObject("user_lon", sLon);

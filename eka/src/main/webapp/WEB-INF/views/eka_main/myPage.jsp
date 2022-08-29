@@ -51,10 +51,12 @@
 						<a href="myPage">내 정보</a>
 					</li>
 					<li>
-						<form action="detail_page" method="get">
-							<input type="hidden" name="academyAid" value="${manager.academyId}" />
-							<input type="submit" class="a-title" value="내 학원정보" />
-						</form>
+						<c:if test="${manager.academyId != 0}">
+							<form action="detail_page" method="get">
+								<input type="hidden" name="academyAid" value="${manager.academyId}" />
+								<input type="submit" class="a-title" value="내 학원정보" />
+							</form>
+						</c:if>
 					</li>
 				</ul>
 			</nav>

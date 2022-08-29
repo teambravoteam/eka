@@ -163,35 +163,41 @@
 					<li>
 						<label for="userPw" class="label-text">변경할 비밀번호</label>
 						<div class="flex-wrap">
-							<input type="password" name="password" id="userPw" class="input-text" value="${manager.userPw}" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
+							<input type="password" name="password" id="userPw" class="input-text" value="${ekauser.userPw}" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
 						</div>
 					</li>
 					<li>
 						<label for="userName" class="label-text">변경할 이름</label>
 						<div class="flex-wrap">
-							<input type="text" name="name" id="userName" class="input-text" value="${manager.name}" required="" autocomplete="new-password" placeholder="변경할 이름을 입력해주세요">
+							<input type="text" name="name" id="userName" class="input-text" value="${ekauser.name}" required="" autocomplete="new-password" placeholder="변경할 이름을 입력해주세요">
 						</div>
 					</li>
 					<li>
 						<label for="userSsn" class="label-text">변경할 생년월일</label>
 						<div class="flex-wrap">
-							<input type="text" name="ssn" id="userSsn" class="input-text" value="${manager.ssn}" required="" autocomplete="new-password" placeholder="주민번호 앞 6자리를 입력해주세요">
+							<input type="text" name="ssn" id="userSsn" class="input-text" value="${ekauser.ssn}" required="" autocomplete="new-password" placeholder="주민번호 앞 6자리를 입력해주세요">
 						</div>
 					</li>
 					<li>
 						<label for="userPhone" class="label-text">변경할 휴대폰번호</label>
 						<div class="input-phone-wrap flex-wrap">
-							<input type="tel" name="phone" id="userPhone" class="input-text" value="${manager.phone}" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
+							<input type="tel" name="phone" id="userPhone" class="input-text" value="${ekauser.phone}" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
+						</div>
+					</li>
+					<li>
+						<label for="userEmail" class="label-text">변경할 이메일</label>
+						<div class="input-phone-wrap flex-wrap">
+							<input type="email" name="email" id="userEmail" class="input-text" value="${ekauser.email}" required="" autocomplete="email" placeholder="이메일을 입력해주세요 (@)포함">
 						</div>
 					</li>
 
 				</ul>
 				<input type="hidden" name="configType" value="user">
 				<div class="bt-modal-wrap">
-					<input type="hidden" name="aid" value="${manager.aid}">
-					<input type="hidden" name="userId" value="${manager.userId}">
-					<input type="hidden" name="userPw" value="${manager.userPw}">
-					<input type="hidden" name="academyName" value="${academyName}">
+					<input type="hidden" name="eid" value="${ekauser.eid}">
+					<input type="hidden" name="userId" value="${ekauser.userId}">
+					<input type="hidden" name="userPw" value="${ekauser.userPw}">
+					<input type="hidden" name="academyName" value="${academyNameList}">
 					<button type="submit" class="bt-label color-point">저장</button>
 				</div>
 			</form>

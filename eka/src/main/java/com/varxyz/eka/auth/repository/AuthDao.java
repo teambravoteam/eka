@@ -86,4 +86,9 @@ public class AuthDao {
 		String sql = "UPDATE AcademyManager SET userPw = ?, name = ?, ssn = ?, phone = ? WHERE aid = ?";
 		jdbcTemplate.update(sql, userPw, userName, userSsn, userPhone, userAid);
 	}
+
+	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail, String userEid) { // ekaUser 정보 수정
+		String sql = "UPDATE EkaUser SET userPw = ?, name = ?, ssn = ?, phone = ?, email = ? WHERE eid = ?";
+		jdbcTemplate.update(sql, userPw, userName, userSsn, userPhone, userEmail, userEid);
+	}
 }

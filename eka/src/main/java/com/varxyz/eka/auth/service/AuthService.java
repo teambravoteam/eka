@@ -3,7 +3,6 @@ package com.varxyz.eka.auth.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.varxyz.eka.academy.academy.domain.Academy;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
 import com.varxyz.eka.auth.repository.AuthDao;
@@ -65,8 +64,16 @@ public class AuthService implements AuthServiceInterface {
 		}
 	}
 
+	// 원장 정보 수정
 	@Override
 	public void updateAcademyManager(String userPw, String userName, String userSsn, String userPhone, String userAid) {
 		authDao.updateAcademyManager(userPw, userName, userSsn, userPhone, userAid);
+	}
+
+	// ekaUser 정보 수정
+	@Override
+	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail,
+			String userEid) {
+		authDao.updateEkaUser(userPw, userName, userSsn, userPhone, userEmail, userEid);
 	}
 }
