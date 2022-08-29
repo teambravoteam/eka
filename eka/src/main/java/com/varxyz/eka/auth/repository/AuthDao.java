@@ -1,6 +1,5 @@
 package com.varxyz.eka.auth.repository;
 
-import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,8 +95,8 @@ public class AuthDao {
 		jdbcTemplate.update(sql, userPw, userName, userSsn, userPhone, userEmail, userEid);
 	}
 
-	public List<EkaUser> findEkaUserByekaUserId(Long eid) { // eid로 유저 리스트 반환
+	public EkaUser findEkaUserByekaUserId(Long eid) { // eid로 유저 리스트 반환
 		String sql = "SELECT * FROM EKAUSER WHERE eid = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<EkaUser>(EkaUser.class), eid);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<EkaUser>(EkaUser.class), eid);
 	}
 }

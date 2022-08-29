@@ -297,7 +297,7 @@
 							<button type="button" class="bt-sec-header">
 								<h1 class="content">리뷰 공지</h1>
 							</button>
-							<div class="content review-notice-wrap">${academy.name}의리뷰입니다.</div>
+							<div class="content review-notice-wrap">${academy.name}의 리뷰입니다.</div>
 						</div>
 						<div class="academy-content-wrap ">
 							<button type="button" class="bt-sec-header">
@@ -354,7 +354,7 @@
 							<div class="content review-count-wrap">
 								<div class="flex-wrap">
 									<div class="flex-shrink-0 flex-glow-1 review-total">
-										학생 리뷰 <span>2개</span>
+										학생 리뷰 <span>${fn:length(reviewRidList)}개</span>
 									</div>
 								</div>
 							</div>
@@ -364,17 +364,17 @@
 										<li>
 											<div class="flex">
 												<div class="flex-shrink-0 review-profile">
-													<img src="../resources/img/empty_user.jpg" alt="user_img">
+													<img src="../resources/img/empty_user.png" alt="user_img">
 												</div>
 												<div class="flex-glow-1 review-info">
 													<div class="review-writer">
-														<span class="writer-id">양**</span><span class="writer-type">학생</span>
+														<span class="writer-id">${reviewEkaUserLameList[status.index]}</span><span class="writer-type">학생</span>
 													</div>
 													<div class="review-rating">
-														<span class="rating-star rating-star-5"></span><span class="review-date">1970-01-01</span>
+														<span class="rating-star rating-star-${reviewScoreList[status.index]}"></span><span class="review-date">${reviewRegDateList[status.index]}</span>
 													</div>
-													<div class="review-content">수학성적이 많이올랐습니다 짱입니다</div>
-													<div class="review-title">고등수학 (심화)</div>
+													<div class="review-content">${reviewCommentList[status.index]}</div>
+													<div class="review-title">${reviewRidList[status.index]}</div>
 												</div>
 											</div>
 										</li>

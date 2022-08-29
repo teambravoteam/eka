@@ -1,5 +1,6 @@
 package com.varxyz.eka.academy.academy.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
+import com.varxyz.eka.auth.service.AuthService;
 import com.varxyz.eka.review.domain.Review;
 import com.varxyz.eka.review.service.ReviewServiceImp;
 
@@ -32,6 +34,8 @@ public class DetailPageController {
 	private TeacherServiceImpl tservice;
 	@Autowired
 	private ReviewServiceImp rservice;
+	@Autowired
+	private AuthService auservice;
 
 	@GetMapping("eka_main/detail_page")
 	public String detailPage(Model model, HttpSession session, @RequestParam String academyAid) {
@@ -62,6 +66,13 @@ public class DetailPageController {
 		// 학원 별 리뷰 구현
 		List<Review> reviewList = rservice.findReviewByAcademyId(aid);
 		List<Long> reviewRidList = reviewList.stream().map(Review::getRid).collect(Collectors.toList());
+		List<Long> reviewEkaUserList = reviewList.stream().map(Review::getEkaUserId).collect(Collectors.toList());
+
+		List<String> reviewEkaUserLameList = new ArrayList<String>();
+		for (int i = 0; i < reviewEkaUserList.size(); i++) {
+			reviewEkaUserLameList.add(auservice.findEkaUserByekaUserId(reviewEkaUserList.get(i)).getName());
+		}
+		
 		List<String> reviewCommentList = reviewList.stream().map(Review::getComment).collect(Collectors.toList());
 		List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore).collect(Collectors.toList());
 		List<Date> reviewRegDateList = reviewList.stream().map(Review::getRegDate).collect(Collectors.toList());
@@ -71,6 +82,7 @@ public class DetailPageController {
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
 		model.addAttribute("reviewRidList", reviewRidList);
+		model.addAttribute("reviewEkaUserLameList", reviewEkaUserLameList);
 		model.addAttribute("reviewCommentList", reviewCommentList);
 		model.addAttribute("reviewScoreList", reviewScoreList);
 		model.addAttribute("reviewRegDateList", reviewRegDateList);
