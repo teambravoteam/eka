@@ -34,20 +34,20 @@ public class ReviewDao {
 	}
 
 	// 리뷰 삭제
-	public void deleteReview(Review review, long rid) {
+	public void deleteReview(long rid) {
 		String sql = "DELETE FROM Review WHERE rid = ?";
 		jdbcTemplate.update(sql, rid);
 	}
 
 	// 학원 별 리뷰 조회
-	public List<Review> findReviewByAcademyId(Review review, Long academyId) {
+	public List<Review> findReviewByAcademyId(Long academyId) {
 		String sql = "SELECT * FROM Review WHERE academyId = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Review>(), academyId);
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Review>(Review.class), academyId);
 	}
 	
 	// 유저 별 리뷰 조회
-	public List<Review> findReviewByekaUserId(Review review, Long ekaUserId) {
+	public List<Review> findReviewByekaUserId(Long ekaUserId) {
 		String sql = "SELECT * FROM Review WHERE ekaUserId = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Review>(), ekaUserId);
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Review>(Review.class), ekaUserId);
 	}
 }

@@ -1,5 +1,7 @@
 package com.varxyz.eka.auth.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -75,5 +77,11 @@ public class AuthService implements AuthServiceInterface {
 	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail,
 			String userEid) {
 		authDao.updateEkaUser(userPw, userName, userSsn, userPhone, userEmail, userEid);
+	}
+	
+	//
+	@Override
+	public List<EkaUser> findEkaUserByekaUserId(Long eid) {
+		return authDao.findEkaUserByekaUserId(eid);	
 	}
 }

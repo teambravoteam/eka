@@ -55,6 +55,7 @@
 					</li>
 					<li class="current">
 						<form action="ekaUser_list" method="post">
+							<input type="hidden" name="ekauserEid" value="${ekauser.eid}" />
 							<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
 							<input type="submit" class="a-title" value="내 학원정보" />
 						</form>
@@ -76,10 +77,10 @@
 				<c:forEach var="academy" items="${academyNameList}" varStatus="status">
 					<div class="shadow-wrap ekaUser">
 						<div>${academy}</div>
-						<div>
-							<button class="bt-sub yellowgreen" data="${status.index}">리뷰 관리</button>
+						<div class="text-right">
+							<button class="bt-sub yellowgreen" data="${status.index}">리뷰</button>
 						</div>
-						<div>
+						<div class="text-center">
 							<form action="detail_page" method="get">
 								<input type="hidden" name="academyAid" value="${academyIdList[status.index]}" />
 								<input type="submit" class="bt-sub green" value="상세페이지" />
@@ -101,61 +102,59 @@
 								<input type="hidden" name="ekauserEid" value="${ekauser.eid}" />
 								<input type="hidden" name="academyAid" value="${academyIdList[status.index]}" />
 								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 작성" formaction="add_review" />
-								<input type="submit" class="ui-button ui-corner-all ui-widget" value="리뷰 조회" formaction="find_review" />
 							</form>
 						</li>
 					</ul>
 				</c:forEach>
+				<button type="button" class="ui-button ui-corner-all ui-widget float-right" id="bt-modify-user">리뷰 관리</button>
+
+				<script>
+					$("#bt-modify-user").on("click", function() {
+						$("#modal-wrap").css('display', 'block');
+						$("#wrap").addClass('transparent');
+					});
+				</script>
 			</div>
 		</div>
 
 		<%@ include file="common/footer.jsp"%>
 	</div>
 
-	<div id="modal-wrap" class="modal-wrap width-s" style="display: none;">
+	<div id="modal-wrap" class="modal-wrap width-s" style="display: none; max-width: 1000px;">
 		<div class="modal-head">
 			<button type="button" class="bt-icon close float-right">닫기</button>
-			<h3 class="modal-title">내 리뷰</h3>
+			<h3 class="modal-title">리뷰 관리</h3>
 			<span class="modal-guide" style="display: none;"></span>
 		</div>
 		<div class="modal-body">
-			<form action="myPage_update" method="post">
-				<ul class="input-wrap">
-					<li>
-						<label for="userPw" class="label-text">변경할 비밀번호</label>
-						<div class="flex-wrap">
-							<input type="password" name="password" id="userPw" class="input-text" value="${manager.userPw}" required="" autocomplete="new-password" placeholder="변경할 비밀번호를 입력해주세요">
-						</div>
-					</li>
-					<li>
-						<label for="userName" class="label-text">변경할 이름</label>
-						<div class="flex-wrap">
-							<input type="text" name="name" id="userName" class="input-text" value="${manager.name}" required="" autocomplete="new-password" placeholder="변경할 이름을 입력해주세요">
-						</div>
-					</li>
-					<li>
-						<label for="userSsn" class="label-text">변경할 생년월일</label>
-						<div class="flex-wrap">
-							<input type="text" name="ssn" id="userSsn" class="input-text" value="${manager.ssn}" required="" autocomplete="new-password" placeholder="주민번호 앞 6자리를 입력해주세요">
-						</div>
-					</li>
-					<li>
-						<label for="userPhone" class="label-text">변경할 휴대폰번호</label>
-						<div class="input-phone-wrap flex-wrap">
-							<input type="tel" name="phone" id="userPhone" class="input-text" value="${manager.phone}" required="" autocomplete="tel" placeholder="휴대폰번호를 입력해주세요 (-)제외">
-						</div>
-					</li>
-
-				</ul>
-				<input type="hidden" name="configType" value="user">
-				<div class="bt-modal-wrap">
-					<input type="hidden" name="aid" value="${manager.aid}">
-					<input type="hidden" name="userId" value="${manager.userId}">
-					<input type="hidden" name="userPw" value="${manager.userPw}">
-					<input type="hidden" name="academyName" value="${academyNameList}">
-					<button type="submit" class="bt-label color-point">저장</button>
-				</div>
-			</form>
+			<ul class="input-wrap">
+				<c:forEach var="reviewRid" items="${reviewRidList}" varStatus="status">
+					<form method="post">
+						<li>
+							<div class="flex-wrap grid_33">
+								<div class="flex-wrap grid_25">
+									<input type="hidden" value="${reviewRid}">
+									<input type="hidden" value="${reviewAcademyIdList[status.index]}">
+									<input type="text" class="review_title" value="${reviewAcademyNameList[status.index]}" readonly="readonly">
+									<input type="text" class="review_comment" value="${reviewCommentList[status.index]}" required="required">
+									<input type="hidden" class="review_score" value="${reviewScoreList[status.index]}" required="required">
+									<input type="text" class="review_regDate" value="${reviewRegDateList[status.index]}" readonly="readonly">
+								</div>
+								<input type="submit" class="input-text review-btn" value="수정" formaction="add_review">
+								<input type="submit" class="input-text review-btn" value="삭제" formaction="update_Review">
+							</div>
+						</li>
+					</form>
+				</c:forEach>
+			</ul>
+			<input type="hidden" name="configType" value="user">
+			<div class="bt-modal-wrap">
+				<input type="hidden" name="aid" value="${manager.aid}">
+				<input type="hidden" name="userId" value="${manager.userId}">
+				<input type="hidden" name="userPw" value="${manager.userPw}">
+				<input type="hidden" name="academyName" value="${academyNameList}">
+				<button type="submit" class="bt-label color-point">저장</button>
+			</div>
 		</div>
 	</div>
 </body>

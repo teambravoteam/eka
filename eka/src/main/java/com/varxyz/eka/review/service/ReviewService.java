@@ -15,12 +15,12 @@ public interface ReviewService {
 	public void updateReview(Review review);
 	
 	//유저는 리뷰를 삭제 할 수 있어야 한다
-	public void deleteReview(Review review, Long rid);
+	public void deleteReview(Long rid);
 
 	// 학원 별로 리뷰를 조회할 수 있어야 한다
-	public List<Review> findReviewByAcademyId(Review review, Long academyId);
+	public List<Review> findReviewByAcademyId(Long academyId);
 	
 	// 유저 별로 리뷰를 조회할 수 있어야 한다
-	public List<Review> findReviewByekaUserId(Review review, Long ekaUserId);
+	public List<Review> findReviewByekaUserId(Long ekaUserId);
 	
 }

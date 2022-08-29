@@ -1,5 +1,9 @@
 package com.varxyz.eka.academy.academy.controller;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,8 @@ import com.varxyz.eka.academy.lecture.service.LectureServiceImpl;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
+import com.varxyz.eka.review.domain.Review;
+import com.varxyz.eka.review.service.ReviewServiceImp;
 
 @Controller
 public class DetailPageController {
@@ -24,6 +30,8 @@ public class DetailPageController {
 	private LectureServiceImpl lservice;
 	@Autowired
 	private TeacherServiceImpl tservice;
+	@Autowired
+	private ReviewServiceImp rservice;
 
 	@GetMapping("eka_main/detail_page")
 	public String detailPage(Model model, HttpSession session, @RequestParam String academyAid) {
@@ -50,11 +58,22 @@ public class DetailPageController {
 
 		System.out.println(asservice.findAcademyByAid(academy.getAid()));
 		System.out.println(tservice.findAllAcademyTeacher(academy));
+		
+		// 학원 별 리뷰 구현
+		List<Review> reviewList = rservice.findReviewByAcademyId(aid);
+		List<Long> reviewRidList = reviewList.stream().map(Review::getRid).collect(Collectors.toList());
+		List<String> reviewCommentList = reviewList.stream().map(Review::getComment).collect(Collectors.toList());
+		List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore).collect(Collectors.toList());
+		List<Date> reviewRegDateList = reviewList.stream().map(Review::getRegDate).collect(Collectors.toList());
 
 		model.addAttribute("academy", asservice.findAcademyByAid(academy.getAid()));
 		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
 		model.addAttribute("teacher", tservice.findAllAcademyTeacher(academy));
 		model.addAttribute("subject", tservice.findSubjectCategory());
+		model.addAttribute("reviewRidList", reviewRidList);
+		model.addAttribute("reviewCommentList", reviewCommentList);
+		model.addAttribute("reviewScoreList", reviewScoreList);
+		model.addAttribute("reviewRegDateList", reviewRegDateList);
 		model.addAttribute("checkManager", checkManager);
 		model.addAttribute("checkStudent", checkStudent);
 		return "eka_main/academy/detail_page";

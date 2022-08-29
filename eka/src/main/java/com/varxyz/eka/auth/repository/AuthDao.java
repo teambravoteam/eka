@@ -1,5 +1,7 @@
 package com.varxyz.eka.auth.repository;
 
+import java.util.List;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -41,11 +43,10 @@ public class AuthDao {
 				ekaUser.getSsn(), ekaUser.getPhone(), ekaUser.getEmail());
 	}
 
-	public AcademyManager usercheckId(String userId) { // 유저 아이디 중복확인
+	public EkaUser usercheckId(String userId) { // 유저 아이디 중복확인
 		try {
 			String sql = "SELECT * FROM EKAUSER WHERE userId = ?";
-			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<AcademyManager>(AcademyManager.class),
-					userId);
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<EkaUser>(EkaUser.class), userId);
 		} catch (Exception e) {
 			return null;
 		}
@@ -82,13 +83,21 @@ public class AuthDao {
 		jdbcTemplate.update(sql, academyId, manager.getUserId(), manager.getUserPw());
 	}
 
-	public void updateAcademyManager(String userPw, String userName, String userSsn, String userPhone, String userAid) { // 원장 정보 수정
+	public void updateAcademyManager(String userPw, String userName, String userSsn, String userPhone, String userAid) { // 원장
+																															// 정보
+																															// 수정
 		String sql = "UPDATE AcademyManager SET userPw = ?, name = ?, ssn = ?, phone = ? WHERE aid = ?";
 		jdbcTemplate.update(sql, userPw, userName, userSsn, userPhone, userAid);
 	}
 
-	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail, String userEid) { // ekaUser 정보 수정
+	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail,
+			String userEid) { // ekaUser 정보 수정
 		String sql = "UPDATE EkaUser SET userPw = ?, name = ?, ssn = ?, phone = ?, email = ? WHERE eid = ?";
 		jdbcTemplate.update(sql, userPw, userName, userSsn, userPhone, userEmail, userEid);
+	}
+
+	public List<EkaUser> findEkaUserByekaUserId(Long eid) { // eid로 유저 리스트 반환
+		String sql = "SELECT * FROM EKAUSER WHERE eid = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<EkaUser>(EkaUser.class), eid);
 	}
 }

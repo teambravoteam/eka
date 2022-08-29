@@ -154,7 +154,7 @@ mark {
 }
 
 .hidden3 {
-	z-index: 0 !important;
+	z-index: -1 !important;
 	opacity: 0 !important;
 	height: 0 !important;
 	margin: 0 !important;
@@ -439,10 +439,10 @@ mark {
 }
 
 .bt-sub.yellowgreen {
-    color: #fff;
-    background-color: #a7a728;
-    -webkit-box-shadow: 0 1px 8px rgb(167 167 40 / 45%);
-    box-shadow: 0 1px 8px rgb(167 167 40 / 45%);
+	color: #fff;
+	background-color: #a7a728;
+	-webkit-box-shadow: 0 1px 8px rgb(167 167 40/ 45%);
+	box-shadow: 0 1px 8px rgb(167 167 40/ 45%);
 }
 
 .bt-sub.yellowgreen:hover {
@@ -1048,8 +1048,8 @@ select.small {
 #wrap .content {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left) + 20px);
-	padding-right: calc(env(safe-area-inset-right) + 20px)
+	padding-left: calc(env(safe-area-inset-left) +20px);
+	padding-right: calc(env(safe-area-inset-right) +20px)
 }
 
 #wrap .content strong {
@@ -1060,8 +1060,8 @@ select.small {
 	#wrap .content {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left) + 12px);
-		padding-right: calc(env(safe-area-inset-right) + 12px)
+		padding-left: calc(env(safe-area-inset-left) +12px);
+		padding-right: calc(env(safe-area-inset-right) +12px)
 	}
 }
 
@@ -1127,8 +1127,8 @@ select.small {
 .header-wrap {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left) + 20px);
-	padding-right: calc(env(safe-area-inset-right) + 20px);
+	padding-left: calc(env(safe-area-inset-left) +20px);
+	padding-right: calc(env(safe-area-inset-right) +20px);
 	max-width: 1020px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1146,8 +1146,8 @@ select.small {
 	.header-wrap {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left) + 12px);
-		padding-right: calc(env(safe-area-inset-right) + 12px);
+		padding-left: calc(env(safe-area-inset-left) +12px);
+		padding-right: calc(env(safe-area-inset-right) +12px);
 		height: 60px
 	}
 }
@@ -1192,8 +1192,8 @@ select.small {
 .header-loc {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left) + 20px);
-	padding-right: calc(env(safe-area-inset-right) + 20px);
+	padding-left: calc(env(safe-area-inset-left) +20px);
+	padding-right: calc(env(safe-area-inset-right) +20px);
 	max-width: 1020px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1215,8 +1215,8 @@ select.small {
 	.header-loc {
 		padding-left: 12px;
 		padding-right: 12px;
-		padding-left: calc(env(safe-area-inset-left) + 12px);
-		padding-right: calc(env(safe-area-inset-right) + 12px);
+		padding-left: calc(env(safe-area-inset-left) +12px);
+		padding-right: calc(env(safe-area-inset-right) +12px);
 		margin-top: 0
 	}
 	.header-loc .userAddr-wrap .guide {
@@ -1274,8 +1274,8 @@ select.small {
 .header-category .hdtb-wrap {
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-left: calc(env(safe-area-inset-left) + 20px);
-	padding-right: calc(env(safe-area-inset-right) + 20px);
+	padding-left: calc(env(safe-area-inset-left) +20px);
+	padding-right: calc(env(safe-area-inset-right) +20px);
 	max-width: 1020px;
 	margin: 0 auto;
 	display: -webkit-box;
@@ -1451,7 +1451,8 @@ select.small {
 .header-side .gnb .join-guide {
 	display: flex;
 	justify-content: center;
-	align-items: center; width : 232px;
+	align-items: center;
+	width: 232px;
 	min-height: 120px;
 	margin: 72px auto 24px;
 	border: 3px solid #4e73df;
@@ -1540,8 +1541,8 @@ select.small {
 	line-height: 56px;
 	padding-left: 12px;
 	padding-right: 12px;
-	padding-left: calc(env(safe-area-inset-left) + 12px);
-	padding-right: calc(env(safe-area-inset-right) + 12px);
+	padding-left: calc(env(safe-area-inset-left) +12px);
+	padding-right: calc(env(safe-area-inset-right) +12px);
 	cursor: pointer;
 }
 
@@ -1561,8 +1562,8 @@ select.small {
 		24px/24px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left) + 24px);
-	padding-right: calc(env(safe-area-inset-right) + 24px)
+	padding-left: calc(env(safe-area-inset-left) +24px);
+	padding-right: calc(env(safe-area-inset-right) +24px)
 }
 
 .header-side .gnb .depth3 {
@@ -1576,8 +1577,8 @@ select.small {
 	line-height: 42px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left) + 24px);
-	padding-right: calc(env(safe-area-inset-right) + 24px)
+	padding-left: calc(env(safe-area-inset-left) +24px);
+	padding-right: calc(env(safe-area-inset-right) +24px)
 }
 
 .footer-wrap {
@@ -3717,6 +3718,33 @@ select.small {
 	color: #B1B9CB
 }
 
+#modal-wrap .modal-body .flex-wrap .review-btn {
+	flex-grow: 0;
+}
+
+#modal-wrap .modal-body .flex-wrap.grid_33 {
+	display: grid;
+	grid-template-columns: 2fr 0.3fr 0.3fr;
+	grid-column-gap: 15px;
+}
+
+#modal-wrap .modal-body .flex-wrap.grid_25 {
+	display: grid;
+	grid-template-columns: 25%;
+	grid-column-gap: 15px;
+	align-items: center;
+}
+
+#modal-wrap .modal-body .flex-wrap.grid_25 .review_title {
+	font-weight: bold;
+}
+
+#modal-wrap .modal-body .flex-wrap.grid_25 .review_comment {
+	border: 1px solid black;
+	padding: 5px 10px 5px 10px;
+	border-radius: 8px;
+}
+
 #modal-filter-wrap {
 	position: fixed;
 	max-width: 320px;
@@ -5034,7 +5062,7 @@ select.small {
 
 .mypage-wrap .content .shadow-wrap.review.hidden3 li {
 	opacity: 0;
-	z-index: 0;
+	z-index: -1;
 	transition: 0.2s;
 }
 
@@ -5045,7 +5073,8 @@ select.small {
 	grid-template-columns: 3fr 0.5fr 0.5fr;
 }
 
-.mypage-wrap .content .shadow-wrap.review form input {
+.mypage-wrap .content .shadow-wrap.review form input, .mypage-wrap .content .shadow-wrap.review form button
+	{
 	height: 100%;
 	margin: 0 10px 0 10px;
 }
@@ -5104,8 +5133,8 @@ select.small {
 	text-align: left;
 	padding-left: 12px;
 	padding-right: 12px;
-	padding-left: calc(env(safe-area-inset-left) + 12px);
-	padding-right: calc(env(safe-area-inset-right) + 12px);
+	padding-left: calc(env(safe-area-inset-left) +12px);
+	padding-right: calc(env(safe-area-inset-right) +12px);
 	cursor: pointer;
 }
 
@@ -5126,8 +5155,8 @@ select.small {
 		24px/24px;
 	padding-left: 24px;
 	padding-right: 24px;
-	padding-left: calc(env(safe-area-inset-left) + 24px);
-	padding-right: calc(env(safe-area-inset-right) + 24px)
+	padding-left: calc(env(safe-area-inset-left) +24px);
+	padding-right: calc(env(safe-area-inset-right) +24px)
 }
 
 .mypage-wrap .m-info {

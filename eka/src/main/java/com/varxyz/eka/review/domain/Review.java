@@ -1,5 +1,7 @@
 package com.varxyz.eka.review.domain;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +18,7 @@ public class Review {
 	private Long ekaUserId;
 	private int reviewScore;
 	private String comment;
+	private Date regDate;
 	
 	public Review() {
 		

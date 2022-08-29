@@ -297,18 +297,7 @@
 							<button type="button" class="bt-sec-header">
 								<h1 class="content">리뷰 공지</h1>
 							</button>
-							<div class="content review-notice-wrap">
-								[리뷰이벤트]
-								<br>
-								<br>
-								리뷰 작성 시, 원하시는 분들께 부족한 과목(택1) 단기 특강을 무료로 해드립니다! (*주1회 1시간)
-								<br>
-								<br>
-								1) 국어 2) 수학 3) 영어
-								<br>
-								<br>
-								* 솔직한 리뷰 작성 부탁드립니다~!! *
-							</div>
+							<div class="content review-notice-wrap">${academy.name}의리뷰입니다.</div>
 						</div>
 						<div class="academy-content-wrap ">
 							<button type="button" class="bt-sec-header">
@@ -325,16 +314,16 @@
 												<li class="flex-center">
 													<span class="flex-shrink-0">5점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width: 100%"></div>
+														<div style="width: 80%"></div>
 													</div>
 													<span class="flex-shrink-0">3</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">4점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width:"></div>
+														<div style="width: 20%"></div>
 													</div>
-													<span class="flex-shrink-0">0</span>
+													<span class="flex-shrink-0">1</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">3점</span>
@@ -365,29 +354,31 @@
 							<div class="content review-count-wrap">
 								<div class="flex-wrap">
 									<div class="flex-shrink-0 flex-glow-1 review-total">
-										학생 리뷰 <span>2개</span> 학부모 리뷰 <span>1개</span> 학원장 댓글 <span>1개</span>
+										학생 리뷰 <span>2개</span>
 									</div>
 								</div>
 							</div>
 							<div class="content review-list-wrap">
 								<ul class="review-list">
-									<li>
-										<div class="flex">
-											<div class="flex-shrink-0 review-profile">
-												<img src="https://k.kakaocdn.net/dn/Sjdjz/btqF2R93QM9/Vtab4IEVQDXRIA9lXHroFk/img_110x110.jpg" alt="">
-											</div>
-											<div class="flex-glow-1 review-info">
-												<div class="review-writer">
-													<span class="writer-id">양**</span><span class="writer-type">학생</span>
+									<c:forEach var="reviewRid" items="${reviewRidList}" varStatus="status">
+										<li>
+											<div class="flex">
+												<div class="flex-shrink-0 review-profile">
+													<img src="../resources/img/empty_user.jpg" alt="user_img">
 												</div>
-												<div class="review-rating">
-													<span class="rating-star rating-star-5"></span><span class="review-date">1970-01-01</span>
+												<div class="flex-glow-1 review-info">
+													<div class="review-writer">
+														<span class="writer-id">양**</span><span class="writer-type">학생</span>
+													</div>
+													<div class="review-rating">
+														<span class="rating-star rating-star-5"></span><span class="review-date">1970-01-01</span>
+													</div>
+													<div class="review-content">수학성적이 많이올랐습니다 짱입니다</div>
+													<div class="review-title">고등수학 (심화)</div>
 												</div>
-												<div class="review-content">수학성적이 많이올랐습니다 짱입니다</div>
-												<div class="review-title">고등수학 (심화)</div>
 											</div>
-										</div>
-									</li>
+										</li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -402,109 +393,109 @@
 	<!-- 로그인 안되어있을때 Modal 시작 -->
 	<c:if test="${checkStudent == 1}">
 		<div class="modal-back">
-			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
-			    <div class="modal-head">
-			        <button type="button" class="bt-icon close float-right">닫기</button>
-			        <h3 class="modal-title">상담신청</h3>
-			        <span class="modal-guide"></span>
-			    </div>
-			    <div class="modal-body">
-				    <div id="academy-register-wrap">
-					    <form action="/eka/eka_manager/add_apply_consult" method="POST">
-					        <input type="hidden" name="uaid" value="40943">
-					        <input type="hidden" name="parentId" value="">
-					        <!-- 학생정보 시작 -->
-					        <div class="student-wrap">
-					            <h3>학생정보</h3>
-					            <div class="border-wrap info-wrap">
-					            <input type = "hidden" name = "academyId" value="${academy.aid}"/>
-					                <ul class="input-wrap">					                
-					                    <li>
-					                        <label for="studentName" class="label-text">이름</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentName" id="studentName" class="input-text" value="" placeholder="이름을 입력해주세요">
-					                        </div>
-					                    </li>
-					                    <li>
-					                        <label for="studentPhone" class="label-text">휴대폰번호</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentPhone" id="studentName" class="input-text" value="" placeholder="휴대폰번호를 입력해주세요 (-)포함">
-					                        </div>
-					                    </li>
-					                    <li>
-					                        <label for="studentConsult" class="label-text">상담내용</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentConsult" id="studentSchool" class="input-text" value="">
-					                        </div>
-					                    </li>
-					                </ul>
-					            </div>
-					        </div>
-					        <!-- 학생정보 끝 -->
-					        <div class="bt-modal-wrap">
-					            <button type="submit" class="bt-label color-point">등록하기</button>
-					        </div>
-					    </form>
+			<div id="modal-wrap" class="modal-wrap width-s" style="display: none">
+				<div class="modal-head">
+					<button type="button" class="bt-icon close float-right">닫기</button>
+					<h3 class="modal-title">상담신청</h3>
+					<span class="modal-guide"></span>
+				</div>
+				<div class="modal-body">
+					<div id="academy-register-wrap">
+						<form action="/eka/eka_manager/add_apply_consult" method="POST">
+							<input type="hidden" name="uaid" value="40943">
+							<input type="hidden" name="parentId" value="">
+							<!-- 학생정보 시작 -->
+							<div class="student-wrap">
+								<h3>학생정보</h3>
+								<div class="border-wrap info-wrap">
+									<input type="hidden" name="academyId" value="${academy.aid}" />
+									<ul class="input-wrap">
+										<li>
+											<label for="studentName" class="label-text">이름</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentName" id="studentName" class="input-text" value="" placeholder="이름을 입력해주세요">
+											</div>
+										</li>
+										<li>
+											<label for="studentPhone" class="label-text">휴대폰번호</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentPhone" id="studentName" class="input-text" value="" placeholder="휴대폰번호를 입력해주세요 (-)포함">
+											</div>
+										</li>
+										<li>
+											<label for="studentConsult" class="label-text">상담내용</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentConsult" id="studentSchool" class="input-text" value="">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- 학생정보 끝 -->
+							<div class="bt-modal-wrap">
+								<button type="submit" class="bt-label color-point">등록하기</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:if>
 	<!-- 로그인 안되어있을때 Modal 끝 -->
-	
+
 	<!-- 로그인 되어있을때 Modal 시작 -->
 	<c:if test="${checkStudent == 0}">
 		<div class="modal-back">
-			<div id="modal-wrap" class="modal-wrap width-s" style="display:none">
-			    <div class="modal-head">
-			        <button type="button" class="bt-icon close float-right">닫기</button>
-			        <h3 class="modal-title">상담신청</h3>
-			        <span class="modal-guide"></span>
-			    </div>
-			    <div class="modal-body">
-				    <div id="academy-register-wrap">
-					    <form action="/eka/eka_manager/add_apply_consult" method="POST">
-					        <input type="hidden" name="uaid" value="40943">
-					        <input type="hidden" name="parentId" value="">
-					        <!-- 학생정보 시작 -->
-					        <div class="student-wrap">
-					            <h3>학생정보</h3>
-					            <div class="border-wrap info-wrap">
-					            <input type = "hidden" name = "academyId" value="${academy.aid}"/>
-					                <ul class="input-wrap">					                
-					                    <li>
-					                        <label for="studentName" class="label-text">이름</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentName" id="studentName" class="input-text" value="${ekauser.name}">
-					                        </div>
-					                    </li>
-					                    <li>
-					                        <label for="studentPhone" class="label-text">휴대폰번호</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentPhone" id="studentName" class="input-text" value="${ekauser.phone}">
-					                        </div>
-					                    </li>
-					                    <li>
-					                        <label for="studentConsult" class="label-text">상담내용</label>
-					                        <div class="flex-wrap">
-					                            <input type="text" name="studentConsult" id="studentSchool" class="input-text" value="">
-					                        </div>
-					                    </li>
-					                </ul>
-					            </div>
-					        </div>
-					        <!-- 학생정보 끝 -->
-					        <div class="bt-modal-wrap">
-					            <button type="submit" class="bt-label color-point">등록하기</button>
-					        </div>
-					    </form>
+			<div id="modal-wrap" class="modal-wrap width-s" style="display: none">
+				<div class="modal-head">
+					<button type="button" class="bt-icon close float-right">닫기</button>
+					<h3 class="modal-title">상담신청</h3>
+					<span class="modal-guide"></span>
+				</div>
+				<div class="modal-body">
+					<div id="academy-register-wrap">
+						<form action="/eka/eka_manager/add_apply_consult" method="POST">
+							<input type="hidden" name="uaid" value="40943">
+							<input type="hidden" name="parentId" value="">
+							<!-- 학생정보 시작 -->
+							<div class="student-wrap">
+								<h3>학생정보</h3>
+								<div class="border-wrap info-wrap">
+									<input type="hidden" name="academyId" value="${academy.aid}" />
+									<ul class="input-wrap">
+										<li>
+											<label for="studentName" class="label-text">이름</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentName" id="studentName" class="input-text" value="${ekauser.name}">
+											</div>
+										</li>
+										<li>
+											<label for="studentPhone" class="label-text">휴대폰번호</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentPhone" id="studentName" class="input-text" value="${ekauser.phone}">
+											</div>
+										</li>
+										<li>
+											<label for="studentConsult" class="label-text">상담내용</label>
+											<div class="flex-wrap">
+												<input type="text" name="studentConsult" id="studentSchool" class="input-text" value="">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- 학생정보 끝 -->
+							<div class="bt-modal-wrap">
+								<button type="submit" class="bt-label color-point">등록하기</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</c:if>
 	<!-- 로그인 되어있을때 Modal 끝 -->
-	
+
 	<script type="text/javascript" src="<c:url value='/resources/js/common.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resources/js/detail.js'/>"></script>
 </body>

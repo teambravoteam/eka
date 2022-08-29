@@ -3,6 +3,7 @@ package com.varxyz.eka.academy.academy.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,8 @@ import com.varxyz.eka.academy.academy.service.AcademyServiceImp;
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
 import com.varxyz.eka.auth.service.AuthService;
+import com.varxyz.eka.review.domain.Review;
+import com.varxyz.eka.review.service.ReviewServiceImp;
 import com.varxyz.eka.student.domain.Student;
 
 @Controller
@@ -32,6 +35,8 @@ public class AcademyController {
 	private AcademyServiceImp academyService;
 	@Autowired
 	private AuthService authService;
+	@Autowired
+	private ReviewServiceImp reviewService;
 
 	@GetMapping("/eka_main/myPage")
 	public ModelAndView myPageGet(HttpServletResponse response) {
@@ -131,6 +136,8 @@ public class AcademyController {
 	public ModelAndView ekaUser_list(HttpServletResponse response, HttpServletRequest request) {
 
 		String ekauserId = request.getParameter("ekauserId");
+		String ekauserEid = request.getParameter("ekauserEid");
+		Long ekauserEidL = Long.parseLong(ekauserEid);
 
 		ModelAndView mav = new ModelAndView();
 
@@ -141,9 +148,30 @@ public class AcademyController {
 		for (int i = 0; i < academyIdList.size(); i++) {
 			academyNameList.add(academyService.findAcademyByAid(academyIdList.get(i)).getName());
 		}
+		
+		List<Review> reviewList = reviewService.findReviewByekaUserId(ekauserEidL); 
+		List<Long> reviewRidList = reviewList.stream().map(Review::getRid).collect(Collectors.toList());
+		List<Long> reviewAcademyIdList = reviewList.stream().map(Review::getAcademyId).collect(Collectors.toList());
+
+		List<String> reviewAcademyNameList = new ArrayList<String>();
+		for (int i = 0; i < reviewAcademyIdList.size(); i++) {
+			reviewAcademyNameList.add(academyService.findAcademyByAid(reviewAcademyIdList.get(i)).getName());
+		}
+		
+		List<String> reviewCommentList = reviewList.stream().map(Review::getComment).collect(Collectors.toList());
+		List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore).collect(Collectors.toList());
+		List<Date> reviewRegDateList = reviewList.stream().map(Review::getRegDate).collect(Collectors.toList());
+
 
 		mav.addObject("academyNameList", academyNameList);
 		mav.addObject("academyIdList", academyIdList);
+		mav.addObject("reviewRidList", reviewRidList);
+		mav.addObject("reviewAcademyIdList", reviewAcademyIdList);
+		mav.addObject("reviewAcademyNameList", reviewAcademyNameList);
+		mav.addObject("reviewCommentList", reviewCommentList);
+		mav.addObject("reviewScoreList", reviewScoreList);
+		mav.addObject("reviewRegDateList", reviewRegDateList);
+		
 		mav.setViewName("eka_main/myPage_ekaUser_list");
 
 		return mav;

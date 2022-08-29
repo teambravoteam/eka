@@ -31,17 +31,17 @@ public class ReviewServiceImp implements ReviewService {
 	}
 
 	@Override
-	public void deleteReview(Review review, Long rid) {
-		reviewDao.deleteReview(review, rid);
+	public void deleteReview(Long rid) {
+		reviewDao.deleteReview(rid);
 	}
 
 	@Override
-	public List<Review> findReviewByAcademyId(Review review, Long academyId) {
-		return reviewDao.findReviewByAcademyId(review, academyId);
+	public List<Review> findReviewByAcademyId(Long academyId) {
+		return reviewDao.findReviewByAcademyId(academyId);
 	}
 
 	@Override
-	public List<Review> findReviewByekaUserId(Review review, Long ekaUserId) {
-		return reviewDao.findReviewByekaUserId(review, ekaUserId);
+	public List<Review> findReviewByekaUserId(Long ekaUserId) {
+		return reviewDao.findReviewByekaUserId(ekaUserId);
 	}
 }

@@ -55,6 +55,7 @@
 					</li>
 					<li>
 						<form action="ekaUser_list" method="post">
+							<input type="hidden" name="ekauserEid" value="${ekauser.eid}" />
 							<input type="hidden" name="ekauserId" value="${ekauser.userId}" />
 							<input type="submit" class="a-title" value="내 학원정보" />
 						</form>

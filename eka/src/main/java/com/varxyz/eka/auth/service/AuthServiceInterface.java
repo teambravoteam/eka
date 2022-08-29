@@ -1,5 +1,7 @@
 package com.varxyz.eka.auth.service;
 
+import java.util.List;
+
 import com.varxyz.eka.auth.domain.AcademyManager;
 import com.varxyz.eka.auth.domain.EkaUser;
 
@@ -14,4 +16,5 @@ public interface AuthServiceInterface {
 	public boolean updateAcademId(long academyId, AcademyManager manager); // 아카데미 아이디 업데이트
 	public void updateAcademyManager(String userPw, String userName, String userSsn, String userPhone, String userAid); // 원장 정보 수정
 	public void updateEkaUser(String userPw, String userName, String userSsn, String userPhone, String userEmail, String userEid); // EkaUser 정보 수정
+	public List<EkaUser> findEkaUserByekaUserId(Long eid); // eid로 유저 조회
 }
