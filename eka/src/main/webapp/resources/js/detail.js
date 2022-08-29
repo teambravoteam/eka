@@ -16,6 +16,11 @@ $("#onBtn").on("click", function() {
 	  con.style.display = "block";
 	}
 });
+/*
+$(".bt-notSame").on("click", function() {
+	elert("본인 소유의 학원만 수정이 가능합니다");
+});
+*/
 $(".bt-icon.close").on("click", function() {
 	$(".modal-back").removeClass('on');
 })

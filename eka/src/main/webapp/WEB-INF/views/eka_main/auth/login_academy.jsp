@@ -46,15 +46,15 @@
                 </li>
               </ul>
               <div class="login-extra-wrap">
-                  <input type="checkbox" name="autoLogin" id="autoLogin">
-                  <label for="autoLogin">자동 로그인</label>
                   <ul class="link-wrap float-right">
                       <li class="more"><a href="./find?mode=id" title="아이디 찾기">아이디 찾기</a></li>
                       <li><a href="./find?mode=pw" title="비밀번호 찾기">비밀번호 찾기</a></li>
                   </ul>
               </div>
-                <div class="join-link-wrap">
-               	<a href="/eka/eka_main/addmanager">원장 회원가입</a>
+              <div class="join-link-wrap">
+              	<ul class="link-wrap float-right">
+               		<li><a href="/eka/eka_main/addmanager">원장 회원가입</a></li>
+               	</ul>
               </div>
             </fieldset>
           </form>
