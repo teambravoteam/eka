@@ -43,6 +43,7 @@ public class AttendanceController {
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());		
 		
 		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));		
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/attendance";
 	}
 	
@@ -53,7 +54,8 @@ public class AttendanceController {
 
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());	
 		
-		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));		
+		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));	
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/attendance_edit";
 	}
 	
@@ -68,6 +70,7 @@ public class AttendanceController {
 		
 		session.setAttribute("slecture", lc);
 		session.setAttribute("lectureStudentList", lectureStudentList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		return "eka_manager/attendance";
@@ -103,7 +106,8 @@ public class AttendanceController {
 		}		
 		
 		session.setAttribute("slecture", lc);		
-		session.setAttribute("attendanceList", attendanceList);				
+		session.setAttribute("attendanceList", attendanceList);		
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		return "eka_manager/attendance_edit";
 	}
 	
@@ -141,6 +145,7 @@ public class AttendanceController {
 			attendanceService.addAttendece(att);
 		}
 		session.setAttribute("lectureStudentList", null);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		return "eka_manager/attendance";
@@ -163,6 +168,7 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance";
@@ -184,6 +190,7 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance";
@@ -204,6 +211,7 @@ public class AttendanceController {
 		}
 		session.setAttribute("lectureStudentList", lectureStudentList);
 //		model.addAttribute("lecture", lservice.findallAcademyLectures(academy));
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		return "eka_manager/attendance";
 	}
@@ -228,6 +236,7 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("attendanceList", attendanceList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance_edit";
@@ -248,6 +257,7 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("attendanceList", attendanceList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance_edit";
@@ -268,6 +278,7 @@ public class AttendanceController {
 			}
 		}
 		session.setAttribute("attendanceList", attendanceList);
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 
 		
 		return "eka_manager/attendance_edit";
