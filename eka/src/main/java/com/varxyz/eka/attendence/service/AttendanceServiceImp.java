@@ -29,6 +29,11 @@ public class AttendanceServiceImp implements AttendenceService {
 		attendanceDao.updateAttendece(atttendence);
 		return true;
 	}
+	
+	public boolean updateAttendance(Attendence att) {
+		attendanceDao.updateAttendance(att);
+		return true;
+	}
 
 	@Override
 	public List<Attendence> findAllAcademyAttendences(Academy academy) {

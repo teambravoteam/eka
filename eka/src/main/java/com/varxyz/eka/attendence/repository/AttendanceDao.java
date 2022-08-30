@@ -45,6 +45,11 @@ public class AttendanceDao {
 		String sql = "UPDATE Attendance SET checking = ?  WHERE aid = ? ;";
 		jdbcTemplate.update(sql,atttendence.getChecking(),atttendence.getAid());
 	}
+	
+	public void updateAttendance(Attendence atttendence) {
+		String sql = "UPDATE Attendance SET checking = ?  WHERE studentId = ? AND lectureDate = ? AND lectureId = ? ;";
+		jdbcTemplate.update(sql,atttendence.getChecking(),atttendence.getStudent().getSid(), atttendence.getRegDate(), atttendence.getLecture().getLid());
+	}
 
 	public List<Attendence> findAcademyAttendanceByLecture(Lecture lc) {
 		String sql = "SELECT * FROM Attendance a JOIN Student b ON a.studentId = b.sid WHERE lectureId = ? ;";

@@ -138,17 +138,46 @@ public class AttendanceController {
 			
 			for(Attendence b :lista) {
 				if(b.getStudent().getName().equals(att.getStudent().getName()) 
-						&& b.getRegDate() == att.getRegDate()) {
-					attendanceService.updateAttendence(att);
+						&& b.getRegDate().equals(b.getRegDate())) {
+					attendanceService.updateAttendance(att);
+				}else {
+					attendanceService.addAttendece(att);
 				}
 			}
-			attendanceService.addAttendece(att);
+			
 		}
-		session.setAttribute("lectureStudentList", null);
+		session.setAttribute("lectureStudentList", lectureStudentList);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
 		
 		return "eka_manager/attendance";
+		
+		
+	}
+	
+	
+	@PostMapping("eka_manager/attendance_finish_update")
+	public String attendanceFinishUpdate(Model model, HttpSession session) throws ParseException {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());		
+		Lecture lecture = (Lecture) session.getAttribute("slecture");
+		
+		List<Attendence> attendanceList = (List<Attendence>) session.getAttribute("attendanceList");
+		List<Attendence> attendancedList = attendanceService.findAcademyAttendanceByLecture(lecture);
+		
+		for(Attendence a :attendanceList) {
+			for(Attendence b : attendancedList) {
+				if(a.getStudent().getName().equals(b.getStudent().getName()) && a.getRegDate().equals(b.getRegDate())) {
+					attendanceService.updateAttendence(a);
+				}
+			}
+		}
+		
+		session.setAttribute("lecture", lservice.findallAcademyLectures(academy));	
+		
+		
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		return "eka_manager/attendance_edit";
 		
 		
 	}
@@ -279,7 +308,6 @@ public class AttendanceController {
 		}
 		session.setAttribute("attendanceList", attendanceList);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
-
 		
 		return "eka_manager/attendance_edit";
 	}

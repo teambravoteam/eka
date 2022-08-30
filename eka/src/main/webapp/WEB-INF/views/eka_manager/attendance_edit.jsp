@@ -107,7 +107,7 @@ body {
 							<div
 								class="d-sm-flex align-items-center justify-content-between mb-2">
 								<h5>출석부</h5>
-								<form action="attendance_finish" method="post">
+								<form action="attendance_finish_update" method="post">
 									<button class="btn btn-primary btn-sm submit" type="submit"
 										name="button">
 										<span>출석부 저장</span>
