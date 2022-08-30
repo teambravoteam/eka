@@ -128,24 +128,36 @@ public class AttendanceController {
 		
 		List<Attendence> lista = attendanceService.findAcademyAttendanceByLecture(lecture);
 		
-		for (AttendanceStudent a : lectureStudentList) {
-			Attendence att = new Attendence();
-			att.setStudent(a.getStudent());
-			att.setLecture(lecture);
-			att.setAcademy(academy);
-			att.setChecking(a.getAttendanceType());
-			att.setRegDate(now);
-			
-			for(Attendence b :lista) {
-				if(b.getStudent().getName().equals(att.getStudent().getName()) 
-						&& b.getRegDate().equals(b.getRegDate())) {
-					attendanceService.updateAttendance(att);
-				}else {
-					attendanceService.addAttendece(att);
-				}
+		if(lista.size() == lectureStudentList.size()) {
+			for (AttendanceStudent a : lectureStudentList) {
+				Attendence att = new Attendence();
+				att.setStudent(a.getStudent());
+				att.setLecture(lecture);
+				att.setAcademy(academy);
+				att.setChecking(a.getAttendanceType());
+				att.setRegDate(now);
+				
+				for(Attendence b :lista) {
+					if(b.getStudent().getName().equals(att.getStudent().getName()) 
+							&& b.getRegDate().equals(b.getRegDate())) {
+						attendanceService.updateAttendance(att);
+					}
+				}		
 			}
-			
-		}
+		}else {
+			for (AttendanceStudent a : lectureStudentList) {
+				Attendence att = new Attendence();
+				att.setStudent(a.getStudent());
+				att.setLecture(lecture);
+				att.setAcademy(academy);
+				att.setChecking(a.getAttendanceType());
+				att.setRegDate(now);
+				
+				attendanceService.addAttendece(att);
+			}
+		}	
+		
+		
 		session.setAttribute("lectureStudentList", lectureStudentList);
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		
