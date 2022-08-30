@@ -52,7 +52,7 @@
 					</li>
 					<li>
 						<c:if test="${manager.academyId != 0}">
-							<form action="detail_page" method="get">
+							<form action="detail_page" method="post">
 								<input type="hidden" name="academyAid" value="${manager.academyId}" />
 								<input type="submit" class="a-title" value="내 학원정보" />
 							</form>

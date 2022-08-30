@@ -44,4 +44,12 @@ public class ReviewServiceImp implements ReviewService {
 	public List<Review> findReviewByekaUserId(Long ekaUserId) {
 		return reviewDao.findReviewByekaUserId(ekaUserId);
 	}
+
+	public double percent(int a, int b) {
+		if (a != 0 || b != 0) {
+			return a * 100 / b;	
+		} else {
+			return 0;
+		}
+	}
 }

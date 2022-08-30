@@ -2,6 +2,7 @@ package com.varxyz.eka.academy.academy.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -92,7 +93,8 @@ public class AcademyController {
 	}
 
 	@PostMapping("/eka_main/myPage_update")
-	public ModelAndView myPage_update(HttpServletRequest request, HttpSession session, AcademyManager academyManager, EkaUser ekaUser) {
+	public ModelAndView myPage_update(HttpServletRequest request, HttpSession session, AcademyManager academyManager,
+			EkaUser ekaUser) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -121,13 +123,30 @@ public class AcademyController {
 			authService.updateEkaUser(password, name, ssn, phone, email, eid);
 			ekaUser.setUserId(userId);
 			ekaUser.setUserPw(userPw);
-			session.setAttribute("ekauser",
-					authService.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()));
+			session.setAttribute("ekauser", authService.loginEkaUsers(ekaUser.getUserId(), ekaUser.getUserPw()));
 
 			mav.addObject("academyNameList", academyName);
 			mav.setViewName("eka_main/myPage_ekaUser");
 		}
 
+		return mav;
+	}
+
+	@GetMapping("/eka_main/ekaUser_list")
+	public ModelAndView ekaUser_list(HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println("<script>alert('정상적인 경로로 접근 해주세요'); </script>");
+		out.flush();
+		mav.setViewName("eka_main/main");
 
 		return mav;
 	}
@@ -148,8 +167,8 @@ public class AcademyController {
 		for (int i = 0; i < academyIdList.size(); i++) {
 			academyNameList.add(academyService.findAcademyByAid(academyIdList.get(i)).getName());
 		}
-		
-		List<Review> reviewList = reviewService.findReviewByekaUserId(ekauserEidL); 
+
+		List<Review> reviewList = reviewService.findReviewByekaUserId(ekauserEidL);
 		List<Long> reviewRidList = reviewList.stream().map(Review::getRid).collect(Collectors.toList());
 		List<Long> reviewAcademyIdList = reviewList.stream().map(Review::getAcademyId).collect(Collectors.toList());
 
@@ -157,11 +176,10 @@ public class AcademyController {
 		for (int i = 0; i < reviewAcademyIdList.size(); i++) {
 			reviewAcademyNameList.add(academyService.findAcademyByAid(reviewAcademyIdList.get(i)).getName());
 		}
-		
+
 		List<String> reviewCommentList = reviewList.stream().map(Review::getComment).collect(Collectors.toList());
 		List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore).collect(Collectors.toList());
 		List<Date> reviewRegDateList = reviewList.stream().map(Review::getRegDate).collect(Collectors.toList());
-
 
 		mav.addObject("academyNameList", academyNameList);
 		mav.addObject("academyIdList", academyIdList);
@@ -171,7 +189,7 @@ public class AcademyController {
 		mav.addObject("reviewCommentList", reviewCommentList);
 		mav.addObject("reviewScoreList", reviewScoreList);
 		mav.addObject("reviewRegDateList", reviewRegDateList);
-		
+
 		mav.setViewName("eka_main/myPage_ekaUser_list");
 
 		return mav;
@@ -209,6 +227,25 @@ public class AcademyController {
 		return "eka_main/add_academy";
 	}
 
+	@GetMapping("/eka_main/find_academy")
+	public ModelAndView find_academy(HttpServletResponse response) {
+
+		ModelAndView mav = new ModelAndView();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println("<script>alert('정상적인 경로로 접근 해주세요'); </script>");
+		out.flush();
+		mav.setViewName("eka_main/main");
+
+		return mav;
+	}
+
 	@PostMapping("/eka_main/find_academy")
 	public ModelAndView find_academy(HttpSession session, HttpServletRequest request) {
 		String keyword = request.getParameter("keyword");
@@ -223,6 +260,47 @@ public class AcademyController {
 
 		List<Long> allAidList = allAcademyList.stream().map(Academy::getAid).collect(Collectors.toList());
 		System.out.println("allAidList 완료");
+
+		List<BigDecimal> averageScoreList = new ArrayList<>();
+		List<Integer> reviewNumList = new ArrayList<>();
+		for (int i = 0; i < allAidList.size(); i++) {
+			List<Review> reviewList = reviewService.findReviewByAcademyId(allAidList.get(i));
+			List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore)
+					.collect(Collectors.toList());
+
+			double allScore = 0.0;
+
+			for (int j = 0; j < reviewScoreList.size(); j++) {
+				if (reviewScoreList.get(j) == 5) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 4) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 3) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 2) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 1) {
+					allScore += reviewScoreList.get(j);
+				}
+			}
+			
+			reviewNumList.add(reviewScoreList.size());
+			
+
+			BigDecimal reviewScoreListB = null;
+			BigDecimal allScoreB = null;
+			BigDecimal averageScore = null;
+
+			if (allScore != 0.0) {
+				allScoreB = new BigDecimal(String.valueOf(allScore));
+				reviewScoreListB = new BigDecimal(String.valueOf(reviewScoreList.size()));
+
+				averageScore = allScoreB.divide(reviewScoreListB, 1, BigDecimal.ROUND_CEILING);
+			}
+			
+			averageScoreList.add(averageScore);
+		}
+
 		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
 		System.out.println("allNameList 완료");
 		List<String> allAddressList = allAcademyList.stream().map(Academy::getAddress).collect(Collectors.toList());
@@ -246,6 +324,8 @@ public class AcademyController {
 		mav.addObject("user_lat", sLat);
 		mav.addObject("user_lon", sLon);
 		mav.addObject("allAidList", allAidList);
+		mav.addObject("averageScoreList", averageScoreList);
+		mav.addObject("reviewNumList", reviewNumList);
 		mav.addObject("allNameList", allNameList);
 		mav.addObject("allAddressList", allAddressList);
 		mav.addObject("allLatList", allLatList);
@@ -297,6 +377,47 @@ public class AcademyController {
 
 		List<Long> allAidList = allAcademyList.stream().map(Academy::getAid).collect(Collectors.toList());
 		System.out.println("allAidList 완료");
+
+		List<BigDecimal> averageScoreList = new ArrayList<>();
+		List<Integer> reviewNumList = new ArrayList<>();
+		for (int i = 0; i < allAidList.size(); i++) {
+			List<Review> reviewList = reviewService.findReviewByAcademyId(allAidList.get(i));
+			List<Integer> reviewScoreList = reviewList.stream().map(Review::getReviewScore)
+					.collect(Collectors.toList());
+
+			double allScore = 0.0;
+
+			for (int j = 0; j < reviewScoreList.size(); j++) {
+				if (reviewScoreList.get(j) == 5) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 4) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 3) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 2) {
+					allScore += reviewScoreList.get(j);
+				} else if (reviewScoreList.get(j) == 1) {
+					allScore += reviewScoreList.get(j);
+				}
+			}
+			
+			reviewNumList.add(reviewScoreList.size());
+			
+
+			BigDecimal reviewScoreListB = null;
+			BigDecimal allScoreB = null;
+			BigDecimal averageScore = null;
+
+			if (allScore != 0.0) {
+				allScoreB = new BigDecimal(String.valueOf(allScore));
+				reviewScoreListB = new BigDecimal(String.valueOf(reviewScoreList.size()));
+
+				averageScore = allScoreB.divide(reviewScoreListB, 1, BigDecimal.ROUND_CEILING);
+			}
+			
+			averageScoreList.add(averageScore);
+		}
+		
 		List<String> allNameList = allAcademyList.stream().map(Academy::getName).collect(Collectors.toList());
 		System.out.println("allNameList 완료");
 		List<String> allAddressList = allAcademyList.stream().map(Academy::getAddress).collect(Collectors.toList());
@@ -349,6 +470,8 @@ public class AcademyController {
 		mav.addObject("aidList", aidList);
 		mav.addObject("latList", latList);
 		mav.addObject("lonList", lonList);
+		mav.addObject("averageScoreList", averageScoreList);
+		mav.addObject("reviewNumList", reviewNumList);
 		mav.addObject("nameList", nameList);
 		mav.addObject("addressList", addressList);
 		mav.addObject("detailAddressList", detailAddressList);
@@ -407,35 +530,4 @@ public class AcademyController {
 
 		return "eka_main/main";
 	}
-
-	@GetMapping("eka_main/academy/main")
-	public String academyMain() {
-		return "eka_main/academy/main";
-	}
-
-	@GetMapping("eka_main/academy/register")
-	public String academyRegister() {
-		return "eka_main/academy/register";
-	}
-
-	@GetMapping("eka_main/academy/write")
-	public String academyWrite() {
-		return "eka_main/academy/write";
-	}
-
-	@GetMapping("eka_main/academy/search")
-	public String academySearch() {
-		return "eka_main/academy/search";
-	}
-
-	@PostMapping("eka_main/academy/search")
-	public String Search() {
-		return "eka_main/academy/search";
-	}
-
-	@GetMapping("eka_main/academy/xml")
-	public String academyXml() {
-		return "eka_main/academy/xml";
-	}
-
 }

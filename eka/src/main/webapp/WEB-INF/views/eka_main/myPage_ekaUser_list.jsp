@@ -81,7 +81,7 @@
 							<button class="bt-sub yellowgreen" data="${status.index}">리뷰</button>
 						</div>
 						<div class="text-center">
-							<form action="detail_page" method="get">
+							<form action="detail_page" method="post">
 								<input type="hidden" name="academyAid" value="${academyIdList[status.index]}" />
 								<input type="submit" class="bt-sub green" value="상세페이지" />
 							</form>
@@ -124,7 +124,7 @@
 		<div class="modal-head">
 			<button type="button" class="bt-icon close float-right">닫기</button>
 			<h3 class="modal-title">리뷰 관리</h3>
-			<span class="modal-guide" style="display: none;"></span>
+			<span class="modal-guide">* 수정하고 싶은 내용을 입력하여 수정을 누르거나, 삭제 버튼을 눌러주세요.</span>
 		</div>
 		<div class="modal-body">
 			<ul class="input-wrap">
@@ -133,28 +133,28 @@
 						<li>
 							<div class="flex-wrap grid_33">
 								<div class="flex-wrap grid_25">
-									<input type="hidden" value="${reviewRid}">
-									<input type="hidden" value="${reviewAcademyIdList[status.index]}">
-									<input type="text" class="review_title" value="${reviewAcademyNameList[status.index]}" readonly="readonly">
-									<input type="text" class="review_comment" value="${reviewCommentList[status.index]}" required="required">
-									<input type="hidden" class="review_score" value="${reviewScoreList[status.index]}" required="required">
-									<input type="text" class="review_regDate" value="${reviewRegDateList[status.index]}" readonly="readonly">
+									<input type="hidden" name="ekauserId" value="${ekauser.userId}">
+									<input type="hidden" name="ekauserEid" value="${ekauser.eid}" />
+									<input type="hidden" name="reviewRid" value="${reviewRid}">
+									<input type="hidden" name="academyAid" value="${reviewAcademyIdList[status.index]}">
+									<input type="text" name="academyName" class="review_title" value="${reviewAcademyNameList[status.index]}" readonly="readonly">
+									<input type="text" name="reviewCotent" class="review_comment" value="${reviewCommentList[status.index]}" required="required">
+									<select name="reviewScore" required="required">
+										<option value="5" selected>5점</option>
+										<option value="4">4점</option>
+										<option value="3">3점</option>
+										<option value="2">2점</option>
+										<option value="1">1점</option>
+									</select>
+									<input type="text" name="reviewRegDate" class="review_regDate" value="${reviewRegDateList[status.index]}" readonly="readonly">
 								</div>
-								<input type="submit" class="input-text review-btn" value="수정" formaction="add_review">
-								<input type="submit" class="input-text review-btn" value="삭제" formaction="update_Review">
+								<input type="submit" class="input-text review-btn" value="수정" formaction="update_Review">
+								<input type="submit" class="input-text review-btn" value="삭제" formaction="delete_Review">
 							</div>
 						</li>
 					</form>
 				</c:forEach>
 			</ul>
-			<input type="hidden" name="configType" value="user">
-			<div class="bt-modal-wrap">
-				<input type="hidden" name="aid" value="${manager.aid}">
-				<input type="hidden" name="userId" value="${manager.userId}">
-				<input type="hidden" name="userPw" value="${manager.userPw}">
-				<input type="hidden" name="academyName" value="${academyNameList}">
-				<button type="submit" class="bt-label color-point">저장</button>
-			</div>
 		</div>
 	</div>
 </body>

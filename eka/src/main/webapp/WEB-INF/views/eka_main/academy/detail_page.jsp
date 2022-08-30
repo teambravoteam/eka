@@ -241,13 +241,13 @@
 										</tr>
 										<tr>
 											<td class="td-title">학생수</td>
-											<td class="td-content">${academy.personnel}</td>
+											<td class="td-content">${academy.personnel}명</td>
 											<td class="td-title">강사수</td>
-											<td class="td-content">강사인원 합쳐서 표현해야함</td>
+											<td class="td-content">${fn:length(teacher)}명</td>
 										</tr>
 										<tr>
 											<td class="td-title">전체리뷰수</td>
-											<td class="td-content">전체리뷰수 합쳐서 표현해야함</td>
+											<td class="td-content">${allScoreNum}개</td>
 											<td></td>
 											<td></td>
 										</tr>
@@ -286,6 +286,10 @@
 											<td class="td-title">대표자명</td>
 											<td class="td-content" colspan="3">정보없음</td>
 										</tr>
+										<tr>
+											<td class="td-title">학원 주소</td>
+											<td class="td-content" colspan="3">${academy.address} ${academy.detailaddress}</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -307,44 +311,44 @@
 								<div class="shadow-wrap">
 									<div class="flex-wrap">
 										<div class="flex-shrink-0 flex-glow-0 rating-wrap">
-											<span class="rating-score">5.0</span> <span class="rating-star rating-star-5"></span>
+											<span class="rating-score">${averageScore}</span> <span class="rating-star rating-star-${averageScore0}"></span>
 										</div>
 										<div class="flex-shrink-1 flex-glow-1 rating-count-wrap">
 											<ul>
 												<li class="flex-center">
 													<span class="flex-shrink-0">5점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width: 80%"></div>
+														<div style="width: ${score_5L}%"></div>
 													</div>
-													<span class="flex-shrink-0">3</span>
+													<span class="flex-shrink-0">${score_5}</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">4점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width: 20%"></div>
+														<div style="width: ${score_4L}%"></div>
 													</div>
-													<span class="flex-shrink-0">1</span>
+													<span class="flex-shrink-0">${score_4}</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">3점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width:"></div>
+														<div style="width: ${score_3L}%"></div>
 													</div>
-													<span class="flex-shrink-0">0</span>
+													<span class="flex-shrink-0">${score_3}</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">2점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width:"></div>
+														<div style="width: ${score_2L}%"></div>
 													</div>
-													<span class="flex-shrink-0">0</span>
+													<span class="flex-shrink-0">${score_2}</span>
 												</li>
 												<li class="flex-center">
 													<span class="flex-shrink-0">1점</span>
 													<div class="flex-glow-1 rating-bar">
-														<div style="width:"></div>
+														<div style="width: ${score_1L}%"></div>
 													</div>
-													<span class="flex-shrink-0">0</span>
+													<span class="flex-shrink-0">${score_1}</span>
 												</li>
 											</ul>
 										</div>

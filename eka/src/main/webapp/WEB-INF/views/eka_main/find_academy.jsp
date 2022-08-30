@@ -88,12 +88,20 @@
 												<span class="a-title">${name}</span><span class="a-distance hide-overlay">(거리 예정)</span>
 											</div>
 											<div>
-												<span class="a-review-rating">0.0</span><span class="a-review-count">(0)</span>
+												<span class="a-review-rating">
+													<c:if test="${!empty averageScoreList[status.index]}">
+														${averageScoreList[status.index]}
+													</c:if>
+													<c:if test="${empty averageScoreList[status.index]}">
+														0.0
+													</c:if>
+												</span>
+												<span class="a-review-count">리뷰 : ${reviewNumList[status.index]}개</span>
 											</div>
 											<div class="show-overlay">
 												<span class="a-addr-default">${allAddressList[status.index]}</span><span class="a-addr-detail">${allDetailAddressList[status.index]}</span>
 											</div>
-											<form action="detail_page" method="get">
+											<form action="detail_page" method="post">
 												<input type="hidden" name="academyAid" value="${allAidList[status.index]}" />
 												<input type="submit" class="bt-sub green" value="상세페이지" />
 											</form>

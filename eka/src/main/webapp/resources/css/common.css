@@ -1052,6 +1052,10 @@ select.small {
 	padding-right: calc(env(safe-area-inset-right) +20px)
 }
 
+#wrap .content.review-count-wrap {
+	padding-bottom: 20px;
+}
+
 #wrap .content strong {
 	font-weight: 500
 }
@@ -3724,13 +3728,13 @@ select.small {
 
 #modal-wrap .modal-body .flex-wrap.grid_33 {
 	display: grid;
-	grid-template-columns: 2fr 0.3fr 0.3fr;
+	grid-template-columns: 2fr 0.1fr 0.1fr;
 	grid-column-gap: 15px;
 }
 
 #modal-wrap .modal-body .flex-wrap.grid_25 {
 	display: grid;
-	grid-template-columns: 25%;
+	grid-template-columns: 130px 1fr 80px 150px;
 	grid-column-gap: 15px;
 	align-items: center;
 }

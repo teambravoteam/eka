@@ -29,8 +29,8 @@ public class ReviewDao {
 
 	// 리뷰 수정
 	public void updateReview(Review review) {
-		String sql = "UPDATE Review SET comment = ? WHERE rid = ?";
-		jdbcTemplate.update(sql, review.getComment(), review.getRid());
+		String sql = "UPDATE Review SET comment = ?, reviewScore = ? WHERE rid = ?";
+		jdbcTemplate.update(sql, review.getComment(), review.getReviewScore(), review.getRid());
 	}
 
 	// 리뷰 삭제
