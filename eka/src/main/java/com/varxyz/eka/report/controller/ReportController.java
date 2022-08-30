@@ -83,6 +83,7 @@ public class ReportController {
 		
 		//출석현황리스트
 		model.addAttribute("attendance", rservice.findAttendanceListBySid(academy, sid, lid));
+		
 		System.out.println(rservice.findAttendanceListBySid(academy, sid, lid));
 		//성적리스트
 		model.addAttribute("score", rservice.findScoreListBySid(academy, sid, lid));

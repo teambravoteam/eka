@@ -24,7 +24,7 @@ public class ReportDao {
 	// 출석정보 가져오기
 	public List<ReportAttendanceCommand> findAttendanceListBySid(Academy academy, long sid, long lid) {
 		String sql = "SELECT * FROM Attendance a JOIN Lecture b ON a.academyId = b.academyId "
-				+ " WHERE a.academyId =? AND a.studentId =? AND a.lectureId=?";
+				+ " WHERE a.academyId =? AND a.studentId =? AND b.lid=?";
 		return jdbcTemplate.query(sql, new ReportAttendanceRowMapper(), academy.getAid(), sid, lid);
 	}
 	
