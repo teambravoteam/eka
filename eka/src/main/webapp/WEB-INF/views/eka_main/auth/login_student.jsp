@@ -59,7 +59,7 @@
           </form>
           <div class="shadow-wrap guide-wrap">
               <h3>학원 선생님 또는 원장님이신가요?</h3>
-              <a href='<c:url value="/eka_main/managerlogin"/>'>학원로그인</a>
+              <a href='<c:url value="/eka_main/managerlogin"/>' class="bt-sub accent">학원로그인</a>
           </div>
         </section>
       </div>

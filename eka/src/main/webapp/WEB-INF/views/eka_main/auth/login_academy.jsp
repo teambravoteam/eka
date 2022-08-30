@@ -60,7 +60,7 @@
           </form>
           <div class="shadow-wrap guide-wrap">
             <h3>학생이신가요?</h3>
-            <a href='<c:url value="/eka_main/ekauserlogin"/>'>학생 로그인</a>
+            <a href='<c:url value="/eka_main/ekauserlogin"/>' class="bt-sub point">학생 로그인</a>
           </div>
         </section>
       </div>
