@@ -30,6 +30,36 @@ public class StudentDao {
 				student.getName(), student.getGender(), student.getSsn(), student.getPhone(), student.getEkaUserId(),
 				student.getParentName(), student.getParentType(), student.getParentPhone());
 	}
+	
+	// 학생정보 업데이트
+	public boolean updateStudent(Student student) {
+		try {
+			String sql = "UPDATE Student SET schoolcate=?,gradecate=?,name=?,gender=?"
+					+ ",ssn=?,ekaUserId=?,phone=?,parentName=?,parentType=?,parentPhone=? WHERE sid=?";
+					
+			jdbcTemplate.update(sql,student.getSchoolcate(), student.getGradecate(),student.getName(),student.getGender(),
+					student.getSsn(),student.getEkaUserId() ,student.getPhone(), student.getParentName(),student.getParentType()
+					,student.getParentPhone(),student.getSid());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	// 학생정보를 삭제
+	public boolean deleteStudent(Student student) {
+		try {
+			String sql = "DELETE FROM Student WHERE sid = ?";
+			jdbcTemplate.update(sql, student.getSid());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 
 	// 하나의 학원에 포함된 학생들의 모든 정보를 불러온다
 	public List<Student> findAllAcademyStudentByAcademy(Academy academy) {

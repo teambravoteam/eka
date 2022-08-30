@@ -36,6 +36,32 @@
 	rel="stylesheet">
 <link href="../resources/manager/custom/css/student_add.css"
 	rel="stylesheet">
+<!-- jQuery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function() {
+      
+        $('#mainselect').change(function() {
+          var result = $('#mainselect option:selected').val();
+
+          if (result == '초등학교') {
+            $('.초등학교').show();
+            $('.중학교').hide();
+            $('.고등학교').hide();
+          } else if (result=='중학교'){
+            $('.초등학교').hide();
+            $('.중학교').show();
+            $('.고등학교').hide();
+          } else if (result='고등학교') {
+            $('.초등학교').hide();
+            $('.중학교').hide();
+            $('.고등학교').show();
+          }
+        });
+
+    });
+  </script>
+
 
 </head>
 <style>
@@ -79,13 +105,15 @@ body {
 										<input type="radio" name="gender" value="남" class="radio"><span>남</span>
 										<input type="radio" name="gender" value="여" class="radio"><span>여</span></td>
 										<th>교과과정</th>
-										<td><select class="category" name="schoolcate">
+										<td><select class="category" name="schoolcate" id="mainselect">
+												<option>선택</option>
 												<c:forEach var="school" items="${school}">
 													<option value="${school.schoolcate}">${school.schoolcate}</option>
 												</c:forEach>
 										</select> <select class="category" name="gradecate">
-												<c:forEach var="grade" items="${grade}">
-													<option value="${grade.gradecate}">${grade.gradecate}</option>
+												<option>선택</option>
+												<c:forEach var="grade" items="${grade}" >
+													<option class="${grade.schoolcate}" value="${grade.gradecate}">${grade.gradecate}</option>
 												</c:forEach>
 										</select></td>
 									</tr>

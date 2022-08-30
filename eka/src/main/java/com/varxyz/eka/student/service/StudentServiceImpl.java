@@ -34,15 +34,13 @@ public class StudentServiceImpl implements StudentService {
 	// 학원관리자는 학생의 정보를 수정
 	@Override
 	public boolean updateStudent(Student student) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.updateStudent(student);
 	}
 
 	// 학원관리자는 학생의 정보를 삭제
 	@Override
 	public boolean deleteStudent(Student student) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteStudent(student);
 	}
 
 	

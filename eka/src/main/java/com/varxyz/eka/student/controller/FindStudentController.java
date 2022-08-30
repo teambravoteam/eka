@@ -1,6 +1,5 @@
 package com.varxyz.eka.student.controller;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,14 +92,35 @@ public class FindStudentController{
 		AcademyManager am = (AcademyManager) session.getAttribute("manager");
 		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
 		
-		
 		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
 		model.addAttribute("ekaUserStudent",service.findAcademyStudentsByEkaSignUp(academy, findStudent));
 		return "eka_manager/student_edit";
 	}
 	
-	// 상세정보
 	
+	
+	// 상세정보 수정
+	@GetMapping("eka_manager/updateStudent")
+	public String updateStudent(Model model, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+		model.addAttribute("update",new Student());
+		return "eka_manager/student_edit";
+	}
+	
+	// 상세정보 수정
+	@PostMapping("eka_manager/updateStudent")
+	public String updateStudent(Model model, Student student, HttpSession session) {
+		AcademyManager am = (AcademyManager) session.getAttribute("manager");
+		Academy academy = academyService.findAcademyByAid(am.getAcademyId());
+		student.setAcademyId(academy.getAid());
+		
+		service.updateStudent(student);
+		
+		model.addAttribute("academyName", academyService.findAcademyByAid(am.getAcademyId()).getName());
+//		model.addAttribute("newStudent",find);
+		return "eka_manager/student_edit";
+	}
 	
 	
 	
