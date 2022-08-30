@@ -205,7 +205,7 @@
 		<a href="#wrap" class="bt-top hashLink">
 			<img src="../resources/img/ic_arrow_up_24px.png" alt="맨위로"> <span>맨위로</span>
 		</a>
-		<a href="https://pf.kakao.com/_sjxnTxb/chat" class="bt-kakao" target="_blank">
+		<a href="http://pf.kakao.com/_IxjQZxj/chat" class="bt-kakao" target="_blank">
 			<img src="../resources/img/ic_kakao_24px.png" alt="카톡상담"> <span>문의</span>
 		</a>
 		<div id="academy-list-wrap" class="container navi">

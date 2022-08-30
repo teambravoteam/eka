@@ -19,7 +19,7 @@
 		<a href="#wrap" class="bt-top hashLink"> <img src="https://skycatcher.co.kr/image/ic_arrow_up_24px.png" alt="맨위로">
 			<span>맨위로</span>
 		</a>
-		<a href="https://pf.kakao.com/_sjxnTxb/chat" class="bt-kakao"
+		<a href="http://pf.kakao.com/_IxjQZxj/chat" class="bt-kakao"
 			target="_blank"> <img src="https://skycatcher.co.kr/image/ic_kakao_24px.png" alt="카톡상담">
 			<span>문의</span>
 		</a>
