@@ -282,9 +282,9 @@ function displayPlaces() {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function(marker, title, addr, detailAddr, score, scoreNum) {
+        (function(marker, title, addr, detailAddr, aid) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title, addr, detailAddr);
+                displayInfowindow(marker, title, addr, detailAddr, aid);
             });
 
             // kakao.maps.event.addListener(marker, 'mouseout', function() {
@@ -292,13 +292,13 @@ function displayPlaces() {
             // });
 
             itemEl.onmouseover =  function () {
-                displayInfowindow(marker, title, addr, detailAddr);
+                displayInfowindow(marker, title, addr, detailAddr, aid);
             };
 
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
-        })(marker, "${name}", "${addressList[status.index]}", "${detailAddressList[status.index]}", "${averageScoreList[status.index]}", "${reviewNumList[status.index]}");
+        })(marker, "${name}", "${addressList[status.index]}", "${detailAddressList[status.index]}", "${aidList[status.index]}");
 
         fragment.appendChild(itemEl);
 
@@ -365,23 +365,21 @@ function removeMarker() {
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
 
-function displayInfowindow(marker, title, addr, detailAddr, score, scoreNum) {
-	if (score == undefined || score == "" || score == null) {
-		score = "0.0";
-		scoreNum = 0;
-	}
-	
+function displayInfowindow(marker, title, addr, detailAddr, aid) {
     var content =
 
 		'<div id="academyList-wrap" class="academy-overlay-wrap undefined">' +
 		'<div class="item-content">' +
 		'<button class="bt-like float-right" data-uaid="83877" data-like="0"></button>' +
 		'<div><span class="a-title">'+title+'</span>' +
-		'<span class="a-distance hide-overlay">0.1km</span></div>' +
-		'<div><span class="a-review-rating">'+score+'</span><span class="a-review-count">('+scoreNum+')</span></div>' +
+		'<span class="a-distance hide-overlay">0.0km</span></div>' +
+		'<div><span class="a-review-rating">0.0</span><span class="a-review-count">(0)</span></div>' +
 		'<div class="show-overlay"><span class="a-addr-default">'+addr+'</span><span class="a-addr-detail">'+detailAddr+'</span></div>' +
 		'<div class="bt-modal-wrap show-overlay">' +
-		'<button class="bt-label" onclick="location.href=./academyDetail?'+title+'">학원보기</button>' +
+		'<form action="detail_page" method="post">' + 
+		'<input type="hidden" name="academyAid" value="' + aid + '"/>' +
+		'<input type="submit" class="bt-label cursor-pointer" value="학원보기">' +
+		'</form>' + 
 		'</div></div></div>';
 
     infowindow.setContent(content);

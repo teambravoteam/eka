@@ -85,18 +85,15 @@
 										<div class="item-content">
 											<button class="bt-like float-right" data-uaid="80999" data-like="0"></button>
 											<div>
-												<span class="a-title">${name}</span><span class="a-distance hide-overlay">(거리 예정)</span>
+												<span class="a-title">${name}</span><span class="a-distance hide-overlay"><fmt:formatNumber value="${distanceList[status.index]}" pattern="0.0"/>km</span>
 											</div>
 											<div>
-												<span class="a-review-rating">
-													<c:if test="${!empty averageScoreList[status.index]}">
+												<span class="a-review-rating"> <c:if test="${!empty averageScoreList[status.index]}">
 														${averageScoreList[status.index]}
-													</c:if>
-													<c:if test="${empty averageScoreList[status.index]}">
+													</c:if> <c:if test="${empty averageScoreList[status.index]}">
 														0.0
 													</c:if>
-												</span>
-												<span class="a-review-count">리뷰 : ${reviewNumList[status.index]}개</span>
+												</span> <span class="a-review-count">리뷰 : ${reviewNumList[status.index]}개</span>
 											</div>
 											<div class="show-overlay">
 												<span class="a-addr-default">${allAddressList[status.index]}</span><span class="a-addr-detail">${allDetailAddressList[status.index]}</span>

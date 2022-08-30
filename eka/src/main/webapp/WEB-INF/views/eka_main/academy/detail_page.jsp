@@ -54,7 +54,7 @@
 									<button class="bt-like float-right" data-uaid="40943" data-like="0"></button>
 									<h1 class="academy-title">${academy.name}</h1>
 									<div class="academy-review">
-										학생 리뷰 <span>(예정)</span> 학부모 리뷰 <span>(예정)</span>
+										학생 리뷰 <span>${fn:length(reviewRidList)}개</span>
 									</div>
 									<div class="academy-teacher-review">
 										학원장 댓글 <span>(예정)</span>
