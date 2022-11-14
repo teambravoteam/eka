@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,10 +24,11 @@ import java.util.List;
  *
  * @author
  */
+
 @Slf4j
 public class CsvFileParseSaveToDB {
-
-	private static String targetFilePath = "C:/Users/xmrtn/Desktop/Kangsan/EKA_WEB/data.csv";
+	
+//	private static String targetFilePath = "C:/Users/xmrtn/Desktop/Kangsan/EKA_WEB/data.csv";
 
 	public static void main(String[] args) {
 
@@ -100,7 +103,8 @@ public class CsvFileParseSaveToDB {
 
 	private static List<CSVRecord> getCsvRecords() throws IOException {
 
-		File targetFile = new File(targetFilePath);
+//		File targetFile = new File(targetFilePath);
+		File targetFile = new ClassPathResource("data.csv").getFile();
 
 		int sampleDataRow = 0; // 샘플 데이터 row번호
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(targetFile))) {

@@ -19,7 +19,7 @@ import com.varxyz.eka.academy.teacher.domain.Teacher;
 import com.varxyz.eka.academy.teacher.service.TeacherServiceImpl;
 import com.varxyz.eka.auth.domain.AcademyManager;
 
-@Controller
+//@Controller
 public class AddTeacherController {
 	
 	@Autowired
